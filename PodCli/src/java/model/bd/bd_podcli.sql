@@ -99,9 +99,32 @@ CREATE TABLE datosFisicos(
     FOREIGN KEY(usuario) REFERENCES usuario(id)
 );
 
+CREATE TABLE examenFisico(
+	id INT AUTO_INCREMENT,
+    datosFisicos INT,
+    talla INT,
+    imc FLOAT,
+    amputacion BOOLEAN,
+    ubiAmputacion VARCHAR(100),
+    nCalzado INT,
+    varices BOOLEAN,
+    heridas BOOLEAN,
+    ubiHeridas VARCHAR(300),
+    tipoHerida VARCHAR(300),
+    tratamiento BOOLEAN,
+    nevos BOOLEAN,
+    ubiNevos VARCHAR(300),
+    maculas BOOLEAN,
+    tipoMaculas VARCHAR(300),
+    usuario INT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(datosFisicos) REFERENCES datosFisicos(id),
+    FOREIGN KEY(usuario) REFERENCES usuario(id)
+);
+
 CREATE TABLE atencion(
 	id INT AUTO_INCREMENT,
-    datosFisicos int,
+    datosFisicos int, -- acá va a estar la referencia de la fecha
     curacion BOOLEAN,
     coloqPuente BOOLEAN, -- Colocación puente
     resecado BOOLEAN,
@@ -114,11 +137,9 @@ CREATE TABLE atencion(
     bandaMolecular BOOLEAN,
     bracket BOOLEAN,
     poli BOOLEAN,
-    
     observaciones VARCHAR(5000),
     PRIMARY KEY(id),
-    
-   
+    FOREIGN KEY(datosFisicos) REFERENCES datosFisicos(id)
 );
 
 
