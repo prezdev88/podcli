@@ -4,14 +4,14 @@ USE podcli;
 
 /*Perfil de usuario*/
 CREATE TABLE perfil(
-	id INT AUTO_INCREMENT,
+    id INT AUTO_INCREMENT,
     nombre VARCHAR(100),
     PRIMARY KEY(id)
 );
 
 CREATE TABLE usuario(
-	id INT AUTO_INCREMENT,
-	rut VARCHAR(13),
+    id INT AUTO_INCREMENT,
+    rut VARCHAR(13),
     nombre VARCHAR(100),
     perfil int,
     PRIMARY KEY(id),
@@ -19,27 +19,27 @@ CREATE TABLE usuario(
 );
 
 CREATE TABLE estadoCivil(
-	id INT AUTO_INCREMENT,
+    id INT AUTO_INCREMENT,
     nombre VARCHAR(100),
     PRIMARY KEY(id)
 );
 
 CREATE TABLE respuesta(
-	id INT AUTO_INCREMENT,
+    id INT AUTO_INCREMENT,
     nombre VARCHAR(20),
     PRIMARY KEY(id)
 );
 
 CREATE TABLE paciente(
-	/*-------------------------------------------------------*/
+    /*-------------------------------------------------------*/
     /*				  Antecedentes personales			     */
     /*-------------------------------------------------------*/
-    id 				INT AUTO_INCREMENT,
-    rut 			VARCHAR(13),
-    nombre 			VARCHAR(100),
-    sexo 			VARCHAR(1),
+    id 			INT AUTO_INCREMENT,
+    rut 		VARCHAR(13),
+    nombre 		VARCHAR(100),
+    sexo 		VARCHAR(1),
     domicilio 		VARCHAR(500),
-    fechaNacimiento DATE,
+    fechaNacimiento     DATE,
     estadoCivil 	INT,
     actividad 		VARCHAR(200),
     telefonos 		VARCHAR(500), -- mejorar turbio
@@ -54,21 +54,21 @@ los datos en la tabla ficha.
 */
 
 CREATE TABLE ficha(
-	id 				INT AUTO_INCREMENT,
-    fecha 			DATETIME, 		-- Fecha de creación de la ficha (con función now())
+    id 			INT AUTO_INCREMENT,
+    fecha 		DATETIME, 		-- Fecha de creación de la ficha (con función now())
     paciente 		INT,
     usuario 		INT, 			-- que usuario creó la ficha.
     /*-------------------------------------------------------*/
-    /*					Antecedentes morbidos      		     */
+    /*		     Antecedentes morbidos                   */
     /*-------------------------------------------------------*/
-    hta 			INT, 			-- Hipertensión Arterial
-    dm 				INT, 			-- Diabetes Mellitus
+    hta 		INT, 			-- Hipertensión Arterial
+    dm 			INT, 			-- Diabetes Mellitus
     tipoDiabetes 	VARCHAR(100),
     aniosEvolucion 	INT,
-    mixto 			BOOLEAN, 		-- PACIENTE MIXTO
+    mixto 		BOOLEAN, 		-- PACIENTE MIXTO
     control 		BOOLEAN,
     farmacoterapia 	VARCHAR(3000),
-    otros 			VARCHAR(4000),	-- Otras patologías y farmacoterapia
+    otros 		VARCHAR(4000),	-- Otras patologías y farmacoterapia
     alteraciones 	VARCHAR(1000), 	-- Alteraciones ortopedicas
     habitos 		VARCHAR(1000),	-- Habitos nocivos
     /*-------------------------------------------------------*/
@@ -77,8 +77,8 @@ CREATE TABLE ficha(
     /*-------------------------------------------------------*/
     /*				   Examen físico general				 */
     /*-------------------------------------------------------*/
-    talla 			FLOAT, -- en metros
-    imc 			FLOAT,
+    talla 		FLOAT, -- en metros
+    imc 		FLOAT,
     amputacion 		BOOLEAN,
     ubiAmputacion 	VARCHAR(100),
     nCalzado 		INT,
@@ -87,7 +87,7 @@ CREATE TABLE ficha(
     ubiHeridas 		VARCHAR(300),
     tipoHerida 		VARCHAR(300),
     tratamiento 	BOOLEAN,
-    nevos 			BOOLEAN,
+    nevos 		BOOLEAN,
     ubiNevos 		VARCHAR(300),
     maculas 		BOOLEAN,
     tipoMaculas 	VARCHAR(300),
@@ -95,10 +95,10 @@ CREATE TABLE ficha(
     
     
     PRIMARY KEY(id),
-    FOREIGN KEY(hta) 			REFERENCES respuesta(id),
-    FOREIGN KEY(dm) 			REFERENCES respuesta(id),
-    FOREIGN KEY(paciente) 		REFERENCES paciente(id),
-    FOREIGN KEY(usuario) 		REFERENCES usuario(id)
+    FOREIGN KEY(hta)        REFERENCES respuesta(id),
+    FOREIGN KEY(dm)         REFERENCES respuesta(id),
+    FOREIGN KEY(paciente)   REFERENCES paciente(id),
+    FOREIGN KEY(usuario)    REFERENCES usuario(id)
 );
 
 /*
@@ -106,17 +106,17 @@ Una vez que el paciente viene de nuevo a la consulta,
 se realizarán inserts en esta tabla (atencionPodologica)
 */
 CREATE TABLE atencionPodologica(
-	id 					INT AUTO_INCREMENT,
-    ficha				INT,
+    id 				INT AUTO_INCREMENT,
+    ficha			INT,
     
-    fecha				DATETIME,
+    fecha			DATETIME,
     presion 			INT, 		-- Presión Arterial
     pulsoRadial 		INT,
     pulsoPedio_d 		INT, 		-- Derecho
     pulsoPedio_i 		INT, 		-- Izquierdo
-    peso 				FLOAT,
-    sens_d 				BOOLEAN, 	-- Sensibilidad pie derecho
-    sens_i 				BOOLEAN, 	-- Sensibilidad pie izquierdo
+    peso 			FLOAT,
+    sens_d 			BOOLEAN, 	-- Sensibilidad pie derecho
+    sens_i 			BOOLEAN, 	-- Sensibilidad pie izquierdo
     tpodal_d 			FLOAT, 		-- TEMPERATURA PODAL derecho
     tpodal_i 			FLOAT, 		-- TEMPERATURA PODAL izquierdo
     curacion 			BOOLEAN,
@@ -124,13 +124,13 @@ CREATE TABLE atencionPodologica(
     resecado 			BOOLEAN,
     enucleacion 		BOOLEAN,
     devastado 			BOOLEAN, 	-- Devastado Ungueal
-    maso 				BOOLEAN, 	-- Masoterapia o masaje
-    espiculoectomia 	INT,
+    maso 			BOOLEAN, 	-- Masoterapia o masaje
+    espiculoectomia             INT,
     analgesia 			BOOLEAN, 	-- tipo de dato?????
-    colocacionAcriloco 	BOOLEAN,	
+    colocacionAcriloco          BOOLEAN,	
     bandaMolecular 		BOOLEAN,	
     bracket 			BOOLEAN,	-- tipo de dato?????
-    poli 				BOOLEAN,
+    poli 			BOOLEAN,
     observaciones 		VARCHAR(5000),
 	
     PRIMARY KEY(id),
