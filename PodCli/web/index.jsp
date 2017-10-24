@@ -26,5 +26,10 @@
         </p>
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <a href="crearFicha.jsp">Crear Paciente</a>
+        <a href="atencionPodologica.jsp">Atencion Podologica</a>
+        <a href="buscarPaciente.jsp">Buscar Paciente</a>
+        <a href="crearUsuario.jsp">Crear Usuario</a>
+        
     </body>
 </html>

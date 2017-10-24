@@ -18,7 +18,6 @@ public class AtencionPodologica {
     private float tPoda1_d;//TEMPERATURA PODAL derecho
     private float tPoda1_i;//TEMPERATURA PODAL izquierdo
     private boolean curacion;
-    private boolean coloqPuente;//Colocación puente
     private boolean resecado;
     private boolean enucleacion;
     private boolean devastado;//Devastado Ungueal
@@ -142,14 +141,6 @@ public class AtencionPodologica {
 
     public void setCuracion(boolean curacion) {
         this.curacion = curacion;
-    }
-
-    public boolean isColoqPuente() {
-        return coloqPuente;
-    }
-
-    public void setColoqPuente(boolean coloqPuente) {
-        this.coloqPuente = coloqPuente;
     }
 
     public boolean isResecado() {
