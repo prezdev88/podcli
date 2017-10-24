@@ -68,8 +68,29 @@ public class Data {
             a.setPulsoRadial(rs.getInt(6));
             a.setPulsoPedio_d(rs.getInt(7));
             a.setPulsoPedio_i(rs.getInt(8));
+            a.setPeso(rs.getFloat(9));
+            a.setSens_d(rs.getBoolean(10));
+            a.setSens_i(rs.getBoolean(11));
+            a.settPoda1_d(rs.getFloat(12));
+            a.settPoda1_i(rs.getFloat(13));
+            a.setCuracion(rs.getBoolean(14));
+            a.setColoqPuente(rs.getBoolean(15));
+            a.setResecado(rs.getBoolean(16));
+            a.setEnucleacion(rs.getBoolean(17));
+            a.setDevastado(rs.getBoolean(18));
+            a.setMaso(rs.getBoolean(19));
+            a.setEspiculoectomia(rs.getBoolean(20));
+            a.setAnalgesia(rs.getBoolean(21));
+            a.setColocacionAcrilico(rs.getBoolean(22));
+            a.setBandaMolecular(rs.getBoolean(23));
+            a.setColocacionPuente(rs.getBoolean(24));
+            a.setTratamientoOrtonixia(rs.getInt(25));
+            a.setPoli(rs.getBoolean(26));
+            a.setObservaciones(rs.getString(27));
+            atenciones.add(a);
         }
-        return null;
+        con.desconectar();
+        return atenciones;
     }
 
     //Buscar paciente para listar (por rut, nombre, apellido y más??)
