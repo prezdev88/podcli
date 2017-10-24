@@ -39,11 +39,11 @@ public class Data {
                 + +a.getPulsoPedio_d()+" ,"+a.getPulsoPedio_i()+" ,"+a.getPeso()+" ,"
                 + ""+a.isSens_d()+" ,"+a.isSens_i()+","+a.gettPoda1_d()+" ,"
                 + ""+a.gettPoda1_i()+" ,"+a.isCuracion()+",\n"
-                + ""+a.isColoqPuente()+","+a.isResecado()+","+a.isEnucleacion()+","
+                + ""+a.isColocacionPuente()+","+a.isResecado()+","+a.isEnucleacion()+","
                 + ""+a.isDevastado()+" ,"+a.isMaso()+","
                 + ""+a.isEspiculoectomia()+"  ,"+a.isAnalgesia()+",\n"
                 + ""+a.isColocacionAcrilico()+" ,"+a.isBandaMolecular()+","
-                + ""+a.isColocacionPuente()+","+a.getTratamientoOrtonixia()+","
+                +","+a.getTratamientoOrtonixia()+","
                 + ""+a.isPoli()+" ,'"+a.getObservaciones()+"')";
         con.ejecutar(query);
     }
@@ -69,7 +69,7 @@ public class Data {
             a.settPoda1_d(rs.getFloat(12));
             a.settPoda1_i(rs.getFloat(13));
             a.setCuracion(rs.getBoolean(14));
-            a.setColoqPuente(rs.getBoolean(15));
+            a.setColocacionPuente(rs.getBoolean(15));
             a.setResecado(rs.getBoolean(16));
             a.setEnucleacion(rs.getBoolean(17));
             a.setDevastado(rs.getBoolean(18));
