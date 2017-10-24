@@ -2,12 +2,15 @@ CREATE DATABASE podcli;
 
 USE podcli;
 
-/*Perfil de usuario*/
 CREATE TABLE perfil(
     id INT AUTO_INCREMENT,
     nombre VARCHAR(100),
     PRIMARY KEY(id)
 );
+
+INSERT INTO perfil VALUES(NULL, 'Alumno');
+INSERT INTO perfil VALUES(NULL, 'Docente');
+INSERT INTO perfil VALUES(NULL, 'Jefe Carrera');
 
 CREATE TABLE usuario(
     id INT AUTO_INCREMENT,
@@ -24,11 +27,22 @@ CREATE TABLE estadoCivil(
     PRIMARY KEY(id)
 );
 
+INSERT INTO estadoCivil VALUES(NULL, 'Soltero/a');
+INSERT INTO estadoCivil VALUES(NULL, 'Casado/a');
+INSERT INTO estadoCivil VALUES(NULL, 'Comprometido/a');
+INSERT INTO estadoCivil VALUES(NULL, 'Divorciado/a');
+INSERT INTO estadoCivil VALUES(NULL, 'Viudo/a');
+
 CREATE TABLE respuesta(
     id INT AUTO_INCREMENT,
     nombre VARCHAR(20),
     PRIMARY KEY(id)
 );
+
+INSERT INTO respuesta VALUES(NULL, 'Si');
+INSERT INTO respuesta VALUES(NULL, 'No');
+INSERT INTO respuesta VALUES(NULL, 'No sabe');
+INSERT INTO respuesta VALUES(NULL, 'En estudio');
 
 CREATE TABLE paciente(
     /*-------------------------------------------------------*/
@@ -120,6 +134,7 @@ se realizarán inserts en esta tabla (atencionPodologica)
 CREATE TABLE atencionPodologica(
     id 				INT AUTO_INCREMENT,
     ficha			INT,
+    usuario                     INT,            -- Usuario que atendió al paciente
     
     fecha			DATETIME,
     presion 			FLOAT, 		-- Presión Arterial
@@ -148,26 +163,9 @@ CREATE TABLE atencionPodologica(
 	
     PRIMARY KEY(id),
     FOREIGN KEY(ficha)                  REFERENCES ficha(id),
-    FOREIGN KEY(tratamientoOrtonixia)   REFERENCES tratamientoOrtonixia(id)
+    FOREIGN KEY(tratamientoOrtonixia)   REFERENCES tratamientoOrtonixia(id),
+    FOREIGN KEY(usuario)                REFERENCES usuario(id)
 );
-
-
-
-INSERT INTO perfil VALUES(NULL, 'Alumno');
-INSERT INTO perfil VALUES(NULL, 'Docente');
-INSERT INTO perfil VALUES(NULL, 'Jefe Carrera');
-
-INSERT INTO estadoCivil VALUES(NULL, 'Soltero/a');
-INSERT INTO estadoCivil VALUES(NULL, 'Casado/a');
-INSERT INTO estadoCivil VALUES(NULL, 'Comprometido/a');
-INSERT INTO estadoCivil VALUES(NULL, 'Divorciado/a');
-INSERT INTO estadoCivil VALUES(NULL, 'Viudo/a');
-
-INSERT INTO respuesta VALUES(NULL, 'Si');
-INSERT INTO respuesta VALUES(NULL, 'No');
-INSERT INTO respuesta VALUES(NULL, 'No sabe');
-INSERT INTO respuesta VALUES(NULL, 'En estudio');
-
 
 SELECT * FROM perfil;
 SELECT * FROM usuario;
