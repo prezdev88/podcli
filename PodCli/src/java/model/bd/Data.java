@@ -82,6 +82,10 @@ public class Data {
 
         return lista;
     }
+    
+        public void crearFicha(Ficha f) throws SQLException{
+        con.ejecutar("inserte into ficha value(null,'"+f.getFecha()+"','"+f.getPaciente()+"','"+f.getUsuario()+"','"+f.getHta()+"','"+f.getDm()+"','"+f.getTipoDiabetes()+"','"+f.getAniosEvolucion()+"','"+f.isMixto()+"','"+f.isControl()+"','"+f.getFarmacoterapia()+"','"+f.getOtros()+"','"+f.getAlteracion()+"','"+f.getHabitos()+"','"+f.getTalla()+"','"+f.getImc()+"','"+f.isAmputacion()+"','"+f.getUbiAmputacion()+"','"+f.getnCalzado()+"','"+f.isVarices()+"','"+f.isHeridas()+"','"+f.getUbiHeridas()+"','"+f.getTipoHerida()+"','"+f.isTratamiento()+"','"+f.isNevos()+"','"+f.getUbiNevos()+"','"+f.isMaculas()+"','"+f.getTipoMaculas()+"')");
+    }
 //Metodos:
 
         //1)Antecedentes personales
