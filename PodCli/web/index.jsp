@@ -12,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World! Holia a Toditos jiji</h1>
+        <h1>Podcli</h1>
+        <a href="crearFicha.jsp"> Crear Paciente </a>
+        
     </body>
 </html>
