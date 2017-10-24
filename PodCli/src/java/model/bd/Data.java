@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Data {
 
     private Conexion con;
@@ -13,12 +14,19 @@ public class Data {
 
         con = new Conexion(
                 "localhost",
-                "",//nombre BD
+                "podcli",//nombre BD
                 "root",
                 "");//Password
     }
 
-    public void crearFicha(Paciente p, Ficha f) {
+    public void crearFicha(Paciente p, Ficha f) throws SQLException {
+        crearPaciente(p);
+        
+        
+        f.setPaciente(getUltimoIdPaciente());
+        
+        
+        crearFicha(f);
         //se crea la ficha a partir de "Registrar Paciente"    
     }
 
@@ -45,7 +53,7 @@ public class Data {
 
     }
 
-    public void registrarPaciente(Paciente p) throws SQLException {
+    public void crearPaciente(Paciente p) throws SQLException {
 
         con.ejecutar("INSERT INTO paciente VALUES (null, '" + p.getRut() + "', '" + p.getNombre() + "',"
                 + " '" + p.getSexo() + "', '" + p.getDomicilio() + "', '" + p.getFechaNacimiento() + "',"
@@ -63,8 +71,8 @@ public class Data {
 
         while (rs.next()) {
             p = new Perfil();
-            p.setId(rs.getInt(0));
-            p.setNombre(rs.getString(1));
+            p.setId(rs.getInt(1));
+            p.setNombre(rs.getString(2));
             list.add(p);
         }
         con.desconectar();
@@ -103,7 +111,7 @@ public class Data {
     }
 
     public void crearFicha(Ficha f) throws SQLException {
-        con.ejecutar("inserte into ficha value(null,'" + f.getFecha() + "','" + f.getPaciente() + "','" + f.getUsuario() + "','" + f.getHta() + "','" + f.getDm() + "','" + f.getTipoDiabetes() + "','" + f.getAniosEvolucion() + "','" + f.isMixto() + "','" + f.isControl() + "','" + f.getFarmacoterapia() + "','" + f.getOtros() + "','" + f.getAlteracion() + "','" + f.getHabitos() + "','" + f.getTalla() + "','" + f.getImc() + "','" + f.isAmputacion() + "','" + f.getUbiAmputacion() + "','" + f.getnCalzado() + "','" + f.isVarices() + "','" + f.isHeridas() + "','" + f.getUbiHeridas() + "','" + f.getTipoHerida() + "','" + f.isTratamiento() + "','" + f.isNevos() + "','" + f.getUbiNevos() + "','" + f.isMaculas() + "','" + f.getTipoMaculas() + "')");
+        con.ejecutar("inserte into ficha value(null,'NOW()','" + f.getPaciente() + "','" + f.getUsuario() + "','" + f.getHta() + "','" + f.getDm() + "','" + f.getTipoDiabetes() + "','" + f.getAniosEvolucion() + "','" + f.isMixto() + "','" + f.isControl() + "','" + f.getFarmacoterapia() + "','" + f.getOtros() + "','" + f.getAlteracion() + "','" + f.getHabitos() + "','" + f.getTalla() + "','" + f.getImc() + "','" + f.isAmputacion() + "','" + f.getUbiAmputacion() + "','" + f.getnCalzado() + "','" + f.isVarices() + "','" + f.isHeridas() + "','" + f.getUbiHeridas() + "','" + f.getTipoHerida() + "','" + f.isTratamiento() + "','" + f.isNevos() + "','" + f.getUbiNevos() + "','" + f.isMaculas() + "','" + f.getTipoMaculas() + "')");
     }
 //Metodos:
 
@@ -114,5 +122,19 @@ public class Data {
     //Buscar paciente para listar (por rut, nombre, apellido y más??) (OK)
     //Ficha
     // listar/get ficha - estado civil - perfil (OK)
+
+    private int getUltimoIdPaciente() throws SQLException { //Genera id del ultimo paciente Creado
+        int ultimaId = 0;
+        String lastId = "SELECT MAX(id) FROM paciente;";
+        ResultSet rs = con.ejecutarSelect(lastId);
+        Paciente p;
+        if(rs.next()){
+            p = new Paciente();
+            p.setId(rs.getInt(1));
+            ultimaId = p.getId();
+        }
+        
+        return ultimaId;
+    }
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
