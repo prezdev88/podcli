@@ -63,7 +63,7 @@ CREATE TABLE ficha(
     /*-------------------------------------------------------*/
     hta 		INT, 			-- Hipertensión Arterial
     dm 			INT, 			-- Diabetes Mellitus
-    tipoDiabetes 	VARCHAR(100),
+    tipoDiabetes 	INT,
     aniosEvolucion 	INT,
     mixto 		BOOLEAN, 		-- PACIENTE MIXTO
     control 		BOOLEAN,
@@ -101,6 +101,18 @@ CREATE TABLE ficha(
     FOREIGN KEY(usuario)    REFERENCES usuario(id)
 );
 
+CREATE TABLE tratamientoOrtonixia(
+    id INT AUTO_INCREMENT,
+    nombre VARCHAR(100),
+    PRIMARY KEY(id)
+);
+
+INSERT INTO tratamientoOrtonixia VALUES(NULL, 'No tiene');
+INSERT INTO tratamientoOrtonixia VALUES(NULL, 'Colocación bracket');
+INSERT INTO tratamientoOrtonixia VALUES(NULL, 'Colocación banda');
+INSERT INTO tratamientoOrtonixia VALUES(NULL, 'Cambio bracket');
+INSERT INTO tratamientoOrtonixia VALUES(NULL, 'Cambio banda');
+
 /*
 Una vez que el paciente viene de nuevo a la consulta, 
 se realizarán inserts en esta tabla (atencionPodologica)
@@ -110,7 +122,7 @@ CREATE TABLE atencionPodologica(
     ficha			INT,
     
     fecha			DATETIME,
-    presion 			INT, 		-- Presión Arterial
+    presion 			FLOAT, 		-- Presión Arterial
     pulsoRadial 		INT,
     pulsoPedio_d 		INT, 		-- Derecho
     pulsoPedio_i 		INT, 		-- Izquierdo
@@ -125,16 +137,18 @@ CREATE TABLE atencionPodologica(
     enucleacion 		BOOLEAN,
     devastado 			BOOLEAN, 	-- Devastado Ungueal
     maso 			BOOLEAN, 	-- Masoterapia o masaje
-    espiculoectomia             INT,
-    analgesia 			BOOLEAN, 	-- tipo de dato?????
-    colocacionAcriloco          BOOLEAN,	
+    espiculoectomia             BOOLEAN,
+    analgesia 			BOOLEAN, 	
+    colocacionAcrilico          BOOLEAN,	
     bandaMolecular 		BOOLEAN,	
-    bracket 			BOOLEAN,	-- tipo de dato?????
-    poli 			BOOLEAN,
+    colocacionPuente		BOOLEAN,
+    tratamientoOrtonixia        INT,
+    poli 			BOOLEAN,        -- Policarbolxilato
     observaciones 		VARCHAR(5000),
 	
     PRIMARY KEY(id),
-    FOREIGN KEY(ficha) REFERENCES ficha(id)
+    FOREIGN KEY(ficha)                  REFERENCES ficha(id),
+    FOREIGN KEY(tratamientoOrtonixia)   REFERENCES tratamientoOrtonixia(id)
 );
 
 
@@ -161,6 +175,7 @@ SELECT * FROM estadoCivil;
 SELECT * FROM respuesta;
 SELECT * FROM paciente;
 SELECT * FROM ficha;
+SELECT * FROM tratamientoOrtonixia;
 SELECT * FROM atencionPodologica;
 
 DROP DATABASE podcli;
