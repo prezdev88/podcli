@@ -1,9 +1,43 @@
 package model.bd;
 
-/**
- *
- * @author prez
- */
+import java.sql.SQLException;
+
 public class Data {
+    private Conexion con;
+    
+    public Data() throws SQLException, ClassNotFoundException {
+        
+        con = new Conexion(
+                "localhost", 
+                "",//nombre BD
+                "root",
+                ""//Password
+        ); 
+        
+        //Metodos:
+        
+            //1)Antecedentes personales
+        
+            //2)Antecentes morbidos
+        
+            //3)Examen fisicos
+        
+            /*Registrar Paciente(){
+                1
+                2
+                3
+              }
+                */
+
+            //atencion Podologica
+            
+            //Buscar paciente para listar (por rut, nombre, apellido y más??)
+            
+            //Buscar Paciente (atencion Podologica)
+        
+        
+    }
+    
     
 }
+//Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
