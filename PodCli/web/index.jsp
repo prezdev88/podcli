@@ -13,7 +13,8 @@
     </head>
     <body>
         <h1>Podcli</h1>
-        <a href="crearFicha.jsp"> Crear Paciente </a>
-        
+        <a href="crearFicha.jsp">Crear Paciente</a>
+        <a href="atencionPodologica.jsp">Atencion Podologica</a>
+        <a href="buscarPaciente.jsp">Buscar Paciente</a>
     </body>
 </html>
