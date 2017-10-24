@@ -12,7 +12,7 @@ public class Data {
         
         con = new Conexion(
                 "localhost", 
-                "",//nombre BD
+                "podcli",//nombre BD
                 "root",
                 ""//Password
         ); 
@@ -30,7 +30,7 @@ public class Data {
                 3
               }
                 */
-
+            
             //atencion Podologica
             
             //Buscar paciente para listar (por rut, nombre, apellido y más??)
@@ -46,6 +46,40 @@ public class Data {
     
     public void crearFicha(Paciente p, Ficha f){
         //se crea la ficha a partir de "Registrar Paciente"
+        
+            
+    }
+    
+
+    public List<EstadoCivil> getEstadoCivil() throws SQLException{
+                List<EstadoCivil> list = new ArrayList<>();
+                
+                String query = "select * from estado civil";
+                
+                ResultSet rs = con.ejecutarSelect(query);
+                
+                EstadoCivil es;
+                
+                while(rs.next()){
+                    es = new EstadoCivil();
+                    
+                    es.setId(rs.getInt(1));
+                    es.setNombre(rs.getString(2));
+                    
+                    list.add(es);
+                }
+                con.desconectar();
+                
+                return list;
+                
+            }
+
+    public void registrarPaciente(Paciente p) throws SQLException{
+            
+        con.ejecutar("INSERT INTO paciente VALUES (null, '"+p.getRut()+"', '"+p.getNombre()+"',"
+                + " '"+p.getSexo()+"', '"+p.getDomicilio()+"', '"+p.getFechaNacimiento()+"',"
+                + " '"+p.getEstadoCivil()+"', '"+p.getActividad()+"', '"+p.getTelefonos()+"');");
+
     }
     
     public List<Perfil> getPerfiles() throws SQLException{
