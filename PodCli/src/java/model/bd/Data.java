@@ -80,11 +80,11 @@ public class Data {
                 + +a.getPulsoPedio_d()+" ,"+a.getPulsoPedio_i()+" ,"+a.getPeso()+" ,"
                 + ""+a.isSens_d()+" ,"+a.isSens_i()+","+a.gettPoda1_d()+" ,"
                 + ""+a.gettPoda1_i()+" ,"+a.isCuracion()+",\n"
-                + ""+a.isColoqPuente()+","+a.isResecado()+","+a.isEnucleacion()+","
+                + ""+a.isColocacionPuente()+","+a.isResecado()+","+a.isEnucleacion()+","
                 + ""+a.isDevastado()+" ,"+a.isMaso()+","
                 + ""+a.isEspiculoectomia()+"  ,"+a.isAnalgesia()+",\n"
                 + ""+a.isColocacionAcrilico()+" ,"+a.isBandaMolecular()+","
-                + ""+a.isColocacionPuente()+","+a.getTratamientoOrtonixia()+","
+                +","+a.getTratamientoOrtonixia()+","
                 + ""+a.isPoli()+" ,'"+a.getObservaciones()+"')";
         con.ejecutar(query);
     }
@@ -111,7 +111,7 @@ public class Data {
             a.settPoda1_d(rs.getFloat(12));
             a.settPoda1_i(rs.getFloat(13));
             a.setCuracion(rs.getBoolean(14));
-            a.setColoqPuente(rs.getBoolean(15));
+            a.setColocacionPuente(rs.getBoolean(15));
             a.setResecado(rs.getBoolean(16));
             a.setEnucleacion(rs.getBoolean(17));
             a.setDevastado(rs.getBoolean(18));
@@ -120,10 +120,10 @@ public class Data {
             a.setAnalgesia(rs.getBoolean(21));
             a.setColocacionAcrilico(rs.getBoolean(22));
             a.setBandaMolecular(rs.getBoolean(23));
-            a.setColocacionPuente(rs.getBoolean(24));
-            a.setTratamientoOrtonixia(rs.getInt(25));
-            a.setPoli(rs.getBoolean(26));
-            a.setObservaciones(rs.getString(27));
+            
+            a.setTratamientoOrtonixia(rs.getInt(24));
+            a.setPoli(rs.getBoolean(25));
+            a.setObservaciones(rs.getString(26));
             atenciones.add(a);
         }
         con.desconectar();
@@ -161,7 +161,7 @@ public class Data {
         return lista;
     }
               
-     public List<Ficha> buscarFicha(String filtro) throws SQLException{
+     public List<Ficha> buscarFicha(String filtro) throws SQLException{ //Arrelga SELECT [Diego Aravena]
         List<Ficha> lista = new ArrayList<>();
         
         rs = con.ejecutarSelect("select * from ficha WHERE ficha.paciente = paciente.id and paciente.nombre LIKE '%"+filtro+"%' or paciente.rut LIKE '%"+filtro+"%'");

@@ -157,8 +157,7 @@ CREATE TABLE atencionPodologica(
     espiculoectomia             BOOLEAN,
     analgesia 			BOOLEAN, 	
     colocacionAcrilico          BOOLEAN,	
-    bandaMolecular 		BOOLEAN,	
-    colocacionPuente		BOOLEAN,
+    bandaMolecular 		BOOLEAN,
     tratamientoOrtonixia        INT,
     poli 			BOOLEAN,        -- Policarbolxilato
     observaciones 		VARCHAR(5000),
