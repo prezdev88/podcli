@@ -5,29 +5,95 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Data {
 
     private Conexion con;
+    private ResultSet rs;
+    private String query;
 
     public Data() throws SQLException, ClassNotFoundException {
 
         con = new Conexion(
                 "localhost",
-                "",//nombre BD
+                "podcli",//nombre BD
                 "root",
-                "");//Password
+                ""//Password
+        );
+
     }
 
-    public void crearFicha(Paciente p, Ficha f) {
-        //se crea la ficha a partir de "Registrar Paciente"    
+    public void crearFicha(Paciente p, Ficha f) throws SQLException {
+        crearPaciente(p);
+        
+        
+        f.setPaciente(getUltimoIdPaciente());
+        
+        
+        crearFicha(f);
     }
-
+    public void registrarAtencionPodologica(AtencionPodologica a) throws SQLException {
+         query = "insert into atencionPodologica values"
+                + "(null,"+a.getFicha()+","+a.getUsuario()+","
+                + ""+a.getFecha()+","+a.getPresion()+","+a.getPulsoRadial()+",\n"
+                + +a.getPulsoPedio_d()+" ,"+a.getPulsoPedio_i()+" ,"+a.getPeso()+" ,"
+                + ""+a.isSens_d()+" ,"+a.isSens_i()+","+a.gettPoda1_d()+" ,"
+                + ""+a.gettPoda1_i()+" ,"+a.isCuracion()+",\n"
+                + ""+a.isColoqPuente()+","+a.isResecado()+","+a.isEnucleacion()+","
+                + ""+a.isDevastado()+" ,"+a.isMaso()+","
+                + ""+a.isEspiculoectomia()+"  ,"+a.isAnalgesia()+",\n"
+                + ""+a.isColocacionAcrilico()+" ,"+a.isBandaMolecular()+","
+                + ""+a.isColocacionPuente()+","+a.getTratamientoOrtonixia()+","
+                + ""+a.isPoli()+" ,'"+a.getObservaciones()+"')";
+        con.ejecutar(query);
+    }
+    public List<AtencionPodologica> getListaAtencionPodologica(String rut) throws SQLException{
+        query="select *from atencionPodologica a,ficha f,paciente p\n" +
+                "where a.ficha=f.id and f.paciente=p.id and ( p.rut like '%"+rut+"%')";
+        rs=con.ejecutarSelect(query);
+        List<AtencionPodologica>atenciones=new ArrayList<>();
+        AtencionPodologica a;
+        while (rs.next()){
+            a=new AtencionPodologica();
+            a.setId(rs.getInt(1));
+            a.setFicha(rs.getInt(2));
+            a.setUsuario(rs.getInt(3));
+            a.setFecha(rs.getTimestamp(4));
+            a.setPresion(rs.getFloat(5));
+            a.setPulsoRadial(rs.getInt(6));
+            a.setPulsoPedio_d(rs.getInt(7));
+            a.setPulsoPedio_i(rs.getInt(8));
+            a.setPeso(rs.getFloat(9));
+            a.setSens_d(rs.getBoolean(10));
+            a.setSens_i(rs.getBoolean(11));
+            a.settPoda1_d(rs.getFloat(12));
+            a.settPoda1_i(rs.getFloat(13));
+            a.setCuracion(rs.getBoolean(14));
+            a.setColoqPuente(rs.getBoolean(15));
+            a.setResecado(rs.getBoolean(16));
+            a.setEnucleacion(rs.getBoolean(17));
+            a.setDevastado(rs.getBoolean(18));
+            a.setMaso(rs.getBoolean(19));
+            a.setEspiculoectomia(rs.getBoolean(20));
+            a.setAnalgesia(rs.getBoolean(21));
+            a.setColocacionAcrilico(rs.getBoolean(22));
+            a.setBandaMolecular(rs.getBoolean(23));
+            a.setColocacionPuente(rs.getBoolean(24));
+            a.setTratamientoOrtonixia(rs.getInt(25));
+            a.setPoli(rs.getBoolean(26));
+            a.setObservaciones(rs.getString(27));
+            atenciones.add(a);
+        }
+        con.desconectar();
+        return atenciones;
+    }
+              
     public List<EstadoCivil> getEstadoCivil() throws SQLException {
         List<EstadoCivil> list = new ArrayList<>();
 
-        String query = "select * from estado civil";
+        query = "select * from estado civil";
 
-        ResultSet rs = con.ejecutarSelect(query);
+        rs = con.ejecutarSelect(query);
 
         EstadoCivil es;
 
@@ -45,7 +111,7 @@ public class Data {
 
     }
 
-    public void registrarPaciente(Paciente p) throws SQLException {
+    public void crearPaciente(Paciente p) throws SQLException {
 
         con.ejecutar("INSERT INTO paciente VALUES (null, '" + p.getRut() + "', '" + p.getNombre() + "',"
                 + " '" + p.getSexo() + "', '" + p.getDomicilio() + "', '" + p.getFechaNacimiento() + "',"
@@ -54,8 +120,8 @@ public class Data {
     }
 
     public List<Perfil> getPerfiles() throws SQLException {
-        ResultSet rs;
-        String query = "SELECT * FROM perfil;";
+        
+        query = "SELECT * FROM perfil;";
         rs = con.ejecutarSelect(query);
 
         List<Perfil> list = new ArrayList<>();
@@ -63,8 +129,8 @@ public class Data {
 
         while (rs.next()) {
             p = new Perfil();
-            p.setId(rs.getInt(0));
-            p.setNombre(rs.getString(1));
+            p.setId(rs.getInt(1));
+            p.setNombre(rs.getString(2));
             list.add(p);
         }
         con.desconectar();
@@ -74,11 +140,11 @@ public class Data {
     public List<Paciente> buscarPaciente(String filtro) throws SQLException {
         List<Paciente> lista = new ArrayList<Paciente>();
 
-        String query = "SELECT * FROM paciente "
+        query = "SELECT * FROM paciente "
                 + "WHERE rut LIKE '%" + filtro + "%' OR "
                 + "nombre LIKE '%" + filtro + "%'";
 
-        ResultSet rs = con.ejecutarSelect(query);
+        rs = con.ejecutarSelect(query);
         Paciente p;
 
         while (rs.next()) {
@@ -222,15 +288,22 @@ public class Data {
         con.desconectar();
 
         return lista;
+     }
+     
+     
+    private int getUltimoIdPaciente() throws SQLException { //Genera id del ultimo paciente Creado
+        int ultimaId = 0;
+        String lastId = "SELECT MAX(id) FROM paciente;";
+        rs = con.ejecutarSelect(lastId);
+        Paciente p;
+        if(rs.next()){
+            p = new Paciente();
+            p.setId(rs.getInt(1));
+            ultimaId = p.getId();
+        }
+        
+        return ultimaId;
     }
-//Metodos:
 
-    //1)Antecedentes personales
-    //2)Antecentes morbidos
-    //Examen fisicos
-    //atencion Podologica
-    //Buscar paciente para listar (por rut, nombre, apellido y más??) (OK)
-    //Ficha
-    // listar/get ficha - estado civil - perfil (OK)
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
