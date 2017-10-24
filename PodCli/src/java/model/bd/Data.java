@@ -22,16 +22,31 @@ public class Data {
         );
 
     }
+    
+    public void crearPaciente(Paciente p) throws SQLException {
 
+        con.ejecutar("INSERT INTO paciente VALUES (null, "
+                + "'" + p.getRut() + "', "
+                + "'" + p.getNombre() + "', "
+                + "'" + p.getSexo() + "', "
+                + "'" + p.getDomicilio() + "', "
+                + "'" + p.getFechaNacimiento() + "', "
+                + "'" + p.getEstadoCivil() + "', "
+                + "'" + p.getActividad() + "', "
+                + "'" + p.getTelefonos() + "');");
+
+    }
+    
+    public void crearFicha(Ficha f) throws SQLException {
+        con.ejecutar("inserte into ficha value(null, 'NOW()', '" + f.getPaciente() + "','" + f.getUsuario() + "','" + f.getHta() + "','" + f.getDm() + "','" + f.getTipoDiabetes() + "','" + f.getAniosEvolucion() + "','" + f.isMixto() + "','" + f.isControl() + "','" + f.getFarmacoterapia() + "','" + f.getOtros() + "','" + f.getAlteracion() + "','" + f.getHabitos() + "','" + f.getTalla() + "','" + f.getImc() + "','" + f.isAmputacion() + "','" + f.getUbiAmputacion() + "','" + f.getnCalzado() + "','" + f.isVarices() + "','" + f.isHeridas() + "','" + f.getUbiHeridas() + "','" + f.getTipoHerida() + "','" + f.isTratamiento() + "','" + f.isNevos() + "','" + f.getUbiNevos() + "','" + f.isMaculas() + "','" + f.getTipoMaculas() + "')");
+    }
+    
     public void crearFicha(Paciente p, Ficha f) throws SQLException {
         crearPaciente(p);
-        
-        
         f.setPaciente(getUltimoIdPaciente());
-        
-        
         crearFicha(f);
     }
+    
     public void registrarAtencionPodologica(AtencionPodologica a) throws SQLException {
          query = "insert into atencionPodologica values"
                 + "(null,"+a.getFicha()+","+a.getUsuario()+","
@@ -47,6 +62,7 @@ public class Data {
                 + ""+a.isPoli()+" ,'"+a.getObservaciones()+"')";
         con.ejecutar(query);
     }
+    
     public List<AtencionPodologica> getListaAtencionPodologica(String rut) throws SQLException{
         query="select *from atencionPodologica a,ficha f,paciente p\n" +
                 "where a.ficha=f.id and f.paciente=p.id and ( p.rut like '%"+rut+"%')";
@@ -87,58 +103,9 @@ public class Data {
         con.desconectar();
         return atenciones;
     }
-              
-    public List<EstadoCivil> getEstadoCivil() throws SQLException {
-        List<EstadoCivil> list = new ArrayList<>();
-
-        query = "select * from estado civil";
-
-        rs = con.ejecutarSelect(query);
-
-        EstadoCivil es;
-
-        while (rs.next()) {
-            es = new EstadoCivil();
-
-            es.setId(rs.getInt(1));
-            es.setNombre(rs.getString(2));
-
-            list.add(es);
-        }
-        con.desconectar();
-
-        return list;
-
-    }
-
-    public void crearPaciente(Paciente p) throws SQLException {
-
-        con.ejecutar("INSERT INTO paciente VALUES (null, '" + p.getRut() + "', '" + p.getNombre() + "',"
-                + " '" + p.getSexo() + "', '" + p.getDomicilio() + "', '" + p.getFechaNacimiento() + "',"
-                + " '" + p.getEstadoCivil() + "', '" + p.getActividad() + "', '" + p.getTelefonos() + "');");
-
-    }
-
-    public List<Perfil> getPerfiles() throws SQLException {
-        
-        query = "SELECT * FROM perfil;";
-        rs = con.ejecutarSelect(query);
-
-        List<Perfil> list = new ArrayList<>();
-        Perfil p;
-
-        while (rs.next()) {
-            p = new Perfil();
-            p.setId(rs.getInt(1));
-            p.setNombre(rs.getString(2));
-            list.add(p);
-        }
-        con.desconectar();
-        return list;
-    }
-
+    
     public List<Paciente> buscarPaciente(String filtro) throws SQLException {
-        List<Paciente> lista = new ArrayList<Paciente>();
+        List<Paciente> lista = new ArrayList<>();
 
         query = "SELECT * FROM paciente "
                 + "WHERE rut LIKE '%" + filtro + "%' OR "
@@ -167,12 +134,66 @@ public class Data {
 
         return lista;
     }
+              
+    public List<EstadoCivil> getEstadoCivil() throws SQLException {
+        List<EstadoCivil> list = new ArrayList<>();
 
-    public void crearFicha(Ficha f) throws SQLException {
-        con.ejecutar("inserte into ficha value(null,'NOW()','" + f.getPaciente() + "','" + f.getUsuario() + "','" + f.getHta() + "','" + f.getDm() + "','" + f.getTipoDiabetes() + "','" + f.getAniosEvolucion() + "','" + f.isMixto() + "','" + f.isControl() + "','" + f.getFarmacoterapia() + "','" + f.getOtros() + "','" + f.getAlteracion() + "','" + f.getHabitos() + "','" + f.getTalla() + "','" + f.getImc() + "','" + f.isAmputacion() + "','" + f.getUbiAmputacion() + "','" + f.getnCalzado() + "','" + f.isVarices() + "','" + f.isHeridas() + "','" + f.getUbiHeridas() + "','" + f.getTipoHerida() + "','" + f.isTratamiento() + "','" + f.isNevos() + "','" + f.getUbiNevos() + "','" + f.isMaculas() + "','" + f.getTipoMaculas() + "')");
+        query = "select * from estado civil";
+
+        rs = con.ejecutarSelect(query);
+
+        EstadoCivil es;
+
+        while (rs.next()) {
+            es = new EstadoCivil();
+
+            es.setId(rs.getInt(1));
+            es.setNombre(rs.getString(2));
+
+            list.add(es);
+        }
+        con.desconectar();
+
+        return list;
+
     }
 
+    public List<Perfil> getPerfiles() throws SQLException {
+        
+        query = "SELECT * FROM perfil;";
+        rs = con.ejecutarSelect(query);
 
+        List<Perfil> list = new ArrayList<>();
+        Perfil p;
+
+        while (rs.next()) {
+            p = new Perfil();
+            p.setId(rs.getInt(1));
+            p.setNombre(rs.getString(2));
+            list.add(p);
+        }
+        con.desconectar();
+        return list;
+    }
+
+    public List<TratamientoOrtonixia> getTratamientoOrtonoxia() throws SQLException {
+        
+        query = "SELECT * FROM Ortonoxia;";
+        rs = con.ejecutarSelect(query);
+
+        List<TratamientoOrtonixia> list = new ArrayList<>();
+        TratamientoOrtonixia to;
+
+        while (rs.next()) {
+            to = new TratamientoOrtonixia();
+            to.setId(rs.getInt(1));
+            to.setNombre(rs.getString(2));
+            list.add(to);
+        }
+        con.desconectar();
+        return list;
+    }
+    
     private int getUltimoIdPaciente() throws SQLException { //Genera id del ultimo paciente Creado
         int ultimaId = 0;
         String lastId = "SELECT MAX(id) FROM paciente;";
@@ -186,6 +207,5 @@ public class Data {
         
         return ultimaId;
     }
-
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
