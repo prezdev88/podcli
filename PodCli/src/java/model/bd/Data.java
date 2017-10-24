@@ -1,6 +1,9 @@
 package model.bd;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Data {
     private Conexion con;
@@ -35,8 +38,32 @@ public class Data {
             
             //Buscar Paciente (atencion Podologica)
         
-        
+            // listar/get ficha - estado civil - perfil
+            
     }
+    
+    public List<EstadoCivil> getEstadoCivil() throws SQLException{
+                List<EstadoCivil> list = new ArrayList<>();
+                
+                String query = "select * from estado civil";
+                
+                ResultSet rs = con.ejecutarSelect(query);
+                
+                EstadoCivil es;
+                
+                while(rs.next()){
+                    es = new EstadoCivil();
+                    
+                    es.setId(rs.getInt(1));
+                    es.setNombre(rs.getString(2));
+                    
+                    list.add(es);
+                }
+                con.desconectar();
+                
+                return list;
+                
+            }
     
     
 }
