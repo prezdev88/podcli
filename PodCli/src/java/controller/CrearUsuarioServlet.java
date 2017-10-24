@@ -7,6 +7,9 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +35,13 @@ public class CrearUsuarioServlet extends HttpServlet {
             u.setPerfil(Integer.parseInt(request.getParameter("cboPerfil")));
             u.setRut(request.getParameter("txtRut"));
             
-            new Data().crearUsuario(u);
+            try {
+                new Data().crearUsuario(u);
+            } catch (SQLException ex) {
+                Logger.getLogger(CrearUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CrearUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             response.sendRedirect("crearUsuario.jsp");
         }

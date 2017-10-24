@@ -326,5 +326,12 @@ public class Data {
         
         return ultimaId;
     }
+    
+    public void crearUsuario(Usuario u) throws SQLException{
+        query = "insert into usuario value(null,'"+u.getRut()+"','"+u.getNombre()+"',"+u.getPerfil()+")";
+        
+        con.ejecutar(query);
+    }
+
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
