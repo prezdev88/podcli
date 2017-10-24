@@ -14,9 +14,11 @@
     <body>
         <h1>Buscar Paciente</h1>
         
-        <form action="" method="post">
+        <form action="buscarPacciente.jsp" method="post">
             <input type="text" name="txtBuscar" placeholder="Buscar por Rut o Nombre:">
             <input type="submit" value="Buscar Paciente">
         </form>
+        
+        
     </body>
 </html>

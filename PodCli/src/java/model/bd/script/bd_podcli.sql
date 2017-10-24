@@ -182,11 +182,7 @@ SELECT * FROM ficha;
 SELECT * FROM tratamientoOrtonixia;
 SELECT * FROM atencionPodologica;
 
-<<<<<<< HEAD
+INSERT INTO usuario VALUE(NULL,"19360036-0","Constanza Abarca Basáez",1);
+
 DROP DATABASE podcli;
 
-
-
-=======
-DROP DATABASE podcli;
->>>>>>> df41b9384a60a6cf15b120026c47271c2d0cbe34
