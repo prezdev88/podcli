@@ -9,7 +9,7 @@ public class Data {
         
         con = new Conexion(
                 "localhost", 
-                "",//nombre BD
+                "podcli",//nombre BD
                 "root",
                 ""//Password
         ); 
@@ -28,7 +28,7 @@ public class Data {
                 3
               }
                 */
-
+            
             //atencion Podologica
             
             //Buscar paciente para listar (por rut, nombre, apellido y más??)
@@ -36,6 +36,13 @@ public class Data {
             //Buscar Paciente (atencion Podologica)
         
         
+    }
+    
+    public void registrarPaciente(Paciente p) throws SQLException{
+            
+        con.ejecutar("INSERT INTO paciente VALUES (null, '"+p.getRut()+"', '"+p.getNombre()+"',"
+                + " '"+p.getSexo()+"', '"+p.getDomicilio()+"', '"+p.getFechaNacimiento()+"',"
+                + " '"+p.getEstadoCivil()+"', '"+p.getActividad()+"', '"+p.getTelefonos()+"');");
     }
     
     
