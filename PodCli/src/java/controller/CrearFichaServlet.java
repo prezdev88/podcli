@@ -54,7 +54,7 @@ public class CrearFichaServlet extends HttpServlet {
 
                 //------------------------------------------------------------------------------------------
                 /*Antecedentes Morbidos*/
-                nuevaFicha.setUsuario(Integer.parseInt("txtUsuario"));
+                nuevaFicha.setUsuario(Integer.parseInt(request.getParameter("txtUsuario")));
                 nuevaFicha.setHta(Integer.parseInt(request.getParameter("cboHTA")));
                 nuevaFicha.setDm(Integer.parseInt(request.getParameter("cboDM")));
                 nuevaFicha.setTipoDiabetes(Integer.parseInt(request.getParameter("cboTipo")));
