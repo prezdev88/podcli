@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -37,19 +38,36 @@ public class CrearFichaServlet extends HttpServlet {
                 nuevoPaciente.setDomicilio(request.getParameter("txtDomicilio"));
                 /* Rescato la fecha*/
                 String fecha = request.getParameter("txtFechaNacimineto");
-                Timestamp fechaF = Timestamp.valueOf(fecha);
-                nuevoPaciente.setFechaNacimiento(fechaF);
-                nuevoPaciente.setEstadoCivil(Integer.parseInt(request.getParameter("cboEstadocivil")));
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                try {
+                    date = formatter.parse(fecha);
+                } catch (ParseException ex) {
+                    Logger.getLogger(CrearFichaServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                nuevoPaciente.setFechaNacimiento(d.dateToTimeStamp(date));
+                nuevoPaciente.setEstadoCivil(Integer.parseInt(request.getParameter("cboEstadoCivil")));
                 nuevoPaciente.setActividad(request.getParameter("txtActividad"));
                 nuevoPaciente.setTelefonos(request.getParameter("txtTelefonos"));
 
                 //------------------------------------------------------------------------------------------
                 /*Antecedentes Morbidos*/
+                nuevaFicha.setUsuario(Integer.parseInt(request.getParameter("txtUsuario")));
                 nuevaFicha.setHta(Integer.parseInt(request.getParameter("cboHTA")));
                 nuevaFicha.setDm(Integer.parseInt(request.getParameter("cboDM")));
                 nuevaFicha.setTipoDiabetes(Integer.parseInt(request.getParameter("cboTipo")));
-
-                nuevaFicha.setAniosEvolucion(Integer.parseInt(request.getParameter("txtAnioEvolucion")));
+                
+                String anio = request.getParameter("txtAnioEvolucion");
+                
+                if(!anio.trim().equals("")){
+                    nuevaFicha.setAniosEvolucion(Integer.parseInt(request.getParameter("txtAnioEvolucion")));
+                }else {
+                    nuevaFicha.setAniosEvolucion(0);
+                }
+                
+                
+                
                 nuevaFicha.setMixto(Boolean.parseBoolean(request.getParameter("cboPcteMixto")));
                 nuevaFicha.setControl(Boolean.parseBoolean(request.getParameter("cboControl")));
 
@@ -63,7 +81,7 @@ public class CrearFichaServlet extends HttpServlet {
                 nuevaFicha.setTalla(Float.parseFloat(request.getParameter("txtTalla")));
                 nuevaFicha.setImc(Float.parseFloat(request.getParameter("txtIMC")));
                 //Amputacion
-                nuevaFicha.setAmputacion(Boolean.parseBoolean(request.getParameter("cboAmputacion")));
+                nuevaFicha.setAmputacion(Boolean.parseBoolean(request.getParameter("cboAmputacion")));;
                 nuevaFicha.setUbiAmputacion(request.getParameter("txtUbicacionAmputacion"));
 
                 nuevaFicha.setnCalzado(Integer.parseInt(request.getParameter("txtNumCalzado")));
@@ -80,15 +98,18 @@ public class CrearFichaServlet extends HttpServlet {
                 nuevaFicha.setTratamiento(Boolean.parseBoolean(request.getParameter("cboMaculas")));
                 nuevaFicha.setTipoMaculas(request.getParameter("txtTipoMaculas"));
                 //------------------------------------------------------------------------------------------
-                
+
                 d.crearFicha(nuevoPaciente, nuevaFicha);
 
-                response.sendRedirect("index.jsp");
-                
+                response.sendRedirect("crearUsuario.jsp");
+
             } catch (SQLException ex) {
-                Logger.getLogger(CrearFichaServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CrearFichaServlet.class
+                        .getName()).log(Level.SEVERE, null, ex);
+
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CrearFichaServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CrearFichaServlet.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

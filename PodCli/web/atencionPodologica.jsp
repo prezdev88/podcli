@@ -4,10 +4,23 @@
     Author     : Edunaldo
 --%>
 
+<%@page import="model.bd.Usuario"%>
+<%@page import="model.bd.Data"%>
+<%@page import="model.bd.TratamientoOrtonixia"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <%
+    
+    Usuario u = (Usuario)session.getAttribute("usuario");
+    
+    if(u == null){
+        request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
+        response.sendRedirect("index.jsp");
+    }
+%>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -27,8 +40,14 @@
             
             
             <!--Estos 2 datos deben viajar desde los hipervinculos-->
+            <%
+                if(u != null){
+                %>
+                    <input type="hidden" name="usuario" value="<%= u.getId() %>">
+            <%
+                }
+            %>
             <input type="hidden" name="ficha" value="">
-            <input type="hidden" name="usuario" value="">
             
             Presión Arterial: <input  type="number" step="any" name="txtPersionArterial">
             Pulso Radial: <input type="number" name="txtPulsoRadial">
@@ -51,6 +70,11 @@
             Colocacion Puente: <input type="checkbox" value="true" name="chkColPuente">
             Tratamiento Ortonixia: 
             <select name="cboTratamientoOrtonixia">
+                <%
+                for(TratamientoOrtonixia to : new Data().getTratamientoOrtonoxia()){
+                    out.println("<option value='"+to.getId()+"'>"+to.getNombre()+"</option>");
+                }
+                %>
             </select>
             <br><br>
             Colocacion Policarboxilato: <input type="checkbox" value="true" name="chkColPolicarboxilato">
