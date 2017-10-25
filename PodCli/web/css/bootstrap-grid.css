@@ -25,6 +25,7 @@ html {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  margin: 0 1cm 0 1cm; text-indent: 1cm;
 }
 
 @media (min-width: 576px) {
