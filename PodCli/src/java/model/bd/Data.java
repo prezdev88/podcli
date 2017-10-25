@@ -17,12 +17,12 @@ public class Data {
 
     public Data() throws SQLException, ClassNotFoundException {
 
-//        con = new Conexion(
-//                "localhost",
-//                "podcli",//nombre BD
-//                "root",
-//                ""//Password
-//        );
+        con = new Conexion(
+                "localhost",
+                "podcli",//nombre BD
+                "root",
+                ""//Password
+        );
 
     }
 
@@ -257,7 +257,7 @@ public class Data {
        
 
         FichaSelect f;
-        //Revisar con el tio Patito
+        
         if (rs.next()) {
             f = new FichaSelect();
             f.setId(rs.getInt(1));
@@ -384,7 +384,7 @@ public class Data {
 
     public List<TratamientoOrtonixia> getTratamientoOrtonoxia() throws SQLException {
 
-        query = "SELECT * FROM Ortonoxia;";
+        query = "SELECT * FROM ortonoxia;";
         rs = con.ejecutarSelect(query);
 
         List<TratamientoOrtonixia> list = new ArrayList<>();
