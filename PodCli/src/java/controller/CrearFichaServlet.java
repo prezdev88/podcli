@@ -2,13 +2,18 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bd.Data;
 import model.bd.Ficha;
 import model.bd.Paciente;
 
@@ -19,62 +24,72 @@ public class CrearFichaServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-            Paciente nuevoPaciente = new Paciente();
-            Ficha nuevaFicha = new Ficha();
-
-            /*Antecedentes Personales*/
-            nuevoPaciente.setRut(request.getParameter("txtRut"));
-            nuevoPaciente.setNombre(request.getParameter("txtNombre"));
-            nuevoPaciente.setSexo(request.getParameter("txtSexo"));
-            nuevoPaciente.setDomicilio(request.getParameter("txtDomicilia"));
             try {
+                Data d = new Data();
+                Paciente nuevoPaciente = new Paciente();
+                Ficha nuevaFicha = new Ficha();
 
-                Date parseDate = dateFormat.parse(request.getParameter("txtfechaDeNacimiento"));
+                /*Antecedentes Personales*/
+                nuevoPaciente.setRut(request.getParameter("txtRut"));
+                nuevoPaciente.setNombre(request.getParameter("txtNombre"));
+                nuevoPaciente.setSexo(request.getParameter("opSexo"));
+                nuevoPaciente.setDomicilio(request.getParameter("txtDomicilio"));
+                /* Rescato la fecha*/
+                String fecha = request.getParameter("txtFechaNacimineto");
+                Timestamp fechaF = Timestamp.valueOf(fecha);
+                nuevoPaciente.setFechaNacimiento(fechaF);
+                nuevoPaciente.setEstadoCivil(Integer.parseInt(request.getParameter("cboEstadocivil")));
+                nuevoPaciente.setActividad(request.getParameter("txtActividad"));
+                nuevoPaciente.setTelefonos(request.getParameter("txtTelefonos"));
 
-            } catch (Exception e) {
+                //------------------------------------------------------------------------------------------
+                /*Antecedentes Morbidos*/
+                nuevaFicha.setHta(Integer.parseInt(request.getParameter("cboHTA")));
+                nuevaFicha.setDm(Integer.parseInt(request.getParameter("cboDM")));
+                nuevaFicha.setTipoDiabetes(Integer.parseInt(request.getParameter("cboTipo")));
 
+                nuevaFicha.setAniosEvolucion(Integer.parseInt(request.getParameter("txtAnioEvolucion")));
+                nuevaFicha.setMixto(Boolean.parseBoolean(request.getParameter("cboPcteMixto")));
+                nuevaFicha.setControl(Boolean.parseBoolean(request.getParameter("cboControl")));
+
+                nuevaFicha.setFarmacoterapia(request.getParameter("txtFarmacoterapia"));
+                nuevaFicha.setOtros(request.getParameter("txtOtrasPatologíasYFarmacoterapia"));
+                nuevaFicha.setAlteracion(request.getParameter("txtAlteracionesOrtopédicas"));
+                nuevaFicha.setHabitos(request.getParameter("txtHabitosNocivos"));
+                //------------------------------------------------------------------------------------------
+
+                /*Examen Fisicos General*/
+                nuevaFicha.setTalla(Float.parseFloat(request.getParameter("txtTalla")));
+                nuevaFicha.setImc(Float.parseFloat(request.getParameter("txtIMC")));
+                //Amputacion
+                nuevaFicha.setAmputacion(Boolean.parseBoolean(request.getParameter("cboAmputacion")));
+                nuevaFicha.setUbiAmputacion(request.getParameter("txtUbicacionAmputacion"));
+
+                nuevaFicha.setnCalzado(Integer.parseInt(request.getParameter("txtNumCalzado")));
+                nuevaFicha.setVarices(Boolean.parseBoolean(request.getParameter("cboVaricesExtremoInferior")));
+                //Heridas
+                nuevaFicha.setHeridas(Boolean.parseBoolean(request.getParameter("cboHeridas")));
+                nuevaFicha.setUbiHeridas(request.getParameter("txtUbicacionHeridas"));
+                nuevaFicha.setTipoHerida(request.getParameter("txtTipoHeridas"));
+                nuevaFicha.setTratamiento(Boolean.parseBoolean(request.getParameter("cboTratamiento")));
+                //Nevos
+                nuevaFicha.setNevos(Boolean.parseBoolean(request.getParameter("cboNevos")));
+                nuevaFicha.setUbiNevos(request.getParameter("txtUbicacionNevos"));
+                //Masculas
+                nuevaFicha.setTratamiento(Boolean.parseBoolean(request.getParameter("cboMaculas")));
+                nuevaFicha.setTipoMaculas(request.getParameter("txtTipoMaculas"));
+                //------------------------------------------------------------------------------------------
+                
+                d.crearFicha(nuevoPaciente, nuevaFicha);
+
+                response.sendRedirect("index.jsp");
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(CrearFichaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CrearFichaServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            nuevoPaciente.setEstadoCivil(Integer.parseInt(request.getParameter("cboEstadocivil")));
-            nuevoPaciente.setActividad(request.getParameter("txtActividad"));
-            nuevoPaciente.setTelefonos(request.getParameter("txtTelefonos"));
-
-            /*Antecedentes Morbidos*/
-            nuevaFicha.setHta(Integer.parseInt(request.getParameter("cboHTA")));
-            nuevaFicha.setDm(Integer.parseInt(request.getParameter("cboDM")));
-            nuevaFicha.setTipoDiabetes(Integer.parseInt(request.getParameter("cboTipo")));
-
-            nuevaFicha.setAniosEvolucion(Integer.parseInt(request.getParameter("txtAnioEvolucion")));
-            nuevaFicha.setMixto(Boolean.parseBoolean(request.getParameter("cboPcteMixto")));
-            nuevaFicha.setControl(Boolean.parseBoolean(request.getParameter("cboControl")));
-
-            nuevaFicha.setFarmacoterapia(request.getParameter("txtFarmacoterapia"));
-            nuevaFicha.setOtros(request.getParameter("txtOtrasPatologíasYFarmacoterapia"));
-            nuevaFicha.setAlteracion(request.getParameter("txtAlteracionesOrtopédicas"));
-            nuevaFicha.setHabitos(request.getParameter("txtHabitosNocivos"));
-
-            /*Examen Fisicos General*/
-            nuevaFicha.setTalla(Float.parseFloat(request.getParameter("txtTalla")));
-            nuevaFicha.setImc(Float.parseFloat(request.getParameter("txtIMC")));
-            //Amputacion
-            nuevaFicha.setAmputacion(Boolean.parseBoolean(request.getParameter("cboAmputacion")));
-            nuevaFicha.setUbiAmputacion(request.getParameter("txtUbicacionAmputacion"));
-            
-            nuevaFicha.setnCalzado(Integer.parseInt(request.getParameter("txtNumCalzado")));
-            nuevaFicha.setVarices(Boolean.parseBoolean(request.getParameter("cboVaricesExtremoInferior")));
-            //Heridas
-            nuevaFicha.setHeridas(Boolean.parseBoolean(request.getParameter("cboHeridas")));
-            nuevaFicha.setUbiHeridas(request.getParameter("txtUbicacionHeridas"));
-            nuevaFicha.setTipoHerida(request.getParameter("txtTipoHeridas"));
-            nuevaFicha.setTratamiento(Boolean.parseBoolean(request.getParameter("cboTratamiento")));
-            //Nevos
-            nuevaFicha.setNevos(Boolean.parseBoolean(request.getParameter("cboNevos")));
-            nuevaFicha.setUbiNevos(request.getParameter("txtUbicacionNevos"));
-            //Masculas
-            nuevaFicha.setTratamiento(Boolean.parseBoolean(request.getParameter("cboMaculas")));
-            nuevaFicha.setTipoMaculas(request.getParameter("txtTipoMaculas"));
-            
         }
     }
 
