@@ -44,10 +44,9 @@ public class CrearFichaServlet extends HttpServlet {
                     date = formatter.parse(fecha);
                 } catch (ParseException ex) {
                     Logger.getLogger(CrearFichaServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }             
-                
-                
-                nuevoPaciente.setFechaNacimiento(d.dateToTimeStamp(date));    
+                }
+
+                nuevoPaciente.setFechaNacimiento(d.dateToTimeStamp(date));
                 nuevoPaciente.setEstadoCivil(Integer.parseInt(request.getParameter("cboEstadoCivil")));
                 nuevoPaciente.setActividad(request.getParameter("txtActividad"));
                 nuevoPaciente.setTelefonos(request.getParameter("txtTelefonos"));
@@ -58,8 +57,17 @@ public class CrearFichaServlet extends HttpServlet {
                 nuevaFicha.setHta(Integer.parseInt(request.getParameter("cboHTA")));
                 nuevaFicha.setDm(Integer.parseInt(request.getParameter("cboDM")));
                 nuevaFicha.setTipoDiabetes(Integer.parseInt(request.getParameter("cboTipo")));
-
-                nuevaFicha.setAniosEvolucion(Integer.parseInt(request.getParameter("txtAnioEvolucion")));
+                
+                String anio = request.getParameter("txtAnioEvolucion");
+                
+                if(!anio.trim().equals("")){
+                    nuevaFicha.setAniosEvolucion(Integer.parseInt(request.getParameter("txtAnioEvolucion")));
+                }else {
+                    nuevaFicha.setAniosEvolucion(0);
+                }
+                
+                
+                
                 nuevaFicha.setMixto(Boolean.parseBoolean(request.getParameter("cboPcteMixto")));
                 nuevaFicha.setControl(Boolean.parseBoolean(request.getParameter("cboControl")));
 
@@ -92,6 +100,8 @@ public class CrearFichaServlet extends HttpServlet {
                 //------------------------------------------------------------------------------------------
 
                 d.crearFicha(nuevoPaciente, nuevaFicha);
+
+                response.sendRedirect("crearUsuario.jsp");
 
             } catch (SQLException ex) {
                 Logger.getLogger(CrearFichaServlet.class
