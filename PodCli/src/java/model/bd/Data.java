@@ -359,6 +359,21 @@ public class Data {
         con.close();
         return list;
     }
+    
+    public String getPerfil(int id) throws SQLException{
+        
+        query = "SELECT perfil.nombre FROM perfil WHERE perfil.id ="+id ;
+        
+        rs = con.ejecutarSelect(query);
+        String nombre = null;
+        Perfil p;
+        if(rs.next()){
+            p = new Perfil();
+            p.setNombre(rs.getString(1));
+            nombre = p.getNombre();
+        }
+        return nombre;
+    }
 
     public List<TratamientoOrtonixia> getTratamientoOrtonoxia() throws SQLException {
         
@@ -398,6 +413,6 @@ public class Data {
         
         con.ejecutar(query);
     }
-
+    
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
