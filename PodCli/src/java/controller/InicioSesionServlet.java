@@ -40,7 +40,7 @@ public class InicioSesionServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             Data d = new Data();
             
-            String rut = request.getParameter("txtRut");
+            String rut = request.getParameter("rut");
             
             Usuario u = d.getUsuario(rut);
             
@@ -50,7 +50,7 @@ public class InicioSesionServlet extends HttpServlet {
                 response.sendRedirect("crearFicha.jsp");
             }else{
                 request.getSession().setAttribute("error", new Error("Rut Incorrecto"));
-                response.sendRedirect("inicioSesion.jsp");
+                response.sendRedirect("index.jsp");
             }
             
             

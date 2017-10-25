@@ -364,7 +364,7 @@ public class Data {
     
     public String getPerfil(int id) throws SQLException{
         
-        query = "SELECT perfil.nombre FROM perfil WHERE perfil.id ="+id ;
+        query = "SELECT nombre FROM perfil WHERE id ="+id ;
         
         rs = con.ejecutarSelect(query);
         String nombre = null;

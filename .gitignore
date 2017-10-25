@@ -1,6 +1,2 @@
 /PodCli/build/
-<<<<<<< HEAD
-/PodCli/nbproject/**
-=======
-/PodCli/nbproject/private/
->>>>>>> a699684db76c822110ecba6edefad1653fa339e5
+/PodCli/dist/
