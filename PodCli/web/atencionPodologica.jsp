@@ -4,12 +4,23 @@
     Author     : Edunaldo
 --%>
 
+<%@page import="model.bd.Usuario"%>
 <%@page import="model.bd.Data"%>
 <%@page import="model.bd.TratamientoOrtonixia"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <%
+    
+    Usuario u = (Usuario)session.getAttribute("usuario");
+    
+    if(u == null){
+        request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
+        response.sendRedirect("index.jsp");
+    }
+%>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
@@ -18,8 +29,14 @@
         
         <form action="" method="post">
             <!--Estos 2 datos deben viajar desde los hipervinculos-->
+            <%
+                if(u != null){
+                %>
+                    <input type="hidden" name="usuario" value="<%= u.getId() %>">
+            <%
+                }
+            %>
             <input type="hidden" name="ficha" value="">
-            <input type="hidden" name="usuario" value="">
             
             Presión Arterial: <input type="number" step="any" name="txtPersionArterial">
             Pulso Radial: <input type="number" name="txtPulsoRadial">

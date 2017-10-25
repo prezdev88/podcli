@@ -40,6 +40,9 @@
                 out.println(d.getPerfil(u.getPerfil()));
             %>
            <%}%> 
+           
+           <a href="buscarPaciente.jsp"> Buscar Pacientes </a>
+           
             <form action="cerrar.do" method="post">
                 <input type="submit" value="Cerrar Sesion">
             </form>
@@ -48,6 +51,7 @@
 
         <div class="container">
             <form action="crearFicha.do" method="post" class="col-12" class="center">
+                <input type="hidden" name="txtUsuario" value="<%= u.getId() %>">
                 <div class="row  justify-content-xl-center">
                     <div>
                         <h3>Antecedentes Personales</h3><br>
@@ -90,9 +94,9 @@
                         </select>
                         Tipo:   
                         <select class="custom-select-sm form-control form-control-sm" name="cboTipo">
+                            <option class="form-control form-control-sm" value="0"></option>
                             <option class="form-control form-control-sm" value="1">1</option>
                             <option class="form-control form-control-sm" value="2">2</option>
-                            <option class="form-control form-control-sm" value="3">3</option>
                         </select>
                         Años Evolución: <input class="form-control form-control-sm" type="number" name="txtAnioEvolucion">
                         Paciente Mixto:
@@ -114,7 +118,7 @@
                 <div class="row  justify-content-xl-center">
                     <div>
                         <h3>Examen Fisicos General</h3>
-                        Talla: <input class="form-control" type="number" step="any" name="txtTalla">metros
+                        Talla en metros: <input class="form-control" type="number" step="any" name="txtTalla">
                         IMC: <input class="form-control" type="number" step="any" name="txtIMC">
                         Amputación: 
                         <select class="custom-select-sm form-control form-control-sm" name="cboAmputacion">
