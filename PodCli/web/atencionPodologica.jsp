@@ -4,6 +4,8 @@
     Author     : Edunaldo
 --%>
 
+<%@page import="model.bd.Data"%>
+<%@page import="model.bd.TratamientoOrtonixia"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,6 +42,11 @@
             Colocacion Puente: <input type="checkbox" value="true" name="chkColPuente">
             Tratamiento Ortonixia: 
             <select name="cboTratamientoOrtonixia">
+                <%
+                for(TratamientoOrtonixia to : new Data().getTratamientoOrtonoxia()){
+                    out.println("<option value='"+to.getId()+"'>"+to.getNombre()+"</option>");
+                }
+                %>
             </select>
             Colocacion Policarboxilato: <input type="checkbox" value="true" name="chkColPolicarboxilato">
             Observaciones: <textarea name="txtObsAtencionPodo"></textarea>

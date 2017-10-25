@@ -3,6 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="mio"/>
+<<<<<<< HEAD
         <group name="GIT TEST"/>
+=======
+        <group>
+            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/src/java/controller/CrearFichaServlet.java</file>
+            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/src/java/model/bd/script/bd_podcli.sql</file>
+            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/src/java/model/bd/Data.java</file>
+            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/web/crearUsuario.jsp</file>
+            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/web/index.jsp</file>
+            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/src/java/model/bd/Usuario.java</file>
+        </group>
+>>>>>>> 3699e17f22a1a8202cb11793927d14fecf4281ee
     </open-files>
 </project-private>
