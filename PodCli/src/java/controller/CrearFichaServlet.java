@@ -44,10 +44,9 @@ public class CrearFichaServlet extends HttpServlet {
                     date = formatter.parse(fecha);
                 } catch (ParseException ex) {
                     Logger.getLogger(CrearFichaServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }             
-                
-                
-                nuevoPaciente.setFechaNacimiento(d.dateToTimeStamp(date));    
+                }
+
+                nuevoPaciente.setFechaNacimiento(d.dateToTimeStamp(date));
                 nuevoPaciente.setEstadoCivil(Integer.parseInt(request.getParameter("cboEstadoCivil")));
                 nuevoPaciente.setActividad(request.getParameter("txtActividad"));
                 nuevoPaciente.setTelefonos(request.getParameter("txtTelefonos"));
@@ -92,6 +91,8 @@ public class CrearFichaServlet extends HttpServlet {
                 //------------------------------------------------------------------------------------------
 
                 d.crearFicha(nuevoPaciente, nuevaFicha);
+
+                response.sendRedirect("crearUsuario.jsp");
 
             } catch (SQLException ex) {
                 Logger.getLogger(CrearFichaServlet.class
