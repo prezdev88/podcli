@@ -274,7 +274,7 @@ public class Data {
      public List<EstadoCivil> getEstadoCivil() throws SQLException {
         List<EstadoCivil> list = new ArrayList<>();
 
-        query = "select * from estado civil";
+        query = "select * from estadocivil";
 
         rs = con.ejecutarSelect(query);
 
@@ -292,6 +292,28 @@ public class Data {
 
         return list;
 
+    }
+     
+    public List<Respuesta> getRespuestas() throws SQLException{
+        List<Respuesta> list = new ArrayList<>();
+        
+        query = "select * from respuesta";
+
+        rs = con.ejecutarSelect(query);
+
+        Respuesta r;
+
+        while (rs.next()) {
+            r = new Respuesta();
+
+            r.setId(rs.getInt(1));
+            r.setNombre(rs.getString(2));
+
+            list.add(r);
+        }
+        con.close();
+
+        return list;
     }
 
     public List<Perfil> getPerfiles() throws SQLException {
