@@ -148,6 +148,32 @@ public class Data {
         return atenciones;
     }
     
+    public Paciente buscarAntecedentesPersonales(String rut) throws SQLException {
+        
+        query = "SELECT * FROM paciente WHERE rut = " + rut;
+
+        rs = con.ejecutarSelect(query);
+        Paciente p = null;
+
+        if (rs.next()) {
+            p = new Paciente();
+
+            p.setId(rs.getInt(1));
+            p.setRut(rs.getString(2));
+            p.setNombre(rs.getString(3));
+            p.setSexo(rs.getString(4));
+            p.setDomicilio(rs.getString(5));
+            p.setFechaNacimiento(rs.getTimestamp(6));
+            p.setEstadoCivil(rs.getInt(7));
+            p.setActividad(rs.getString(8));
+            p.setTelefonos(rs.getString(9));
+
+        }
+        con.close();
+
+        return p;
+    }
+    
     public List<Paciente> buscarPaciente(String filtro) throws SQLException {
         List<Paciente> lista = new ArrayList<>();
 
@@ -274,7 +300,7 @@ public class Data {
      public List<EstadoCivil> getEstadoCivil() throws SQLException {
         List<EstadoCivil> list = new ArrayList<>();
 
-        query = "select * from estado civil";
+        query = "select * from estadocivil";
 
         rs = con.ejecutarSelect(query);
 
@@ -292,6 +318,28 @@ public class Data {
 
         return list;
 
+    }
+     
+    public List<Respuesta> getRespuestas() throws SQLException{
+        List<Respuesta> list = new ArrayList<>();
+        
+        query = "select * from respuesta";
+
+        rs = con.ejecutarSelect(query);
+
+        Respuesta r;
+
+        while (rs.next()) {
+            r = new Respuesta();
+
+            r.setId(rs.getInt(1));
+            r.setNombre(rs.getString(2));
+
+            list.add(r);
+        }
+        con.close();
+
+        return list;
     }
 
     public List<Perfil> getPerfiles() throws SQLException {
