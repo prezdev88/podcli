@@ -384,7 +384,7 @@ public class Data {
 
     public List<TratamientoOrtonixia> getTratamientoOrtonoxia() throws SQLException {
 
-        query = "SELECT * FROM ortonoxia;";
+        query = "SELECT * FROM tratamientoOrtonixia;";
         rs = con.ejecutarSelect(query);
 
         List<TratamientoOrtonixia> list = new ArrayList<>();

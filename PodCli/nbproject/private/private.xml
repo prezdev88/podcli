@@ -2,23 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group name="mio"/>
-<<<<<<< HEAD
-        <group name="GIT TEST"/>
-=======
-        <group>
-            <file>file:/C:/Users/naxho/Desktop/PodCli/PodCli/src/java/model/bd/Data.java</file>
-            <file>file:/C:/Users/naxho/Desktop/PodCli/PodCli/src/java/model/bd/Conexion.java</file>
-            <file>file:/C:/Users/naxho/Desktop/PodCli/PodCli/src/java/model/bd/workbenchModels/m-er.png</file>
-            <file>file:/C:/Users/naxho/Desktop/PodCli/PodCli/src/java/model/bd/script/bd_podcli.sql</file>
-            <file>file:/C:/Users/naxho/Desktop/PodCli/PodCli/src/java/model/bd/Ficha.java</file>
-=======
-        <group>
-            <file>file:/C:/Users/dhenriquez/Desktop/GIT/podcli/PodCli/src/java/controller/CrearFichaServlet.java</file>
-            <file>file:/C:/Users/dhenriquez/Desktop/GIT/podcli/PodCli/src/java/model/bd/Data.java</file>
->>>>>>> 8cf6b51d14965986fe49e3baeb2f38bf07d9e139
+        <group name="GIT TEST">
+            <file>file:/home/prez/Escritorio/podcli/PodCli/web/crearUsuario.jsp</file>
+            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/model/bd/script/bd_podcli.sql</file>
+            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/controller/CrearUsuarioServlet.java</file>
+            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/model/bd/script/ROLES</file>
+            <file>file:/home/prez/Escritorio/podcli/PodCli/web/crearFicha.jsp</file>
+            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/model/bd/script/inserts.sql</file>
         </group>
->>>>>>> 3699e17f22a1a8202cb11793927d14fecf4281ee
+        <group>
+            <file>file:/C:/Users/msilva/Desktop/podcli/PodCli/web/index.jsp</file>
+            <file>file:/C:/Users/msilva/Desktop/podcli/PodCli/nbproject/private/private.properties</file>
+        </group>
     </open-files>
 </project-private>
