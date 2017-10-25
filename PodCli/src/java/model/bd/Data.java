@@ -57,7 +57,7 @@ public class Data {
     }
 
     public void crearFicha(Ficha f) throws SQLException {
-        con.ejecutar("insert into ficha value(null,'NOW()',"
+        con.ejecutar("insert into ficha value(null,NOW(),"
                 + "'" + f.getPaciente() + "',"
                 + "'" + f.getUsuario() + "',"
                 + "'" + f.getHta() + "',"

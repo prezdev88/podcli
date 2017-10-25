@@ -60,7 +60,7 @@ public class CrearFichaServlet extends HttpServlet {
                 
                 String anio = request.getParameter("txtAnioEvolucion");
                 
-                if(anio != null){
+                if(!anio.trim().equals("")){
                     nuevaFicha.setAniosEvolucion(Integer.parseInt(request.getParameter("txtAnioEvolucion")));
                 }else {
                     nuevaFicha.setAniosEvolucion(0);
