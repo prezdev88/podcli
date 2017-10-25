@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Data {
 
@@ -15,18 +17,22 @@ public class Data {
 
     public Data() throws SQLException, ClassNotFoundException {
 
-        con = new Conexion(
-                "localhost",
-                "podcli",//nombre BD
-                "root",
-                ""//Password
-        );
+//        con = new Conexion(
+//                "localhost",
+//                "podcli",//nombre BD
+//                "root",
+//                ""//Password
+//        );
 
     }
 
     public Usuario getUsuario(String rut) throws SQLException {
         Usuario u = null;
-        ResultSet rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
+
+        rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
+
+        rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
+
 
         if (rs.next()) {
             u = new Usuario();
@@ -108,18 +114,37 @@ public class Data {
         con.ejecutar(query);
     }
 
-    public List<AtencionPodologica> getListaAtencionPodologica(String rut) throws SQLException {//ARREGLAR SELECT [Nico Ahumada]
-        query = "select * from atencionPodologica a,ficha f, paciente p "
-                + "where a.ficha = f.id and f.paciente = p.id and ( p.rut like '%" + rut + "%')";
+
+    public List<AtencionPodologicaSelect> getListaAtencionPodologica(String idFicha) throws SQLException {//ARREGLADO
+        
+        query = "SELECT "
+                + "atencionPodologica.id AS ID, atencionPodologica.ficha AS 'Nº Ficha', usuario.nombre AS Creador, atencionPodologica.fecha AS Fecha, atencionPodologica.presion AS Presión, "
+                + "atencionPodologica.pulsoRadial AS 'Pulso Radial', atencionPodologica.pulsoPedio_d AS 'P. Pedio (d)', atencionPodologica.pulsoPedio_i AS 'P. Pedio (i)', "
+                + "atencionPodologica.peso AS Peso, atencionPodologica.sens_d AS 'Sensibilidad (d)', atencionPodologica.sens_i AS 'Sensibilidad (i)', "
+                + "atencionPodologica.tpodal_d AS 'Tº Podal (d)', atencionPodologica.tpodal_i AS 'Tº Podal (i)', atencionPodologica.curacion AS Curación, "
+                + "atencionPodologica.coloqPuente AS 'Coloc. Puente', atencionPodologica.resecado AS Resecado, atencionPodologica.enucleacion AS Enucleación, "
+                + "atencionPodologica.devastado AS 'Dev. Ungueal', atencionPodologica.maso AS 'Masoterapia o Masaje', "
+                + "atencionPodologica.espiculoectomia AS 'Espiculoectomía (Grado)', atencionPodologica.analgesia AS 'Analgesia (Tipo)', "
+                + "atencionPodologica.colocacionAcrilico AS 'Colocación Acilico', atencionPodologica.bandaMolecular AS 'Colocac. Banda Molec.', "
+                + "tratamientoOrtonixia.nombre AS 'C. Bracket/Cambio Elast.', atencionPodologica.poli AS 'C. Policarboxilato', "
+                + "atencionPodologica.observaciones AS Observaciones "
+                + "FROM "
+                + "atencionPodologica, ficha, usuario, tratamientoOrtonixia "
+                + "WHERE "
+                + "atencionPodologica.ficha = ficha.id AND "
+                + "atencionPodologica.usuario = usuario.id AND ficha.usuario = usuario.id AND atencionPodologica.tratamientoOrtonixia = tratamientoOrtonixia.id "
+                + "AND atencionPodologica.ficha =" + idFicha;
+
+
         rs = con.ejecutarSelect(query);
-        List<AtencionPodologica> atenciones = new ArrayList<>();
-        AtencionPodologica a;
-        while (rs.next()) {
-            a = new AtencionPodologica();
+        List<AtencionPodologicaSelect> atenciones = new ArrayList<>();
+        AtencionPodologicaSelect a;
+        if (rs.next()) {
+            a = new AtencionPodologicaSelect();
             a.setId(rs.getInt(1));
             a.setFicha(rs.getInt(2));
-            a.setUsuario(rs.getInt(3));
-            a.setFecha(rs.getTimestamp(4));
+            a.setUsuario(rs.getString(3));
+            a.setFecha(rs.getString(4));
             a.setPresion(rs.getFloat(5));
             a.setPulsoRadial(rs.getInt(6));
             a.setPulsoPedio_d(rs.getInt(7));
@@ -140,7 +165,7 @@ public class Data {
             a.setColocacionAcrilico(rs.getBoolean(22));
             a.setBandaMolecular(rs.getBoolean(23));
 
-            a.setTratamientoOrtonixia(rs.getInt(24));
+            a.setTratamientoOrtonixia(rs.getString(24));
             a.setPoli(rs.getBoolean(25));
             a.setObservaciones(rs.getString(26));
             atenciones.add(a);
@@ -175,6 +200,7 @@ public class Data {
         return p;
     }
 
+
     public List<Paciente> buscarPaciente(String filtro) throws SQLException {
         List<Paciente> lista = new ArrayList<>();
 
@@ -206,44 +232,68 @@ public class Data {
         return lista;
     }
 
-    public List<Ficha> buscarFicha(String filtro) throws SQLException { //Arrelga SELECT [Diego Aravena]
-        List<Ficha> lista = new ArrayList<>();
 
-        rs = con.ejecutarSelect("select * from ficha WHERE ficha.paciente = paciente.id and paciente.nombre LIKE '%" + filtro + "%' or paciente.rut LIKE '%" + filtro + "%'");
+    public List<FichaSelect> buscarFicha(String rut) throws SQLException { //arreglado
+        List<FichaSelect> lista = new ArrayList<>();
+ 
+        rs = con.ejecutarSelect("SELECT "
+                + "	f.id AS 'Nº Ficha', p.nombre AS Paciente, p.sexo AS Sexo, p.fechaNacimiento AS Fecha, p.domicilio AS Domicilio, "
+                + "	p.rut AS Rut, e.nombre AS 'Estado Civil', p.actividad AS Actividad, p.telefonos AS Fonos, f.fecha AS 'Fecha Ficha', "
+                + "	u.nombre AS Encargado, hta.nombre AS HTA, dm.nombre AS DM, f.tipoDiabetes AS 'Tipo Diabetes', f.aniosEvolucion AS 'Años Evolución', "
+                + "	f.mixto AS 'Pcte Mixto', f.control AS Control, f.farmacoterapia AS Farmacoterapia, f.otros AS 'Otras Patologias', "
+                + "	f.alteraciones AS 'Alteraciones Ortopedicas', f.habitos AS 'Habitos Nocivos', f.talla AS Talla, f.imc AS IMC, f.amputacion AS Amputación, "
+                + "	f.ubiAmputacion AS 'Ubicaciòn Amp.', f.nCalzado AS 'Nº Calzado', f.varices AS Varices, f.heridas AS Heridas, f.ubiHeridas AS 'Ubi. heridas', "
+                + "	f.tipoHerida AS 'Tipo Heridas', f.tratamiento AS Tratamientos, f.nevos AS Nevos, f.ubiNevos AS 'Ubi. Nevos', f.maculas AS Maculas, "
+                + "	f.tipoMaculas AS 'Tipo Maculas' "
+                + "FROM "
+                + "	ficha f "
+                + "	INNER JOIN respuesta hta ON f.hta = hta.id "
+                + "	INNER JOIN respuesta dm ON f.dm = dm.id "
+                + "	INNER JOIN paciente p ON p.id = f.paciente "
+                + "	INNER JOIN estadoCivil e ON e.id = p.estadoCivil "
+                + "	INNER JOIN usuario u ON u.id = f.usuario "
+                + "WHERE "
+                + "p.rut = '" + rut + "'");
+       
 
-        Ficha f;
-
-        while (rs.next()) {
-            f = new Ficha();
-
+        FichaSelect f;
+        //Revisar con el tio Patito
+        if (rs.next()) {
+            f = new FichaSelect();
             f.setId(rs.getInt(1));
-            f.setFecha(rs.getTimestamp(2));
-            f.setPaciente(rs.getInt(3));
-            f.setUsuario(rs.getInt(4));
-            f.setHta(rs.getInt(5));
-            f.setDm(rs.getInt(6));
-            f.setTipoDiabetes(rs.getInt(7));
-            f.setAniosEvolucion(rs.getInt(8));
-            f.setMixto(rs.getBoolean(9));
-            f.setControl(rs.getBoolean(10));
-            f.setFarmacoterapia(rs.getString(11));
-            f.setOtros(rs.getString(12));
-            f.setAlteracion(rs.getString(13));
-            f.setHabitos(rs.getString(14));
-            f.setTalla(rs.getFloat(15));
-            f.setImc(rs.getFloat(16));
-            f.setAmputacion(rs.getBoolean(17));
-            f.setUbiAmputacion(rs.getString(18));
-            f.setnCalzado(rs.getInt(19));
-            f.setVarices(rs.getBoolean(20));
-            f.setHeridas(rs.getBoolean(21));
-            f.setUbiHeridas(rs.getString(22));
-            f.setTipoHerida(rs.getString(23));
-            f.setTratamiento(rs.getBoolean(24));
-            f.setNevos(rs.getBoolean(25));
-            f.setUbiNevos(rs.getString(26));
-            f.setMaculas(rs.getBoolean(27));
-            f.setTipoMaculas(rs.getString(28));
+            f.setPaciente(rs.getString(2));
+            f.setSexo(rs.getString(3));
+            f.setFecha(rs.getString(4));
+            f.setDomicilio(rs.getString(5));
+            f.setRut(rs.getString(6));
+            f.setEstado_civil(rs.getString(7));
+            f.setActividad(rs.getString(8));
+            f.setFono(rs.getString(9));
+            f.setFecha_ficha(rs.getString(10));
+            f.setEncargado(rs.getString(11));
+            f.setHta(rs.getString(12));
+            f.setDm(rs.getString(13));
+            f.setTipoDiabetes(rs.getString(14));
+            f.setAnioEvolucion(rs.getString(15));
+            f.setControl(rs.getBoolean(16));
+            f.setFarmacoteraía(rs.getString(17));
+            f.setOtrasPatologicas(rs.getString(18));
+            f.setAlteracionesOrtopedicas(rs.getString(19));
+            f.setHabitos_nocivos(rs.getString(20));
+            f.setTalla(rs.getString(21));
+            f.setImc(rs.getString(22));
+            f.setAmputacion(rs.getBoolean(23));
+            f.setUbicacion_Amputacion(rs.getString(24));
+            f.setNro_Calzando(rs.getString(25));
+            f.setVarices(rs.getBoolean(26));
+            f.setHeridas(rs.getBoolean(27));
+            f.setUbicacion_Heridas(rs.getString(28));
+            f.setTipo_Heridas(rs.getString(29));
+            f.setTratamiento(rs.getBoolean(30));
+            f.setNevos(rs.getBoolean(31));
+            f.setUbicacion_nevos(rs.getString(32));
+            f.setMaculas(rs.getBoolean(33));
+            f.setTipo_Maculas(rs.getString(34));
 
             lista.add(f);
         }
@@ -252,51 +302,7 @@ public class Data {
         return lista;
     }
 
-    public List<Ficha> listarFicha(String filtro) throws SQLException {
-        List<Ficha> lista = new ArrayList<>();
-
-        rs = con.ejecutarSelect("SELECT * FROM ficha;");
-
-        Ficha f;
-
-        while (rs.next()) {
-            f = new Ficha();
-
-            f.setId(rs.getInt(1));
-            f.setFecha(rs.getTimestamp(2));
-            f.setPaciente(rs.getInt(3));
-            f.setUsuario(rs.getInt(4));
-            f.setHta(rs.getInt(5));
-            f.setDm(rs.getInt(6));
-            f.setTipoDiabetes(rs.getInt(7));
-            f.setAniosEvolucion(rs.getInt(8));
-            f.setMixto(rs.getBoolean(9));
-            f.setControl(rs.getBoolean(10));
-            f.setFarmacoterapia(rs.getString(11));
-            f.setOtros(rs.getString(12));
-            f.setAlteracion(rs.getString(13));
-            f.setHabitos(rs.getString(14));
-            f.setTalla(rs.getFloat(15));
-            f.setImc(rs.getFloat(16));
-            f.setAmputacion(rs.getBoolean(17));
-            f.setUbiAmputacion(rs.getString(18));
-            f.setnCalzado(rs.getInt(19));
-            f.setVarices(rs.getBoolean(20));
-            f.setHeridas(rs.getBoolean(21));
-            f.setUbiHeridas(rs.getString(22));
-            f.setTipoHerida(rs.getString(23));
-            f.setTratamiento(rs.getBoolean(24));
-            f.setNevos(rs.getBoolean(25));
-            f.setUbiNevos(rs.getString(26));
-            f.setMaculas(rs.getBoolean(27));
-            f.setTipoMaculas(rs.getString(28));
-
-            lista.add(f);
-        }
-        con.close();
-
-        return lista;
-    }
+    
 
     public List<EstadoCivil> getEstadoCivil() throws SQLException {
         List<EstadoCivil> list = new ArrayList<>();

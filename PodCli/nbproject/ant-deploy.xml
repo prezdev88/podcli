@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58bc70855e0445a37955f535d4b8cacd9d6f8c66
 
 Copyright (c) 2008, 2016 Oracle and/or its affiliates. All rights reserved.
 
@@ -111,6 +118,11 @@ Contributor(s):
         <antcall target="-deploy-without-pw"/>
         <antcall target="-deploy-with-pw"/>
     </target>
+<<<<<<< HEAD
+>>>>>>> d3c432f53136c0fa479750ca8bb22129d9528e0b
+>>>>>>> 3ba57e93295029bf0ff4c40c35d87383e0642364
+=======
+>>>>>>> 58bc70855e0445a37955f535d4b8cacd9d6f8c66
 
     <target name="-deploy-without-pw" unless="gfv3.password">
         <echo message="Deploying ${deploy.ant.archive}"/>
