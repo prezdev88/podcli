@@ -45,15 +45,16 @@ public class CrearFichaServlet extends HttpServlet {
                 } catch (ParseException ex) {
                     Logger.getLogger(CrearFichaServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }             
-                nuevoPaciente.setFechaNacimiento(d.dateToTimeStamp(date));
                 
                 
+                nuevoPaciente.setFechaNacimiento(d.dateToTimeStamp(date));    
                 nuevoPaciente.setEstadoCivil(Integer.parseInt(request.getParameter("cboEstadoCivil")));
                 nuevoPaciente.setActividad(request.getParameter("txtActividad"));
                 nuevoPaciente.setTelefonos(request.getParameter("txtTelefonos"));
 
                 //------------------------------------------------------------------------------------------
                 /*Antecedentes Morbidos*/
+                nuevaFicha.setUsuario(Integer.parseInt("txtUsuario"));
                 nuevaFicha.setHta(Integer.parseInt(request.getParameter("cboHTA")));
                 nuevaFicha.setDm(Integer.parseInt(request.getParameter("cboDM")));
                 nuevaFicha.setTipoDiabetes(Integer.parseInt(request.getParameter("cboTipo")));
@@ -80,7 +81,6 @@ public class CrearFichaServlet extends HttpServlet {
                 //Heridas
                 nuevaFicha.setHeridas(Boolean.parseBoolean(request.getParameter("cboHeridas")));
                 nuevaFicha.setUbiHeridas(request.getParameter("txtUbicacionHeridas"));
-                out.print("<h3>" + request.getParameter("txtUbicacionHeridas") + "</h3>");
                 nuevaFicha.setTipoHerida(request.getParameter("txtTipoHeridas"));
                 nuevaFicha.setTratamiento(Boolean.parseBoolean(request.getParameter("cboTratamiento")));
                 //Nevos

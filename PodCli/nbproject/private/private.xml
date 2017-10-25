@@ -2,18 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="mio"/>
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/src/java/controller/CrearFichaServlet.java</file>
-            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/src/java/model/bd/script/bd_podcli.sql</file>
-            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/src/java/model/bd/Data.java</file>
-            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/web/crearUsuario.jsp</file>
-            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/web/index.jsp</file>
-            <file>file:/C:/Users/Edunaldo/Desktop/podcli/PodCli/src/java/model/bd/Usuario.java</file>
+            <file>file:/C:/Users/dhenriquez/Desktop/GIT/podcli/PodCli/src/java/controller/CrearFichaServlet.java</file>
+            <file>file:/C:/Users/dhenriquez/Desktop/GIT/podcli/PodCli/src/java/model/bd/Data.java</file>
         </group>
->>>>>>> ab9aa10e43fe18220907a3af5656f6095631005d
     </open-files>
 </project-private>

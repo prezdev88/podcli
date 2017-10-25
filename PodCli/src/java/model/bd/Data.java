@@ -2,9 +2,10 @@ package model.bd;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
 
 public class Data {
 
@@ -22,27 +23,25 @@ public class Data {
         );
 
     }
-    
-    
-    
-    public Usuario getUsuario(String rut) throws SQLException{
+
+    public Usuario getUsuario(String rut) throws SQLException {
         Usuario u = null;
-        ResultSet rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '"+rut+"'");
-    
-        if(rs.next()){
+        ResultSet rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
+
+        if (rs.next()) {
             u = new Usuario();
-            
+
             u.setId(rs.getInt(1));
             u.setRut(rs.getString(2));
             u.setNombre(rs.getString(3));
             u.setPerfil(rs.getInt(4));
         }
-        
+
         con.close();
-        
+
         return u;
     }
-    
+
     public void crearPaciente(Paciente p) throws SQLException {
 
         con.ejecutar("INSERT INTO paciente VALUES (null, "
@@ -56,67 +55,67 @@ public class Data {
                 + "'" + p.getTelefonos() + "');");
 
     }
-    
+
     public void crearFicha(Ficha f) throws SQLException {
         con.ejecutar("insert into ficha value(null,'NOW()',"
-                    + "'" + f.getPaciente() + "',"
-                    + "'" + f.getUsuario() + "',"
-                    + "'" + f.getHta() + "',"
-                    + "'" + f.getDm() + "',"
-                    + "'" + f.getTipoDiabetes() + "',"
-                    + "'" + f.getAniosEvolucion() + "',"
-                    + "'" + f.isMixto() + "',"
-                    + "'" + f.isControl() + "',"
-                    + "'" + f.getFarmacoterapia() + "',"
-                    + "'" + f.getOtros() + "',"
-                    + "'" + f.getAlteracion() + "',"
-                    + "'" + f.getHabitos() + "',"
-                    + "'" + f.getTalla() + "',"
-                    + "'" + f.getImc() + "',"
-                    + "'" + f.isAmputacion() + "',"
-                    + "'" + f.getUbiAmputacion() + "',"
-                    + "'" + f.getnCalzado() + "',"
-                    + "'" + f.isVarices() + "',"
-                    + "'" + f.isHeridas() + "',"
-                    + "'" + f.getUbiHeridas() + "',"
-                    + "'" + f.getTipoHerida() + "',"
-                    + "'" + f.isTratamiento() + "',"
-                    + "'" + f.isNevos() + "',"
-                    + "'" + f.getUbiNevos() + "',"
-                    + "'" + f.isMaculas() + "',"
-                    + "'" + f.getTipoMaculas() + "')");
+                + "'" + f.getPaciente() + "',"
+                + "'" + f.getUsuario() + "',"
+                + "'" + f.getHta() + "',"
+                + "'" + f.getDm() + "',"
+                + "'" + f.getTipoDiabetes() + "',"
+                + "'" + f.getAniosEvolucion() + "',"
+                + "'" + f.isMixto() + "',"
+                + "'" + f.isControl() + "',"
+                + "'" + f.getFarmacoterapia() + "',"
+                + "'" + f.getOtros() + "',"
+                + "'" + f.getAlteracion() + "',"
+                + "'" + f.getHabitos() + "',"
+                + "'" + f.getTalla() + "',"
+                + "'" + f.getImc() + "',"
+                + "'" + f.isAmputacion() + "',"
+                + "'" + f.getUbiAmputacion() + "',"
+                + "'" + f.getnCalzado() + "',"
+                + "'" + f.isVarices() + "',"
+                + "'" + f.isHeridas() + "',"
+                + "'" + f.getUbiHeridas() + "',"
+                + "'" + f.getTipoHerida() + "',"
+                + "'" + f.isTratamiento() + "',"
+                + "'" + f.isNevos() + "',"
+                + "'" + f.getUbiNevos() + "',"
+                + "'" + f.isMaculas() + "',"
+                + "'" + f.getTipoMaculas() + "')");
     }
-    
+
     public void crearFicha(Paciente p, Ficha f) throws SQLException {
         crearPaciente(p);
         f.setPaciente(getUltimoIdPaciente());
         crearFicha(f);
     }
-    
+
     public void registrarAtencionPodologica(AtencionPodologica a) throws SQLException {
-         query = "insert into atencionPodologica values"
-                + "(null,"+a.getFicha()+","+a.getUsuario()+","
-                + ""+a.getFecha()+","+a.getPresion()+","+a.getPulsoRadial()+",\n"
-                + +a.getPulsoPedio_d()+" ,"+a.getPulsoPedio_i()+" ,"+a.getPeso()+" ,"
-                + ""+a.isSens_d()+" ,"+a.isSens_i()+","+a.gettPoda1_d()+" ,"
-                + ""+a.gettPoda1_i()+" ,"+a.isCuracion()+",\n"
-                + ""+a.isColocacionPuente()+","+a.isResecado()+","+a.isEnucleacion()+","
-                + ""+a.isDevastado()+" ,"+a.isMaso()+","
-                + ""+a.isEspiculoectomia()+"  ,"+a.isAnalgesia()+",\n"
-                + ""+a.isColocacionAcrilico()+" ,"+a.isBandaMolecular()+","
-                +","+a.getTratamientoOrtonixia()+","
-                + ""+a.isPoli()+" ,'"+a.getObservaciones()+"')";
+        query = "insert into atencionPodologica values"
+                + "(null," + a.getFicha() + "," + a.getUsuario() + ","
+                + "" + a.getFecha() + "," + a.getPresion() + "," + a.getPulsoRadial() + ",\n"
+                + +a.getPulsoPedio_d() + " ," + a.getPulsoPedio_i() + " ," + a.getPeso() + " ,"
+                + "" + a.isSens_d() + " ," + a.isSens_i() + "," + a.gettPoda1_d() + " ,"
+                + "" + a.gettPoda1_i() + " ," + a.isCuracion() + ",\n"
+                + "" + a.isColocacionPuente() + "," + a.isResecado() + "," + a.isEnucleacion() + ","
+                + "" + a.isDevastado() + " ," + a.isMaso() + ","
+                + "" + a.isEspiculoectomia() + "  ," + a.isAnalgesia() + ",\n"
+                + "" + a.isColocacionAcrilico() + " ," + a.isBandaMolecular() + ","
+                + "," + a.getTratamientoOrtonixia() + ","
+                + "" + a.isPoli() + " ,'" + a.getObservaciones() + "')";
         con.ejecutar(query);
     }
-    
-    public List<AtencionPodologica> getListaAtencionPodologica(String rut) throws SQLException{//ARREGLAR SELECT [Nico Ahumada]
-        query = "select * from atencionPodologica a,ficha f, paciente p " +
-                "where a.ficha = f.id and f.paciente = p.id and ( p.rut like '%"+rut+"%')";
+
+    public List<AtencionPodologica> getListaAtencionPodologica(String rut) throws SQLException {//ARREGLAR SELECT [Nico Ahumada]
+        query = "select * from atencionPodologica a,ficha f, paciente p "
+                + "where a.ficha = f.id and f.paciente = p.id and ( p.rut like '%" + rut + "%')";
         rs = con.ejecutarSelect(query);
         List<AtencionPodologica> atenciones = new ArrayList<>();
         AtencionPodologica a;
-        while (rs.next()){
-            a=new AtencionPodologica();
+        while (rs.next()) {
+            a = new AtencionPodologica();
             a.setId(rs.getInt(1));
             a.setFicha(rs.getInt(2));
             a.setUsuario(rs.getInt(3));
@@ -140,7 +139,7 @@ public class Data {
             a.setAnalgesia(rs.getBoolean(21));
             a.setColocacionAcrilico(rs.getBoolean(22));
             a.setBandaMolecular(rs.getBoolean(23));
-            
+
             a.setTratamientoOrtonixia(rs.getInt(24));
             a.setPoli(rs.getBoolean(25));
             a.setObservaciones(rs.getString(26));
@@ -149,9 +148,9 @@ public class Data {
         con.close();
         return atenciones;
     }
-    
+
     public Paciente buscarAntecedentesPersonales(String rut) throws SQLException {
-        
+
         query = "SELECT * FROM paciente WHERE rut = " + rut;
 
         rs = con.ejecutarSelect(query);
@@ -175,7 +174,7 @@ public class Data {
 
         return p;
     }
-    
+
     public List<Paciente> buscarPaciente(String filtro) throws SQLException {
         List<Paciente> lista = new ArrayList<>();
 
@@ -206,17 +205,17 @@ public class Data {
 
         return lista;
     }
-              
-     public List<Ficha> buscarFicha(String filtro) throws SQLException{ //Arrelga SELECT [Diego Aravena]
+
+    public List<Ficha> buscarFicha(String filtro) throws SQLException { //Arrelga SELECT [Diego Aravena]
         List<Ficha> lista = new ArrayList<>();
-        
-        rs = con.ejecutarSelect("select * from ficha WHERE ficha.paciente = paciente.id and paciente.nombre LIKE '%"+filtro+"%' or paciente.rut LIKE '%"+filtro+"%'");
-        
+
+        rs = con.ejecutarSelect("select * from ficha WHERE ficha.paciente = paciente.id and paciente.nombre LIKE '%" + filtro + "%' or paciente.rut LIKE '%" + filtro + "%'");
+
         Ficha f;
-        
+
         while (rs.next()) {
             f = new Ficha();
-            
+
             f.setId(rs.getInt(1));
             f.setFecha(rs.getTimestamp(2));
             f.setPaciente(rs.getInt(3));
@@ -245,24 +244,24 @@ public class Data {
             f.setUbiNevos(rs.getString(26));
             f.setMaculas(rs.getBoolean(27));
             f.setTipoMaculas(rs.getString(28));
-            
+
             lista.add(f);
         }
         con.close();
 
         return lista;
     }
-     
-     public List<Ficha> listarFicha(String filtro) throws SQLException{
+
+    public List<Ficha> listarFicha(String filtro) throws SQLException {
         List<Ficha> lista = new ArrayList<>();
-        
+
         rs = con.ejecutarSelect("SELECT * FROM ficha;");
-        
+
         Ficha f;
-        
+
         while (rs.next()) {
             f = new Ficha();
-            
+
             f.setId(rs.getInt(1));
             f.setFecha(rs.getTimestamp(2));
             f.setPaciente(rs.getInt(3));
@@ -291,15 +290,15 @@ public class Data {
             f.setUbiNevos(rs.getString(26));
             f.setMaculas(rs.getBoolean(27));
             f.setTipoMaculas(rs.getString(28));
-            
+
             lista.add(f);
         }
         con.close();
 
         return lista;
-     }
-     
-     public List<EstadoCivil> getEstadoCivil() throws SQLException {
+    }
+
+    public List<EstadoCivil> getEstadoCivil() throws SQLException {
         List<EstadoCivil> list = new ArrayList<>();
 
         query = "select * from estadocivil";
@@ -321,10 +320,10 @@ public class Data {
         return list;
 
     }
-     
-    public List<Respuesta> getRespuestas() throws SQLException{
+
+    public List<Respuesta> getRespuestas() throws SQLException {
         List<Respuesta> list = new ArrayList<>();
-        
+
         query = "select * from respuesta";
 
         rs = con.ejecutarSelect(query);
@@ -345,7 +344,7 @@ public class Data {
     }
 
     public List<Perfil> getPerfiles() throws SQLException {
-        
+
         query = "SELECT * FROM perfil;";
         rs = con.ejecutarSelect(query);
 
@@ -361,15 +360,15 @@ public class Data {
         con.close();
         return list;
     }
-    
-    public String getPerfil(int id) throws SQLException{
-        
-        query = "SELECT nombre FROM perfil WHERE id ="+id ;
-        
+
+    public String getPerfil(int id) throws SQLException {
+
+        query = "SELECT nombre FROM perfil WHERE id =" + id;
+
         rs = con.ejecutarSelect(query);
         String nombre = null;
         Perfil p;
-        if(rs.next()){
+        if (rs.next()) {
             p = new Perfil();
             p.setNombre(rs.getString(1));
             nombre = p.getNombre();
@@ -378,7 +377,7 @@ public class Data {
     }
 
     public List<TratamientoOrtonixia> getTratamientoOrtonoxia() throws SQLException {
-        
+
         query = "SELECT * FROM Ortonoxia;";
         rs = con.ejecutarSelect(query);
 
@@ -395,30 +394,30 @@ public class Data {
 
         return list;
     }
-     
+
     private int getUltimoIdPaciente() throws SQLException { //Genera id del ultimo paciente Creado
         int ultimaId = 0;
         String lastId = "SELECT MAX(id) FROM paciente;";
         rs = con.ejecutarSelect(lastId);
         Paciente p;
-        if(rs.next()){
+        if (rs.next()) {
             p = new Paciente();
             p.setId(rs.getInt(1));
             ultimaId = p.getId();
         }
-        
+
         return ultimaId;
     }
-    
-    public void crearUsuario(Usuario u) throws SQLException{
-        query = "insert into usuario value(null,'"+u.getRut()+"','"+u.getNombre()+"',"+u.getPerfil()+")";
-        
+
+    public void crearUsuario(Usuario u) throws SQLException {
+        query = "insert into usuario value(null,'" + u.getRut() + "','" + u.getNombre() + "'," + u.getPerfil() + ")";
+
         con.ejecutar(query);
     }
-	
-	public static Timestamp dateToTimeStamp(Date fecha) {
+
+    public static Timestamp dateToTimeStamp(Date fecha) {
         return new Timestamp(fecha.getTime());
     }
-    
+
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
