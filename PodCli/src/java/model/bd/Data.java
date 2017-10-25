@@ -413,6 +413,10 @@ public class Data {
         
         con.ejecutar(query);
     }
+	
+	public static Timestamp dateToTimeStamp(Date fecha) {
+        return new Timestamp(fecha.getTime());
+    }
     
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
