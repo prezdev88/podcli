@@ -30,6 +30,7 @@
 
         <div class="container mt-1">
             <!--<h1 class="page-header">Recuperaciones</h1>-->
+<<<<<<< HEAD
             <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
                 <div class="row justify-content-xl-center">
                     
@@ -37,16 +38,36 @@
                         <p>Bienvenid@ al sistema de atencion podologica de Santo Tomás Rancagua. 
                             Para comenzar escriba su rut y luego presione Entrar</p>
                     
+=======
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="align-items-center">
+                        <h1>Atencion Podologica</h1>
+                        <p>Bienvenid@ al sistema de atencion podologica de Santo Tomás Rancagua. 
+                            Para comenzar escriba su rut y luego presione Entrar</p>
+                    </div>
+>>>>>>> 995b505c0d06eff06464175df22421d9acbb355a
                     <div class="col-md-6 col-md-offset-3">
-                        <form action="" method="post" class="navbar-form">
+                        <form action="iniciarSesion.do" method="post" class="navbar-form">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <input id="rut" type="text" class="form-control" style="width: 250px; text-align: center" name="rut" placeholder="EJ: 12345678-k">                                        
                             </div>
 
+<<<<<<< HEAD
                             <input type="submit" value="Entrar" class="btn btn btn-outline-success btn-lg btn-block mx-auto mt-3" style="width: 200px;">
 
+=======
+                            <input type="submit" value="Entrar" class="btn btn-primary btn-lg btn-block mx-auto mt-1" style="width: 200px;">
+>>>>>>> 995b505c0d06eff06464175df22421d9acbb355a
                         </form>
+                        <%
+                            Error e = (Error) request.getSession().getAttribute("error");
+                            if (e != null) {
+                                out.println(e.getMessage());
+                            }
+
+                        %>
                     </div>
                 </div>
             </div>
@@ -54,6 +75,7 @@
 
         <!--
         <h1>Podcli</h1>
+        <a href="inicioSesion.jsp">Inicio Sesión</a>
         <a class="btn btn-outline-primary" href="crearFicha.jsp"> Crear Paciente </a>
         <button class="btn btn-outline-primary">Boton</button>
         <p>
