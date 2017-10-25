@@ -4,6 +4,9 @@
     Author     : Edunaldo
 --%>
 
+<%@page import="model.bd.Respuesta"%>
+<%@page import="model.bd.Data"%>
+<%@page import="model.bd.EstadoCivil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,11 +25,19 @@
                     <div>
                         <h3>Antecedentes Personales</h3><br>
                         Nombre: <input class="form-control" type="text" name="txtNombre">
+                        <input type="radio" name="opSexo" value="m">Masculino
+                        <input type="radio" name="opSexo" value="f">Femenino
                         Fecha Nacimiento: <input class="form-control" type="date" name="txtFechaNacimineto">
                         Domicilio: <textarea class="form-control" name="txtDomicilio"></textarea>
                         Rut: <input class="form-control" type="text" name="txtRut">
                         <!-- LLenar este comboBox con estados civiles -->
-                        Estado Civil: <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil"></select> 
+                        Estado Civil: <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil">
+                            <%
+                                for (EstadoCivil ec : new Data().getEstadoCivil()) {
+                                    out.println("<option value='" + ec.getId() + "'>" + ec.getNombre() + "</option>");
+                                }
+                            %>
+                        </select> 
                         Actividad: <input class="form-control" type="text" name="txtActividad">
                         Telefonos:  <input class="form-control" type="text" name="txtTelefonos">
                     </div>
@@ -35,9 +46,21 @@
                     <div>
                         <h3>Antecedentes Morbidos</h3><br>
                         <!-- LLenar este comboBox con tablas respuesta desde la BD -->
-                        HTA: <select class="custom-select-sm form-control form-control-sm" name="cboHTA"></select>
+                        HTA: <select class="custom-select-sm form-control form-control-sm" name="cboHTA">
+                            <%
+                                for (Respuesta r : new Data().getRespuestas()) {
+                                    out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                                }
+                            %>
+                        </select>
                         <!-- LLenar este comboBox con tablas respuesta desde la BD -->
-                        D.M: <select class="custom-select-sm form-control form-control-sm" name="cboDM"></select>
+                        D.M: <select class="custom-select-sm form-control form-control-sm" name="cboDM">
+                            <%
+                                for (Respuesta r : new Data().getRespuestas()) {
+                                    out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                                }
+                            %>
+                        </select>
                         Tipo:   
                         <select class="custom-select-sm form-control form-control-sm" name="cboTipo">
                             <option class="form-control form-control-sm" value="1">1</option>
@@ -111,10 +134,10 @@
                         </select>
 
                         Tipo: <input class="form-control" type="text" name="txtTipoMaculas">
-                        
-                        
+
+
                     </div>
-                    
+
                 </div>
                 <div class="row  justify-content-xl-center">
                     <br>

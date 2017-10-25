@@ -29,21 +29,32 @@ public class CrearUsuarioServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            Usuario u = new Usuario();
-            
-            u.setNombre(request.getParameter("txtNombre"));
-            u.setPerfil(Integer.parseInt(request.getParameter("cboPerfil")));
-            u.setRut(request.getParameter("txtRut"));
-            
+
             try {
-                new Data().crearUsuario(u);
-            } catch (SQLException ex) {
-                Logger.getLogger(CrearUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+                Data d = new Data();
+
+                Usuario u = d.getUsuario(request.getParameter("txtRut"));
+                
+                // Si el usuario no existe
+                if (u == null) {
+                    u = new Usuario();
+
+                    u.setNombre(request.getParameter("txtNombre"));
+                    u.setPerfil(Integer.parseInt(request.getParameter("cboPerfil")));
+                    u.setRut(request.getParameter("txtRut"));
+                    d.crearUsuario(u);
+                    
+                    request.getSession().removeAttribute("error");
+                    
+                    response.sendRedirect("crearUsuario.jsp");
+                } else {
+                    request.getSession().setAttribute("error", new Error("El usuario ["+u.getNombre()+"] ya se encuentra en la base de datos."));
+                    response.sendRedirect("crearUsuario.jsp");
+                }
+                
+            } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(CrearUsuarioServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            response.sendRedirect("crearUsuario.jsp");
         }
     }
 
