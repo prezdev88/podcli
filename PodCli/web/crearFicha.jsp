@@ -12,11 +12,12 @@
 <!DOCTYPE html>
 
 <%
-    Usuario u = (Usuario)request.getSession().getAttribute("usuario");
+    
+    Usuario u = (Usuario)session.getAttribute("usuario");
     
     if(u == null){
         request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
-        response.sendRedirect("inicioSesion.jsp");
+        response.sendRedirect("index.jsp");
     }
 %>
 
@@ -31,12 +32,18 @@
         <h1>Ficha Clinica</h1><br>
         
         <div>
+            <%if(u != null){%>
             Usuario Actual:<%=u.getNombre()%><br>
             Perfil: <%
                 Data d = new Data();
                 
-                out.println(d.getPerfil(u.getId()));
+                out.println(d.getPerfil(u.getPerfil()));
             %>
+           <%}%> 
+            <form action="cerrar.do" method="post">
+                <input type="submit" value="Cerrar Sesion">
+            </form>
+            
         </div>
 
         <div class="container">
