@@ -36,7 +36,7 @@ public class Conexion {
     public void ejecutar(String query) throws SQLException{
         sen = con.createStatement();
         sen.executeUpdate(query);
-        desconectar();
+        close();
     }
    
     // select
@@ -46,7 +46,7 @@ public class Conexion {
         return rs;
     }
    
-    public void desconectar() throws SQLException{
+    public void close() throws SQLException{
         sen.close();
     }
 }
