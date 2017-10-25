@@ -37,8 +37,8 @@ public class RegistrarAtencionPodologicaServlet extends HttpServlet {
                 devastado, maso, espiculoectomia, analgesia, colocacionAcrilico,
                 bandaMolecular, colocacionPuente, poli;
         
-        ficha = Integer.parseInt(req.getParameter(""));
-        usuario = Integer.parseInt(req.getParameter(""));
+        ficha = Integer.parseInt(req.getParameter("ficha"));
+        usuario = Integer.parseInt(req.getParameter("usuario"));
         
 //        fecha = req.getParameter("");
         presion = Float.parseFloat(req.getParameter("txtPersionArterial"));
@@ -61,7 +61,7 @@ public class RegistrarAtencionPodologicaServlet extends HttpServlet {
         colocacionAcrilico = Boolean.parseBoolean(req.getParameter("chkColAcri"));
         bandaMolecular = Boolean.parseBoolean(req.getParameter("chkColBandaMolecular"));
         colocacionPuente = Boolean.parseBoolean(req.getParameter("chkColPuente"));
-        tratamientoOrtonixia = Integer.parseInt(req.getParameter(""));
+        tratamientoOrtonixia = Integer.parseInt(req.getParameter("cboTratamientoOrtonixia"));
         poli = Boolean.parseBoolean(req.getParameter("chkColPolicarboxilato"));
         observaciones = req.getParameter("txtObsAtencionPodo");
         

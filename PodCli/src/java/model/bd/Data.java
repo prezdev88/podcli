@@ -150,6 +150,32 @@ public class Data {
         return atenciones;
     }
     
+    public Paciente buscarAntecedentesPersonales(String rut) throws SQLException {
+        
+        query = "SELECT * FROM paciente WHERE rut = " + rut;
+
+        rs = con.ejecutarSelect(query);
+        Paciente p = null;
+
+        if (rs.next()) {
+            p = new Paciente();
+
+            p.setId(rs.getInt(1));
+            p.setRut(rs.getString(2));
+            p.setNombre(rs.getString(3));
+            p.setSexo(rs.getString(4));
+            p.setDomicilio(rs.getString(5));
+            p.setFechaNacimiento(rs.getTimestamp(6));
+            p.setEstadoCivil(rs.getInt(7));
+            p.setActividad(rs.getString(8));
+            p.setTelefonos(rs.getString(9));
+
+        }
+        con.close();
+
+        return p;
+    }
+    
     public List<Paciente> buscarPaciente(String filtro) throws SQLException {
         List<Paciente> lista = new ArrayList<>();
 
@@ -335,6 +361,21 @@ public class Data {
         con.close();
         return list;
     }
+    
+    public String getPerfil(int id) throws SQLException{
+        
+        query = "SELECT perfil.nombre FROM perfil WHERE perfil.id ="+id ;
+        
+        rs = con.ejecutarSelect(query);
+        String nombre = null;
+        Perfil p;
+        if(rs.next()){
+            p = new Perfil();
+            p.setNombre(rs.getString(1));
+            nombre = p.getNombre();
+        }
+        return nombre;
+    }
 
     public List<TratamientoOrtonixia> getTratamientoOrtonoxia() throws SQLException {
         
@@ -374,6 +415,6 @@ public class Data {
         
         con.ejecutar(query);
     }
-
+    
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
