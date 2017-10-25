@@ -23,6 +23,24 @@ public class Data {
 
     }
     
+    public Usuario getUsuario(String rut) throws SQLException{
+        Usuario u = null;
+        ResultSet rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '"+rut+"'");
+    
+        if(rs.next()){
+            u = new Usuario();
+            
+            u.setId(rs.getInt(1));
+            u.setRut(rs.getString(2));
+            u.setNombre(rs.getString(3));
+            u.setPerfil(rs.getInt(4));
+        }
+        
+        con.close();
+        
+        return u;
+    }
+    
     public void crearPaciente(Paciente p) throws SQLException {
 
         con.ejecutar("INSERT INTO paciente VALUES (null, "
@@ -126,7 +144,7 @@ public class Data {
             a.setObservaciones(rs.getString(26));
             atenciones.add(a);
         }
-        con.desconectar();
+        con.close();
         return atenciones;
     }
     
@@ -156,7 +174,7 @@ public class Data {
             lista.add(p);
         }
 
-        con.desconectar();
+        con.close();
 
         return lista;
     }
@@ -202,7 +220,7 @@ public class Data {
             
             lista.add(f);
         }
-        con.desconectar();
+        con.close();
 
         return lista;
     }
@@ -248,7 +266,7 @@ public class Data {
             
             lista.add(f);
         }
-        con.desconectar();
+        con.close();
 
         return lista;
      }
@@ -256,7 +274,7 @@ public class Data {
      public List<EstadoCivil> getEstadoCivil() throws SQLException {
         List<EstadoCivil> list = new ArrayList<>();
 
-        query = "select * from estado civil";
+        query = "select * from estadocivil";
 
         rs = con.ejecutarSelect(query);
 
@@ -270,10 +288,32 @@ public class Data {
 
             list.add(es);
         }
-        con.desconectar();
+        con.close();
 
         return list;
 
+    }
+     
+    public List<Respuesta> getRespuestas() throws SQLException{
+        List<Respuesta> list = new ArrayList<>();
+        
+        query = "select * from respuesta";
+
+        rs = con.ejecutarSelect(query);
+
+        Respuesta r;
+
+        while (rs.next()) {
+            r = new Respuesta();
+
+            r.setId(rs.getInt(1));
+            r.setNombre(rs.getString(2));
+
+            list.add(r);
+        }
+        con.close();
+
+        return list;
     }
 
     public List<Perfil> getPerfiles() throws SQLException {
@@ -290,7 +330,7 @@ public class Data {
             p.setNombre(rs.getString(2));
             list.add(p);
         }
-        con.desconectar();
+        con.close();
         return list;
     }
 
@@ -308,7 +348,7 @@ public class Data {
             to.setNombre(rs.getString(2));
             list.add(to);
         }
-        con.desconectar();
+        con.close();
 
         return list;
     }

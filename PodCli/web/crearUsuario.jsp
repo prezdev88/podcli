@@ -32,5 +32,12 @@
             <input type="submit" value="Registar Usuario">
         </form>
         
+            <%
+            Error e = (Error)request.getSession().getAttribute("error");
+            
+            if(e != null){
+                out.println(e.getMessage());
+            }
+            %>
     </body>
 </html>
