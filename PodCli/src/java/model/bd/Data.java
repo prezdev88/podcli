@@ -23,6 +23,8 @@ public class Data {
 
     }
     
+    
+    
     public Usuario getUsuario(String rut) throws SQLException{
         Usuario u = null;
         ResultSet rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '"+rut+"'");

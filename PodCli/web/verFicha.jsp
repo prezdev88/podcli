@@ -4,40 +4,20 @@
     Author     : Edunaldo
 --%>
 
-<%@page import="model.bd.Usuario"%>
 <%@page import="model.bd.Respuesta"%>
 <%@page import="model.bd.Data"%>
 <%@page import="model.bd.EstadoCivil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-<%
-    Usuario u = (Usuario)request.getSession().getAttribute("usuario");
-    
-    if(u == null){
-        request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
-        response.sendRedirect("inicioSesion.jsp");
-    }
-%>
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <title>Crear Ficha</title>
+        <title>Ver Ficha</title>
     </head>
     <body>
         <h1>Ficha Clinica</h1><br>
-        
-        <div>
-            Usuario Actual:<%=u.getNombre()%><br>
-            Perfil: <%
-                Data d = new Data();
-                
-                out.println(d.getPerfil(u.getId()));
-            %>
-        </div>
 
         <div class="container">
             <form action="crearFicha.do" method="post" class="col-12" class="center">

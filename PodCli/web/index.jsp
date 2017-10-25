@@ -15,6 +15,7 @@
     </head>
     <body>
         <h1>Podcli</h1>
+        <a href="inicioSesion.jsp">Inicio Sesión</a>
         <a class="btn btn-outline-primary" href="crearFicha.jsp"> Crear Paciente </a>
         <button class="btn btn-outline-primary">Boton</button>
         <p>
