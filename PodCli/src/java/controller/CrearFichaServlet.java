@@ -37,11 +37,26 @@ public class CrearFichaServlet extends HttpServlet {
                 nuevoPaciente.setSexo(request.getParameter("opSexo"));
                 nuevoPaciente.setDomicilio(request.getParameter("txtDomicilio"));
                 /* Rescato la fecha*/
+                
+                /*Edit Conny*/
+                /*
+                Rescato la fecha de nacimiento como un String desde datetimepicker
+                y la convierto al formato que se necesita explícitamente
+                no cambie nada de lo que habían puesto con date formatter 
+                solo agregué la variable fechaNacimiento y vectFecha
+                
+                HACER PRUEBAS!!!!
+                */
                 String fecha = request.getParameter("txtFechaNacimineto");
+                String[] vectFecha = fecha.split(" de ");
+                //d.getMes obtiene el número del mes
+                String fechaNacimiento = vectFecha[2] + "-" + d.getMes(vectFecha[1].toLowerCase()) + "-" + vectFecha[0];
+                
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = null;
                 try {
-                    date = formatter.parse(fecha);
+                    //aquí cambie la variable
+                    date = formatter.parse(fechaNacimiento);
                 } catch (ParseException ex) {
                     Logger.getLogger(CrearFichaServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }

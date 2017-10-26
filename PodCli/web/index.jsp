@@ -78,6 +78,7 @@
        <a href="buscarPaciente.jsp">Buscar Paciente</a>
        <a href="crearUsuario.jsp">Crear Usuario</a>
         -->
+        <a href="crearFicha.jsp">Crear Paciente</a>
     </body>
 
 </html>

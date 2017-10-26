@@ -21,7 +21,7 @@ public class Data {
                 "localhost",
                 "podcli",//nombre BD
                 "root",
-                ""//Password
+                "Nanika123"//Password
         );
 
     }
@@ -32,7 +32,6 @@ public class Data {
         rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
 
         rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
-
 
         if (rs.next()) {
             u = new Usuario();
@@ -114,9 +113,8 @@ public class Data {
         con.ejecutar(query);
     }
 
-
     public List<AtencionPodologicaSelect> getListaAtencionPodologica(String idFicha) throws SQLException {//ARREGLADO
-        
+
         query = "SELECT "
                 + "atencionPodologica.id AS ID, atencionPodologica.ficha AS 'Nº Ficha', usuario.nombre AS Creador, atencionPodologica.fecha AS Fecha, atencionPodologica.presion AS Presión, "
                 + "atencionPodologica.pulsoRadial AS 'Pulso Radial', atencionPodologica.pulsoPedio_d AS 'P. Pedio (d)', atencionPodologica.pulsoPedio_i AS 'P. Pedio (i)', "
@@ -134,7 +132,6 @@ public class Data {
                 + "atencionPodologica.ficha = ficha.id AND "
                 + "atencionPodologica.usuario = usuario.id AND ficha.usuario = usuario.id AND atencionPodologica.tratamientoOrtonixia = tratamientoOrtonixia.id "
                 + "AND atencionPodologica.ficha =" + idFicha;
-
 
         rs = con.ejecutarSelect(query);
         List<AtencionPodologicaSelect> atenciones = new ArrayList<>();
@@ -200,7 +197,6 @@ public class Data {
         return p;
     }
 
-
     public List<Paciente> buscarPaciente(String filtro) throws SQLException {
         List<Paciente> lista = new ArrayList<>();
 
@@ -232,10 +228,9 @@ public class Data {
         return lista;
     }
 
-
     public List<FichaSelect> buscarFicha(String rut) throws SQLException { //arreglado
         List<FichaSelect> lista = new ArrayList<>();
- 
+
         rs = con.ejecutarSelect("SELECT "
                 + "	f.id AS 'Nº Ficha', p.nombre AS Paciente, p.sexo AS Sexo, p.fechaNacimiento AS Fecha, p.domicilio AS Domicilio, "
                 + "	p.rut AS Rut, e.nombre AS 'Estado Civil', p.actividad AS Actividad, p.telefonos AS Fonos, f.fecha AS 'Fecha Ficha', "
@@ -254,10 +249,9 @@ public class Data {
                 + "	INNER JOIN usuario u ON u.id = f.usuario "
                 + "WHERE "
                 + "p.rut = '" + rut + "'");
-       
 
         FichaSelect f;
-        
+
         if (rs.next()) {
             f = new FichaSelect();
             f.setId(rs.getInt(1));
@@ -301,8 +295,6 @@ public class Data {
 
         return lista;
     }
-
-    
 
     public List<EstadoCivil> getEstadoCivil() throws SQLException {
         List<EstadoCivil> list = new ArrayList<>();
@@ -423,6 +415,50 @@ public class Data {
 
     public static Timestamp dateToTimeStamp(Date fecha) {
         return new Timestamp(fecha.getTime());
+    }
+
+    public String getMes(String mes) {
+        //Obtiene el nº de mes según el nombre del mes :x
+        switch (mes) {
+            case "enero":
+                mes = "1";
+                break;
+            case "febrero":
+                mes = "2";
+                break;
+            case "marzo":
+                mes = "3";
+                break;
+            case "abril":
+                mes = "4";
+                break;
+            case "mayo":
+                mes = "5";
+                break;
+            case "junio":
+                mes = "6";
+                break;
+            case "julio":
+                mes = "7";
+                break;
+            case "agosto":
+                mes = "8";
+                break;
+            case "septiembre":
+                mes = "9";
+                break;
+            case "octubre":
+                mes = "10";
+                break;
+            case "noviembre":
+                mes = "11";
+                break;
+            case "diciembre":
+                mes = "12";
+                break;
+        }
+
+        return mes;
     }
 
 }

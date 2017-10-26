@@ -28,6 +28,47 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="jquery.ui.datepicker-es.js"></script>
+        <script>
+            $(function () {
+                $("#fechaNacimiento").datepicker();
+                $("#fechaNacimiento").datepicker({
+                    dateFormat: "dd-mm-yy"
+                });
+
+                // Getter
+                var dateFormat = $("#fechaNacimiento").datepicker("option", "dateFormat");
+
+                // Setter
+                $("#fechaNacimiento").datepicker("option", "dateFormat", "dd 'de' MM 'de' yy");
+            });
+
+
+            $.datepicker.regional['es'] = {
+                closeText: 'Cerrar',
+                prevText: '<Ant',
+                nextText: 'Sig>',
+                currentText: 'Hoy',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+                dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+                weekHeader: 'Sm',
+                dateFormat: 'dd/mm/yy',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+            };
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+
+        </script>
          
         <title>Crear Ficha</title>
     </head>
@@ -66,11 +107,12 @@
                 <input type="hidden" name="txtUsuario" value="<%= u.getId() %>">
                 <div class="row  justify-content-xl-center">
                     <div>
+                        <!-- HACER PRUEBAS DE DATEPICKER!!!!!! -->
                         <h3>Antecedentes Personales</h3><br>
                         Nombre: <input class="form-control" type="text" name="txtNombre">
                         <input type="radio" name="opSexo" value="m">Masculino
                         <input type="radio" name="opSexo" value="f">Femenino
-                        Fecha Nacimiento: <input class="form-control" type="date" name="txtFechaNacimineto">
+                        Fecha Nacimiento: <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto">
                         Domicilio: <textarea class="form-control" name="txtDomicilio"></textarea>
                         Rut: <input class="form-control" type="text" name="txtRut">
                         <!-- LLenar este comboBox con estados civiles -->
@@ -110,7 +152,7 @@
                         
                         <div class="form-group col-md-4">
                             <label for="nombre" style=" margin-left: -131px;">Fecha de Nacimiento:</label> 
-                            <input class="form-control" type="date" name="txtFechaNacimineto">
+                            <input class="form-control" type="date"  id="fechaNacimiento"name="txtFechaNacimineto">
                         </div>
                         
                         <div class="form-group col-md-4">
