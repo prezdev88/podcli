@@ -73,15 +73,6 @@
         <title>Crear Ficha</title>
     </head>
     <body>
-
-        <!--<h1>Ficha Clinica</h1><br>-->
-
-        <div class="container">
-            <form action="crearFicha.do" method="post" class="form-inline">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h5 class="panel-title">Crear Ficha</h5>
-
         <h1>Ficha Clinica</h1><br>
         
         <div>
@@ -105,6 +96,11 @@
         <div class="container">
             <form action="crearFicha.do" method="post" class="col-12" class="center">
                 <input type="hidden" name="txtUsuario" value="<%= u.getId() %>">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Crear Ficha</h5>
+                    </div>    
+                </div>    
                 <div class="row  justify-content-xl-center">
                     <div>
                         <!-- HACER PRUEBAS DE DATEPICKER!!!!!! -->

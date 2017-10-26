@@ -39,7 +39,7 @@
                         Para comenzar escriba su rut y luego presione Entrar</p>
 
                     <div class="col-md-6 col-md-offset-3">
-                        <form action="atencionPodologica.jsp" method="post" class="navbar-form">
+                        <form action="iniciarSesion.do" method="post" class="navbar-form">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <input id="rut" type="text" class="form-control" style="width: 250px; text-align: center" name="rut" placeholder="EJ: 12345678-k">                                        
