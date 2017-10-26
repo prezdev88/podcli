@@ -73,6 +73,7 @@
         <title>Crear Ficha</title>
     </head>
     <body>
+<<<<<<< HEAD
         <div class="container">
             <div>
                 <%if (u != null) {%>
@@ -98,6 +99,96 @@
 
                         <h1>Ficha Clinica</h1><br>
 
+=======
+        <h1>Ficha Clinica</h1><br>
+        
+        <div>
+            <%if(u != null){%>
+            Usuario Actual:<%=u.getNombre()%><br>
+            Perfil: <%
+                Data d = new Data();
+                
+                out.println(d.getPerfil(u.getPerfil()));
+            %>
+           <%}%> 
+           
+           <a href="buscarPaciente.jsp"> Buscar Pacientes </a>
+           
+            <form action="cerrar.do" method="post">
+                <input type="submit" value="Cerrar Sesion">
+            </form>
+            
+        </div>
+
+        <div class="container">
+            <form action="crearFicha.do" method="post" class="col-12" class="center">
+                <input type="hidden" name="txtUsuario" value="<%= u.getId() %>">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Crear Ficha</h5>
+                    </div>    
+                </div>    
+                <div class="row  justify-content-xl-center">
+                    <div>
+                        <!-- HACER PRUEBAS DE DATEPICKER!!!!!! -->
+                        <h3>Antecedentes Personales</h3><br>
+                        Nombre: <input class="form-control" type="text" name="txtNombre">
+                        <input type="radio" name="opSexo" value="m">Masculino
+                        <input type="radio" name="opSexo" value="f">Femenino
+                        Fecha Nacimiento: <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto">
+                        Domicilio: <textarea class="form-control" name="txtDomicilio"></textarea>
+                        Rut: <input class="form-control" type="text" name="txtRut">
+                        <!-- LLenar este comboBox con estados civiles -->
+                        Estado Civil: <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil">
+                            <%
+                                for (EstadoCivil ec : new Data().getEstadoCivil()) {
+                                    out.println("<option value='" + ec.getId() + "'>" + ec.getNombre() + "</option>");
+                                }
+                            %>
+                        </select> 
+                        Actividad: <input class="form-control" type="text" name="txtActividad">
+                        Telefonos:  <input class="form-control" type="text" name="txtTelefonos">
+
+                    </div>
+                    <div class="panel-body">
+                
+                <div  class="form-group">
+                    <div>
+
+                        <div class="panel-heading">
+                            <h3>Antecedentes Personales</h3>
+                        </div>
+                    <div class="panel-body">
+                        
+                        <!--<h3 class="page-header" >Antecedentes Personales</h3><br>-->
+                        
+                        <div class="form-group col-md-4">
+                            <label for="nombre" style=" margin-left: -131px;">Nombre:</label>
+                            <input class="form-control" type="text" name="txtNombre" >
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="nombre" style=" margin-left: -143px;" >Rut:</label>
+                            <input class="form-control" type="text" name="txtRut">
+                        </div>
+                     
+                        
+                        <div class="form-group col-md-4">
+                            <label for="nombre" style=" margin-left: -131px;">Fecha de Nacimiento:</label> 
+                            <input class="form-control" type="date"  id="fechaNacimiento"name="txtFechaNacimineto">
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="nombre" style=" margin-left: -140px;">Sexo:</label>
+                            <input type="radio" name="opSexo" value="m">Masculino
+                            <input type="radio" name="opSexo" value="f">Femenino
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="nombre" style=" margin-left: -131px;">Estado Civil:</label>  <!-- LLenar este comboBox con estados civiles -->
+                            <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil"></select>
+                        </div>
+>>>>>>> cdc825d34e15a2f9270556568bd5a9069d33bdbd
                         
 
                         <div class="container">
