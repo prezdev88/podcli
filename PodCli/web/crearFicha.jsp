@@ -141,7 +141,7 @@
                         <!-- LLenar este comboBox con estados civiles -->
                         Estado Civil: <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil">
                             <%
-                                for (EstadoCivil ec : new Data().getEstadoCivil()) {
+                                for (EstadoCivil ec : new Data().getEstadosCiviles()) {
                                     out.println("<option value='" + ec.getId() + "'>" + ec.getNombre() + "</option>");
                                 }
                             %>
