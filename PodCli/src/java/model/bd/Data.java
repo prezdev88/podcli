@@ -6,8 +6,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Data {
 
@@ -21,7 +19,7 @@ public class Data {
                 "localhost",
                 "podcli",//nombre BD
                 "root",
-                "Nanika123"//Password
+                "123456"//Password
         );
 
     }
@@ -296,10 +294,10 @@ public class Data {
         return lista;
     }
 
-    public List<EstadoCivil> getEstadoCivil() throws SQLException {
+    public List<EstadoCivil> getEstadosCiviles() throws SQLException {
         List<EstadoCivil> list = new ArrayList<>();
 
-        query = "select * from estadocivil";
+        query = "select * from estadoCivil";
 
         rs = con.ejecutarSelect(query);
 
