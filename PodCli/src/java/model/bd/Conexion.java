@@ -34,6 +34,7 @@ public class Conexion {
    
     // insert, delete, update
     public void ejecutar(String query) throws SQLException{
+        System.out.println(query);
         sen = con.createStatement();
         sen.executeUpdate(query);
         close();

@@ -13,19 +13,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <title>JSP Page</title>
+        <title>Buscar paciente</title>
     </head>
     <body>
-        <!-- <form action="buscarPaciente.jsp" method="post">
-             <input type="text" name="txtBuscar" placeholder="Buscar por Rut o Nombre:">
-             <input type="submit" value="Buscar Paciente" name="buscar">
-         </form> -->
         <nav class="navbar navbar-expand-lg navbar-fixed-top navbar justify-content-end navbar-light bg-light">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-
-
                     <a class="navbar-brand" href="#">
                         <img width="50px" alt="Brand" src="http://www.prodx.cl/images/ust.png">
                     </a>
@@ -52,7 +46,7 @@
                             <input class="form-control" type="text" name="txtBuscar" placeholder="Buscar" aria-label="Search">
                         </div>
                         <button class="btn btn-outline-success mx-auto mt-0" type="submit" value="Buscar Paciente" name="buscar" style="width: 140px;">Buscar</button>
-                        <a href="index.jsp" class="btn btn-outline-success mx-sm-3 mt-0 " role="button" aria-pressed="false" style="width: 140px;">Volver al menu</a>
+                        <a href="crearFicha.jsp" class="btn btn-outline-success mx-sm-3 mt-0 " role="button" aria-pressed="false" style="width: 140px;">Volver</a>
                     </form>
                 </nav>
             </div>
@@ -95,11 +89,4 @@
             </div>
         </div>
     </body>
-    <style>
-        body{
-            <%-- background:url('imagen/img.png');
-            background-color: #C6E4C6;--%>
-        }
-
-    </style>
 </html>

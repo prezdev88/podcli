@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,7 +36,7 @@ public class CrearFichaServlet extends HttpServlet {
                 nuevoPaciente.setSexo(request.getParameter("opSexo"));
                 nuevoPaciente.setDomicilio(request.getParameter("txtDomicilio"));
                 /* Rescato la fecha*/
-                
+
                 /*Edit Conny*/
                 /*
                 Rescato la fecha de nacimiento como un String desde datetimepicker
@@ -46,12 +45,12 @@ public class CrearFichaServlet extends HttpServlet {
                 solo agregué la variable fechaNacimiento y vectFecha
                 
                 HACER PRUEBAS!!!!
-                */
+                 */
                 String fecha = request.getParameter("txtFechaNacimineto");
                 String[] vectFecha = fecha.split(" de ");
                 //d.getMes obtiene el número del mes
                 String fechaNacimiento = vectFecha[2] + "-" + d.getMes(vectFecha[1].toLowerCase()) + "-" + vectFecha[0];
-                
+
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = null;
                 try {
@@ -72,23 +71,21 @@ public class CrearFichaServlet extends HttpServlet {
                 nuevaFicha.setHta(Integer.parseInt(request.getParameter("cboHTA")));
                 nuevaFicha.setDm(Integer.parseInt(request.getParameter("cboDM")));
                 nuevaFicha.setTipoDiabetes(Integer.parseInt(request.getParameter("cboTipo")));
-                
+
                 String anio = request.getParameter("txtAnioEvolucion");
-                
-                if(!anio.trim().equals("")){
+
+                if (!anio.trim().equals("")) {
                     nuevaFicha.setAniosEvolucion(Integer.parseInt(request.getParameter("txtAnioEvolucion")));
-                }else {
+                } else {
                     nuevaFicha.setAniosEvolucion(0);
                 }
-                
-                
-                
+
                 nuevaFicha.setMixto(Boolean.parseBoolean(request.getParameter("cboPcteMixto")));
                 nuevaFicha.setControl(Boolean.parseBoolean(request.getParameter("cboControl")));
 
                 nuevaFicha.setFarmacoterapia(request.getParameter("txtFarmacoterapia"));
-                nuevaFicha.setOtros(request.getParameter("txtOtrasPatologíasYFarmacoterapia"));
-                nuevaFicha.setAlteracion(request.getParameter("txtAlteracionesOrtopédicas"));
+                nuevaFicha.setOtros(request.getParameter("txtOtras"));
+                nuevaFicha.setAlteracion(request.getParameter("txtAlter"));
                 nuevaFicha.setHabitos(request.getParameter("txtHabitosNocivos"));
                 //------------------------------------------------------------------------------------------
 
@@ -116,7 +113,7 @@ public class CrearFichaServlet extends HttpServlet {
 
                 d.crearFicha(nuevoPaciente, nuevaFicha);
 
-                response.sendRedirect("crearUsuario.jsp");
+                response.sendRedirect("crearFicha.jsp");
 
             } catch (SQLException ex) {
                 Logger.getLogger(CrearFichaServlet.class

@@ -31,6 +31,7 @@
             
             <input type="submit" value="Registar Usuario">
         </form>
+            <a href="index.jsp">Volver</a>
         
             <%
             Error e = (Error)request.getSession().getAttribute("error");

@@ -58,6 +58,7 @@
                     </div>
                 </div>
             </div>
+            <a href="crearUsuario.jsp">Crear Usuario</a>
         </div>
 
         <!--
@@ -78,7 +79,7 @@
        <a href="buscarPaciente.jsp">Buscar Paciente</a>
        
         -->
-        <a href="crearUsuario.jsp">Crear Usuario</a>
+
     </body>
 
 </html>

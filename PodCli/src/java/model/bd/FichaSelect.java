@@ -18,7 +18,7 @@ public class FichaSelect {
     private String anioEvolucion;
     private Boolean pacienteMixto;
     private Boolean control;
-    private String farmacoteraía;
+    private String farmacoterapia;
     private String otrasPatologicas;
     private String alteracionesOrtopedicas;
     private String habitos_nocivos;
@@ -45,11 +45,11 @@ public class FichaSelect {
         this.id = id;
     }
 
-    public String getPaciente() {
+    public String getNombrePaciente() {
         return paciente;
     }
 
-    public void setPaciente(String paciente) {
+    public void setNombrePaciente(String paciente) {
         this.paciente = paciente;
     }
 
@@ -173,12 +173,12 @@ public class FichaSelect {
         this.control = control;
     }
 
-    public String getFarmacoteraía() {
-        return farmacoteraía;
+    public String getFarmacoterapia() {
+        return farmacoterapia;
     }
 
-    public void setFarmacoteraía(String farmacoteraía) {
-        this.farmacoteraía = farmacoteraía;
+    public void setFarmacoterapia(String farmacoterapia) {
+        this.farmacoterapia = farmacoterapia;
     }
 
     public String getOtrasPatologicas() {
