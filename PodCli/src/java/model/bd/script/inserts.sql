@@ -20,5 +20,3 @@ INSERT INTO usuario VALUES
 (NULL, '19854090','Fernanda Torres Arenas','1'),
 (NULL, '11-1','AdminAdmin','1'),
 (NULL, '22-2','Patricio Perez Pinto','2');
-
-
