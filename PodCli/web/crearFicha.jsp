@@ -18,9 +18,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Crear Ficha</title>
-        
-        
-        
+
+
+
         <!-- Esto es del calendario JQUERY -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
@@ -67,10 +67,10 @@
             $.datepicker.setDefaults($.datepicker.regional['es']);
 
         </script>
-        
+
     </head>
     <body>
-        
+
         <div>
             <%
                 if (u != null) {
@@ -81,14 +81,23 @@
                     out.println(d.getPerfil(u.getPerfil()));
                 }
             %>
+            <br>
+            <%
+                if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+            %>
+            <br><a href="crearUsuario.jsp">Crear Usuario</a>
+            <%
+                }
+            %>
+
             <br><a href="buscarPaciente.jsp"> Buscar Pacientes </a>
             <br><a href="cerrar.do">Cerrar sesión</a>
         </div>
-            
-            
-            
+
+
+
         <form action="crearFicha.do" method="post" class="form-inline">
-            
+
             <!-- ----------------------------------FICHA CLÍNICA----------------------------------- -->
             <div id="fichaClinica">
                 <h1>Ficha Clinica</h1><br>
@@ -118,25 +127,25 @@
 
 
 
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
             <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
             <div id="antecedentesMorbidos">
                 <h2>Antecedentes Morbidos</h2>
                 HTA: <select class="custom-select-sm form-control form-control-sm" name="cboHTA">
                     <%
                         for (Respuesta r : new Data().getRespuestas()) {
-                            if(r.getId() == 2){
+                            if (r.getId() == 2) {
                                 out.println("<option value='" + r.getId() + "' selected>" + r.getNombre() + "</option>");
-                            }else{
+                            } else {
                                 out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
                             }
-                            
+
                         }
                     %>
                 </select>
@@ -144,12 +153,12 @@
                 D.M: <select class="custom-select-sm form-control form-control-sm" name="cboDM">
                     <%
                         for (Respuesta r : new Data().getRespuestas()) {
-                            if(r.getId() == 2){
+                            if (r.getId() == 2) {
                                 out.println("<option value='" + r.getId() + "' selected>" + r.getNombre() + "</option>");
-                            }else{
+                            } else {
                                 out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
                             }
-                            
+
                         }
                     %>
                 </select>
@@ -179,11 +188,11 @@
             <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
 
 
-            
-            
-            
-            
-            
+
+
+
+
+
             <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
             <div id="examenFisicoGeneral">
                 <h2>Examen Físico General</h2>
@@ -228,10 +237,10 @@
                 Tipo: <input class="form-control" type="text" name="txtTipoMaculas">
             </div>
             <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
-            
-            
-            
-            
+
+
+
+
             <input type="submit" value="Registrar Ficha">
         </form>
     </body>

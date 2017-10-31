@@ -58,7 +58,6 @@
                     </div>
                 </div>
             </div>
-            <a href="crearUsuario.jsp">Crear Usuario</a>
         </div>
 
         <!--

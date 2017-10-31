@@ -31,7 +31,7 @@
             
             <input type="submit" value="Registar Usuario">
         </form>
-            <a href="index.jsp">Volver</a>
+            <a href="crearFicha.jsp">Volver</a>
         
             <%
             Error e = (Error)request.getSession().getAttribute("error");
