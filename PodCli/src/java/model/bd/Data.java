@@ -32,9 +32,7 @@ public class Data {
 
         rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
 
-
         //rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
-
         if (rs.next()) {
             u = new Usuario();
 
@@ -123,7 +121,7 @@ public class Data {
                 + "" + a.isEspiculoectomia() + "  ,"
                 + "" + a.isAnalgesia() + ","
                 + "" + a.isColocacionAcrilico() + " ,"
-                + "" + a.isBandaMolecular() 
+                + "" + a.isBandaMolecular()
                 + ",'" + a.getTratamientoOrtonixia() + "',"
                 + "" + a.isPoli() + " ,"
                 + "'" + a.getObservaciones() + "')";
@@ -498,7 +496,7 @@ public class Data {
     }
 
     public List<DatosReporteUso> getDatosReporteUso(String fecha1, String fecha2) throws SQLException {
-        
+
         List<DatosReporteUso> list = new ArrayList<>();
         DatosReporteUso dr;
         query = "SELECT "
@@ -509,7 +507,7 @@ public class Data {
                 + "GROUP BY usuario.rut,  usuario.nombre;";
         String query2 = "SELECT IFNULL(COUNT(atencionPodologica.id),0) AS 'Cantidad AP' "
                 + "FROM usuario LEFT JOIN atencionPodologica ON atencionPodologica.usuario = usuario.id "
-                + "WHERE atencionPodologica.fecha between '"+fecha1+"' and '"+fecha2+"' "
+                + "WHERE atencionPodologica.fecha between '" + fecha1 + "' and '" + fecha2 + "' "
                 + "GROUP BY usuario.rut,  usuario.nombre;";
 
         rs = con.ejecutarSelect(query);
@@ -526,17 +524,18 @@ public class Data {
         con.close();
         return list;
     }
+
     public static void main(String[] args) throws SQLException {
         try {
             Data d = new Data();
-            
+
             d.getDatosReporteUso("2017-9-25", "2017-11-1");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     public List<Ficha> buscarFichaById(int filtro) throws SQLException {
+
+    public List<Ficha> buscarFichaById(int filtro) throws SQLException {
         List<Ficha> lista = new ArrayList<>();
 
         query = "SELECT * FROM ficha "
@@ -558,6 +557,62 @@ public class Data {
 
         return lista;
     }
-    
+
+    public AtencionPodologicaSelect getListaAtencionPodologicaPorID(String idAtencion) throws SQLException {
+
+        query = "SELECT "
+                + "atencionPodologica.id AS ID, atencionPodologica.ficha AS 'Nº Ficha', usuario.nombre AS Creador, atencionPodologica.fecha AS Fecha, atencionPodologica.presion AS Presión, "
+                + "atencionPodologica.pulsoRadial AS 'Pulso Radial', atencionPodologica.pulsoPedio_d AS 'P. Pedio (d)', atencionPodologica.pulsoPedio_i AS 'P. Pedio (i)', "
+                + "atencionPodologica.peso AS Peso, atencionPodologica.sens_d AS 'Sensibilidad (d)', atencionPodologica.sens_i AS 'Sensibilidad (i)', "
+                + "atencionPodologica.tpodal_d AS 'Tº Podal (d)', atencionPodologica.tpodal_i AS 'Tº Podal (i)', atencionPodologica.curacion AS Curación, "
+                + "atencionPodologica.coloqPuente AS 'Coloc. Puente', atencionPodologica.resecado AS Resecado, atencionPodologica.enucleacion AS Enucleación, "
+                + "atencionPodologica.devastado AS 'Dev. Ungueal', atencionPodologica.maso AS 'Masoterapia o Masaje', "
+                + "atencionPodologica.espiculoectomia AS 'Espiculoectomía (Grado)', atencionPodologica.analgesia AS 'Analgesia (Tipo)', "
+                + "atencionPodologica.colocacionAcrilico AS 'Colocación Acilico', atencionPodologica.bandaMolecular AS 'Colocac. Banda Molec.', "
+                + "tratamientoOrtonixia.nombre AS 'C. Bracket/Cambio Elast.', atencionPodologica.poli AS 'C. Policarboxilato', "
+                + "atencionPodologica.observaciones AS Observaciones "
+                + "FROM "
+                + "atencionPodologica, ficha, usuario, tratamientoOrtonixia "
+                + "WHERE "
+                + "atencionPodologica.ficha = ficha.id AND "
+                + "atencionPodologica.usuario = usuario.id AND ficha.usuario = usuario.id AND atencionPodologica.tratamientoOrtonixia = tratamientoOrtonixia.id "
+                + "AND atencionPodologica.id =" + idAtencion;
+
+        rs = con.ejecutarSelect(query);
+        AtencionPodologicaSelect a = null;
+        if (rs.next()) {
+            a = new AtencionPodologicaSelect();
+            a.setId(rs.getInt(1));
+            a.setFicha(rs.getInt(2));
+            a.setUsuario(rs.getString(3));
+            a.setFecha(rs.getString(4));
+            a.setPresion(rs.getFloat(5));
+            a.setPulsoRadial(rs.getInt(6));
+            a.setPulsoPedio_d(rs.getInt(7));
+            a.setPulsoPedio_i(rs.getInt(8));
+            a.setPeso(rs.getFloat(9));
+            a.setSens_d(rs.getBoolean(10));
+            a.setSens_i(rs.getBoolean(11));
+            a.settPoda1_d(rs.getFloat(12));
+            a.settPoda1_i(rs.getFloat(13));
+            a.setCuracion(rs.getBoolean(14));
+            a.setColocacionPuente(rs.getBoolean(15));
+            a.setResecado(rs.getBoolean(16));
+            a.setEnucleacion(rs.getBoolean(17));
+            a.setDevastado(rs.getBoolean(18));
+            a.setMaso(rs.getBoolean(19));
+            a.setEspiculoectomia(rs.getBoolean(20));
+            a.setAnalgesia(rs.getBoolean(21));
+            a.setColocacionAcrilico(rs.getBoolean(22));
+            a.setBandaMolecular(rs.getBoolean(23));
+
+            a.setTratamientoOrtonixia(rs.getString(24));
+            a.setPoli(rs.getBoolean(25));
+            a.setObservaciones(rs.getString(26));
+        }
+        con.close();
+        return a;
+    }
+
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
