@@ -96,12 +96,12 @@
                 <input type="hidden" name="txtUsuario" value="<%= u.getId()%>"> 
                 <!-- HACER PRUEBAS DE DATEPICKER!!!!!! -->
                 <h2>Antecedentes Personales</h2>
-                Nombre: <input class="form-control" type="text" name="txtNombre">
+                Nombre: <input class="form-control" type="text" name="txtNombre" required="">
                 <input type="radio" name="opSexo" value="m" checked="checked">Masculino
                 <input type="radio" name="opSexo" value="f">Femenino
-                Fecha Nacimiento: <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto">
-                Domicilio: <textarea class="form-control" name="txtDomicilio"></textarea>
-                Rut: <input class="form-control" type="text" name="txtRut">
+                Fecha Nacimiento: <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto" required="">
+                Domicilio: <textarea class="form-control" name="txtDomicilio" required=""></textarea>
+                Rut: <input class="form-control" type="text" name="txtRut" required="">
                 <!-- LLenar este comboBox con estados civiles -->
                 Estado Civil: 
                 <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil">
@@ -112,7 +112,7 @@
                     %>
                 </select> 
                 Actividad: <input class="form-control" type="text" name="txtActividad">
-                Telefonos:  <input class="form-control" type="text" name="txtTelefonos">
+                Telefonos:  <input class="form-control" type="text" name="txtTelefonos" required="">
             </div>
             <!-- ----------------------------------FICHA CLÍNICA----------------------------------- -->
 
@@ -177,8 +177,8 @@
             <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
             <div id="examenFisicoGeneral">
                 <h2>Examen Físico General</h2>
-                Talla en metros: <input class="form-control" type="number" step="any" name="txtTalla">
-                IMC: <input class="form-control" type="number" step="any" name="txtIMC">
+                Talla en metros: <input class="form-control" type="number" step="any" name="txtTalla" required="">
+                IMC: <input class="form-control" type="number" step="any" name="txtIMC" required="">
                 Amputación: 
                 <select class="custom-select-sm form-control form-control-sm" name="cboAmputacion">
                     <option class="form-control form-control-sm" value="true">SI</option>
@@ -186,7 +186,7 @@
                 </select>
 
                 Ubicación: <input class="form-control" type="text" name="txtUbicacionAmputacion">
-                N° Calzado: <input class="form-control" type="number" name="txtNumCalzado">
+                N° Calzado: <input class="form-control" type="number" name="txtNumCalzado" required="">
                 Varices Extremo Inferior: 
                 <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboVaricesExtremoInferior">
                     <option class="form-control form-control-sm" value="true">SI</option>
