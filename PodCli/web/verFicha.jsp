@@ -117,7 +117,10 @@
                     </div>
                 </div>
             </div>
-            <a href="buscarPaciente.jsp">Volver</a>
+             
+           
+                        <center><a type="button" class="btn btn-primary btn-lg" href="buscarPaciente.jsp">Volver</a></center>
+        
         </div>
 
                         

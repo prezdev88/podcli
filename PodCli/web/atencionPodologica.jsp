@@ -24,13 +24,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: gainsboro">
+        
         <!--<h1>Atencion Podologica</h1>-->
-
-        <div class="container">
+        <br><br>
+         <div class="container">
             <form action="" method="post">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -48,27 +51,104 @@
                             }
                         %>
                         <input type="hidden" name="ficha" value="">
-
-                        Presión Arterial: <input  type="number" step="any" name="txtPersionArterial">
-                        Pulso Radial: <input type="number" name="txtPulsoRadial">
-                        Peso: <input type="number" step="any" name="txtPeso"><br><br>
-                        Pulso Pedio Derecho: <input type="number" name="txtPulsoPedioDerecho">
-                        Pulso Pedio Izquierdo: <input type="number" name="txtPulsoPedioIzquierdo"><br><br>
-                        Sensibilidad Pie Derecho: <input type="checkbox" value="true" name="chkSensPieDerecho">
-                        Sensibilidad Pie Izquierdo: <input type="checkbox" value="true" name="chkSensPieIzquierdo"><br><br>
-                        T° Podal Derecho: <input type="number" step="any" name="txtTemperaturaPodalDerecho">
-                        T° Podal Izquierdo: <input type="number" step="any" name="txtTemperaturaPodalIzquierdo"><br><br>
-                        Curación: <input type="checkbox" value="true" name="chkCuracion">
-                        Resecado: <input type="checkbox" value="true" name="chkResecado">
-                        Enucleación: <input type="checkbox" value="true" name="chkEnucleacion">
-                        Devastado Ungueal: <input type="checkbox" value="true" name="chkDevastadoUngueal"><br><br>
-                        Masoterapia o Masaje: <input type="checkbox" value="true" name="chkMaso">
-                        Espiculoectomía: <input type="checkbox" value="true" name="chkEspiculoectomia">
-                        Analgesia: <input type="checkbox" value="true" name="chkAnalgesia">
-                        Colocacion Acrilico: <input type="checkbox" value="true" name="chkColAcri"><br><br>
-                        Colocacion Banda Molecular: <input type="checkbox" value="true" name="chkColBandaMolecular">
-                        Colocacion Puente: <input type="checkbox" value="true" name="chkColPuente">
-                        Tratamiento Ortonixia: 
+                        
+                        <div class="form-group col-md-3">
+                            <label for="presionArterial">Presión Arterial:</label><br>
+                            <input  type="number" step="any" name="txtPersionArterial">
+                        </div>
+                        
+                        <div class="form-group col-md-3">
+                            <label for="pulsoRadial">Pulso Radial:</label><br> 
+                            <input type="number" name="txtPulsoRadial">
+                        </div>
+                        
+                        <div class="form-group col-md-3">
+                            <label for="peso">Peso:</label><br> 
+                            <input type="number" step="any" name="txtPeso"><br><br>
+                        </div>
+                        
+                        <div class="form-group col-md-3">
+                            <label for="pulsopedioDerecho">Pulso Pedio Derecho:</label><br> 
+                            <input type="number" name="txtPulsoPedioDerecho">
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="pulsopedioIzquierdo">Pulso Pedio Izquierdo:</label><br> 
+                            <input type="number" name="txtPulsoPedioIzquierdo">
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="podalDerecho">T° Podal Derecho:</label><br> 
+                            <input type="number" step="any" name="txtTemperaturaPodalDerecho">
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="podalIzquierdo">T° Podal Izquierdo:</label><br>
+                            <input type="number" step="any" name="txtTemperaturaPodalIzquierdo">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Sensibilidad Pie Derecho:</label>
+                            <input type="checkbox" value="true" name="chkSensPieDerecho">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Sensibilidad Pie Izquierdo:</label> 
+                            <input type="checkbox" value="true" name="chkSensPieIzquierdo">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Curación:</label> 
+                            <input type="checkbox" value="true" name="chkCuracion">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Resecado:</label> 
+                            <input type="checkbox" value="true" name="chkResecado">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Enucleación:</label> 
+                            <input type="checkbox" value="true" name="chkEnucleacion">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Devastado Ungueal:</label> 
+                            <input type="checkbox" value="true" name="chkDevastadoUngueal">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Masoterapia o Masaje:</label> 
+                            <input type="checkbox" value="true" name="chkMaso">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Espiculoectomía:</label> 
+                            <input type="checkbox" value="true" name="chkEspiculoectomia">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Analgesia:</label> 
+                            <input type="checkbox" value="true" name="chkAnalgesia">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Colocacion Acrilico:</label> 
+                            <input type="checkbox" value="true" name="chkColAcri">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Colocacion Banda Molecular:</label> 
+                            <input type="checkbox" value="true" name="chkColBandaMolecular">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Colocacion Puente:</label> 
+                            <input type="checkbox" value="true" name="chkColPuente">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Tratamiento Ortonixia:</label> 
                         <select name="cboTratamientoOrtonixia">
                             <%
                                 for (TratamientoOrtonixia to : new Data().getTratamientoOrtonoxia()) {
@@ -76,19 +156,26 @@
                                 }
                             %>
                         </select>
-                        <br><br>
-                        Colocacion Policarboxilato: <input type="checkbox" value="true" name="chkColPolicarboxilato">
-                        Observaciones: <textarea name="txtObsAtencionPodo"></textarea>
-
-                        <br><br>
-                        <div class="form-group" class="row  justify-content-xl-center">
-                            <br><br>
-                            <input class="btn btn-outline-primary" type="submit" value="Registar Atencion">
                         </div>
-
-
-
-                    </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Colocacion Policarboxilato:</label>
+                            <input type="checkbox" value="true" name="chkColPolicarboxilato">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label>Observaciones:</label><br>
+                            <textarea name="txtObsAtencionPodo"></textarea>
+                        </div>
+                        
+                        
+                        <br><br>
+                   
+                    <center class="form-group col-md-12">
+                        <button type="submit" class="btn btn-primary btn-lg" value="RegistrarFicha">Registrar Atención</button>
+                        <a type="button" class="btn btn-primary btn-lg" href="buscarPaciente.jsp">Volver</a>
+                    </center>
+                 
                 </div>
             </form>
         </div>
