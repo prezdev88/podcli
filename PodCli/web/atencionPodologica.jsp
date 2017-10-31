@@ -150,36 +150,13 @@
                         
                         <div class="form-group col-md-6">
                             <label>Tratamiento Ortonixia:</label> 
-
-
-                        Presión Arterial: <input  type="number" step="any" name="txtPersionArterial" required="">
-                        Pulso Radial: <input type="number" name="txtPulsoRadial" required="">
-                        Peso: <input type="number" step="any" name="txtPeso" required=""><br><br>
-                        Pulso Pedio Derecho: <input type="number" name="txtPulsoPedioDerecho" required="">
-                        Pulso Pedio Izquierdo: <input type="number" name="txtPulsoPedioIzquierdo" required=""><br><br>
-                        Sensibilidad Pie Derecho: <input type="checkbox" value="true" name="chkSensPieDerecho">
-                        Sensibilidad Pie Izquierdo: <input type="checkbox" value="true" name="chkSensPieIzquierdo"><br><br>
-                        T° Podal Derecho: <input type="number" step="any" name="txtTemperaturaPodalDerecho" required="">
-                        T° Podal Izquierdo: <input type="number" step="any" name="txtTemperaturaPodalIzquierdo" required=""><br><br>
-                        Curación: <input type="checkbox" value="true" name="chkCuracion">
-                        Resecado: <input type="checkbox" value="true" name="chkResecado">
-                        Enucleación: <input type="checkbox" value="true" name="chkEnucleacion">
-                        Devastado Ungueal: <input type="checkbox" value="true" name="chkDevastadoUngueal"><br><br>
-                        Masoterapia o Masaje: <input type="checkbox" value="true" name="chkMaso">
-                        Espiculoectomía: <input type="checkbox" value="true" name="chkEspiculoectomia">
-                        Analgesia: <input type="checkbox" value="true" name="chkAnalgesia">
-                        Colocacion Acrilico: <input type="checkbox" value="true" name="chkColAcri"><br><br>
-                        Colocacion Banda Molecular: <input type="checkbox" value="true" name="chkColBandaMolecular">
-                        Colocacion Puente: <input type="checkbox" value="true" name="chkColPuente">
-                        Tratamiento Ortonixia: 
-
-                        <select name="cboTratamientoOrtonixia">
+                            <select name="cboTratamientoOrtonixia">
                             <%
                                 for (TratamientoOrtonixia to : new Data().getTratamientoOrtonoxia()) {
                                     out.println("<option value='" + to.getId() + "'>" + to.getNombre() + "</option>");
                                 }
                             %>
-                        </select>
+                            </select>
                         </div>
                         
                         <div class="form-group col-md-6">
