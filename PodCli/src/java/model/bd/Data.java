@@ -19,15 +19,13 @@ public class Data {
                 "localhost",
                 "podcli",//nombre BD
                 "root",
-                "123456"//Password
+                ""//Password
         );
 
     }
 
     public Usuario getUsuario(String rut) throws SQLException {
         Usuario u = null;
-
-        rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
 
         rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
 
