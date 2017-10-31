@@ -4,12 +4,24 @@
     Author     : Edunaldo
 --%>
 
+<%@page import="model.bd.Usuario"%>
 <%@page import="model.bd.Paciente"%>
 <%@page import="model.bd.Data"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+
+    Usuario u = (Usuario) session.getAttribute("usuario");
+
+    if (u == null) {
+        request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+%>
+
 <html>
     <head>
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -76,9 +88,14 @@
                                         + "<input type='submit' value='Ver Ficha' class='btn btn-outline-secondary' style='width:200px;'>"
                                         + "<input type='hidden' name='rut' value=" + p.getRut() + " style='width:200px;'>"
                                         + "</form></th>");
-                                out.println("<th><form action='atencionPodologica.jsp' method='post'>"
+                                out.println("<th><form action='atencionPodologica.jsp?idFicha=" + d.getIdFicha(p.getId()) + "' method='post'>"
                                         + "<input type='submit' value='Atencion Podologica' class='btn btn-outline-secondary' style='width:200px;'>"
                                         + "</form></th>");
+                                out.println("<th><form action='historicoAtencion.jsp' method='post'>"
+                                        + "<input type='submit' value='Historico Atencion' class='btn btn-outline-secondary' style='width:200px;'>"
+                                        + "<input type='hidden' value='" + p.getId() + "' name = 'idPaciente' style='width:200px;'>"
+                                        + "</form></th>");
+
                             }
                             out.println("</tr>");
                             out.print("</tbody>");

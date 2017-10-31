@@ -81,7 +81,7 @@
                     out.println(d.getPerfil(u.getPerfil()));
                 }
             %>
-            <br>
+
             <%
                 if (u.getPerfil() == 2 || u.getPerfil() == 3) {
             %>

@@ -42,9 +42,7 @@ public class CrearFichaServlet extends HttpServlet {
                 Rescato la fecha de nacimiento como un String desde datetimepicker
                 y la convierto al formato que se necesita explícitamente
                 no cambie nada de lo que habían puesto con date formatter 
-                solo agregué la variable fechaNacimiento y vectFecha
-                
-                HACER PRUEBAS!!!!
+                solo agregué la variable fechaNacimiento y vectFechas
                  */
                 String fecha = request.getParameter("txtFechaNacimineto");
                 String[] vectFecha = fecha.split(" de ");

@@ -1,11 +1,14 @@
 package model.bd;
 
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Data {
 
@@ -28,6 +31,9 @@ public class Data {
         Usuario u = null;
 
         rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
+
+
+        //rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
 
         if (rs.next()) {
             u = new Usuario();
@@ -95,17 +101,32 @@ public class Data {
 
     public void registrarAtencionPodologica(AtencionPodologica a) throws SQLException {
         query = "insert into atencionPodologica values"
-                + "(null,'" + a.getFicha() + "','" + a.getUsuario() + "',"
-                + "'" + a.getFecha() + "','" + a.getPresion() + "','" + a.getPulsoRadial() + "',\n"
-                + "'" + a.getPulsoPedio_d() + "' ,'" + a.getPulsoPedio_i() + "' ,'" + a.getPeso() + "' ,"
-                + "" + a.isSens_d() + " ," + a.isSens_i() + ",'" + a.gettPoda1_d() + "' ,"
-                + "'" + a.gettPoda1_i() + "' ," + a.isCuracion() + ",\n"
-                + "" + a.isColocacionPuente() + "," + a.isResecado() + "," + a.isEnucleacion() + ","
-                + "" + a.isDevastado() + " ," + a.isMaso() + ","
-                + "" + a.isEspiculoectomia() + "  ," + a.isAnalgesia() + ",\n"
-                + "" + a.isColocacionAcrilico() + " ," + a.isBandaMolecular() + ","
+                + "(null,"
+                + "'" + a.getFicha() + "',"
+                + "'" + a.getUsuario() + "',"
+                + "NOW(),"
+                + "'" + a.getPresion() + "',"
+                + "'" + a.getPulsoRadial() + "',"
+                + "'" + a.getPulsoPedio_d() + "' ,"
+                + "'" + a.getPulsoPedio_i() + "' ,"
+                + "'" + a.getPeso() + "' ,"
+                + "" + a.isSens_d() + " ,"
+                + "" + a.isSens_i() + ","
+                + "'" + a.gettPoda1_d() + "' ,"
+                + "'" + a.gettPoda1_i() + "' ,"
+                + "" + a.isCuracion() + ","
+                + "" + a.isColocacionPuente() + ","
+                + "" + a.isResecado() + ","
+                + "" + a.isEnucleacion() + ","
+                + "" + a.isDevastado() + " ,"
+                + "" + a.isMaso() + ","
+                + "" + a.isEspiculoectomia() + "  ,"
+                + "" + a.isAnalgesia() + ","
+                + "" + a.isColocacionAcrilico() + " ,"
+                + "" + a.isBandaMolecular() 
                 + ",'" + a.getTratamientoOrtonixia() + "',"
-                + "" + a.isPoli() + " ,'" + a.getObservaciones() + "')";
+                + "" + a.isPoli() + " ,"
+                + "'" + a.getObservaciones() + "')";
         con.ejecutar(query);
     }
 
@@ -406,7 +427,7 @@ public class Data {
             p.setId(rs.getInt(1));
             ultimaId = p.getId();
         }
-
+        con.close();
         return ultimaId;
     }
 
@@ -464,5 +485,79 @@ public class Data {
         return mes;
     }
 
+    public int getIdFicha(int idPaciente) throws SQLException {
+        int idFicha = 0;
+        query = "select id from ficha where paciente =" + idPaciente;
+
+        rs = con.ejecutarSelect(query);
+        if (rs.next()) {
+            idFicha = rs.getInt(1);
+        }
+
+        return idFicha;
+    }
+
+    public List<DatosReporteUso> getDatosReporteUso(String fecha1, String fecha2) throws SQLException {
+        
+        List<DatosReporteUso> list = new ArrayList<>();
+        DatosReporteUso dr;
+        query = "SELECT "
+                + "usuario.rut as Rut, usuario.nombre as Nombre, IFNULL(COUNT(ficha.id),0) AS 'Cantidad Fichas' "
+                + "FROM "
+                + "usuario LEFT JOIN ficha ON ficha.usuario = usuario.id "
+                + "WHERE ficha.fecha between '" + fecha1 + "' and '" + fecha2 + "' "
+                + "GROUP BY usuario.rut,  usuario.nombre;";
+        String query2 = "SELECT IFNULL(COUNT(atencionPodologica.id),0) AS 'Cantidad AP' "
+                + "FROM usuario LEFT JOIN atencionPodologica ON atencionPodologica.usuario = usuario.id "
+                + "WHERE atencionPodologica.fecha between '"+fecha1+"' and '"+fecha2+"' "
+                + "GROUP BY usuario.rut,  usuario.nombre;";
+
+        rs = con.ejecutarSelect(query);
+        ResultSet rs2 = con.ejecutarSelect(query2);
+
+        while (rs.next() && rs2.next()) {
+            dr = new DatosReporteUso();
+            dr.setRut(rs.getString(1));
+            dr.setNombre(rs.getString(2));
+            dr.setCantidadFichas(rs.getInt(3));
+            dr.setCantidadAtencionesPodologicas(rs2.getInt(1));
+            list.add(dr);
+        }
+        con.close();
+        return list;
+    }
+    public static void main(String[] args) throws SQLException {
+        try {
+            Data d = new Data();
+            
+            d.getDatosReporteUso("2017-9-25", "2017-11-1");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     public List<Ficha> buscarFichaById(int filtro) throws SQLException {
+        List<Ficha> lista = new ArrayList<>();
+
+        query = "SELECT * FROM ficha "
+                + "WHERE paciente = " + filtro;
+
+        rs = con.ejecutarSelect(query);
+        Ficha f;
+
+        while (rs.next()) {
+            f = new Ficha();
+
+            f.setId(rs.getInt(1));
+            f.setFecha(rs.getTimestamp(2));
+
+            lista.add(f);
+        }
+
+        con.close();
+
+        return lista;
+    }
+    
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos

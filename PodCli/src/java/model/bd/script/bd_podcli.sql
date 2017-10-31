@@ -67,6 +67,8 @@ Muchachos, los pacientes y ficha se crean una sóla vez, por esa razón deje tod
 los datos en la tabla ficha. 
 */
 
+
+
 CREATE TABLE ficha(
     id 			INT AUTO_INCREMENT,
     fecha 		DATETIME, 		-- Fecha de creación de la ficha (con función now())
@@ -114,6 +116,8 @@ CREATE TABLE ficha(
     FOREIGN KEY(paciente)   REFERENCES paciente(id),
     FOREIGN KEY(usuario)    REFERENCES usuario(id)
 );
+
+select id from ficha where paciente = 1;
 
 CREATE TABLE tratamientoOrtonixia(
     id INT AUTO_INCREMENT,

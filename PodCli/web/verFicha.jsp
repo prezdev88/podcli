@@ -1,11 +1,23 @@
+<%@page import="model.bd.Usuario"%>
 <%@page import="model.bd.FichaSelect"%>
 <%@page import="model.bd.Respuesta"%>
 <%@page import="model.bd.Data"%>
 <%@page import="model.bd.EstadoCivil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
 <html>
     <head>
+        <%
+            Usuario u = (Usuario) request.getSession().getAttribute("usuario");
+
+            if (u == null) {
+                request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        %>
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link 
@@ -14,7 +26,7 @@
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
             crossorigin="anonymous">
         <!-- Latest compiled and minified JavaScript -->
-        
+
         <title>Ver Ficha</title>
     </head>
     <body>
@@ -24,10 +36,12 @@
             String rut = request.getParameter("rut");
             FichaSelect f = d.getFicha(rut);
         %>
-        
+
 
         <div class="container">
-            <h1><%= f.getNombrePaciente()%></h1>
+            <h1><%
+                out.println(f.getNombrePaciente());
+                %></h1>
             <div class="col-md-12">
                 <button type="button" class="btn btn-success col-md-12" data-toggle="collapse" data-target="#antecedentes">
                     Antecedentes Personales
@@ -118,10 +132,13 @@
                     </div>
                 </div>
             </div>
-            <a href="buscarPaciente.jsp">Volver</a>
+             
+           
+                        <center><a type="button" class="btn btn-primary btn-lg" href="buscarPaciente.jsp">Volver</a></center>
+        
         </div>
 
-                        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
