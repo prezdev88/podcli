@@ -535,5 +535,29 @@ public class Data {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+     public List<Ficha> buscarFichaById(int filtro) throws SQLException {
+        List<Ficha> lista = new ArrayList<>();
+
+        query = "SELECT * FROM ficha "
+                + "WHERE paciente = " + filtro;
+
+        rs = con.ejecutarSelect(query);
+        Ficha f;
+
+        while (rs.next()) {
+            f = new Ficha();
+
+            f.setId(rs.getInt(1));
+            f.setFecha(rs.getTimestamp(2));
+
+            lista.add(f);
+        }
+
+        con.close();
+
+        return lista;
+    }
+    
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos
