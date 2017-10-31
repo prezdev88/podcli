@@ -192,6 +192,7 @@ INSERT INTO usuario VALUE(NULL,"19360036-0","Constanza Abarca Basáez",1);
 
 DROP DATABASE podcli;
 
+
 select * from ficha;
 
 
@@ -201,5 +202,3 @@ desc atencionPodologica;
 
 insert into atencionPodologica values(null,'1','18',NOW(),'10.0','20','40' ,'50' ,'30.0' ,true ,false,'60.0' ,'70.0' ,true,false,false,true,false ,true,false ,true,false ,true,'1',true ,'gay')
 
-/*MAL
-FICHA, */

@@ -4,23 +4,28 @@
 <%@page import="model.bd.EstadoCivil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-    Usuario u = (Usuario) request.getSession().getAttribute("usuario");
+        <%
+            Usuario u = (Usuario) request.getSession().getAttribute("usuario");
 
-    if (u == null) {
-        request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
-        response.sendRedirect("index.jsp");
-    }
-%>
+            if (u == null) {
+                request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        %>
 
 <html>
     <head>
+
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>Crear Ficha</title>
-        
-        
-        
+
+
+
         <!-- Esto es del calendario JQUERY -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
@@ -42,9 +47,6 @@
                 $("#fechaNacimiento").datepicker("option", "dateFormat", "dd 'de' MM 'de' yy");
             });
         </script>
-
-
-
         <script>
             // español
             $.datepicker.regional['es'] = {
@@ -62,15 +64,19 @@
                 firstDay: 1,
                 isRTL: false,
                 showMonthAfterYear: false,
-                yearSuffix: ''
+                yearSuffix: '',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+0"
+                
             };
             $.datepicker.setDefaults($.datepicker.regional['es']);
 
         </script>
-        
+
     </head>
     <body>
-        
+
         <div>
             <%
                 if (u != null) {
@@ -84,145 +90,320 @@
             <br><a href="buscarPaciente.jsp"> Buscar Pacientes </a>
             <br><a href="cerrar.do">Cerrar sesión</a>
         </div>
-            
-            
-            
+
         <form action="crearFicha.do" method="post" class="form-inline">
-            
-            <!-- ----------------------------------FICHA CLÍNICA----------------------------------- -->
-            <div id="fichaClinica">
-                <h1>Ficha Clinica</h1><br>
+            <div class="container">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="panel-title"><h4>Antecedentes Personales</h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <!------------------------------------FICHA CLÍNICA----------------------------------- -->
+                        <div id="fichaClinica">
+                            <input type="hidden" name="txtUsuario" value="<%= u.getId()%>"> 
+                            <!-- HACER PRUEBAS DE DATEPICKER!!!!!! -->
 
-                <input type="hidden" name="txtUsuario" value="<%= u.getId()%>"> 
-                <!-- HACER PRUEBAS DE DATEPICKER!!!!!! -->
-                <h2>Antecedentes Personales</h2>
-                Nombre: <input class="form-control" type="text" name="txtNombre">
-                <input type="radio" name="opSexo" value="m" checked="checked">Masculino
-                <input type="radio" name="opSexo" value="f">Femenino
-                Fecha Nacimiento: <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto">
-                Domicilio: <textarea class="form-control" name="txtDomicilio"></textarea>
-                Rut: <input class="form-control" type="text" name="txtRut">
-                <!-- LLenar este comboBox con estados civiles -->
-                Estado Civil: 
-                <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil">
-                    <%
-                        for (EstadoCivil ec : new Data().getEstadosCiviles()) {
-                            out.println("<option value='" + ec.getId() + "'>" + ec.getNombre() + "</option>");
-                        }
-                    %>
-                </select> 
-                Actividad: <input class="form-control" type="text" name="txtActividad">
-                Telefonos:  <input class="form-control" type="text" name="txtTelefonos">
-            </div>
-            <!-- ----------------------------------FICHA CLÍNICA----------------------------------- -->
+                            <div class="form-group col-md-4">
+                                <label for="Nombre">Nombre:</label><br>
+                                <input class="form-control" type="text" name="txtNombre">
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="rut">Rut:</label><br>
+                                <input class="form-control" type="text" name="txtRut">
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="fechaNacimiento">Fecha de Nacimiento:</label><br>
+                                <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto" readonly="">
+                            </div>
+
+                            <br><br>
+                            
+                            <div class="col-md-4">
+                                <br>
+                                <label for="sexo">Sexo:</label>
+                                <br>
+                                <div class="radio">                               
+                                    <label>
+                                        <input type="radio" name="opSexo" value="m" checked="checked">Masculino
+                                        <input type="radio" name="opSexo" value="f">Femenino
+                                    </label>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-4">
+                                <br>
+                                <label for="actividad">Actividad:</label><br>
+                                <input class="form-control" type="text" name="txtActividad">
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <br>
+                                <label for="estadocivil">Estado Civil:</label><br> 
+                                <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil">
+                                    <%
+                                        for (EstadoCivil ec : new Data().getEstadosCiviles()) {
+                                            out.println("<option value='" + ec.getId() + "'>" + ec.getNombre() + "</option>");
+                                        }
+                                    %>
+                                </select>  
+                            </div>
+                                
+                            <div class="col-md-4">
+                                <br>
+                                <label for="Domicilio">Domicilio:</label><br>
+                                <textarea class="form-control" name="txtDomicilio"></textarea>
+                            </div>
 
 
 
-            
-            
-            
-            
-            
-            
+                            <div class="col-md-4">
+                                <br>
+                                <label for="telefonos">Telefonos:</label><br>
+                                <input class="form-control" type="text" name="txtTelefonos">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            <!-- ---------------------------------- FICHA CLÍNICA ----------------------------------- -->
             
             <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
-            <div id="antecedentesMorbidos">
-                <h2>Antecedentes Morbidos</h2>
-                HTA: <select class="custom-select-sm form-control form-control-sm" name="cboHTA">
-                    <%
-                        for (Respuesta r : new Data().getRespuestas()) {
-                            out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
-                        }
-                    %>
-                </select>
-                <!-- LLenar este comboBox con tablas respuesta desde la BD -->
-                D.M: <select class="custom-select-sm form-control form-control-sm" name="cboDM">
-                    <%
-                        for (Respuesta r : new Data().getRespuestas()) {
-                            out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
-                        }
-                    %>
-                </select>
-                Tipo:   
-                <select  class="col-md" class="custom-select-sm form-control form-control-sm" name="cboTipo">
-                    <option class="form-control form-control-sm" value="0">N/A</option>
-                    <option class="form-control form-control-sm" value="1">1</option>
-                    <option class="form-control form-control-sm" value="2">2</option>
-                </select>
-                Años Evolución: <input class="form-control form-control-sm" type="number" name="txtAnioEvolucion">
-                Paciente Mixto:
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboPcteMixto">
-                    <option class="form-control form-control-sm" value="true">Si</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
-                </select>
-                Control:
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboControl">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
-                </select>
+           <div class="container">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="panel-title"><h4>Antecedentes Morbidos</h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div id="antecedentesMorbidos">
+                            
+                            
+                            <div class="form-group col-md-3">
+                                <label for="hta">HTA:</label><br>
+                                <select class="custom-select-sm form-control form-control-sm" name="cboHTA">
+                                    <%
+                                        for (Respuesta r : new Data().getRespuestas()) {
+                                            if(r.getId() == 2){
+                                                out.println("<option value='" + r.getId() + "' selected>" + r.getNombre() + "</option>");
+                                            }else{
+                                                out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                                            }
 
-                Farmacoterapia: <textarea class="form-control" name="txtFarmacoterapia"></textarea>
-                Otras Patologías y Farmacoterapia: <textarea class="form-control" name="txtOtras"></textarea><br><br>
-                Alteraciones Ortopédicas: <textarea class="form-control" name="txtAlter"></textarea>
-                Habitos Nocivos: <textarea class="form-control" name="txtHabitosNocivos"></textarea>
+                                        }
+                                    %>
+                                </select>
+                            </div>
+                
+                            <div class="form-group col-md-3">
+                                <label for="dm">D.M:</label><br>
+                                <select class="custom-select-sm form-control form-control-sm" name="cboDM">
+                                    <%
+                                        for (Respuesta r : new Data().getRespuestas()) {
+                                            if(r.getId() == 2){
+                                                out.println("<option value='" + r.getId() + "' selected>" + r.getNombre() + "</option>");
+                                            }else{
+                                                out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                                            }
+
+                                        }
+                                    %>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group col-md-3">
+                                <label for="tipo">Tipo:</label><br>
+                                <select class="custom-select-sm form-control form-control-sm" name="cboTipo">
+                                    <option class="form-control form-control-sm" value="0">N/A</option>
+                                    <option class="form-control form-control-sm" value="1">1</option>
+                                    <option class="form-control form-control-sm" value="2">2</option>
+                                </select>
+                            </div>
+                                
+                            <div class="form-group col-md-3">
+                                <label for="AñosdeEvolucion">Años de Evolucion:</label><br>
+                                <input class="form-control form-control-sm" type="number" name="txtAnioEvolucion">
+                            </div>    
+                            
+                
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="pacienteMixto">Paciente mixto:</label><br>
+                                <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboPcteMixto">
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
+                                </select> 
+                            </div>
+                
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="control">Control:</label><br>
+                                <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboControl">
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
+                                </select>
+                            </div>
+
+
+                <div class="form-group col-md-3">
+                                <br>
+                                <label for="farmacoterapia">Farmacoterapia:</label><br>
+                                <textarea class="form-control" name="txtFarmacoterapia"></textarea>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="PatologíasFarmacoterapia">Otras Patologías y Farmacoterapia:</label> 
+                                <textarea class="form-control" name="txtOtras"></textarea><br>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="AlteracionesOrtopédicas: ">Alteraciones Ortopédicas:</label> 
+                                <textarea class="form-control" name="txtAlter"></textarea>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="habitosNocivos">Habitos Nocivos:</label><br> 
+                                <textarea class="form-control" name="txtHabitosNocivos"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
+            
 
-
-            
-            
-            
-            
-            
             <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
-            <div id="examenFisicoGeneral">
-                <h2>Examen Físico General</h2>
-                Talla en metros: <input class="form-control" type="number" step="any" name="txtTalla">
-                IMC: <input class="form-control" type="number" step="any" name="txtIMC">
-                Amputación: 
-                <select class="custom-select-sm form-control form-control-sm" name="cboAmputacion">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
-                </select>
 
-                Ubicación: <input class="form-control" type="text" name="txtUbicacionAmputacion">
-                N° Calzado: <input class="form-control" type="number" name="txtNumCalzado">
-                Varices Extremo Inferior: 
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboVaricesExtremoInferior">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
-                </select>
-                Heridas:
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboHeridas">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
-                </select>
-                Ubicación: <input class="form-control" type="text" name="txtUbicacionHeridas">
-                Tipo: <input class="form-control" type="text" name="txtTipoHeridas">
-                Tratamiento:
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboTratamiento">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
-                </select>
-                Nevos: 
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboNevos">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
-                </select>
-                Ubicación: <input class="form-control" type="text" name="txtUbicacionNevos">
-                Máculas:
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboMaculas">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
-                </select>
-                Tipo: <input class="form-control" type="text" name="txtTipoMaculas">
-            </div>
+            <div class="container">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="panel-title"><h4>Examen Físico General</h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div id="examenFisicoGeneral">
+
+                            <div class="form-group col-md-3">
+                                <label for="Tallametros: ">Talla en metros:</label><br>
+                                <input class="form-control" type="number" step="any" name="txtTalla"><br>
+                            </div>
+
+                            <div class="form-group col-md-9">
+                                <label for="IMC">IMC:</label><br>
+                                <input class="form-control" type="number" step="any" name="txtIMC">
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for=" Amputación">Amputación:</label><br>
+                                <select class="custom-select-sm form-control form-control-sm" name="cboAmputacion">
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-9">
+                                <br>
+                                <label for=ubicacion"">Ubicación:</label><br>
+                                <input class="form-control" type="text" name="txtUbicacionAmputacion">
+                            </div>
+
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="nºCalzado">N° Calzado:</label><br> 
+                                <input class="form-control" type="number" name="txtNumCalzado">
+                            </div>
+
+
+                            <div class="form-group col-md-9">
+                                <br>
+                                <label for="varices">Varices Extremo Inferior:</label><br>
+                                <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboVaricesExtremoInferior">
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="heridas">Heridas:</label><br>
+                                <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboHeridas">
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="ubicacion">Ubicación:</label><br>
+                                <input class="form-control" type="text" name="txtUbicacionHeridas">
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="tipo">Tipo:</label><br>
+                                <input class="form-control" type="text" name="txtTipoHeridas">
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="tratamiento">Tratamiento:</label><br>
+                                <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboTratamiento">
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="nevos">Nevos:</label><br> 
+                                <select style="width: 68px" <%--class="col-md"--%> class="custom-select-sm form-control form-control-sm" name="cboNevos">
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="ubicacion">Ubicación:</label><br>
+                                <input class="form-control" type="text" name="txtUbicacionNevos">
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="maculas">Máculas:</label><br>
+                                <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboMaculas">
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <br>
+                                <label for="tipo">Tipo:</label><br> 
+                                <input class="form-control" type="text" name="txtTipoMaculas">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
-            
-            
-            
-            
-            <input type="submit" value="Registrar Ficha">
+
+            <center>
+                <button type="submit" class="btn btn-primary btn-lg" value="RegistrarFicha">Registrar Ficha</button>
+                
+            </center>
+
+
+            <br><br>
+
         </form>
     </body>
 </html>

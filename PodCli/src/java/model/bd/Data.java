@@ -7,6 +7,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Data {
 
@@ -30,7 +32,8 @@ public class Data {
 
         rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
 
-        rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
+
+        //rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
 
         if (rs.next()) {
             u = new Usuario();
@@ -424,7 +427,7 @@ public class Data {
             p.setId(rs.getInt(1));
             ultimaId = p.getId();
         }
-
+        con.close();
         return ultimaId;
     }
 
@@ -494,5 +497,43 @@ public class Data {
         return idFicha;
     }
 
+    public List<DatosReporteUso> getDatosReporteUso(String fecha1, String fecha2) throws SQLException {
+        
+        List<DatosReporteUso> list = new ArrayList<>();
+        DatosReporteUso dr;
+        query = "SELECT "
+                + "usuario.rut as Rut, usuario.nombre as Nombre, IFNULL(COUNT(ficha.id),0) AS 'Cantidad Fichas' "
+                + "FROM "
+                + "usuario LEFT JOIN ficha ON ficha.usuario = usuario.id "
+                + "WHERE ficha.fecha between '" + fecha1 + "' and '" + fecha2 + "' "
+                + "GROUP BY usuario.rut,  usuario.nombre;";
+        String query2 = "SELECT IFNULL(COUNT(atencionPodologica.id),0) AS 'Cantidad AP' "
+                + "FROM usuario LEFT JOIN atencionPodologica ON atencionPodologica.usuario = usuario.id "
+                + "WHERE atencionPodologica.fecha between '"+fecha1+"' and '"+fecha2+"' "
+                + "GROUP BY usuario.rut,  usuario.nombre;";
+
+        rs = con.ejecutarSelect(query);
+        ResultSet rs2 = con.ejecutarSelect(query2);
+
+        while (rs.next() && rs2.next()) {
+            dr = new DatosReporteUso();
+            dr.setRut(rs.getString(1));
+            dr.setNombre(rs.getString(2));
+            dr.setCantidadFichas(rs.getInt(3));
+            dr.setCantidadAtencionesPodologicas(rs2.getInt(1));
+            list.add(dr);
+        }
+        con.close();
+        return list;
+    }
+    public static void main(String[] args) throws SQLException {
+        try {
+            Data d = new Data();
+            
+            d.getDatosReporteUso("2017-9-25", "2017-11-1");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
 //Si alguno ve que falta algo, Digalo por wsp o en algun momento, non se callen nada Saludos

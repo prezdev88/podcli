@@ -17,21 +17,25 @@
 
             if (u == null) {
                 request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
-                response.sendRedirect("index.jsp");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         %>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: gainsboro">
+        
         <!--<h1>Atencion Podologica</h1>-->
 
         <div class="container">
             <form action="registrarAtencion.do" method="post">
+
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Atención Podologica</h3>
@@ -49,6 +53,7 @@
                         <%
                             }
                         %>
+
                                                     <input type="hidden" name="usuario" value="<%=u.getId()%>">
                                                     <input type="hidden" name="ficha" value="<%=request.getParameter("idFicha")%>">
                         Presión Arterial:           <input type="number" step="any" name="presion" required="">
@@ -73,11 +78,13 @@
                         
                         <br>Tratamiento Ortonixia: 
                         <select name="to">
+
                             <%
                                 for (TratamientoOrtonixia to : new Data().getTratamientoOrtonoxia()) {
                                     out.println("<option value='" + to.getId() + "'>" + to.getNombre() + "</option>");
                                 }
                             %>
+
                         </select>
                         <br><br>
                         <input type="checkbox" value="true" name="cpoli">Colocacion Policarboxilato: 

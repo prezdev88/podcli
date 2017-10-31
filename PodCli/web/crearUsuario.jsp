@@ -18,8 +18,8 @@
         <h1>Crear Usuario</h1>
         
         <form action="crearUsuario.do" method="post">
-            <input type="text" name="txtRut" placeholder="Ingrese Rut Usuario:">
-            <input type="text" name="txtNombre" placeholder="Ingrese Nombre Usuario:">
+            <input type="text" name="txtRut" placeholder="Ingrese Rut Usuario:" required="">
+            <input type="text" name="txtNombre" placeholder="Ingrese Nombre Usuario:" required="">
             Perfil:
             <select name="cboPerfil">
                 <%
@@ -38,6 +38,7 @@
             
             if(e != null){
                 out.println(e.getMessage());
+                request.getSession().removeAttribute("error");
             }
             %>
     </body>
