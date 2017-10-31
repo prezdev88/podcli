@@ -55,15 +55,16 @@
                     </div>
                     <div class="panel-body">
                         <div class="col-md-6">
-                            Rut: <input class="form-control" type="text" name="txtRut" value="<%= f.getRut()%>">
-                            Nombre: <input class="form-control" type="text" name="txtNombre" value="<%= f.getNombrePaciente()%>">
-                            Fecha Nacimiento: <input class="form-control" type="date" name="txtFechaNacimineto" value="<%= f.getFecha()%>">
-                            Domicilio: <textarea class="form-control" name="txtDomicilio"><%= f.getDomicilio()%></textarea>
+                            Rut: <input class="form-control" type="text" name="txtRut" value="<%= f.getRut()%>" readonly>
+                            Nombre: <input class="form-control" type="text" name="txtNombre" value="<%= f.getNombrePaciente()%>" readonly>
+                            Fecha Nacimiento: <input class="form-control" type="date" name="txtFechaNacimineto" value="<%= f.getFecha()%>" readonly>
+                            Domicilio: <textarea class="form-control" name="txtDomicilio" readonly><%= f.getDomicilio()%></textarea>
                         </div>
                         <div class="col-md-6">
-                            Estado Civil: <input class="form-control" type="text" value="<%= f.getEstado_civil()%>"> 
-                            Actividad: <input class="form-control" type="text" name="txtActividad" value="<%= f.getActividad()%>">
-                            Telefonos:  <input class="form-control" type="text" name="txtTelefonos" value="<%= f.getFono()%>">
+                            Estado Civil: <input class="form-control" type="text" value="<%= f.getEstado_civil()%>" readonly> 
+                            Actividad: <input class="form-control" type="text" name="txtActividad" value="<%= f.getActividad()%>" readonly>
+                            Telefonos:  <input class="form-control" type="text" name="txtTelefonos" value="<%= f.getFono()%>" readonly>
+                            Fecha de Registro: <input class="form-control"  value="<%= f.getFecha_ficha() %>" readonly>
                         </div>
                     </div>
                 </div>
@@ -77,9 +78,9 @@
                     </div>
                     <div class="panel-body">
                         <div class="col-md-6">
-                            HTA: <input class="form-control" type="text" value="<%= f.getHta()%>">
-                            D.M: <input class="form-control" type="text" value="<%= f.getDm()%>">
-                            Tipo: <input class="form-control" type="text" value="<%
+                            HTA: <input class="form-control" type="text" value="<%= f.getHta()%>" readonly>
+                            D.M: <input class="form-control" type="text" value="<%= f.getDm()%>" readonly>
+                            Tipo: <input class="form-control" type="text" value=" <%
                                 String tipo = f.getTipoDiabetes();
 
                                 if (tipo.equals("0")) {
@@ -88,16 +89,16 @@
                                     out.println(tipo);
                                 }
 
-                                         %>">   
-                            Años Evolución: <input class="form-control form-control-sm" type="number" name="txtAnioEvolucion" value="<%= f.getAnioEvolucion()%>">
-                            Paciente Mixto:<input class="form-control" type="text" value="<%=(f.getPacienteMixto() ? "SI" : "NO")%>">
-                            Control:<input class="form-control" type="text" value="<%=(f.getControl() ? "SI" : "NO")%>">
+                                         %>" readonly>   
+                            Años Evolución: <input class="form-control form-control-sm" type="number" name="txtAnioEvolucion" value="<%= f.getAnioEvolucion()%>" readonly>
+                            Paciente Mixto:<input class="form-control" type="text" value="<%=(f.getPacienteMixto() ? "SI" : "NO")%>" readonly>
+                            Control:<input class="form-control" type="text" value="<%=(f.getControl() ? "SI" : "NO")%>" readonly>
                         </div>
                         <div class="col-md-6">
-                            Farmacoterapia: <textarea class="form-control" name="txtFarmacoterapia"><%= f.getFarmacoterapia()%></textarea>
-                            Otras Patologías y Farmacoterapia: <textarea class="form-control" name="txtOtrasPatologíasYFarmacoterapia"><%= f.getOtrasPatologicas()%></textarea>
-                            Alteraciones Ortopédicas: <textarea class="form-control" name="txtAlteracionesOrtopédicas"><%= f.getAlteracionesOrtopedicas()%></textarea>
-                            Habitos Nocivos: <textarea class="form-control" name="txtHabitosNocivos"><%= f.getHabitos_nocivos()%></textarea>
+                            Farmacoterapia: <textarea class="form-control" name="txtFarmacoterapia" readonly><%= f.getFarmacoterapia()%></textarea>
+                            Otras Patologías y Farmacoterapia: <textarea class="form-control" name="txtOtrasPatologíasYFarmacoterapia" readonly><%= f.getOtrasPatologicas()%></textarea>
+                            Alteraciones Ortopédicas: <textarea class="form-control" name="txtAlteracionesOrtopédicas" readonly><%= f.getAlteracionesOrtopedicas()%></textarea>
+                            Habitos Nocivos: <textarea class="form-control" name="txtHabitosNocivos" readonly><%= f.getHabitos_nocivos()%></textarea>
                         </div>
                     </div>
                 </div>
@@ -111,22 +112,22 @@
                     </div>
                     <div class="panel-body">
                         <div class="col-md-6">
-                            Talla: <input class="form-control" type="number" step="any" name="txtTalla" value="<%= f.getTalla()%>">
-                            IMC: <input class="form-control" type="number" step="any" name="txtIMC" value="<%= f.getImc()%>">
-                            Amputación: <input class="form-control" type="text" value="<%=(f.getAmputacion() ? "SI" : "NO")%>">
-                            Ubicación Amputación: <input class="form-control" type="text" name="txtUbicacionAmputacion" value="<%= f.getUbicacion_Amputacion()%>">
-                            N° Calzado: <input class="form-control" type="number" name="txtNumCalzado" value="<%= f.getNro_Calzando()%>">
-                            Varices Extremo Inferior: <input class="form-control" type="text" value="<%= (f.getVarices() ? "SI" : "NO")%>">
-                            Heridas:<input class="form-control" type="text" value="<%= (f.getHeridas() ? "SI" : "NO")%>">
+                            Talla: <input class="form-control" type="number" step="any" name="txtTalla" value="<%= f.getTalla()%>" readonly>
+                            IMC: <input class="form-control" type="number" step="any" name="txtIMC" value="<%= f.getImc()%>" readonly>
+                            Amputación: <input class="form-control" type="text" value="<%=(f.getAmputacion() ? "SI" : "NO")%>" readonly>
+                            Ubicación Amputación: <input class="form-control" type="text" name="txtUbicacionAmputacion" value="<%= f.getUbicacion_Amputacion()%>"readonly>
+                            N° Calzado: <input class="form-control" type="number" name="txtNumCalzado" value="<%= f.getNro_Calzando()%>" readonly>
+                            Varices Extremo Inferior: <input class="form-control" type="text" value="<%= (f.getVarices() ? "SI" : "NO")%>" readonly>
+                            Heridas:<input class="form-control" type="text" value="<%= (f.getHeridas() ? "SI" : "NO")%>" readonly>
                         </div>
                         <div class="col-md-6">
-                            Ubicación Heridas: <input class="form-control" type="text" name="txtUbicacionHeridas" value="<%= f.getUbicacion_Heridas()%>">
-                            Tipo: <input class="form-control" type="text" name="txtTipoHeridas" value="<%= f.getTipo_Heridas()%>">
-                            Tratamiento:<input class="form-control" type="text" value="<%= (f.getTratamiento() ? "SI" : "NO")%>">
-                            Nevos: <input class="form-control" type="text" value="<%= (f.getNevos() ? "SI" : "NO")%>">
-                            Ubicación Nevos: <input class="form-control" type="text" name="txtUbicacionNevos" value="<%= f.getUbicacion_nevos()%>">
-                            Máculas:<input class="form-control" type="text" value="<%= (f.getMaculas() ? "SI" : "NO")%>">
-                            Tipo: <input class="form-control" type="text" name="txtTipoMaculas" value="<%= f.getTipo_Maculas()%>">
+                            Ubicación Heridas: <input class="form-control" type="text" name="txtUbicacionHeridas" value="<%= f.getUbicacion_Heridas()%>" readonly>
+                            Tipo: <input class="form-control" type="text" name="txtTipoHeridas" value="<%= f.getTipo_Heridas()%>" readonly>
+                            Tratamiento:<input class="form-control" type="text" value="<%= (f.getTratamiento() ? "SI" : "NO")%>" readonly>
+                            Nevos: <input class="form-control" type="text" value="<%= (f.getNevos() ? "SI" : "NO")%>" readonly>
+                            Ubicación Nevos: <input class="form-control" type="text" name="txtUbicacionNevos" value="<%= f.getUbicacion_nevos()%>" readonly>
+                            Máculas:<input class="form-control" type="text" value="<%= (f.getMaculas() ? "SI" : "NO")%>" readonly>
+                            Tipo: <input class="form-control" type="text" name="txtTipoMaculas" value="<%= f.getTipo_Maculas()%>" readonly>
                         </div>
                     </div>
                 </div>

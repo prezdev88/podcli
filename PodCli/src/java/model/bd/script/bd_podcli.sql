@@ -187,3 +187,4 @@ INSERT INTO usuario VALUE(NULL,"19360036-0","Constanza Abarca Basáez",1);
 
 
 DROP DATABASE podcli;
+
