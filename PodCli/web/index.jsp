@@ -52,6 +52,7 @@
                             Error e = (Error) request.getSession().getAttribute("error");
                             if (e != null) {
                                 out.println(e.getMessage());
+                                request.getSession().removeAttribute("error");
                             }
 
                         %>

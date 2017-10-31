@@ -38,6 +38,7 @@
             
             if(e != null){
                 out.println(e.getMessage());
+                request.getSession().removeAttribute("error");
             }
             %>
     </body>

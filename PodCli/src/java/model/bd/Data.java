@@ -19,7 +19,7 @@ public class Data {
                 "localhost",
                 "podcli",//nombre BD
                 "root",
-                ""//Password
+                "123456"//Password
         );
 
     }
