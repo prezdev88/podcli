@@ -131,7 +131,12 @@
                 HTA: <select class="custom-select-sm form-control form-control-sm" name="cboHTA">
                     <%
                         for (Respuesta r : new Data().getRespuestas()) {
-                            out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                            if(r.getId() == 2){
+                                out.println("<option value='" + r.getId() + "' selected>" + r.getNombre() + "</option>");
+                            }else{
+                                out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                            }
+                            
                         }
                     %>
                 </select>
@@ -139,7 +144,12 @@
                 D.M: <select class="custom-select-sm form-control form-control-sm" name="cboDM">
                     <%
                         for (Respuesta r : new Data().getRespuestas()) {
-                            out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                            if(r.getId() == 2){
+                                out.println("<option value='" + r.getId() + "' selected>" + r.getNombre() + "</option>");
+                            }else{
+                                out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                            }
+                            
                         }
                     %>
                 </select>
@@ -153,12 +163,12 @@
                 Paciente Mixto:
                 <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboPcteMixto">
                     <option class="form-control form-control-sm" value="true">Si</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
+                    <option class="form-control form-control-sm" value="false" selected>No</option>
                 </select>
                 Control:
                 <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboControl">
                     <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
+                    <option class="form-control form-control-sm" value="false" selected="">No</option>
                 </select>
 
                 Farmacoterapia: <textarea class="form-control" name="txtFarmacoterapia"></textarea>
@@ -181,39 +191,39 @@
                 IMC: <input class="form-control" type="number" step="any" name="txtIMC">
                 Amputación: 
                 <select class="custom-select-sm form-control form-control-sm" name="cboAmputacion">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
+                    <option class="form-control form-control-sm" value="true">Si</option>
+                    <option class="form-control form-control-sm" value="false" selected>No</option>
                 </select>
 
                 Ubicación: <input class="form-control" type="text" name="txtUbicacionAmputacion">
                 N° Calzado: <input class="form-control" type="number" name="txtNumCalzado">
                 Varices Extremo Inferior: 
                 <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboVaricesExtremoInferior">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
+                    <option class="form-control form-control-sm" value="true">Si</option>
+                    <option class="form-control form-control-sm" value="false" selected>No</option>
                 </select>
                 Heridas:
                 <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboHeridas">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
+                    <option class="form-control form-control-sm" value="true">Si</option>
+                    <option class="form-control form-control-sm" value="false" selected>No</option>
                 </select>
                 Ubicación: <input class="form-control" type="text" name="txtUbicacionHeridas">
                 Tipo: <input class="form-control" type="text" name="txtTipoHeridas">
                 Tratamiento:
                 <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboTratamiento">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
+                    <option class="form-control form-control-sm" value="true">Si</option>
+                    <option class="form-control form-control-sm" value="false" selected>No</option>
                 </select>
                 Nevos: 
                 <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboNevos">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
+                    <option class="form-control form-control-sm" value="true">Si</option>
+                    <option class="form-control form-control-sm" value="false" selected>No</option>
                 </select>
                 Ubicación: <input class="form-control" type="text" name="txtUbicacionNevos">
                 Máculas:
                 <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboMaculas">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false">No</option>
+                    <option class="form-control form-control-sm" value="true">Si</option>
+                    <option class="form-control form-control-sm" value="false" selected>No</option>
                 </select>
                 Tipo: <input class="form-control" type="text" name="txtTipoMaculas">
             </div>
