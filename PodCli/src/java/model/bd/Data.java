@@ -1,5 +1,6 @@
 package model.bd;
 
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -19,7 +20,7 @@ public class Data {
                 "localhost",
                 "podcli",//nombre BD
                 "root",
-                "123456"//Password
+                ""//Password
         );
 
     }
@@ -97,17 +98,32 @@ public class Data {
 
     public void registrarAtencionPodologica(AtencionPodologica a) throws SQLException {
         query = "insert into atencionPodologica values"
-                + "(null,'" + a.getFicha() + "','" + a.getUsuario() + "',"
-                + "'" + a.getFecha() + "','" + a.getPresion() + "','" + a.getPulsoRadial() + "',\n"
-                + "'" + a.getPulsoPedio_d() + "' ,'" + a.getPulsoPedio_i() + "' ,'" + a.getPeso() + "' ,"
-                + "" + a.isSens_d() + " ," + a.isSens_i() + ",'" + a.gettPoda1_d() + "' ,"
-                + "'" + a.gettPoda1_i() + "' ," + a.isCuracion() + ",\n"
-                + "" + a.isColocacionPuente() + "," + a.isResecado() + "," + a.isEnucleacion() + ","
-                + "" + a.isDevastado() + " ," + a.isMaso() + ","
-                + "" + a.isEspiculoectomia() + "  ," + a.isAnalgesia() + ",\n"
-                + "" + a.isColocacionAcrilico() + " ," + a.isBandaMolecular() + ","
+                + "(null,"
+                + "'" + a.getFicha() + "',"
+                + "'" + a.getUsuario() + "',"
+                + "NOW(),"
+                + "'" + a.getPresion() + "',"
+                + "'" + a.getPulsoRadial() + "',"
+                + "'" + a.getPulsoPedio_d() + "' ,"
+                + "'" + a.getPulsoPedio_i() + "' ,"
+                + "'" + a.getPeso() + "' ,"
+                + "" + a.isSens_d() + " ,"
+                + "" + a.isSens_i() + ","
+                + "'" + a.gettPoda1_d() + "' ,"
+                + "'" + a.gettPoda1_i() + "' ,"
+                + "" + a.isCuracion() + ","
+                + "" + a.isColocacionPuente() + ","
+                + "" + a.isResecado() + ","
+                + "" + a.isEnucleacion() + ","
+                + "" + a.isDevastado() + " ,"
+                + "" + a.isMaso() + ","
+                + "" + a.isEspiculoectomia() + "  ,"
+                + "" + a.isAnalgesia() + ","
+                + "" + a.isColocacionAcrilico() + " ,"
+                + "" + a.isBandaMolecular() 
                 + ",'" + a.getTratamientoOrtonixia() + "',"
-                + "" + a.isPoli() + " ,'" + a.getObservaciones() + "')";
+                + "" + a.isPoli() + " ,"
+                + "'" + a.getObservaciones() + "')";
         con.ejecutar(query);
     }
 
@@ -464,6 +480,18 @@ public class Data {
         }
 
         return mes;
+    }
+
+    public int getIdFicha(int idPaciente) throws SQLException {
+        int idFicha = 0;
+        query = "select id from ficha where paciente =" + idPaciente;
+
+        rs = con.ejecutarSelect(query);
+        if (rs.next()) {
+            idFicha = rs.getInt(1);
+        }
+
+        return idFicha;
     }
 
 }

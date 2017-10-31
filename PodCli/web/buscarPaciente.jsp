@@ -76,7 +76,7 @@
                                         + "<input type='submit' value='Ver Ficha' class='btn btn-outline-secondary' style='width:200px;'>"
                                         + "<input type='hidden' name='rut' value=" + p.getRut() + " style='width:200px;'>"
                                         + "</form></th>");
-                                out.println("<th><form action='atencionPodologica.jsp' method='post'>"
+                                out.println("<th><form action='atencionPodologica.jsp?idFicha="+d.getIdFicha(p.getId())+"' method='post'>"
                                         + "<input type='submit' value='Atencion Podologica' class='btn btn-outline-secondary' style='width:200px;'>"
                                         + "</form></th>");
                             }

@@ -67,6 +67,8 @@ Muchachos, los pacientes y ficha se crean una sóla vez, por esa razón deje tod
 los datos en la tabla ficha. 
 */
 
+
+
 CREATE TABLE ficha(
     id 			INT AUTO_INCREMENT,
     fecha 		DATETIME, 		-- Fecha de creación de la ficha (con función now())
@@ -114,6 +116,8 @@ CREATE TABLE ficha(
     FOREIGN KEY(paciente)   REFERENCES paciente(id),
     FOREIGN KEY(usuario)    REFERENCES usuario(id)
 );
+
+select id from ficha where paciente = 1;
 
 CREATE TABLE tratamientoOrtonixia(
     id INT AUTO_INCREMENT,
@@ -187,3 +191,15 @@ INSERT INTO usuario VALUE(NULL,"19360036-0","Constanza Abarca Basáez",1);
 
 
 DROP DATABASE podcli;
+
+select * from ficha;
+
+
+insert into atencionPodologica values(null,'10','18',NOW(),'20.0','30', '50' ,'60' ,'40.0' ,true ,false,'70.0' ,'80.0' ,true, false,false,true,false ,true,false ,true, false ,true,'1',true ,'gay')
+
+desc atencionPodologica;
+
+insert into atencionPodologica values(null,'1','18',NOW(),'10.0','20','40' ,'50' ,'30.0' ,true ,false,'60.0' ,'70.0' ,true,false,false,true,false ,true,false ,true,false ,true,'1',true ,'gay')
+
+/*MAL
+FICHA, */

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.DispatcherType;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,74 +26,81 @@ public class RegistrarAtencionPodologicaServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             Data d = new Data();
-        int ficha,usuario; //<--fk de ficha y usuario
-        
-        String fecha,observaciones;
-        
-        float presion, peso, tpodal_d, tpodal_i;
-        
-        int pulsoRadial, pulsoPedio_d, pulsoPedio_i, tratamientoOrtonixia;
-        
-        boolean sens_d, sens_i, curacion, coloqPuente, resecado, enucleacion,
-                devastado, maso, espiculoectomia, analgesia, colocacionAcrilico,
-                bandaMolecular, colocacionPuente, poli;
-        
-        ficha = Integer.parseInt(req.getParameter("ficha"));
-        usuario = Integer.parseInt(req.getParameter("usuario"));
-        
+            int ficha, usuario, testo; //<--fk de ficha y usuario
+
+            String fecha, observaciones;
+
+            float presion, peso, tpodal_d, tpodal_i;
+
+            int pulsoRadial, pulsoPedio_d, pulsoPedio_i, tratamientoOrtonixia;
+
+            boolean sens_d, sens_i, curacion, coloqPuente, resecado, enucleacion,
+                    devastado, maso, espiculoectomia, analgesia, colocacionAcrilico,
+                    bandaMolecular, colocacionPuente, poli;
+
+            usuario                 = Integer.parseInt(     req.getParameter("usuario"));
+            ficha                   = Integer.parseInt(     req.getParameter("ficha"));
+
 //        fecha = req.getParameter("");
-        presion = Float.parseFloat(req.getParameter("txtPersionArterial"));
-        pulsoRadial = Integer.parseInt(req.getParameter("txtPulsoRadial"));
-        pulsoPedio_d = Integer.parseInt(req.getParameter("txtPulsoPedioDerecho"));
-        pulsoPedio_i = Integer.parseInt(req.getParameter("txtPulsoPedioIzquierdo"));
-        peso = Float.parseFloat(req.getParameter("txtPeso"));
-        sens_d = Boolean.parseBoolean(req.getParameter("chkSensPieDerecho"));
-        sens_i = Boolean.parseBoolean(req.getParameter("chkSensPieIzquierdo"));
-        tpodal_d = Float.parseFloat(req.getParameter("txtTemperaturaPodalDerecho"));
-        tpodal_i = Float.parseFloat(req.getParameter("txtTemperaturaPodalIzquierdo"));
-        curacion = Boolean.parseBoolean(req.getParameter("chkCuracion"));
-        //coloqPuente = Boolean.parseBoolean(req.getParameter(""));
-        resecado = Boolean.parseBoolean(req.getParameter("chkResecado"));
-        enucleacion = Boolean.parseBoolean(req.getParameter("chkEnucleacion"));
-        devastado = Boolean.parseBoolean(req.getParameter("chkDevastadoUngueal"));
-        maso = Boolean.parseBoolean(req.getParameter("chkMaso"));
-        espiculoectomia = Boolean.parseBoolean(req.getParameter("chkEspiculoectomia"));
-        analgesia = Boolean.parseBoolean(req.getParameter("chkAnalgesia"));
-        colocacionAcrilico = Boolean.parseBoolean(req.getParameter("chkColAcri"));
-        bandaMolecular = Boolean.parseBoolean(req.getParameter("chkColBandaMolecular"));
-        colocacionPuente = Boolean.parseBoolean(req.getParameter("chkColPuente"));
-        tratamientoOrtonixia = Integer.parseInt(req.getParameter("cboTratamientoOrtonixia"));
-        poli = Boolean.parseBoolean(req.getParameter("chkColPolicarboxilato"));
-        observaciones = req.getParameter("txtObsAtencionPodo");
-        
-        AtencionPodologica a = new AtencionPodologica();
-        a.setFicha(ficha);
-        a.setUsuario(usuario);
+            presion                 = Float.parseFloat(     req.getParameter("presion"));
+            pulsoRadial             = Integer.parseInt(     req.getParameter("pulso"));
+            peso                    = Float.parseFloat(     req.getParameter("peso"));
+            pulsoPedio_d            = Integer.parseInt(     req.getParameter("ppd"));
+            pulsoPedio_i            = Integer.parseInt(     req.getParameter("ppi"));
+            sens_d                  = Boolean.parseBoolean( req.getParameter("spd"));
+            sens_i                  = Boolean.parseBoolean( req.getParameter("spi"));
+            tpodal_d                = Float.parseFloat(     req.getParameter("tpd"));
+            tpodal_i                = Float.parseFloat(     req.getParameter("tpi"));
+            curacion                = Boolean.parseBoolean( req.getParameter("curacion"));
+            //coloqPuente = Boolean.parseBoolean(req.getParameter(""));
+            resecado                = Boolean.parseBoolean( req.getParameter("resecado"));
+            enucleacion             = Boolean.parseBoolean( req.getParameter("enu"));
+            devastado               = Boolean.parseBoolean( req.getParameter("devastado"));
+            maso                    = Boolean.parseBoolean( req.getParameter("maso"));
+            espiculoectomia         = Boolean.parseBoolean( req.getParameter("epi"));
+            analgesia               = Boolean.parseBoolean( req.getParameter("anal"));
+            colocacionAcrilico      = Boolean.parseBoolean( req.getParameter("acri"));
+            bandaMolecular          = Boolean.parseBoolean( req.getParameter("cbm"));
+            colocacionPuente        = Boolean.parseBoolean( req.getParameter("cpuente"));
+            tratamientoOrtonixia    = Integer.parseInt(     req.getParameter("to"));
+            poli                    = Boolean.parseBoolean( req.getParameter("cpoli"));
+            observaciones           =                       req.getParameter("obs");
+
+            
+            testo                  = (req.getParameter("spd").equals(""))?0:Integer.parseInt(req.getParameter("spd"));
+            
+            AtencionPodologica a = new AtencionPodologica();
+            a.setFicha(ficha);
+            a.setUsuario(usuario);
 //        a.setFecha(fecha);
-        a.setPresion(presion);
-        a.setPulsoRadial(pulsoRadial);
-        a.setPulsoPedio_d(pulsoPedio_d);
-        a.setPulsoPedio_i(pulsoPedio_i);
-        a.setPeso(peso);
-        a.setSens_d(sens_d);
-        a.setSens_i(sens_i);
-        a.settPoda1_d(tpodal_d);
-        a.settPoda1_i(tpodal_i);
-        a.setCuracion(curacion);
-        a.setResecado(resecado);
-        a.setEnucleacion(enucleacion);
-        a.setDevastado(devastado);
-        a.setMaso(maso);
-        a.setEspiculoectomia(espiculoectomia);
-        a.setAnalgesia(analgesia);
-        a.setColocacionAcrilico(colocacionAcrilico);
-        a.setBandaMolecular(bandaMolecular);
-        a.setColocacionPuente(colocacionPuente);
-        a.setTratamientoOrtonixia(tratamientoOrtonixia);
-        a.setPoli(poli);
-        a.setObservaciones(observaciones);
-        
-        d.registrarAtencionPodologica(a);
+            a.setPresion(presion);
+            a.setPulsoRadial(pulsoRadial);
+            a.setPeso(peso);
+            
+            a.setPulsoPedio_d(pulsoPedio_d);
+            a.setPulsoPedio_i(pulsoPedio_i);
+            a.setSens_d(sens_d);
+            a.setSens_i(sens_i);
+            
+            a.settPoda1_d(tpodal_d);
+            a.settPoda1_i(tpodal_i);
+            a.setCuracion(curacion);
+            a.setResecado(resecado);
+            a.setEnucleacion(enucleacion);
+            a.setDevastado(devastado);
+            a.setMaso(maso);
+            a.setEspiculoectomia(espiculoectomia);
+            a.setAnalgesia(analgesia);
+            a.setColocacionAcrilico(colocacionAcrilico);
+            a.setBandaMolecular(bandaMolecular);
+            a.setColocacionPuente(colocacionPuente);
+            a.setTratamientoOrtonixia(tratamientoOrtonixia);
+            a.setPoli(poli);
+            a.setObservaciones(observaciones);
+            
+            d.registrarAtencionPodologica(a);
+
+        response.sendRedirect("buscarPaciente.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarAtencionPodologicaServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
