@@ -49,15 +49,15 @@
                         %>
                         <input type="hidden" name="ficha" value="">
 
-                        Presión Arterial: <input  type="number" step="any" name="txtPersionArterial">
-                        Pulso Radial: <input type="number" name="txtPulsoRadial">
-                        Peso: <input type="number" step="any" name="txtPeso"><br><br>
-                        Pulso Pedio Derecho: <input type="number" name="txtPulsoPedioDerecho">
-                        Pulso Pedio Izquierdo: <input type="number" name="txtPulsoPedioIzquierdo"><br><br>
+                        Presión Arterial: <input  type="number" step="any" name="txtPersionArterial" required="">
+                        Pulso Radial: <input type="number" name="txtPulsoRadial" required="">
+                        Peso: <input type="number" step="any" name="txtPeso" required=""><br><br>
+                        Pulso Pedio Derecho: <input type="number" name="txtPulsoPedioDerecho" required="">
+                        Pulso Pedio Izquierdo: <input type="number" name="txtPulsoPedioIzquierdo" required=""><br><br>
                         Sensibilidad Pie Derecho: <input type="checkbox" value="true" name="chkSensPieDerecho">
                         Sensibilidad Pie Izquierdo: <input type="checkbox" value="true" name="chkSensPieIzquierdo"><br><br>
-                        T° Podal Derecho: <input type="number" step="any" name="txtTemperaturaPodalDerecho">
-                        T° Podal Izquierdo: <input type="number" step="any" name="txtTemperaturaPodalIzquierdo"><br><br>
+                        T° Podal Derecho: <input type="number" step="any" name="txtTemperaturaPodalDerecho" required="">
+                        T° Podal Izquierdo: <input type="number" step="any" name="txtTemperaturaPodalIzquierdo" required=""><br><br>
                         Curación: <input type="checkbox" value="true" name="chkCuracion">
                         Resecado: <input type="checkbox" value="true" name="chkResecado">
                         Enucleación: <input type="checkbox" value="true" name="chkEnucleacion">

@@ -31,7 +31,9 @@ public class Data {
 
         rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
 
+
         //rs = con.ejecutarSelect("SELECT * FROM usuario WHERE rut = '" + rut + "'");
+
         if (rs.next()) {
             u = new Usuario();
 

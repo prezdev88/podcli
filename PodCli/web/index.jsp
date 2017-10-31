@@ -42,7 +42,7 @@
                         <form action="iniciarSesion.do" method="post" class="navbar-form">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input id="rut" type="text" class="form-control" style="width: 250px; text-align: center" name="rut" placeholder="EJ: 12345678-k">                                        
+                                <input id="rut" type="text" class="form-control" style="width: 250px; text-align: center" name="rut" placeholder="EJ: 12345678-k" required="">                                        
                             </div>
 
                             <input type="submit" value="Entrar" class="btn btn btn-outline-success btn-lg btn-block mx-auto mt-3" style="width: 200px;">
