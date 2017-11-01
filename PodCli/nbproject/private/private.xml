@@ -8,8 +8,10 @@
             <file>file:/C:/Users/msilva/Desktop/podcli/PodCli/nbproject/private/private.properties</file>
         </group>
         <group name="GIT TEST">
-            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/controller/CerrarSesionServlet.java</file>
-            <file>file:/home/prez/Escritorio/podcli/PodCli/nbproject/private/private.properties</file>
+            <file>file:/home/prez/Escritorio/podcli/PodCli/web/buscarPaciente.jsp</file>
+            <file>file:/home/prez/Escritorio/podcli/PodCli/web/verFicha.jsp</file>
+            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/model/bd/script/inserts.sql</file>
+            <file>file:/home/prez/Escritorio/podcli/PodCli/web/historicoAtencion.jsp</file>
         </group>
     </open-files>
 </project-private>

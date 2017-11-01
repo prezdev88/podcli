@@ -98,7 +98,7 @@ public class RegistrarAtencionPodologicaServlet extends HttpServlet {
             a.setPoli(poli);
             a.setObservaciones(observaciones);
             
-            d.registrarAtencionPodologica(a);
+            d.crearAtencionPodologica(a);
 
             response.sendRedirect("buscarPaciente.jsp");
         } catch (SQLException | ClassNotFoundException ex) {

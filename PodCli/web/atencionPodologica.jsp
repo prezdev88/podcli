@@ -70,5 +70,6 @@
 
             <input class="btn btn-outline-primary" type="submit" value="Registar Atencion">
         </form>
+        <a href="buscarPaciente.jsp">Volver</a>
     </body>
 </html>

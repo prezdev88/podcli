@@ -16,10 +16,10 @@ public class Data {
     public Data() throws SQLException, ClassNotFoundException {
 
         con = new Conexion(
-                "localhost",
-                "podcli",//nombre BD
-                "root",
-                ""//Password
+            "localhost",
+            "podcli",//nombre BD
+            "root",
+            "123456"//Password
         );
 
     }
@@ -114,7 +114,7 @@ public class Data {
         crearFicha(f);
     }
 
-    public void registrarAtencionPodologica(AtencionPodologica a) throws SQLException {
+    public void crearAtencionPodologica(AtencionPodologica a) throws SQLException {
         query = "insert into atencionPodologica values"
                 + "(null,"
                 + "'" + a.getFicha() + "',"
@@ -203,9 +203,15 @@ public class Data {
         return atenciones;
     }
 
-    public Paciente getAntecedentesPersonales(String rut) throws SQLException {
+    /**
+     * 
+     * @param filtro Puede ser rut o ID
+     * @return
+     * @throws SQLException 
+     */
+    public Paciente getPaciente(String filtro) throws SQLException {
 
-        query = "SELECT * FROM paciente WHERE rut = " + rut;
+        query = "SELECT * FROM paciente WHERE rut = '" + filtro+"' OR id = "+filtro;
 
         rs = con.ejecutarSelect(query);
         Paciente p = null;
@@ -413,7 +419,7 @@ public class Data {
         return nombre;
     }
 
-    public List<TratamientoOrtonixia> getTratamientoOrtonoxia() throws SQLException {
+    public List<TratamientoOrtonixia> getTratamientosOrtonoxia() throws SQLException {
 
         query = "SELECT * FROM tratamientoOrtonixia;";
         rs = con.ejecutarSelect(query);
@@ -512,7 +518,7 @@ public class Data {
         return idFicha;
     }
 
-    public List<DatosReporteUso> getDatosReporteUso(String fecha1, String fecha2) throws SQLException {
+    public List<DatosReporteUso> getDatosReporteUso(String fecIni, String fecFin) throws SQLException {
 
         List<DatosReporteUso> list = new ArrayList<>();
         DatosReporteUso dr;
@@ -520,11 +526,11 @@ public class Data {
                 + "usuario.rut as Rut, usuario.nombre as Nombre, IFNULL(COUNT(ficha.id),0) AS 'Cantidad Fichas' "
                 + "FROM "
                 + "usuario LEFT JOIN ficha ON ficha.usuario = usuario.id "
-                + "WHERE ficha.fecha between '" + fecha1 + "' and '" + fecha2 + "' "
+                + "WHERE ficha.fecha between '" + fecIni + "' and '" + fecFin + "' "
                 + "GROUP BY usuario.rut,  usuario.nombre;";
         String query2 = "SELECT IFNULL(COUNT(atencionPodologica.id),0) AS 'Cantidad AP' "
                 + "FROM usuario LEFT JOIN atencionPodologica ON atencionPodologica.usuario = usuario.id "
-                + "WHERE atencionPodologica.fecha between '" + fecha1 + "' and '" + fecha2 + "' "
+                + "WHERE atencionPodologica.fecha between '" + fecIni + "' and '" + fecFin + "' "
                 + "GROUP BY usuario.rut,  usuario.nombre;";
 
         rs = con.ejecutarSelect(query);
@@ -568,7 +574,7 @@ public class Data {
         return id;
     }
 
-    public AtencionPodologicaSelect getListaAtencionPodologicaPorID(String idAtencion) throws SQLException {
+    public AtencionPodologicaSelect getAtencionPodologicaBy(String idAtencion) throws SQLException {
 
         query = "SELECT "
                 + "atencionPodologica.id AS ID, atencionPodologica.ficha AS 'Nº Ficha', usuario.nombre AS Creador, atencionPodologica.fecha AS Fecha, atencionPodologica.presion AS Presión, "

@@ -37,10 +37,12 @@
                 out.println("<form action='verAtencion.jsp' method='post'>");
                 out.println("<input type='submit' value='Ver detalle'>");
                 out.println("<input type='hidden' name='idAntPod' value=" + aps.getId() + ">");
+                out.println("<input type='hidden' name='idPaciente' value=" + idPaciente + ">");
                 out.println("</form>");
                 out.println("</td>");
                 out.println("</tr>");
             }
         %>
     </table>
+    <a href="buscarPaciente.jsp">Volver</a>
 </html>
