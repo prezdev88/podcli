@@ -9,7 +9,7 @@
 
     if (u == null) {
         request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
-        response.sendRedirect("index.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 %>
 
@@ -86,6 +86,7 @@
                 if (u.getPerfil() == 2 || u.getPerfil() == 3) {
             %>
             <br><a href="crearUsuario.jsp">Crear Usuario</a>
+            <br><a href="reporteHistorico.jsp">Reporte histórico</a>
             <%
                 }
             %>

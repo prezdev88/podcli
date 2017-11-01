@@ -56,7 +56,7 @@
             <select name="to">
 
                 <%
-                    for (TratamientoOrtonixia to : new Data().getTratamientoOrtonoxia()) {
+                    for (TratamientoOrtonixia to : new Data().getTratamientosOrtonoxia()) {
                         out.println("<option value='" + to.getId() + "'>" + to.getNombre() + "</option>");
                     }
                 %>

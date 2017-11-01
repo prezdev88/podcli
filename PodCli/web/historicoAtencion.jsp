@@ -19,6 +19,7 @@
         String nomPac = d.getNombreBy(String.valueOf(idFicha));
     %>
     <h1>Atenciones podológicas de <%=nomPac%></h1>
+    <h3>Ficha asociada: <%=idFicha%></h3>
     <table border="1">
         <tr>
             <th>Id</th>

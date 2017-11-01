@@ -42,6 +42,7 @@ public class Conexion {
    
     // select
     public ResultSet ejecutarSelect(String query) throws SQLException{
+        System.out.println(query);
         sen = con.createStatement();
         rs = sen.executeQuery(query);
         return rs;

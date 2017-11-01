@@ -147,23 +147,42 @@ public class Data {
 
     public List<AtencionPodologicaSelect> getAtencionesPodologicas(int idFicha) throws SQLException {//ARREGLADO
 
-        query = "SELECT "
-                + "atencionPodologica.id AS ID, atencionPodologica.ficha AS 'Nº Ficha', usuario.nombre AS Creador, atencionPodologica.fecha AS Fecha, atencionPodologica.presion AS Presión, "
-                + "atencionPodologica.pulsoRadial AS 'Pulso Radial', atencionPodologica.pulsoPedio_d AS 'P. Pedio (d)', atencionPodologica.pulsoPedio_i AS 'P. Pedio (i)', "
-                + "atencionPodologica.peso AS Peso, atencionPodologica.sens_d AS 'Sensibilidad (d)', atencionPodologica.sens_i AS 'Sensibilidad (i)', "
-                + "atencionPodologica.tpodal_d AS 'Tº Podal (d)', atencionPodologica.tpodal_i AS 'Tº Podal (i)', atencionPodologica.curacion AS Curación, "
-                + "atencionPodologica.coloqPuente AS 'Coloc. Puente', atencionPodologica.resecado AS Resecado, atencionPodologica.enucleacion AS Enucleación, "
-                + "atencionPodologica.devastado AS 'Dev. Ungueal', atencionPodologica.maso AS 'Masoterapia o Masaje', "
-                + "atencionPodologica.espiculoectomia AS 'Espiculoectomía (Grado)', atencionPodologica.analgesia AS 'Analgesia (Tipo)', "
-                + "atencionPodologica.colocacionAcrilico AS 'Colocación Acilico', atencionPodologica.bandaMolecular AS 'Colocac. Banda Molec.', "
-                + "tratamientoOrtonixia.nombre AS 'C. Bracket/Cambio Elast.', atencionPodologica.poli AS 'C. Policarboxilato', "
-                + "atencionPodologica.observaciones AS Observaciones "
-                + "FROM "
-                + "atencionPodologica, ficha, usuario, tratamientoOrtonixia "
-                + "WHERE "
-                + "atencionPodologica.ficha = ficha.id AND "
-                + "atencionPodologica.usuario = usuario.id AND ficha.usuario = usuario.id AND atencionPodologica.tratamientoOrtonixia = tratamientoOrtonixia.id "
-                + "AND atencionPodologica.ficha =" + idFicha;
+        query = "SELECT \n" +
+                "    atencionPodologica.id 				AS ID, \n" +
+                "    atencionPodologica.ficha 				AS 'Nº Ficha',\n" +
+                "    u1.nombre 						AS Creador, \n" +
+                "    atencionPodologica.fecha 				AS Fecha, \n" +
+                "    atencionPodologica.presion 			AS Presión, \n" +
+                "    atencionPodologica.pulsoRadial 			AS 'Pulso Radial', \n" +
+                "    atencionPodologica.pulsoPedio_d                    AS 'P. Pedio (d)', \n" +
+                "    atencionPodologica.pulsoPedio_i                    AS 'P. Pedio (i)', \n" +
+                "    atencionPodologica.peso				AS Peso, \n" +
+                "    atencionPodologica.sens_d 				AS 'Sensibilidad (d)', \n" +
+                "    atencionPodologica.sens_i 				AS 'Sensibilidad (i)',\n" +
+                "    atencionPodologica.tpodal_d 			AS 'Tº Podal (d)', \n" +
+                "    atencionPodologica.tpodal_i 			AS 'Tº Podal (i)',\n" +
+                "    atencionPodologica.curacion 			AS Curación, \n" +
+                "    atencionPodologica.coloqPuente 			AS 'Coloc. Puente', \n" +
+                "    atencionPodologica.resecado 			AS Resecado, \n" +
+                "    atencionPodologica.enucleacion 			AS Enucleación, \n" +
+                "    atencionPodologica.devastado 			AS 'Dev. Ungueal', \n" +
+                "    atencionPodologica.maso 				AS 'Masoterapia o Masaje', \n" +
+                "    atencionPodologica.espiculoectomia                 AS 'Espiculoectomía (Grado)', \n" +
+                "    atencionPodologica.analgesia 			AS 'Analgesia (Tipo)', \n" +
+                "    atencionPodologica.colocacionAcrilico              AS 'Colocación Acilico', \n" +
+                "    atencionPodologica.bandaMolecular                  AS 'Colocac. Banda Molec.', \n" +
+                "    tratamientoOrtonixia.nombre 			AS 'C. Bracket/Cambio Elast.', \n" +
+                "    atencionPodologica.poli 				AS 'C. Policarboxilato', \n" +
+                "    atencionPodologica.observaciones                   AS Observaciones \n" +
+                "FROM \n" +
+                "    atencionPodologica\n" +
+                "    INNER JOIN ficha                ON atencionPodologica.ficha = ficha.id\n" +
+                "    INNER JOIN usuario u1           ON ficha.usuario = u1.id\n" +
+                "    INNER JOIN usuario u2           ON atencionPodologica.usuario = u2.id\n" +
+                "    INNER JOIN tratamientoOrtonixia ON atencionPodologica.tratamientoOrtonixia = tratamientoOrtonixia.id\n" +
+                "WHERE \n" +
+                "    atencionPodologica.ficha = "+idFicha+" "
+                + "  ORDER BY atencionPodologica.fecha ASC;";
 
         rs = con.ejecutarSelect(query);
         List<AtencionPodologicaSelect> atenciones = new ArrayList<>();
@@ -548,15 +567,15 @@ public class Data {
         return list;
     }
 
-//    public static void main(String[] args) throws SQLException {
-//        try {
-//            Data d = new Data();
-//
-//            d.getDatosReporteUso("2017-9-25", "2017-11-1");
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    public static void main(String[] args) throws SQLException {
+        try {
+            Data d = new Data();
+
+            d.getAtencionPodologicaBy("4");
+        } catch (ClassNotFoundException ex) {
+            
+        }
+    }
     public int getIdFichaById(String idPaciente) throws SQLException {
 
         query = "SELECT id FROM ficha "
@@ -575,24 +594,41 @@ public class Data {
     }
 
     public AtencionPodologicaSelect getAtencionPodologicaBy(String idAtencion) throws SQLException {
-
-        query = "SELECT "
-                + "atencionPodologica.id AS ID, atencionPodologica.ficha AS 'Nº Ficha', usuario.nombre AS Creador, atencionPodologica.fecha AS Fecha, atencionPodologica.presion AS Presión, "
-                + "atencionPodologica.pulsoRadial AS 'Pulso Radial', atencionPodologica.pulsoPedio_d AS 'P. Pedio (d)', atencionPodologica.pulsoPedio_i AS 'P. Pedio (i)', "
-                + "atencionPodologica.peso AS Peso, atencionPodologica.sens_d AS 'Sensibilidad (d)', atencionPodologica.sens_i AS 'Sensibilidad (i)', "
-                + "atencionPodologica.tpodal_d AS 'Tº Podal (d)', atencionPodologica.tpodal_i AS 'Tº Podal (i)', atencionPodologica.curacion AS Curación, "
-                + "atencionPodologica.coloqPuente AS 'Coloc. Puente', atencionPodologica.resecado AS Resecado, atencionPodologica.enucleacion AS Enucleación, "
-                + "atencionPodologica.devastado AS 'Dev. Ungueal', atencionPodologica.maso AS 'Masoterapia o Masaje', "
-                + "atencionPodologica.espiculoectomia AS 'Espiculoectomía (Grado)', atencionPodologica.analgesia AS 'Analgesia (Tipo)', "
-                + "atencionPodologica.colocacionAcrilico AS 'Colocación Acilico', atencionPodologica.bandaMolecular AS 'Colocac. Banda Molec.', "
-                + "tratamientoOrtonixia.nombre AS 'C. Bracket/Cambio Elast.', atencionPodologica.poli AS 'C. Policarboxilato', "
-                + "atencionPodologica.observaciones AS Observaciones "
-                + "FROM "
-                + "atencionPodologica, ficha, usuario, tratamientoOrtonixia "
-                + "WHERE "
-                + "atencionPodologica.ficha = ficha.id AND "
-                + "atencionPodologica.usuario = usuario.id AND ficha.usuario = usuario.id AND atencionPodologica.tratamientoOrtonixia = tratamientoOrtonixia.id "
-                + "AND atencionPodologica.id =" + idAtencion;
+        query = "SELECT \n" +
+                "    atencionPodologica.id 				AS ID, \n" +
+                "    atencionPodologica.ficha 				AS 'Nº Ficha',\n" +
+                "    u1.nombre 						AS Creador, \n" +
+                "    atencionPodologica.fecha 				AS Fecha, \n" +
+                "    atencionPodologica.presion 			AS Presión, \n" +
+                "    atencionPodologica.pulsoRadial 			AS 'Pulso Radial', \n" +
+                "    atencionPodologica.pulsoPedio_d                    AS 'P. Pedio (d)', \n" +
+                "    atencionPodologica.pulsoPedio_i                    AS 'P. Pedio (i)', \n" +
+                "    atencionPodologica.peso				AS Peso, \n" +
+                "    atencionPodologica.sens_d 				AS 'Sensibilidad (d)', \n" +
+                "    atencionPodologica.sens_i 				AS 'Sensibilidad (i)',\n" +
+                "    atencionPodologica.tpodal_d 			AS 'Tº Podal (d)', \n" +
+                "    atencionPodologica.tpodal_i 			AS 'Tº Podal (i)',\n" +
+                "    atencionPodologica.curacion 			AS Curación, \n" +
+                "    atencionPodologica.coloqPuente 			AS 'Coloc. Puente', \n" +
+                "    atencionPodologica.resecado 			AS Resecado, \n" +
+                "    atencionPodologica.enucleacion 			AS Enucleación, \n" +
+                "    atencionPodologica.devastado 			AS 'Dev. Ungueal', \n" +
+                "    atencionPodologica.maso 				AS 'Masoterapia o Masaje', \n" +
+                "    atencionPodologica.espiculoectomia                 AS 'Espiculoectomía (Grado)', \n" +
+                "    atencionPodologica.analgesia 			AS 'Analgesia (Tipo)', \n" +
+                "    atencionPodologica.colocacionAcrilico              AS 'Colocación Acilico', \n" +
+                "    atencionPodologica.bandaMolecular                  AS 'Colocac. Banda Molec.', \n" +
+                "    tratamientoOrtonixia.nombre 			AS 'C. Bracket/Cambio Elast.', \n" +
+                "    atencionPodologica.poli 				AS 'C. Policarboxilato', \n" +
+                "    atencionPodologica.observaciones                   AS Observaciones \n" +
+                "FROM \n" +
+                "    atencionPodologica\n" +
+                "    INNER JOIN ficha                ON atencionPodologica.ficha = ficha.id\n" +
+                "    INNER JOIN usuario u1           ON ficha.usuario = u1.id\n" +
+                "    INNER JOIN usuario u2           ON atencionPodologica.usuario = u2.id\n" +
+                "    INNER JOIN tratamientoOrtonixia ON atencionPodologica.tratamientoOrtonixia = tratamientoOrtonixia.id\n" +
+                "WHERE \n" +
+                "    atencionPodologica.id = "+idAtencion+";";
 
         rs = con.ejecutarSelect(query);
         AtencionPodologicaSelect a = null;
