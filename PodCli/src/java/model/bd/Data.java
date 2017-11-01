@@ -19,27 +19,27 @@ public class Data {
                 "localhost",
                 "podcli",//nombre BD
                 "root",
-                "123456"//Password
+                ""//Password
         );
 
     }
-    
-    public String getNombreBy(String idFicha) throws SQLException{
-        query = "SELECT" +
-                "    p.nombre " +
-                "FROM" +
-                "    paciente p" +
-                "    INNER JOIN ficha f ON f.paciente = p.id " +
-                "WHERE" +
-                "    f.id = "+idFicha;
-        
+
+    public String getNombreBy(String idFicha) throws SQLException {
+        query = "SELECT"
+                + "    p.nombre "
+                + "FROM"
+                + "    paciente p"
+                + "    INNER JOIN ficha f ON f.paciente = p.id "
+                + "WHERE"
+                + "    f.id = " + idFicha;
+
         String nombre = null;
         rs = con.ejecutarSelect(query);
-        
-        if(rs.next()){
+
+        if (rs.next()) {
             nombre = rs.getString(1);
         }
-        
+
         con.close();
         return nombre;
     }
@@ -168,7 +168,7 @@ public class Data {
         rs = con.ejecutarSelect(query);
         List<AtencionPodologicaSelect> atenciones = new ArrayList<>();
         AtencionPodologicaSelect a;
-        while(rs.next()) {
+        while (rs.next()) {
             a = new AtencionPodologicaSelect();
             a.setId(rs.getInt(1));
             a.setFicha(rs.getInt(2));
@@ -551,9 +551,8 @@ public class Data {
 //            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-
     public int getIdFichaById(String idPaciente) throws SQLException {
-        
+
         query = "SELECT id FROM ficha "
                 + "WHERE paciente = " + idPaciente;
 
