@@ -96,32 +96,31 @@
 
 
 
-        <form action="crearFicha.do" method="post" class="form-inline">
+        <form action="crearFicha.do" method="post">
+            <input type="hidden" name="txtUsuario" value="<%= u.getId()%>"> 
 
             <!-- ----------------------------------FICHA CLÍNICA----------------------------------- -->
             <div id="fichaClinica">
                 <h1>Ficha Clinica</h1><br>
-
-                <input type="hidden" name="txtUsuario" value="<%= u.getId()%>"> 
                 <!-- HACER PRUEBAS DE DATEPICKER!!!!!! -->
                 <h2>Antecedentes Personales</h2>
-                Nombre: <input class="form-control" type="text" name="txtNombre" required="">
+                Nombre: <input type="text" name="txtNombre" required=""><br>
                 <input type="radio" name="opSexo" value="m" checked="checked">Masculino
-                <input type="radio" name="opSexo" value="f">Femenino
-                Fecha Nacimiento: <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto" required="">
-                Domicilio: <textarea class="form-control" name="txtDomicilio" required=""></textarea>
-                Rut: <input class="form-control" type="text" name="txtRut" required="">
+                <input type="radio" name="opSexo" value="f">Femenino<br>
+                Fecha Nacimiento: <input id="fechaNacimiento" name="txtFechaNacimineto" required=""><br>
+                Domicilio: <textarea name="txtDomicilio" required=""></textarea><br>
+                Rut: <input type="text" name="txtRut" required=""><br>
                 <!-- LLenar este comboBox con estados civiles -->
                 Estado Civil: 
-                <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil">
+                <select name="cboEstadoCivil">
                     <%
                         for (EstadoCivil ec : new Data().getEstadosCiviles()) {
                             out.println("<option value='" + ec.getId() + "'>" + ec.getNombre() + "</option>");
                         }
                     %>
-                </select> 
-                Actividad: <input class="form-control" type="text" name="txtActividad">
-                Telefonos:  <input class="form-control" type="text" name="txtTelefonos" required="">
+                </select> <br>
+                Actividad: <input type="text" name="txtActividad"><br>
+                Telefonos:  <input type="text" name="txtTelefonos" required=""><br>
             </div>
             <!-- ----------------------------------FICHA CLÍNICA----------------------------------- -->
 
@@ -137,7 +136,7 @@
             <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
             <div id="antecedentesMorbidos">
                 <h2>Antecedentes Morbidos</h2>
-                HTA: <select class="custom-select-sm form-control form-control-sm" name="cboHTA">
+                HTA: <select name="cboHTA">
                     <%
                         for (Respuesta r : new Data().getRespuestas()) {
                             if (r.getId() == 2) {
@@ -148,9 +147,9 @@
 
                         }
                     %>
-                </select>
-                <!-- LLenar este comboBox con tablas respuesta desde la BD -->
-                D.M: <select class="custom-select-sm form-control form-control-sm" name="cboDM">
+                </select><br>
+                
+                D.M: <select  name="cboDM">
                     <%
                         for (Respuesta r : new Data().getRespuestas()) {
                             if (r.getId() == 2) {
@@ -161,29 +160,29 @@
 
                         }
                     %>
-                </select>
+                </select><br>
                 Tipo:   
-                <select  class="col-md" class="custom-select-sm form-control form-control-sm" name="cboTipo">
-                    <option class="form-control form-control-sm" value="0">N/A</option>
-                    <option class="form-control form-control-sm" value="1">1</option>
-                    <option class="form-control form-control-sm" value="2">2</option>
-                </select>
-                Años Evolución: <input class="form-control form-control-sm" type="number" name="txtAnioEvolucion">
+                <select name="cboTipo">
+                    <option value="0">N/A</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select><br>
+                Años Evolución: <input type="number" name="txtAnioEvolucion"><br>
                 Paciente Mixto:
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboPcteMixto">
-                    <option class="form-control form-control-sm" value="true">Si</option>
-                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                </select>
+                <select name="cboPcteMixto">
+                    <option value="true">Si</option>
+                    <option value="false" selected>No</option>
+                </select><br>
                 Control:
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboControl">
-                    <option class="form-control form-control-sm" value="true">SI</option>
-                    <option class="form-control form-control-sm" value="false" selected="">No</option>
-                </select>
+                <select name="cboControl">
+                    <option value="true">SI</option>
+                    <option value="false" selected="">No</option>
+                </select><br>
 
-                Farmacoterapia: <textarea class="form-control" name="txtFarmacoterapia"></textarea>
-                Otras Patologías y Farmacoterapia: <textarea class="form-control" name="txtOtras"></textarea><br><br>
-                Alteraciones Ortopédicas: <textarea class="form-control" name="txtAlter"></textarea>
-                Habitos Nocivos: <textarea class="form-control" name="txtHabitosNocivos"></textarea>
+                Farmacoterapia: <textarea name="txtFarmacoterapia"></textarea><br>
+                Otras Patologías y Farmacoterapia: <textarea name="txtOtras"></textarea><br>
+                Alteraciones Ortopédicas: <textarea name="txtAlter"></textarea><br>
+                Habitos Nocivos: <textarea name="txtHabitosNocivos"></textarea><br>
             </div>
             <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
 
@@ -196,45 +195,45 @@
             <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
             <div id="examenFisicoGeneral">
                 <h2>Examen Físico General</h2>
-                Talla en metros: <input class="form-control" type="number" step="any" name="txtTalla" required="">
-                IMC: <input class="form-control" type="number" step="any" name="txtIMC" required="">
+                Talla en metros: <input type="number" step="any" name="txtTalla" required=""><br>
+                IMC: <input type="number" step="any" name="txtIMC" required=""><br>
                 Amputación: 
-                <select class="custom-select-sm form-control form-control-sm" name="cboAmputacion">
-                    <option class="form-control form-control-sm" value="true">Si</option>
-                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                </select>
+                <select name="cboAmputacion">
+                    <option value="true">Si</option>
+                    <option value="false" selected>No</option>
+                </select><br>
 
-                Ubicación: <input class="form-control" type="text" name="txtUbicacionAmputacion">
-                N° Calzado: <input class="form-control" type="number" name="txtNumCalzado" required="">
+                Ubicación: <input type="text" name="txtUbicacionAmputacion"><br>
+                N° Calzado: <input type="number" name="txtNumCalzado" required=""><br>
                 Varices Extremo Inferior: 
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboVaricesExtremoInferior">
-                    <option class="form-control form-control-sm" value="true">Si</option>
-                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                </select>
+                <select name="cboVaricesExtremoInferior">
+                    <option value="true">Si</option>
+                    <option value="false" selected>No</option>
+                </select><br>
                 Heridas:
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboHeridas">
-                    <option class="form-control form-control-sm" value="true">Si</option>
-                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                </select>
-                Ubicación: <input class="form-control" type="text" name="txtUbicacionHeridas">
-                Tipo: <input class="form-control" type="text" name="txtTipoHeridas">
+                <select name="cboHeridas">
+                    <option value="true">Si</option>
+                    <option value="false" selected>No</option>
+                </select><br>
+                Ubicación: <input type="text" name="txtUbicacionHeridas"><br>
+                Tipo: <input type="text" name="txtTipoHeridas"><br>
                 Tratamiento:
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboTratamiento">
-                    <option class="form-control form-control-sm" value="true">Si</option>
-                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                </select>
+                <select name="cboTratamiento">
+                    <option value="true">Si</option>
+                    <option value="false" selected>No</option>
+                </select><br>
                 Nevos: 
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboNevos">
-                    <option class="form-control form-control-sm" value="true">Si</option>
-                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                </select>
-                Ubicación: <input class="form-control" type="text" name="txtUbicacionNevos">
+                <select name="cboNevos">
+                    <option value="true">Si</option>
+                    <option value="false" selected>No</option>
+                </select><br>
+                Ubicación: <input type="text" name="txtUbicacionNevos"><br>
                 Máculas:
-                <select style="width: 68px" class="col-md" class="custom-select-sm form-control form-control-sm" name="cboMaculas">
-                    <option class="form-control form-control-sm" value="true">Si</option>
-                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                </select>
-                Tipo: <input class="form-control" type="text" name="txtTipoMaculas">
+                <select name="cboMaculas">
+                    <option value="true">Si</option>
+                    <option value="false" selected>No</option>
+                </select><br>
+                Tipo: <input type="text" name="txtTipoMaculas"><br>
             </div>
             <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
 

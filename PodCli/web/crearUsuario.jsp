@@ -1,9 +1,3 @@
-<%-- 
-    Document   : crearUsuario
-    Created on : 24-oct-2017, 16:55:32
-    Author     : Edunaldo
---%>
-
 <%@page import="model.bd.Data"%>
 <%@page import="model.bd.Perfil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

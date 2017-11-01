@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="mio"/>
-        <group name="GIT TEST">
-            <file>file:/home/prez/Escritorio/podcli/PodCli/web/crearUsuario.jsp</file>
-            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/model/bd/script/bd_podcli.sql</file>
-            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/controller/CrearUsuarioServlet.java</file>
-            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/model/bd/script/ROLES</file>
-            <file>file:/home/prez/Escritorio/podcli/PodCli/web/crearFicha.jsp</file>
-            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/model/bd/script/inserts.sql</file>
-        </group>
         <group>
             <file>file:/C:/Users/msilva/Desktop/podcli/PodCli/web/index.jsp</file>
             <file>file:/C:/Users/msilva/Desktop/podcli/PodCli/nbproject/private/private.properties</file>
+        </group>
+        <group name="GIT TEST">
+            <file>file:/home/prez/Escritorio/podcli/PodCli/src/java/controller/CerrarSesionServlet.java</file>
+            <file>file:/home/prez/Escritorio/podcli/PodCli/nbproject/private/private.properties</file>
         </group>
     </open-files>
 </project-private>

@@ -1,18 +1,15 @@
 package model.bd;
 
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Data {
 
-    private Conexion con;
+    private final Conexion con;
     private ResultSet rs;
     private String query;
 
@@ -22,9 +19,29 @@ public class Data {
                 "localhost",
                 "podcli",//nombre BD
                 "root",
-                ""//Password
+                "123456"//Password
         );
 
+    }
+    
+    public String getNombreBy(String idFicha) throws SQLException{
+        query = "SELECT" +
+                "    p.nombre " +
+                "FROM" +
+                "    paciente p" +
+                "    INNER JOIN ficha f ON f.paciente = p.id " +
+                "WHERE" +
+                "    f.id = "+idFicha;
+        
+        String nombre = null;
+        rs = con.ejecutarSelect(query);
+        
+        if(rs.next()){
+            nombre = rs.getString(1);
+        }
+        
+        con.close();
+        return nombre;
     }
 
     public Usuario getUsuario(String rut) throws SQLException {
@@ -128,7 +145,7 @@ public class Data {
         con.ejecutar(query);
     }
 
-    public List<AtencionPodologicaSelect> getListaAtencionPodologica(String idFicha) throws SQLException {//ARREGLADO
+    public List<AtencionPodologicaSelect> getAtencionesPodologicas(int idFicha) throws SQLException {//ARREGLADO
 
         query = "SELECT "
                 + "atencionPodologica.id AS ID, atencionPodologica.ficha AS 'Nº Ficha', usuario.nombre AS Creador, atencionPodologica.fecha AS Fecha, atencionPodologica.presion AS Presión, "
@@ -151,7 +168,7 @@ public class Data {
         rs = con.ejecutarSelect(query);
         List<AtencionPodologicaSelect> atenciones = new ArrayList<>();
         AtencionPodologicaSelect a;
-        if (rs.next()) {
+        while(rs.next()) {
             a = new AtencionPodologicaSelect();
             a.setId(rs.getInt(1));
             a.setFicha(rs.getInt(2));
@@ -186,7 +203,7 @@ public class Data {
         return atenciones;
     }
 
-    public Paciente buscarAntecedentesPersonales(String rut) throws SQLException {
+    public Paciente getAntecedentesPersonales(String rut) throws SQLException {
 
         query = "SELECT * FROM paciente WHERE rut = " + rut;
 
@@ -212,7 +229,7 @@ public class Data {
         return p;
     }
 
-    public List<Paciente> buscarPaciente(String filtro) throws SQLException {
+    public List<Paciente> getPacientes(String filtro) throws SQLException {
         List<Paciente> lista = new ArrayList<>();
 
         query = "SELECT * FROM paciente "
@@ -483,7 +500,7 @@ public class Data {
         return mes;
     }
 
-    public int getIdFicha(int idPaciente) throws SQLException {
+    public int getIdFicha(String idPaciente) throws SQLException {
         int idFicha = 0;
         query = "select id from ficha where paciente =" + idPaciente;
 
@@ -525,37 +542,31 @@ public class Data {
         return list;
     }
 
-    public static void main(String[] args) throws SQLException {
-        try {
-            Data d = new Data();
+//    public static void main(String[] args) throws SQLException {
+//        try {
+//            Data d = new Data();
+//
+//            d.getDatosReporteUso("2017-9-25", "2017-11-1");
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
-            d.getDatosReporteUso("2017-9-25", "2017-11-1");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public List<Ficha> buscarFichaById(int filtro) throws SQLException {
-        List<Ficha> lista = new ArrayList<>();
-
-        query = "SELECT * FROM ficha "
-                + "WHERE paciente = " + filtro;
+    public int getIdFichaById(String idPaciente) throws SQLException {
+        
+        query = "SELECT id FROM ficha "
+                + "WHERE paciente = " + idPaciente;
 
         rs = con.ejecutarSelect(query);
-        Ficha f;
+        int id = -1;
 
-        while (rs.next()) {
-            f = new Ficha();
-
-            f.setId(rs.getInt(1));
-            f.setFecha(rs.getTimestamp(2));
-
-            lista.add(f);
+        if (rs.next()) {
+            id = rs.getInt(1);
         }
 
         con.close();
 
-        return lista;
+        return id;
     }
 
     public AtencionPodologicaSelect getListaAtencionPodologicaPorID(String idAtencion) throws SQLException {

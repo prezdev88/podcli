@@ -171,11 +171,6 @@ CREATE TABLE atencionPodologica(
     FOREIGN KEY(tratamientoOrtonixia)   REFERENCES tratamientoOrtonixia(id),
     FOREIGN KEY(usuario)                REFERENCES usuario(id)
 );
-/*insert into atencionPodologica values(null,ficha,usuario,fecha,presion,pulsoRadial,
- pulsoPedio_d ,pulsoPedio_i ,peso ,sens_d ,sens_i,tpodal_d ,tpodal_i ,curacion ,
-coloqPuente,resecado,enucleacion ,devastado ,maso ,espiculoectomia  ,analgesia ,
-colocacionAcrilico ,bandaMolecular ,colocacionPuente,tratamientoOrtonixia ,poli ,'observaciones');*/
-
 
 SELECT * FROM perfil;
 SELECT * FROM usuario;
@@ -185,9 +180,5 @@ SELECT * FROM paciente;
 SELECT * FROM ficha;
 SELECT * FROM tratamientoOrtonixia;
 SELECT * FROM atencionPodologica;
-
-INSERT INTO usuario VALUE(NULL,"19360036-0","Constanza Abarca Basáez",1);
-
-
 
 DROP DATABASE podcli;

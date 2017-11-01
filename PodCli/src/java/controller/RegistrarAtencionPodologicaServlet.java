@@ -67,7 +67,7 @@ public class RegistrarAtencionPodologicaServlet extends HttpServlet {
             observaciones           =                       req.getParameter("obs");
 
             
-            testo                  = (req.getParameter("spd").equals(""))?0:Integer.parseInt(req.getParameter("spd"));
+//            testo                  = (req.getParameter("spd").equals(""))?0:Integer.parseInt(req.getParameter("spd"));
             
             AtencionPodologica a = new AtencionPodologica();
             a.setFicha(ficha);
@@ -100,10 +100,8 @@ public class RegistrarAtencionPodologicaServlet extends HttpServlet {
             
             d.registrarAtencionPodologica(a);
 
-        response.sendRedirect("buscarPaciente.jsp");
-        } catch (SQLException ex) {
-            Logger.getLogger(RegistrarAtencionPodologicaServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+            response.sendRedirect("buscarPaciente.jsp");
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(RegistrarAtencionPodologicaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
