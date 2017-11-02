@@ -78,7 +78,10 @@
                 firstDay: 1,
                 isRTL: false,
                 showMonthAfterYear: false,
-                yearSuffix: ''
+                yearSuffix: '',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+0"
             };
             $.datepicker.setDefaults($.datepicker.regional['es']);
 
