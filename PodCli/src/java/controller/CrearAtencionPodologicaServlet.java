@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.DispatcherType;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,11 +18,12 @@ import model.bd.Data;
  * @author pgonzalez
  */
 @WebServlet(name = "RegistrarAtencionPodologicaServlet", urlPatterns = {"/registrarAtencion.do"})
-public class RegistrarAtencionPodologicaServlet extends HttpServlet {
+public class CrearAtencionPodologicaServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        req.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             Data d = new Data();
             int ficha, usuario, testo; //<--fk de ficha y usuario
@@ -102,7 +102,7 @@ public class RegistrarAtencionPodologicaServlet extends HttpServlet {
 
             response.sendRedirect("buscarPaciente.jsp");
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(RegistrarAtencionPodologicaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CrearAtencionPodologicaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

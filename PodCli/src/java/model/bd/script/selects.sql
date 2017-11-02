@@ -41,3 +41,5 @@ FROM
     INNER JOIN tratamientoOrtonixia ON atencionPodologica.tratamientoOrtonixia = tratamientoOrtonixia.id
 WHERE 
     atencionPodologica.ficha = 1;
+
+select * from paciente;

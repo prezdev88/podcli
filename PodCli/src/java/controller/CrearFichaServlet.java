@@ -23,6 +23,7 @@ public class CrearFichaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
             try {
@@ -68,7 +69,12 @@ public class CrearFichaServlet extends HttpServlet {
                 nuevaFicha.setUsuario(Integer.parseInt(request.getParameter("txtUsuario")));
                 nuevaFicha.setHta(Integer.parseInt(request.getParameter("cboHTA")));
                 nuevaFicha.setDm(Integer.parseInt(request.getParameter("cboDM")));
-                nuevaFicha.setTipoDiabetes(Integer.parseInt(request.getParameter("cboTipo")));
+                
+                try {
+                    nuevaFicha.setTipoDiabetes(Integer.parseInt(request.getParameter("cboTipo")));
+                } catch (Exception e) {
+                    nuevaFicha.setTipoDiabetes(0);
+                }
 
                 String anio = request.getParameter("txtAnioEvolucion");
 
@@ -100,7 +106,13 @@ public class CrearFichaServlet extends HttpServlet {
                 nuevaFicha.setHeridas(Boolean.parseBoolean(request.getParameter("cboHeridas")));
                 nuevaFicha.setUbiHeridas(request.getParameter("txtUbicacionHeridas"));
                 nuevaFicha.setTipoHerida(request.getParameter("txtTipoHeridas"));
-                nuevaFicha.setTratamiento(Boolean.parseBoolean(request.getParameter("cboTratamiento")));
+                
+                try {
+                    nuevaFicha.setTratamiento(Boolean.parseBoolean(request.getParameter("cboTratamiento")));
+                } catch (Exception e) {
+                    nuevaFicha.setTratamiento(false);
+                }
+                
                 //Nevos
                 nuevaFicha.setNevos(Boolean.parseBoolean(request.getParameter("cboNevos")));
                 nuevaFicha.setUbiNevos(request.getParameter("txtUbicacionNevos"));
