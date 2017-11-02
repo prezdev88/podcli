@@ -19,24 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Crear Ficha</title>
         
-        <script>
-            function switchear(idComponente){
-                var elemento = document.getElementById(idComponente);
-                if(idComponente === "cboTipo"){
-                    var id = document.getElementById("cboDM").value;
-                    id = parseInt(id);
-                    
-                    elemento.disabled = !(id === 1 || id === 4);
-                }else if(idComponente.includes("cbo")){
-                    elemento.disabled = !elemento.disabled;
-                }else {
-                    elemento.readOnly = !elemento.readOnly;
-                }
-                
-            }
-        </script>
-
-
+        
         <!-- Esto es del calendario JQUERY -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
@@ -169,7 +152,7 @@
                     %>
                 </select><br>
                 
-                D.M: <select id="cboDM" name="cboDM" onclick="switchear('cboTipo')">
+                D.M: <select id="cboDM" name="cboDM">
                     <%
                         for (Respuesta r : new Data().getRespuestas()) {
                             if (r.getId() == 2) {
@@ -218,7 +201,7 @@
                 Talla en metros: <input type="number" step="any" name="txtTalla" required=""><br>
                 IMC: <input type="number" step="any" name="txtIMC" required=""><br>
                 Amputación: 
-                <select name="cboAmputacion" onclick="switchear('txtUbicacionAmputacion')">
+                <select id="cboAmputacion" name="cboAmputacion">
                     <option value="true">Si</option>
                     <option value="false" selected>No</option>
                 </select><br>
@@ -231,7 +214,7 @@
                     <option value="false" selected>No</option>
                 </select><br>
                 Heridas:
-                <select name="cboHeridas" onclick="switchear('txtUbicacionHeridas'); switchear('txtTipoHeridas'); switchear('cboTratamiento');">
+                <select name="cboHeridas">
                     <option value="true">Si</option>
                     <option value="false" selected>No</option>
                 </select><br>
@@ -243,13 +226,13 @@
                     <option value="false" selected>No</option>
                 </select><br>
                 Nevos: 
-                <select name="cboNevos" onclick="switchear('txtUbicacionNevos')">
+                <select name="cboNevos">
                     <option value="true">Si</option>
                     <option value="false" selected>No</option>
                 </select><br>
                 Ubicación: <input type="text" name="txtUbicacionNevos" id="txtUbicacionNevos" readonly><br>
                 Máculas:
-                <select name="cboMaculas" onclick="switchear('txtTipoMaculas')">
+                <select name="cboMaculas">
                     <option value="true">Si</option>
                     <option value="false" selected>No</option>
                 </select><br>
