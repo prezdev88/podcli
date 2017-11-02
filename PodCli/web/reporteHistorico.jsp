@@ -86,7 +86,7 @@
             List<DatosReporteUso> datos = d.getDatosReporteUso(fecIniFormated, fecFinFormated);
         %>
         Desde el [<b><%=fecIni%></b>] hasta el [<b><%=fecFin%></b>]
-        <table>
+        <table border="1">
             <tr>
                 <th>Rut</th>
                 <th>Nombre</th>

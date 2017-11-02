@@ -18,7 +18,23 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Crear Ficha</title>
-
+        
+        <script>
+            function switchear(idComponente){
+                var elemento = document.getElementById(idComponente);
+                if(idComponente === "cboTipo"){
+                    var id = document.getElementById("cboDM").value;
+                    id = parseInt(id);
+                    
+                    elemento.disabled = !(id === 1 || id === 4);
+                }else if(idComponente.includes("cbo")){
+                    elemento.disabled = !elemento.disabled;
+                }else {
+                    elemento.readOnly = !elemento.readOnly;
+                }
+                
+            }
+        </script>
 
 
         <!-- Esto es del calendario JQUERY -->
@@ -150,7 +166,7 @@
                     %>
                 </select><br>
                 
-                D.M: <select  name="cboDM">
+                D.M: <select id="cboDM" name="cboDM" onclick="switchear('cboTipo')">
                     <%
                         for (Respuesta r : new Data().getRespuestas()) {
                             if (r.getId() == 2) {
@@ -163,7 +179,7 @@
                     %>
                 </select><br>
                 Tipo:   
-                <select name="cboTipo">
+                <select id="cboTipo" name="cboTipo" disabled>
                     <option value="0">N/A</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -199,12 +215,12 @@
                 Talla en metros: <input type="number" step="any" name="txtTalla" required=""><br>
                 IMC: <input type="number" step="any" name="txtIMC" required=""><br>
                 Amputación: 
-                <select name="cboAmputacion">
+                <select name="cboAmputacion" onclick="switchear('txtUbicacionAmputacion')">
                     <option value="true">Si</option>
                     <option value="false" selected>No</option>
                 </select><br>
 
-                Ubicación: <input type="text" name="txtUbicacionAmputacion"><br>
+                Ubicación: <input type="text" name="txtUbicacionAmputacion" id="txtUbicacionAmputacion" readonly><br>
                 N° Calzado: <input type="number" name="txtNumCalzado" required=""><br>
                 Varices Extremo Inferior: 
                 <select name="cboVaricesExtremoInferior">
@@ -212,29 +228,29 @@
                     <option value="false" selected>No</option>
                 </select><br>
                 Heridas:
-                <select name="cboHeridas">
+                <select name="cboHeridas" onclick="switchear('txtUbicacionHeridas'); switchear('txtTipoHeridas'); switchear('cboTratamiento');">
                     <option value="true">Si</option>
                     <option value="false" selected>No</option>
                 </select><br>
-                Ubicación: <input type="text" name="txtUbicacionHeridas"><br>
-                Tipo: <input type="text" name="txtTipoHeridas"><br>
+                Ubicación: <input type="text" id="txtUbicacionHeridas" name="txtUbicacionHeridas" readonly><br>
+                Tipo: <input type="text" id="txtTipoHeridas" name="txtTipoHeridas" readonly><br>
                 Tratamiento:
-                <select name="cboTratamiento">
+                <select id="cboTratamiento" name="cboTratamiento" disabled>
                     <option value="true">Si</option>
                     <option value="false" selected>No</option>
                 </select><br>
                 Nevos: 
-                <select name="cboNevos">
+                <select name="cboNevos" onclick="switchear('txtUbicacionNevos')">
                     <option value="true">Si</option>
                     <option value="false" selected>No</option>
                 </select><br>
-                Ubicación: <input type="text" name="txtUbicacionNevos"><br>
+                Ubicación: <input type="text" name="txtUbicacionNevos" id="txtUbicacionNevos" readonly><br>
                 Máculas:
-                <select name="cboMaculas">
+                <select name="cboMaculas" onclick="switchear('txtTipoMaculas')">
                     <option value="true">Si</option>
                     <option value="false" selected>No</option>
                 </select><br>
-                Tipo: <input type="text" name="txtTipoMaculas"><br>
+                Tipo: <input type="text" name="txtTipoMaculas" id="txtTipoMaculas" readonly><br>
             </div>
             <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
 
