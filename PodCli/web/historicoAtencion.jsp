@@ -16,10 +16,17 @@
         int idFicha = d.getIdFichaById(idPaciente);
         List<AtencionPodologicaSelect> atenciones = d.getAtencionesPodologicas(idFicha);
         
+        String rutPaciente = d.getPaciente(idPaciente).getRut();
+        
         String nomPac = d.getNombreBy(String.valueOf(idFicha));
     %>
     <h1>Atenciones podológicas de <%=nomPac%></h1>
-    <h3>Ficha asociada: <%=idFicha%></h3>
+    <h3>
+        <form action="verFicha.jsp">
+            <input type="hidden" name="rut" value="<%=rutPaciente%>">
+            <input type="submit" value="Ver ficha">
+        </form>
+    </h3>
     <table border="1">
         <tr>
             <th>Id</th>
@@ -29,10 +36,9 @@
         </tr>
         <%
             for (AtencionPodologicaSelect aps : atenciones) {
-                //el TR va dentro del for ¬¬, no fuera
                 out.println("<tr>");
                 out.println("<td>" + aps.getId() + "</td>");
-                out.println("<td>" + aps.getFecha() + "</td>");
+                out.println("<td>" + Data.getFormattedDate(aps.getFecha(), true) + "</td>");
                 out.println("<td>" + aps.getObservaciones() + "</td>");
                 out.println("<td>");
                 out.println("<form action='verAtencion.jsp' method='post'>");

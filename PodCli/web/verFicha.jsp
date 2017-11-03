@@ -32,17 +32,17 @@
 
 
         <h1><%=f.getNombrePaciente()%></h1>
-
+        Fecha de Registro: <%= Data.getFormattedDate(f.getFecha_ficha(), true) %><br>
 
         <h1>Antecedentes Personales</h1>
         Rut: <input type="text" name="txtRut" value="<%= f.getRut()%>" readonly><br>
         Nombre: <input type="text" name="txtNombre" value="<%= f.getNombrePaciente()%>" readonly><br>
-        Fecha Nacimiento: <input type="date" name="txtFechaNacimineto" value="<%= f.getFecha()%>" readonly><br>
+        Fecha Nacimiento: <input type="text" name="txtFechaNacimineto" value="<%= Data.getFormattedDate(f.getFecha(), false) %>" readonly><br>
         Domicilio: <textarea name="txtDomicilio" readonly><%= f.getDomicilio()%></textarea><br>
         Estado Civil: <input type="text" value="<%= f.getEstado_civil()%>" readonly><br>
         Actividad: <input type="text" name="txtActividad" value="<%= f.getActividad()%>" readonly><br>
         Telefonos:  <input type="text" name="txtTelefonos" value="<%= f.getFono()%>" readonly><br>
-        Fecha de Registro: <input value="<%= f.getFecha_ficha() %>" readonly><br>
+        
 
              
 

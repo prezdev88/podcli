@@ -1,16 +1,18 @@
 package model.bd;
 
+import java.sql.Timestamp;
+
 public class FichaSelect {
     private int id; //nro ficha
     private String paciente;
     private String sexo;
-    private String fecha;
+    private Timestamp fecha;
     private String domicilio;
     private String rut;
     private String estado_civil;
     private String actividad;
     private String fono;
-    private String fecha_ficha;
+    private Timestamp fecha_ficha;
     private String encargado;
     private String hta;
     private String dm;
@@ -61,13 +63,23 @@ public class FichaSelect {
         this.sexo = sexo;
     }
 
-    public String getFecha() {
+    public String getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(String paciente) {
+        this.paciente = paciente;
+    }
+
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
+
+    
 
     public String getDomicilio() {
         return domicilio;
@@ -109,11 +121,11 @@ public class FichaSelect {
         this.fono = fono;
     }
 
-    public String getFecha_ficha() {
+    public Timestamp getFecha_ficha() {
         return fecha_ficha;
     }
 
-    public void setFecha_ficha(String fecha_ficha) {
+    public void setFecha_ficha(Timestamp fecha_ficha) {
         this.fecha_ficha = fecha_ficha;
     }
 

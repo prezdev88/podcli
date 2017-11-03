@@ -1,10 +1,12 @@
 package model.bd;
 
+import java.sql.Timestamp;
+
 public class AtencionPodologicaSelect {
     private int id;
     private int ficha;
     private String usuario;
-    private String fecha;
+    private Timestamp fecha;
     private float presion;//Presión Arterial
     private int pulsoRadial;
     private int pulsoPedio_d;//Derecho
@@ -17,6 +19,14 @@ public class AtencionPodologicaSelect {
     private boolean curacion;
     private boolean resecado;
 
+    public Timestamp getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Timestamp fecha) {
+        this.fecha = fecha;
+    }
+    
     public int getId() {
         return id;
     }
@@ -41,13 +51,6 @@ public class AtencionPodologicaSelect {
         this.usuario = usuario;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
 
     public float getPresion() {
         return presion;

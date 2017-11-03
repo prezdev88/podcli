@@ -22,7 +22,8 @@
         
         <div>
             <h1><%= p.getNombre() %></h1>
-            <h3>Atención podológica [<%= a.getFecha() %>]</h3>
+            <h2>Atención podológica</h2>
+            <h4><%= Data.getFormattedDate(a.getFecha(), true) %></h4>
         </div>
         <div>
 

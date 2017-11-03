@@ -3,6 +3,7 @@ package model.bd;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,17 @@ public class Data {
     private final Conexion con;
     private ResultSet rs;
     private String query;
+    
+    public static String getFormattedDate(Date date, boolean conHora) {
+        SimpleDateFormat sdf = 
+                new SimpleDateFormat(
+                        "dd 'de' MMMM 'de' YYYY"
+                        +(conHora?" 'a las' HH:mm":""));
+        
+        return sdf.format(date);
+    }
+    
+    
 
     public Data() throws SQLException, ClassNotFoundException {
 
@@ -192,7 +204,7 @@ public class Data {
             a.setId(rs.getInt(1));
             a.setFicha(rs.getInt(2));
             a.setUsuario(rs.getString(3));
-            a.setFecha(rs.getString(4));
+            a.setFecha(rs.getTimestamp(4));
             a.setPresion(rs.getFloat(5));
             a.setPulsoRadial(rs.getInt(6));
             a.setPulsoPedio_d(rs.getInt(7));
@@ -321,13 +333,13 @@ public class Data {
             f.setId(rs.getInt(1));
             f.setNombrePaciente(rs.getString(2));
             f.setSexo(rs.getString(3));
-            f.setFecha(rs.getString(4));
+            f.setFecha(rs.getTimestamp(4));
             f.setDomicilio(rs.getString(5));
             f.setRut(rs.getString(6));
             f.setEstado_civil(rs.getString(7));
             f.setActividad(rs.getString(8));
             f.setFono(rs.getString(9));
-            f.setFecha_ficha(rs.getString(10));
+            f.setFecha_ficha(rs.getTimestamp(10));
             f.setEncargado(rs.getString(11));
             f.setHta(rs.getString(12));
             f.setDm(rs.getString(13));
@@ -568,14 +580,9 @@ public class Data {
     }
 
     public static void main(String[] args) throws SQLException {
-        try {
-            Data d = new Data();
-
-            d.getAtencionPodologicaBy("4");
-        } catch (ClassNotFoundException ex) {
-            
-        }
+        
     }
+    
     public int getIdFichaById(String idPaciente) throws SQLException {
 
         query = "SELECT id FROM ficha "
@@ -637,7 +644,7 @@ public class Data {
             a.setId(rs.getInt(1));
             a.setFicha(rs.getInt(2));
             a.setUsuario(rs.getString(3));
-            a.setFecha(rs.getString(4));
+            a.setFecha(rs.getTimestamp(4));
             a.setPresion(rs.getFloat(5));
             a.setPulsoRadial(rs.getInt(6));
             a.setPulsoPedio_d(rs.getInt(7));
