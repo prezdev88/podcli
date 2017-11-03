@@ -4,20 +4,11 @@
 <%@page import="model.bd.Data"%>
 <%@page import="model.bd.EstadoCivil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="validar.jsp"%>
+
 <!DOCTYPE html>
-
-
 <html>
     <head>
-        <%
-            Usuario u = (Usuario) request.getSession().getAttribute("usuario");
-
-            if (u == null) {
-                request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-        %>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Ver Ficha</title>

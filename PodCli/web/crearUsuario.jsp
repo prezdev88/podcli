@@ -1,6 +1,8 @@
+<%@page import="model.bd.Usuario"%>
 <%@page import="model.bd.Data"%>
 <%@page import="model.bd.Perfil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="validar.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>

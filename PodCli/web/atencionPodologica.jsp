@@ -2,20 +2,10 @@
 <%@page import="model.bd.Data"%>
 <%@page import="model.bd.TratamientoOrtonixia"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="validar.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <%
-            Usuario u = (Usuario) session.getAttribute("usuario");
-
-            if (u == null) {
-                request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-            
-            
-        %>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Atención Podológica</title>
     </head>

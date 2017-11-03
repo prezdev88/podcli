@@ -1,7 +1,9 @@
+<%@page import="model.bd.Usuario"%>
 <%@page import="model.bd.DatosReporteUso"%>
 <%@page import="java.util.List"%>
 <%@page import="model.bd.Data"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="validar.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>

@@ -3,16 +3,8 @@
 <%@page import="model.bd.Paciente"%>
 <%@page import="model.bd.Data"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="validar.jsp"%>
 <!DOCTYPE html>
-<%
-
-    Usuario u = (Usuario) session.getAttribute("usuario");
-
-    if (u == null) {
-        request.getSession().setAttribute("error", new Error("Debe Ingresar Rut"));
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
-%>
 
 <html>
     <head>

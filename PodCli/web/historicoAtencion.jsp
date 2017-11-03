@@ -1,9 +1,11 @@
+<%@page import="model.bd.Usuario"%>
 <%@page import="model.bd.AtencionPodologicaSelect"%>
 <%@page import="java.util.List"%>
 <%@page import="model.bd.Ficha"%>
 <%@page import="model.bd.Paciente"%>
 <%@page import="model.bd.Data"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="validar.jsp"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
