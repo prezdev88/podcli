@@ -8,8 +8,8 @@
     </head>
 
     <body>
-        <h1>Atencion Podologica</h1>
-        <p>Bienvenid@ al sistema de atencion podologica de Santo Tomás Rancagua.
+        <h1>Atencion Podológica</h1>
+        <p>Bienvenid@ al sistema de atención podológica de Santo Tomás Rancagua.
             Para comenzar escriba su rut y luego presione Entrar</p>
 
         <form action="iniciarSesion.do" method="post">
