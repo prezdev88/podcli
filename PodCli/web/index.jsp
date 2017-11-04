@@ -4,18 +4,51 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>PodCli</title>
     </head>
+    <style>
+        .navbar-nav.navbar-center {
+            position: absolute;
+            left: 50%;
+            transform: translatex(-50%);
+        }
 
+        .navbar-brand{
+            padding: 10px 10px;
+        }
+    </style>
     <body>
-        <h1>Atencion Podológica</h1>
-        <p>Bienvenid@ al sistema de atención podológica de Santo Tomás Rancagua.
-            Para comenzar escriba su rut y luego presione Entrar</p>
 
-        <form action="iniciarSesion.do" method="post">
-            <input id="rut" type="text" name="rut" placeholder="EJ: 12345678-k" required="">                                        
-            <input type="submit" value="Entrar">
-        </form>
+        <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+            <!-- El logotipo y el icono que despliega el menú se agrupan
+                 para mostrarlos mejor en los dispositivos móviles -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
+                    <span><img width = 30px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                </a>
+            </div>
+
+            <p class="navbar-text pull-left">PodCli</p>
+
+        </nav>
+
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Atencion Podológica</h1>
+                <br>
+                <p>Bienvenid@ al sistema de atención podológica de Santo Tomás Rancagua.
+                    Para comenzar escriba su rut y luego presione Entrar</p>
+
+                <form action="iniciarSesion.do" method="post" class="form-inline">
+                    <div class="form-group">
+                        <input id="rut" type="text" name="rut" placeholder="EJ: 12345678-k" required="" class="form-control">                                        
+                        <input type="submit" value="Entrar" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <%
             Error e = (Error) request.getSession().getAttribute("error");
             if (e != null) {
