@@ -34,28 +34,33 @@
         </nav>
 
         <div class="jumbotron">
-            <div class="container">
-                <h1>Atencion Podológica</h1>
-                <br>
-                <p>Bienvenid@ al sistema de atención podológica de Santo Tomás Rancagua.
-                    Para comenzar escriba su rut y luego presione Entrar</p>
+            <center>
+                <div class="container">
+                    <h1>Atencion Podológica</h1>
+                    <br>
+                    <p>Bienvenid@ al sistema de atención podológica de Santo Tomás Rancagua.
+                        Para comenzar escriba su rut y luego presione Entrar</p>
 
-                <form action="iniciarSesion.do" method="post" class="form-inline">
-                    <div class="form-group">
-                        <input id="rut" type="text" name="rut" placeholder="EJ: 12345678-k" required="" class="form-control">                                        
-                        <input type="submit" value="Entrar" class="btn btn-primary">
-                    </div>
-                </form>
-            </div>
+                    <form action="iniciarSesion.do" method="post" class="form-inline">
+                        <div class="form-group">
+                            <input id="rut" type="text" name="rut" placeholder="EJ: 12345678-k" required="" class="form-control">                                        
+                            <br>
+
+                        </div>
+                        <center>
+                            <%
+                                Error e = (Error) request.getSession().getAttribute("error");
+                                if (e != null) {
+                                    out.println("<p class='text-danger input-sm'>" + e.getMessage() + "</p>");
+                                    request.getSession().removeAttribute("error");
+                                }
+                            %>
+                            <br>
+                            <input type="submit" value="Entrar" class="btn btn-primary"><br>
+                        </center>
+                    </form>
+                </div>
+            </center>
         </div>
-
-        <%
-            Error e = (Error) request.getSession().getAttribute("error");
-            if (e != null) {
-                out.println(e.getMessage());
-                request.getSession().removeAttribute("error");
-            }
-
-        %>
     </body>
 </html>

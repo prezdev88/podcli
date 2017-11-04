@@ -26,7 +26,7 @@
     </style>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
-            
+
             <div class="navbar-header">
                 <a class="navbar-brand" href="#" style="padding-bottom: 10px">
                     <span><img width = 30px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
@@ -38,7 +38,7 @@
             <ul class="nav navbar-nav navbar-left">
                 <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                 <!-- Redirigir a crear ficha -->
-                <li><a href="#">Crear ficha</a></li>
+                <li><a href="crearFicha.jsp">Crear ficha</a></li>
                 <!-- Redirigir a reporte de uso -->
                 <li><a href="#">Reporte de uso</a></li>
             </ul>
@@ -57,7 +57,7 @@
             <!-- <ul class="nav navbar-nav navbar-right">
                 <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
             </ul> -->
-            
+
             <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
                 <li>
                     <form class="navbar-form pull-right" action="index.jsp">
@@ -66,7 +66,7 @@
                 </li>
             </ul>
         </nav>
-        
+
         <!-- Falta metodo para obtener el nombre y ocupacion de la persona que entró -->
         <div class="jumbotron">
             <div class="container">
