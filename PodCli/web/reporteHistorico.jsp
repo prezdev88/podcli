@@ -8,13 +8,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>Reporte Histórico</title>
         <!-- Esto es del calendario JQUERY -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>    
         <!-- Esto es del calendario JQUERY -->
+
         <script>
             $(function () {
                 $("#fecIni").datepicker();
@@ -27,8 +33,8 @@
 
                 // Setter
                 $("#fecIni").datepicker("option", "dateFormat", "dd 'de' MM 'de' yy");
-                
-                
+
+
                 $("#fecFin").datepicker();
                 $("#fecFin").datepicker({
                     dateFormat: "dd-mm-yy"
@@ -41,7 +47,7 @@
                 $("#fecFin").datepicker("option", "dateFormat", "dd 'de' MM 'de' yy");
             });
         </script>
-        
+
         <script>
             // español
             $.datepicker.regional['es'] = {
@@ -69,50 +75,70 @@
         </script>
     </head>
     <body>
-        <h1>Reporte histórico</h1>
-        <form action="reporteHistorico.jsp" method="post">
-            <input id="fecIni" name="fecIni" required="">
-            <input id="fecFin" name="fecFin" required="">
-            <input type="submit" value="Procesar" name="btnProcesar">
-        </form>
-        
-        <%
-        if(request.getParameter("btnProcesar") != null){
-            Data d = new Data();
-            String fecIni = request.getParameter("fecIni");
-            String fecFin = request.getParameter("fecFin");
-            
-            String[] vectFecha = fecIni.split(" de ");
-            String fecIniFormated = vectFecha[2] + "-" + d.getMes(vectFecha[1].toLowerCase()) + "-" + vectFecha[0];
-            
-            vectFecha = fecFin.split(" de ");
-            String fecFinFormated = vectFecha[2] + "-" + d.getMes(vectFecha[1].toLowerCase()) + "-" + vectFecha[0];
-            
-            List<DatosReporteUso> datos = d.getDatosReporteUso(fecIniFormated, fecFinFormated);
-        %>
-        Desde el [<b><%=fecIni%></b>] hasta el [<b><%=fecFin%></b>]
-        <table border="1">
-            <tr>
-                <th>Rut</th>
-                <th>Nombre</th>
-                <th>Nº Fichas</th>
-                <th>Nº Atenciones</th>
-            </tr>
-            
-            
-          <%for (DatosReporteUso dru : datos) {%>
-            <tr>
-                <td><%= dru.getRut() %></td>
-                <td><%= dru.getNombre()%></td>
-                <td><%= dru.getCantidadFichas()%></td>
-                <td><%= dru.getCantidadAtencionesPodologicas() %></td>
-            </tr>
-          <%}
-          
-        } // cierre del if%>
-           
-        </table>
-        
-        <a href="crearFicha.jsp">Volver</a>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <!-- El logotipo y el icono que despliega el menú se agrupan
+                 para mostrarlos mejor en los dispositivos móviles -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="padding-bottom: 50px">
+                    <span><img width = 46px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                </a>
+            </div>
+            <p class="navbar-text pull-left">
+                <h4>PodCli</h4>
+            </p>
+        </nav>
+
+        <br><br><br><br><br><br>
+        <div class="container mt">
+            <div class="row justify-content-xl-center">
+                <div class="jumbotron">
+                    <center>
+                        <h1>Reporte histórico</h1>
+                        <form action="reporteHistorico.jsp" method="post" class="form-inline">
+                            <input class="form-control" id="fecIni" name="fecIni" required="">
+                            <input  class="form-control"id="fecFin" name="fecFin" required="">
+                            <input type="submit" value="Procesar" name="btnProcesar" class="btn btn-primary">
+                            <a href="crearFicha.jsp" role="button" class="btn btn-primary">Volver</a>
+                        </form>
+
+                        <%            if (request.getParameter("btnProcesar") != null) {
+                                Data d = new Data();
+                                String fecIni = request.getParameter("fecIni");
+                                String fecFin = request.getParameter("fecFin");
+
+                                String[] vectFecha = fecIni.split(" de ");
+                                String fecIniFormated = vectFecha[2] + "-" + d.getMes(vectFecha[1].toLowerCase()) + "-" + vectFecha[0];
+
+                                vectFecha = fecFin.split(" de ");
+                                String fecFinFormated = vectFecha[2] + "-" + d.getMes(vectFecha[1].toLowerCase()) + "-" + vectFecha[0];
+
+                                List<DatosReporteUso> datos = d.getDatosReporteUso(fecIniFormated, fecFinFormated);
+                        %>
+                        <br>
+                        Desde el [ <b><%=fecIni%></b> ] hasta el [ <b><%=fecFin%></b> ]
+                    </center>
+                    <br><br>
+                    <table class="table table-striped">
+                        <tr>
+                            <th style="width:200px">Rut</th>
+                            <th style="width:200px">Nombre</th>
+                            <th style="width:200px">Nº Fichas</th>
+                            <th style="width:200px">Nº Atenciones</th>
+                        </tr>
+
+                        <%for (DatosReporteUso dru : datos) {%>
+                        <tr>
+                            <td style="width:200px"><%= dru.getRut()%></td>
+                            <td style="width:200px"><%= dru.getNombre()%></td>
+                            <td style="width:200px"><%= dru.getCantidadFichas()%></td>
+                            <td style="width:200px"><%= dru.getCantidadAtencionesPodologicas()%></td>
+                        </tr>
+                        <%}
+
+                            } // cierre del if%>
+                    </table>
+                </div>
+            </div> 
+        </div> 
     </body>
 </html>
