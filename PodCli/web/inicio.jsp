@@ -41,6 +41,8 @@
                 <li><a href="crearFicha.jsp">Crear ficha</a></li>
                 <!-- Redirigir a reporte de uso -->
                 <li><a href="#">Reporte de uso</a></li>
+                <li><a href="crearUsuario.jsp">Crear Usuario</a></li>
+
             </ul>
 
             <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->

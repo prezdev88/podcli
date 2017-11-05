@@ -15,68 +15,68 @@
         <title>Atención Podológica</title>
     </head>
     <body>
-        <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
-            
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                    <span><img width = 30px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
-                </a>
-            </div>
+        <div class="row justify-content-xl-center">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" style="padding-bottom: 10px">
+                        <span><img width = 50px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                    </a>
+                </div>
 
-            <p class="navbar-text pull-left">PodCli</p>
+                <p class="navbar-text pull-left">PodCli</p>
 
-            <ul class="nav navbar-nav navbar-left">
-                <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-                <!-- Redirigir a crear ficha -->
-                <li><a href="#"><%
-                if (u != null) {
-                    out.println("Usuario Actual: " + u.getNombre());
-                    out.println("<br>Perfil:");
-                    Data d = new Data();
+                <ul class="nav navbar-nav navbar-left">
+                    <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+                    <!-- Redirigir a crear ficha -->
+                    <li><a href="#"><%                    if (u != null) {
+                            out.println("Usuario Actual: " + u.getNombre());
+                            out.println("<br>Perfil:");
+                            Data d = new Data();
 
-                    out.println(d.getPerfil(u.getPerfil()));
-                }
-            %>
+                            out.println(d.getPerfil(u.getPerfil()));
+                        }
+                            %>
 
-            <%
-                if (u.getPerfil() == 2 || u.getPerfil() == 3) {
-            %>
-            <br><a href="crearUsuario.jsp">Crear Usuario</a>
-            <br><a href="reporteHistorico.jsp">Reporte histórico</a>
-            <%
-                }
-            %></a></li>
-                <!-- Redirigir a reporte de uso -->
-                <li><a href="#">Reporte de uso</a></li>
-                <li><a href="crearFicha.jsp">Crear Ficha</a></li>
-            </ul>
+                            <%
+                                if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                            %>
+                            <br><a href="crearUsuario.jsp">Crear Usuario</a>
+                            <br><a href="reporteHistorico.jsp">Reporte histórico</a>
+                            <%
+                                }
+                            %></a></li>
+                    <!-- Redirigir a reporte de uso -->
+                    <li><a href="#">Reporte de uso</a></li>
+                    <li><a href="crearFicha.jsp">Crear Ficha</a></li>
+                </ul>
 
-            <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+                <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
 
-            <ul class="nav navbar-nav navbar-center">
-                <li><form class="navbar-form pull-right" role="search" action="" method="get">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Buscar">
-                        </div>
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </form>
-                </li>
-            </ul>
-            <!-- <ul class="nav navbar-nav navbar-right">
-                <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
-            </ul> -->
-            
-            <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
-                <li>
-                    <form class="navbar-form pull-right" action="index.jsp">
-                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
-                    </form>
-                </li>
-            </ul>
-        </nav>
-                
+                <ul class="nav navbar-nav navbar-center">
+                    <li><form class="navbar-form pull-right" role="search" action="" method="get">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Buscar">
+                            </div>
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                        </form>
+                    </li>
+                </ul>
+                <!-- <ul class="nav navbar-nav navbar-right">
+                    <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
+                </ul> -->
+
+                <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+                    <li>
+                        <form class="navbar-form pull-right" action="index.jsp">
+                            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
         <div>
-        <!--<%
+            <!--<%
                 if (u != null) {
                     out.println("Usuario Actual: " + u.getNombre());
                     out.println("<br>Perfil:");
@@ -98,7 +98,7 @@
             <!--<br><a href="buscarPaciente.jsp"> Buscar Pacientes </a>
             <br><a href="cerrar.do">Cerrar sesión</a>-->
         </div> 
-       
+
         <div class="container" style="margin-top: 100px">
             <form action="registrarAtencion.do" method="post">
                 <div class="panel panel-primary">
@@ -117,9 +117,6 @@
                         <input type="hidden" name="ficha" value="<%=idFicha%>">
                     </div>
                     <div class="panel-body">
-
-                        
-
 
                         <div class="form-group col-md-3">
                             <label for="presionArterial">Presión Arterial:</label><br>
@@ -218,10 +215,14 @@
                             <input type="checkbox" value="true" name="chkColPuente">
                         </div>
 
-
                         <div class="form-group col-md-6">
+                            <label>Colocacion Policarboxilato:</label>
+                            <input type="checkbox" value="true" name="chkColPolicarboxilato">
+                        </div>
+
+                        <div class="form-group col-md-3" style="margin-right: 660px;">
                             <label>Tratamiento Ortonixia:</label> 
-                            <select name="cboTratamientoOrtonixia">
+                            <select name="cboTratamientoOrtonixia" class="custom-select-sm form-control form-control-sm">
                                 <%
                                     for (TratamientoOrtonixia to : new Data().getTratamientosOrtonoxia()) {
                                         out.println("<option value='" + to.getId() + "'>" + to.getNombre() + "</option>");
@@ -230,14 +231,9 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-6">
-                            <label>Colocacion Policarboxilato:</label>
-                            <input type="checkbox" value="true" name="chkColPolicarboxilato">
-                        </div>
-
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-3">
                             <label>Observaciones:</label><br>
-                            <textarea name="txtObsAtencionPodo"></textarea>
+                            <textarea class="form-control" rows="2" name="txtObsAtencionPodo"></textarea>
                         </div>
 
 
