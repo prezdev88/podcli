@@ -387,8 +387,8 @@
                                 <br>
                                 <label for=" Amputación"> Amputación:</label><br>
                                 <select class="custom-select-sm form-control form-control-sm" name="cboAmputacion">
-                                    <option class="form-control form-control-sm" value="true">SI</option>
-                                    <option class="form-control form-control-sm" value="false">No</option>
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
                                 </select>
                             </div>
 
@@ -408,8 +408,8 @@
                                 <br>
                                 <label for="varices">Varices Extremo Inferior:</label><br>
                                 <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboVaricesExtremoInferior">
-                                    <option class="form-control form-control-sm" value="true">SI</option>
-                                    <option class="form-control form-control-sm" value="false">No</option>
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
                                 </select>
                             </div>
 
@@ -417,8 +417,8 @@
                                 <br>
                                 <label for="heridas">Heridas:</label><br>
                                 <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboHeridas">
-                                    <option class="form-control form-control-sm" value="true">SI</option>
-                                    <option class="form-control form-control-sm" value="false">No</option>
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
                                 </select>
                             </div>
 
@@ -438,8 +438,8 @@
                                 <br>
                                 <label for="tratamiento">Tratamiento:</label><br>
                                 <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboTratamiento">
-                                    <option class="form-control form-control-sm" value="true">SI</option>
-                                    <option class="form-control form-control-sm" value="false">No</option>
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
                                 </select>
                             </div>
 
@@ -447,8 +447,8 @@
                                 <br>
                                 <label for="nevos">Nevos:</label><br> 
                                 <select style="width: 68px" <%--class="col-md"--%> class="custom-select-sm form-control form-control-sm" name="cboNevos">
-                                    <option class="form-control form-control-sm" value="true">SI</option>
-                                    <option class="form-control form-control-sm" value="false">No</option>
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
                                 </select>
                             </div>
 
@@ -462,8 +462,8 @@
                                 <br>
                                 <label for="maculas">Máculas:</label><br>
                                 <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboMaculas">
-                                    <option class="form-control form-control-sm" value="true">SI</option>
-                                    <option class="form-control form-control-sm" value="false">No</option>
+                                    <option class="form-control form-control-sm" value="true">Si</option>
+                                    <option class="form-control form-control-sm" value="false" selected>No</option>
                                 </select>
                             </div>
 
