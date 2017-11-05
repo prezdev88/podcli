@@ -3,8 +3,10 @@
     Created on : 03-11-2017, 23:56:45
     Author     : Veroko
 --%>
-
+<%@page import="model.bd.Usuario"%>
+<%@page import="model.bd.Data"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="validar.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -68,13 +70,23 @@
                 </li>
             </ul>
         </nav>
+ 
 
         <!-- Falta metodo para obtener el nombre y ocupacion de la persona que entró -->
-        <div class="jumbotron">
-            <div class="container">
-                <h1>Nombre</h1>
-                <p>(Ocupacion)</p>
+        <div class="container">
+            <div class="jumbotron">
+                <div class="container">
+                    <% if (u != null) {
+                            out.println("<br><br><br>");
+                            out.println("<h1 class='display-4' >"+u.getNombre()+"</h1>");
+                            out.println("<br>");
+                            Data d = new Data();
+                            out.println("<p class = 'lead'>"+d.getPerfil(u.getPerfil())+"</p>");
+                        }
+                    %>
+                </div>
             </div>
         </div>
+        
     </body>
 </html>

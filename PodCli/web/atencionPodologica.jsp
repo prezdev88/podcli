@@ -28,7 +28,7 @@
                 <ul class="nav navbar-nav navbar-left">
                     <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                     <!-- Redirigir a crear ficha -->
-                    <li><a href="#"><%                    if (u != null) {
+                    <li><a href="#"><% if (u != null) {
                             out.println("Usuario Actual: " + u.getNombre());
                             out.println("<br>Perfil:");
                             Data d = new Data();

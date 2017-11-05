@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pabli/Desktop/pabli2/pabli/PodCli/web/verFicha.jsp</file>
-            <file>file:/C:/Users/pabli/Desktop/pabli2/pabli/PodCli/web/atencionPodologica.jsp</file>
-            <file>file:/C:/Users/pabli/Desktop/pabli2/pabli/PodCli/web/crearFicha.jsp</file>
-            <file>file:/C:/Users/pabli/Desktop/pabli2/pabli/PodCli/web/verAtencion.jsp</file>
+            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/src/java/model/bd/Data.java</file>
+            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/src/java/controller/InicioSesionServlet.java</file>
+            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/web/verFicha.jsp</file>
+            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/web/inicio.jsp</file>
+            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/src/java/model/bd/script/inserts.sql</file>
+            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/src/java/model/bd/Usuario.java</file>
+            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>
