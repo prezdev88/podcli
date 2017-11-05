@@ -83,9 +83,51 @@
                     <span><img width = 46px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
                 </a>
             </div>
-            <p class="navbar-text pull-left">
-                <h4>PodCli</h4>
-            </p>
+            <p class="navbar-text pull-left">PodCli</p>
+
+            <ul class="nav navbar-nav navbar-left">
+                <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+                <!-- Redirigir a crear ficha -->
+                <li><a href="#">
+                        <%    if (u != null) {
+                                out.println("Usuario Actual: " + u.getNombre());
+                                out.println("<br>Perfil:");
+                                Data d = new Data();
+
+                                out.println(d.getPerfil(u.getPerfil()));
+                            }
+                        %>
+
+                        <%
+                            if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                        %>
+                        <%
+                            }
+                        %></a></li>
+                <!-- Redirigir a reporte de uso -->
+                <li><a href="#">Reporte de uso</a></li>
+                <li><a href="inicio.jsp">Volver a inicio</a></li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+                <li>
+                    <form class="navbar-form pull-right" action="index.jsp">
+                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
+                </li>
+            </ul>
+            <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><form class="navbar-form pull-right" role="search" action="" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar">
+                        </div>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </form>
+                </li>
+            </ul>
         </nav>
 
         <br><br><br><br><br><br>
@@ -98,7 +140,7 @@
                             <input class="form-control" id="fecIni" name="fecIni" required="">
                             <input  class="form-control"id="fecFin" name="fecFin" required="">
                             <input type="submit" value="Procesar" name="btnProcesar" class="btn btn-primary">
-                            <a href="crearFicha.jsp" role="button" class="btn btn-primary">Volver</a>
+                            <a href="inicio.jsp" role="button" class="btn btn-primary">Volver</a>
                         </form>
 
                         <%            if (request.getParameter("btnProcesar") != null) {

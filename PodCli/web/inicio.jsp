@@ -3,8 +3,10 @@
     Created on : 03-11-2017, 23:56:45
     Author     : Veroko
 --%>
-
+<%@page import="model.bd.Usuario"%>
+<%@page import="model.bd.Data"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="validar.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,7 +31,6 @@
     <body>
         <div class="row justify-content-xl-center">
             <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
-
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" style="padding-bottom: 50px">
                         <span><img width = 50px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
@@ -42,15 +43,30 @@
                     <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                     <!-- Redirigir a crear ficha -->
                     <li><a href="crearFicha.jsp">Crear ficha</a></li>
-                    <!-- Redirigir a reporte de uso -->
-                    <li><a href="#">Reporte de uso</a></li>
+
+                    <!-- Se agregaron recientemente en el nav -->
+
                     <li><a href="crearUsuario.jsp">Crear Usuario</a></li>
+                    <li><a href="reporteHistorico.jsp">Reporte histórico</a></li>
+                    <!-- Se agregaron recientemente en el nav -->
 
+                    <!-- Redirigir a reporte de uso -->
+                    <li><a href="#">Reporte de uso</a></li>                   
+                                
                 </ul>
-
+                <!-- <ul class="nav navbar-nav navbar-right">
+                    <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
+                </ul> -->
+                <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+                    <li>
+                        <form class="navbar-form pull-right" action="index.jsp">
+                            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
                 <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
 
-                <ul class="nav navbar-nav navbar-center">
+                <ul class="nav navbar-nav navbar-right">
                     <li><form class="navbar-form pull-right" role="search" action="" method="get">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Buscar">
@@ -59,24 +75,22 @@
                         </form>
                     </li>
                 </ul>
-                <!-- <ul class="nav navbar-nav navbar-right">
-                    <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
-                </ul> -->
-
-                <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
-                    <li>
-                        <form class="navbar-form pull-right" action="index.jsp">
-                            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
-                        </form>
-                    </li>
-                </ul>
             </nav>
         </div>
         <!-- Falta metodo para obtener el nombre y ocupacion de la persona que entró -->
-        <div class="jumbotron">
-            <div class="container">
-                <h1>Nombre</h1>
-                <p>(Ocupacion)</p>
+        <br>
+        <div class="container">
+            <div class="jumbotron">
+                <div class="container">
+                    <% if (u != null) {
+                            out.println("<br><br><br>");
+                            out.println("<h1 class='display-4' >" + u.getNombre() + "</h1>");
+                            out.println("<br>");
+                            Data d = new Data();
+                            out.println("<p class = 'lead'>" + d.getPerfil(u.getPerfil()) + "</p>");
+                        }
+                    %>
+                </div>
             </div>
         </div>
     </body>

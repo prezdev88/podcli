@@ -67,7 +67,7 @@
                                 <button class="btn btn-outline-primary mx-auto mt-0" type="submit" value="Registrar Usuario" name="registrar" style="width: 140px;">
                                     Registrar Usuario
                                 </button>
-                                <a href="crearFicha.jsp" class="btn btn-outline-primary mx-sm-3 mt-0 " role="button" aria-pressed="false" style="width: 140px;">Volver</a>
+                                <a href="inicio.jsp" class="btn btn-outline-primary mx-sm-3 mt-0 " role="button" aria-pressed="false" style="width: 140px;">Volver</a>
                                 <!-- index.jsp o crearFicha.jsp ??  -->
                             </center>
                                 

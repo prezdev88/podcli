@@ -28,7 +28,7 @@
                 <ul class="nav navbar-nav navbar-left">
                     <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                     <!-- Redirigir a crear ficha -->
-                    <li><a href="#"><%                    if (u != null) {
+                    <li><a href="#"><% if (u != null) {
                             out.println("Usuario Actual: " + u.getNombre());
                             out.println("<br>Perfil:");
                             Data d = new Data();
@@ -52,23 +52,21 @@
 
                 <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
 
-                <ul class="nav navbar-nav navbar-center">
+                <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+                    <li>
+                        <form class="navbar-form pull-right" action="index.jsp">
+                            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+                <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+
+                <ul class="nav navbar-nav navbar-right">
                     <li><form class="navbar-form pull-right" role="search" action="" method="get">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Buscar">
                             </div>
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        </form>
-                    </li>
-                </ul>
-                <!-- <ul class="nav navbar-nav navbar-right">
-                    <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
-                </ul> -->
-
-                <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
-                    <li>
-                        <form class="navbar-form pull-right" action="index.jsp">
-                            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
                         </form>
                     </li>
                 </ul>

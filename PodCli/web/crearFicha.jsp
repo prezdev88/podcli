@@ -15,6 +15,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>Crear Ficha</title>
 
+        <!--Es para el despliegue de VER en el nav -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
         <!-- Esto es del calendario JQUERY -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -82,7 +87,7 @@
                     <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                     <!-- Redirigir a crear ficha -->
                     <li><a href="#">
-                            <%                            if (u != null) {
+                            <%    if (u != null) {
                                     out.println("Usuario Actual: " + u.getNombre());
                                     out.println("<br>Perfil:");
                                     Data d = new Data();
@@ -101,31 +106,42 @@
                             %></a></li>
                     <!-- Redirigir a reporte de uso -->
                     <li><a href="#">Reporte de uso</a></li>
-                    <li><a href="verFicha.jsp">Ver Ficha</a></li>
-                    <li><a href="verAtencion.jsp">Ver Atención</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            Ver <b class="caret"></b>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="verFicha.jsp">Ver Ficha</a><br>
+                            <a  class="dropdown-item" href="verAtencion.jsp">Ver Atención</a><br>
+                            <div class="divider"></div>
+                            <a class="dropdown-item" href="#">Buscar paciente</a><br>
+
+                        </div>
+                    </li>
                     <li><a href="atencionPodologica.jsp">Atencion Podologica</a></li>
+                    <li><a href="inicio.jsp">Volver a inicio</a></li>
 
                 </ul>
 
                 <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
 
-                <ul class="nav navbar-nav navbar-center">
+                <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+                    <li>
+                        <form class="navbar-form pull-right" action="index.jsp">
+                            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+                <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+
+                <ul class="nav navbar-nav navbar-right">
                     <li><form class="navbar-form pull-right" role="search" action="" method="get">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Buscar">
                             </div>
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        </form>
-                    </li>
-                </ul>
-                <!-- <ul class="nav navbar-nav navbar-right">
-                    <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
-                </ul> -->
-
-                <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
-                    <li>
-                        <form class="navbar-form pull-right" action="index.jsp">
-                            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
                         </form>
                     </li>
                 </ul>

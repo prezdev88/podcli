@@ -47,7 +47,7 @@ public class InicioSesionServlet extends HttpServlet {
             if (u != null) {
                 request.getSession().setAttribute("usuario", u);
                 request.getSession().removeAttribute("error");
-                response.sendRedirect("crearFicha.jsp");
+                response.sendRedirect("inicio.jsp");
             }else{
                 request.getSession().setAttribute("error", new Error("Rut Incorrecto"));
                 response.sendRedirect("index.jsp");
