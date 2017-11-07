@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript"> history.forward();</script>  <!--No permite volver si no se ha iniciado sesion-->
+
         <title>Ver atención</title>
     </head>
     <body>
@@ -46,7 +48,7 @@
                 <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
                 <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
                     <li>
-                        <form class="navbar-form pull-right" action="index.jsp">
+                        <form class="navbar-form pull-right" action="cerrar.do">
                             <button type="submit" class="btn btn-danger">Cerrar sesión</button>
                         </form>
                     </li>

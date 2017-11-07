@@ -18,7 +18,9 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>    
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+        <script type="text/javascript"> history.forward();</script>  <!--No permite volver si no se ha iniciado sesion-->
+
         <!-- Esto es del calendario JQUERY -->
 
         <script>
@@ -124,7 +126,7 @@
 
             <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
                 <li>
-                    <form class="navbar-form pull-right" action="index.jsp">
+                    <form class="navbar-form pull-right" action="cerrar.do">
                         <button type="submit" class="btn btn-danger">Cerrar sesión</button>
                     </form>
                 </li>
