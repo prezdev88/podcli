@@ -64,7 +64,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><form class="navbar-form pull-right" role="search" action="" method="get">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Buscar">
+                                <input type="text" class="form-control" placeholder="Buscar" required="">
                             </div>
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                         </form>
@@ -118,37 +118,37 @@
 
                         <div class="form-group col-md-3">
                             <label for="presionArterial">Presión Arterial:</label><br>
-                            <input class="form-control" type="number" step="any" name="txtPersionArterial">
+                            <input class="form-control" type="number" step="any" name="txtPersionArterial" required="">
                         </div>
 
                         <div class="form-group col-md-3">
                             <label for="pulsoRadial">Pulso Radial:</label><br> 
-                            <input class="form-control" type="number" name="txtPulsoRadial">
+                            <input class="form-control" type="number" name="txtPulsoRadial" required="">
                         </div>
 
                         <div class="form-group col-md-3">
                             <label for="peso">Peso:</label><br> 
-                            <input class="form-control" type="number" step="any" name="txtPeso"><br><br>
+                            <input class="form-control" type="number" step="any" name="txtPeso" required=""><br><br>
                         </div>
 
                         <div class="form-group col-md-3">
                             <label for="pulsopedioDerecho">Pulso Pedio Derecho:</label><br> 
-                            <input class="form-control" type="number" name="txtPulsoPedioDerecho">
+                            <input class="form-control" type="number" name="txtPulsoPedioDerecho" required="">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="pulsopedioIzquierdo">Pulso Pedio Izquierdo:</label><br> 
-                            <input class="form-control" type="number" name="txtPulsoPedioIzquierdo"><br><br>
+                            <input class="form-control" type="number" name="txtPulsoPedioIzquierdo" required=""><br><br>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="podalDerecho">T° Podal Derecho:</label><br> 
-                            <input class="form-control" type="number" step="any" name="txtTemperaturaPodalDerecho"><br><br>
+                            <input class="form-control" type="number" step="any" name="txtTemperaturaPodalDerecho" required=""><br><br>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="podalIzquierdo">T° Podal Izquierdo:</label><br>
-                            <input class="form-control" type="number" step="any" name="txtTemperaturaPodalIzquierdo">
+                            <input class="form-control" type="number" step="any" name="txtTemperaturaPodalIzquierdo" required="">
                         </div>
 
                         <br><br>

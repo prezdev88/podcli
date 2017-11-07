@@ -74,7 +74,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><form class="navbar-form pull-right" role="search" action="" method="get">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Buscar">
+                            <input type="text" class="form-control" placeholder="Buscar" required="">
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                     </form>

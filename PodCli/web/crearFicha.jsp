@@ -125,7 +125,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><form class="navbar-form pull-right" role="search" action="" method="get">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Buscar">
+                            <input type="text" class="form-control" placeholder="Buscar" required="">
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                     </form>
@@ -175,19 +175,19 @@
                             <div class="form-group col-md-4">
                                 <br>
                                 <label for="Nombre">Nombre:</label><br>
-                                <input class="form-control" type="text" name="txtNombre">
+                                <input class="form-control" type="text" name="txtNombre" required="">
                             </div>
 
                             <div class="col-md-4">
                                 <br>
                                 <label for="rut">Rut:</label><br>
-                                <input class="form-control" type="text" name="txtRut">
+                                <input class="form-control" type="text" name="txtRut" required="">
                             </div>
 
                             <div class="col-md-4">
                                 <br>
                                 <label for="fechaNacimiento">Fecha de Nacimiento:</label><br>
-                                <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto" readonly="">
+                                <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto" readonly="" required="">
                                 <br>
                             </div>
 
@@ -226,7 +226,7 @@
                             <div class="col-md-4">
                                 <br>
                                 <label for="Domicilio">Domicilio:</label><br>
-                                <textarea class="form-control" name="txtDomicilio"></textarea>
+                                <textarea class="form-control" name="txtDomicilio" required=""></textarea>
                             </div>
 
 
@@ -234,7 +234,7 @@
                             <div class="col-md-4">
                                 <br>
                                 <label for="telefonos">Telefonos:</label><br>
-                                <input class="form-control" type="text" name="txtTelefonos">
+                                <input class="form-control" type="text" name="txtTelefonos" required="">
                             </div>
 
                         </div>
@@ -360,12 +360,12 @@
 
                             <div class="form-group col-md-3">
                                 <label for="Tallametros: ">Talla en metros:</label><br>
-                                <input class="form-control" type="number" step="any" name="txtTalla"><br>
+                                <input class="form-control" type="number" step="any" name="txtTalla" required=""><br>
                             </div>
 
                             <div class="form-group col-md-9">
                                 <label for="IMC">IMC:</label><br>
-                                <input class="form-control" type="number" step="any" name="txtIMC">
+                                <input class="form-control" type="number" step="any" name="txtIMC" required="">
                             </div>
 
                             <div class="form-group col-md-3">
@@ -386,7 +386,7 @@
                             <div class="form-group col-md-3">
                                 <br>
                                 <label for="nºCalzado">N° Calzado:</label><br> 
-                                <input class="form-control" type="number" name="txtNumCalzado">
+                                <input class="form-control" type="number" name="txtNumCalzado" required="">
                             </div>
 
                             <div class="form-group col-md-9">
