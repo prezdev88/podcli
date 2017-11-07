@@ -152,8 +152,8 @@
                     <center>
                         <h1>Reporte histórico</h1>
                         <form action="reporteHistorico.jsp" method="post" class="form-inline">
-                            <input class="form-control" id="fecIni" name="fecIni" required="">
-                            <input  class="form-control"id="fecFin" name="fecFin" required="">
+                            <input class="form-control" id="fecIni" name="fecIni" required="" readonly="">
+                            <input  class="form-control"id="fecFin" name="fecFin" required="" readonly="">
                             <input type="submit" value="Procesar" name="btnProcesar" class="btn btn-primary">
                             <a href="inicio.jsp" role="button" class="btn btn-primary">Volver</a>
                         </form>

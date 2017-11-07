@@ -157,7 +157,17 @@
             <br><a href="cerrar.do">Cerrar sesión</a>-->
         </div>
 
-
+        <script>
+            function punto(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                //alert(tecla);
+                if ((tecla >= 48 & tecla <= 57) || tecla === 107 || tecla === 45) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>
 
         <form action="crearFicha.do" method="post" style="margin-top: 100px" class="form-inline">
             <div class="container">
@@ -181,7 +191,7 @@
                             <div class="col-md-4">
                                 <br>
                                 <label for="rut">Rut:</label><br>
-                                <input class="form-control" type="text" name="txtRut" required="">
+                                <input class="form-control" type="text" onkeypress="return punto(event)" name="txtRut" maxlength="10" required="">
                             </div>
 
                             <div class="col-md-4">

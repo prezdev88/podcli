@@ -97,7 +97,7 @@
                         <div class="col-md-6">
                             Rut: <input class="form-control" type="text" name="txtRut" value="<%= f.getRut()%>" readonly>
                             Nombre: <input class="form-control" type="text" name="txtNombre" value="<%= f.getNombrePaciente()%>" readonly>
-                            Fecha Nacimiento: <input class="form-control" type="date" name="txtFechaNacimineto" value="<%= f.getFecha()%>" readonly>
+                            Fecha Nacimiento: <input class="form-control" type="text" name="txtFechaNacimineto" value="<%= Data.getFormattedDate(f.getFecha(), false)%>" readonly>
                             Domicilio: <textarea class="form-control" name="txtDomicilio" readonly><%= f.getDomicilio()%></textarea>
                         </div>
                         <div class="col-md-6">
