@@ -2,26 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/berny/Desktop/podcli/PodCli/web/index.jsp</file>
-            <file>file:/C:/Users/berny/Desktop/podcli/PodCli/web/inicio.jsp</file>
-            <file>file:/C:/Users/berny/Desktop/podcli/PodCli/src/java/controller/InicioSesionServlet.java</file>
-            <file>file:/C:/Users/berny/Desktop/podcli/PodCli/web/historicoAtencion.jsp</file>
-            <file>file:/C:/Users/berny/Desktop/podcli/PodCli/web/atencionPodologica.jsp</file>
-            <file>file:/C:/Users/berny/Desktop/podcli/PodCli/web/verFicha.jsp</file>
-            <file>file:/C:/Users/berny/Desktop/podcli/PodCli/web/reporteHistorico.jsp</file>
-            <file>file:/C:/Users/berny/Desktop/podcli/PodCli/web/crearFicha.jsp</file>
-            <file>file:/C:/Users/berny/Desktop/podcli/PodCli/web/verAtencion.jsp</file>
-=======
-            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/src/java/model/bd/Data.java</file>
-            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/src/java/controller/InicioSesionServlet.java</file>
-            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/web/verFicha.jsp</file>
-            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/web/inicio.jsp</file>
-            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/src/java/model/bd/script/inserts.sql</file>
-            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/src/java/model/bd/Usuario.java</file>
-            <file>file:/C:/Users/pabli/Desktop/podcli/PodCli/web/index.jsp</file>
->>>>>>> b9b6193b898483c8592916c76b9300663c4e598a
-        </group>
+        <group/>
     </open-files>
 </project-private>

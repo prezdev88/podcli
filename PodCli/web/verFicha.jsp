@@ -189,7 +189,7 @@
 
              <!----------------------Examen Fisico General----------------------------------------------->
            
-                        <center><a type="button" class="btn btn-primary btn-lg" href="buscarPaciente.jsp">Volver</a></center>
+                        <center><a type="button" class="btn btn-primary btn-lg" href="inicio.jsp">Volver</a></center>
         
         </div>
 

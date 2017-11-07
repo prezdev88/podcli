@@ -118,109 +118,109 @@
 
                         <div class="form-group col-md-3">
                             <label for="presionArterial">Presión Arterial:</label><br>
-                            <input class="form-control" type="number" step="any" name="txtPersionArterial" required="">
+                            <input class="form-control" type="number" step="any" name="presion" required="">
                         </div>
 
                         <div class="form-group col-md-3">
                             <label for="pulsoRadial">Pulso Radial:</label><br> 
-                            <input class="form-control" type="number" name="txtPulsoRadial" required="">
+                            <input class="form-control" type="number" name="pulso" required="">
                         </div>
 
                         <div class="form-group col-md-3">
                             <label for="peso">Peso:</label><br> 
-                            <input class="form-control" type="number" step="any" name="txtPeso" required=""><br><br>
+                            <input class="form-control" type="number" step="any" name="peso" required=""><br><br>
                         </div>
 
                         <div class="form-group col-md-3">
                             <label for="pulsopedioDerecho">Pulso Pedio Derecho:</label><br> 
-                            <input class="form-control" type="number" name="txtPulsoPedioDerecho" required="">
+                            <input class="form-control" type="number" name="ppd" required="">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="pulsopedioIzquierdo">Pulso Pedio Izquierdo:</label><br> 
-                            <input class="form-control" type="number" name="txtPulsoPedioIzquierdo" required=""><br><br>
+                            <input class="form-control" type="number" name="ppi" required=""><br><br>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="podalDerecho">T° Podal Derecho:</label><br> 
-                            <input class="form-control" type="number" step="any" name="txtTemperaturaPodalDerecho" required=""><br><br>
+                            <input class="form-control" type="number" step="any" name="tpd" required=""><br><br>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="podalIzquierdo">T° Podal Izquierdo:</label><br>
-                            <input class="form-control" type="number" step="any" name="txtTemperaturaPodalIzquierdo" required="">
+                            <input class="form-control" type="number" step="any" name="tpi" required="">
                         </div>
 
                         <br><br>
                         <div class="form-group col-md-6">
                             <label>Sensibilidad Pie Derecho:</label>
-                            <input  type="checkbox" value="true" name="chkSensPieDerecho">
+                            <input  type="checkbox" value="true" name="spd">
                         </div>
 
                         <br><br>
                         <div class="form-group col-md-6">
                             <label>Sensibilidad Pie Izquierdo:</label> 
-                            <input type="checkbox" value="true" name="chkSensPieIzquierdo">
+                            <input type="checkbox" value="true" name="spi">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Curación:</label> 
-                            <input type="checkbox" value="true" name="chkCuracion">
+                            <input type="checkbox" value="true" name="curacion">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Resecado:</label> 
-                            <input type="checkbox" value="true" name="chkResecado">
+                            <input type="checkbox" value="true" name="resecado">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Enucleación:</label> 
-                            <input type="checkbox" value="true" name="chkEnucleacion">
+                            <input type="checkbox" value="true" name="enu">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Devastado Ungueal:</label> 
-                            <input type="checkbox" value="true" name="chkDevastadoUngueal">
+                            <input type="checkbox" value="true" name="devastado">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Masoterapia o Masaje:</label> 
-                            <input type="checkbox" value="true" name="chkMaso">
+                            <input type="checkbox" value="true" name="maso">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Espiculoectomía:</label> 
-                            <input type="checkbox" value="true" name="chkEspiculoectomia">
+                            <input type="checkbox" value="true" name="epi">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Analgesia:</label> 
-                            <input type="checkbox" value="true" name="chkAnalgesia">
+                            <input type="checkbox" value="true" name="anal">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Colocacion Acrilico:</label> 
-                            <input type="checkbox" value="true" name="chkColAcri">
+                            <input type="checkbox" value="true" name="acri">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Colocacion Banda Molecular:</label> 
-                            <input type="checkbox" value="true" name="chkColBandaMolecular">
+                            <input type="checkbox" value="true" name="cbm">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Colocacion Puente:</label> 
-                            <input type="checkbox" value="true" name="chkColPuente">
+                            <input type="checkbox" value="true" name="cpuente">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Colocacion Policarboxilato:</label>
-                            <input type="checkbox" value="true" name="chkColPolicarboxilato">
+                            <input type="checkbox" value="true" name="cpoli">
                         </div>
 
                         <div class="form-group col-md-3" style="margin-right: 660px;">
                             <label>Tratamiento Ortonixia:</label> 
-                            <select name="cboTratamientoOrtonixia" class="custom-select-sm form-control form-control-sm">
+                            <select name="to" class="custom-select-sm form-control form-control-sm">
                                 <%
                                     for (TratamientoOrtonixia to : new Data().getTratamientosOrtonoxia()) {
                                         out.println("<option value='" + to.getId() + "'>" + to.getNombre() + "</option>");
@@ -231,7 +231,7 @@
 
                         <div class="form-group col-md-3">
                             <label>Observaciones:</label><br>
-                            <textarea class="form-control" rows="2" name="txtObsAtencionPodo"></textarea>
+                            <textarea class="form-control" rows="2" name="obs"></textarea>
                         </div>
 
 

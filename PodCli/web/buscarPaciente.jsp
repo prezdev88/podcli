@@ -15,12 +15,12 @@
     </head>
     <body>
        
-        <h1>Buscar Paciente</h1>                               
+        <h1>Pacientes</h1>                               
 
-        <form action="buscarPaciente.jsp" method="post">
+        <!--<form action="buscarPaciente.jsp" method="post">
             <input type="text"      name="txtBuscar"    placeholder="Buscar">
             <input type="submit"    name="buscar"       value="Buscar Paciente">
-        </form>
+        </form>-->
                 
         <%
             String txtBuscar = request.getParameter("txtBuscar");
@@ -67,6 +67,6 @@
                 out.println("</table>");
             }
         %>
-        <a href="crearFicha.jsp">Volver</a>
+        <a href="inicio.jsp">Volver</a>
     </body>
 </html>

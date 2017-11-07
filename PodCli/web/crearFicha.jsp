@@ -123,9 +123,9 @@
             <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
 
             <ul class="nav navbar-nav navbar-right">
-                <li><form class="navbar-form pull-right" role="search" action="" method="get">
+                <li><form class="navbar-form pull-right" role="search" action="buscarPaciente.jsp" method="get">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Buscar" required="">
+                            <input type="text" class="form-control" placeholder="Buscar" name="txtBuscar" required="">
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                     </form>

@@ -100,7 +100,7 @@ public class CrearAtencionPodologicaServlet extends HttpServlet {
             
             d.crearAtencionPodologica(a);
 
-            response.sendRedirect("buscarPaciente.jsp");
+            response.sendRedirect("inicio.jsp");
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(CrearAtencionPodologicaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

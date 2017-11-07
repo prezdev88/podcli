@@ -53,5 +53,5 @@
             }
         %>
     </table>
-    <a href="buscarPaciente.jsp">Volver</a>
+    <a href="inicio.jsp">Volver</a>
 </html>

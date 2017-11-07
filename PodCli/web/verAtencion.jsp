@@ -34,22 +34,22 @@
             Peso:                       <input type="number" step="any" value="<%= a.getPeso()%>" name="peso" readonly><br>
             Pulso Pedio Derecho:        <input type="number" name="ppd" value="<%= a.getPulsoPedio_d()%>" readonly><br>
             Pulso Pedio Izquierdo:      <input type="number" name="ppi" value="<%= a.getPulsoPedio_i()%>" readonly><br>
-            Sensibilidad Pie Derecho:   <input value="<%=(a.isSens_d()?"Si":"No")%>"> <br>   
-            Sensibilidad Pie Izquierdo: <input value="<%=(a.isSens_i()?"Si":"No")%>"> <br>
+            Sensibilidad Pie Derecho:   <input value="<%=(a.isSens_d()?"Si":"No")%>" readonly> <br>   
+            Sensibilidad Pie Izquierdo: <input value="<%=(a.isSens_i()?"Si":"No")%>" readonly> <br>
             T° Podal Derecho:           <input type="number" step="any" value="<%= a.gettPoda1_d()%>" name="tpd" readonly><br>
             T° Podal Izquierdo:         <input type="number" step="any" value="<%= a.gettPoda1_i()%>" name="tpi" readonly><br>
-            Curación:                   <input value="<%=(a.isCuracion()?"Si":"No")%>"> <br>                  
-            Resecado:                   <input value="<%=(a.isResecado()?"Si":"No")%>"> <br>                 
-            Enucleación:                <input value="<%=(a.isEnucleacion()?"Si":"No")%>"> <br>             
-            Devastado Ungueal:          <input value="<%=(a.isDevastado()?"Si":"No")%>"> <br>         
-            Masoterapia o Masaje:       <input value="<%=(a.isMaso()?"Si":"No")%>"> <br>     
-            Espiculoectomía:            <input value="<%=(a.isEspiculoectomia()?"Si":"No")%>"> <br>          
-            Analgesia:                  <input value="<%=(a.isAnalgesia()?"Si":"No")%>"> <br>        
-            Colocacion Acrilico:        <input value="<%=(a.isColocacionAcrilico()?"Si":"No")%>"> <br>     
-            Colocacion Banda Molecular: <input value="<%=(a.isBandaMolecular()?"Si":"No")%>"> <br>
-            Colocacion Puente:          <input value="<%=(a.isColocacionPuente()?"Si":"No")%>"> <br>       
+            Curación:                   <input value="<%=(a.isCuracion()?"Si":"No")%>" readonly> <br>                  
+            Resecado:                   <input value="<%=(a.isResecado()?"Si":"No")%>" readonly> <br>                 
+            Enucleación:                <input value="<%=(a.isEnucleacion()?"Si":"No")%>" readonly> <br>             
+            Devastado Ungueal:          <input value="<%=(a.isDevastado()?"Si":"No")%>" readonly> <br>         
+            Masoterapia o Masaje:       <input value="<%=(a.isMaso()?"Si":"No")%>" readonly> <br>     
+            Espiculoectomía:            <input value="<%=(a.isEspiculoectomia()?"Si":"No")%>" readonly> <br>          
+            Analgesia:                  <input value="<%=(a.isAnalgesia()?"Si":"No")%>" readonly> <br>        
+            Colocacion Acrilico:        <input value="<%=(a.isColocacionAcrilico()?"Si":"No")%>" readonly> <br>     
+            Colocacion Banda Molecular: <input value="<%=(a.isBandaMolecular()?"Si":"No")%>" readonly> <br>
+            Colocacion Puente:          <input value="<%=(a.isColocacionPuente()?"Si":"No")%>" readonly> <br>       
             Tratamiento Ortonixia:      <input type="text" readonly value="<%=a.getTratamientoOrtonixia()%>"><br>
-            Colocacion Policarboxilato: <input value="<%=(a.isPoli()?"Si":"No")%>"> <br>
+            Colocacion Policarboxilato: <input value="<%=(a.isPoli()?"Si":"No")%>"readonly> <br>
             Observaciones:              <textarea name="obs" readonly><%= a.getObservaciones()%></textarea>
         </div>
         
