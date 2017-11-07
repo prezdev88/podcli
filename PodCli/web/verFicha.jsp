@@ -40,27 +40,26 @@
                     }
                         %>
 
-                        <%
-                            if (u.getPerfil() == 2 || u.getPerfil() == 3) {
-                        %>
-                        <br><a href="crearUsuario.jsp">Crear Usuario</a>
-                        <br><a href="reporteHistorico.jsp">Reporte histórico</a>
-                        <%
-                            }
-                        %></a></li>
+                    </a></li>
                 <!-- Redirigir a reporte de uso -->
-                <li><a href="#">Reporte de uso</a></li>
-                <li><a href="verficha.jsp">Ver Ficha</a></li>
-                <li><a href="verAtencion.jsp">Ver Atención</a></li>
-                <li><a href="atencionPodologica.jsp">Atencion Podologica</a></li>
+                <li><a href="inicio.jsp">Volver a inicio</a></li>
+
             </ul>
 
+
+                <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+                <li>
+                    <form class="navbar-form pull-right" action="index.jsp">
+                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
+                </li>
+            </ul>
             <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
 
-            <ul class="nav navbar-nav navbar-center">
-                <li><form class="navbar-form pull-right" role="search" action="" method="get">
+            <ul class="nav navbar-nav navbar-right">
+                <li><form class="navbar-form pull-right" role="search" action="buscarPaciente.jsp" method="get">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Buscar">
+                            <input type="text" class="form-control" placeholder="Buscar" name="txtBuscar" required="">
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                     </form>
@@ -69,14 +68,6 @@
             <!-- <ul class="nav navbar-nav navbar-right">
                 <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
             </ul> -->
-
-            <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
-                <li>
-                    <form class="navbar-form pull-right" action="index.jsp">
-                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
-                    </form>
-                </li>
-            </ul>
         </nav>
 
         <%
@@ -187,17 +178,17 @@
                 </div>
             </div>
 
-             <!----------------------Examen Fisico General----------------------------------------------->
-           
-                        <center><a type="button" class="btn btn-primary btn-lg" href="inicio.jsp">Volver</a></center>
-        
+            <!----------------------Examen Fisico General----------------------------------------------->
+
+            <center><a type="button" class="btn btn-primary btn-lg" href="inicio.jsp">Volver</a></center>
+
         </div>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-       
 
-        
+
+
     </body>
 </html>

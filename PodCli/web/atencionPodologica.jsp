@@ -36,22 +36,12 @@
                             out.println(d.getPerfil(u.getPerfil()));
                         }
                             %>
-
-                            <%
-                                if (u.getPerfil() == 2 || u.getPerfil() == 3) {
-                            %>
-                            <br><a href="crearUsuario.jsp">Crear Usuario</a>
-                            <br><a href="reporteHistorico.jsp">Reporte histórico</a>
-                            <%
-                                }
-                            %></a></li>
+                        </a></li>
                     <!-- Redirigir a reporte de uso -->
-                    <li><a href="#">Reporte de uso</a></li>
-                    <li><a href="crearFicha.jsp">Crear Ficha</a></li>
+                    <li><a href="inicio.jsp">Volver a inicio</a></li>
                 </ul>
 
                 <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
-
                 <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
                     <li>
                         <form class="navbar-form pull-right" action="index.jsp">
@@ -60,9 +50,8 @@
                     </li>
                 </ul>
                 <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
-
                 <ul class="nav navbar-nav navbar-right">
-                    <li><form class="navbar-form pull-right" role="search" action="" method="get">
+                    <li><form class="navbar-form pull-right" role="search" action="buscarPaciente.jsp" method="get">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Buscar" required="">
                             </div>
@@ -83,16 +72,6 @@
                     out.println(d.getPerfil(u.getPerfil()));
                 }
             %>
-
-            <%
-                if (u.getPerfil() == 2 || u.getPerfil() == 3) {
-            %>
-            <br><a href="crearUsuario.jsp">Crear Usuario</a>
-            <br><a href="reporteHistorico.jsp">Reporte histórico</a>
-            <%
-                }
-            %>-->
-
             <!--<br><a href="buscarPaciente.jsp"> Buscar Pacientes </a>
             <br><a href="cerrar.do">Cerrar sesión</a>-->
         </div> 
