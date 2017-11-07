@@ -73,80 +73,65 @@
 
     </head>
     <body>
-        <div class="row justify-content-xl-center">
-            <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                        <span><img width = 50px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
-                    </a>
-                </div>
+        <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
+                    <span><img width = 35px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                </a>
+            </div>
 
-                <p class="navbar-text pull-left">PodCli</p>
+            <p class="navbar-text pull-left">PodCli</p>
 
-                <ul class="nav navbar-nav navbar-left">
-                    <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-                    <!-- Redirigir a crear ficha -->
-                    <li><a href="#">
-                            <%    if (u != null) {
-                                    out.println("Usuario Actual: " + u.getNombre());
-                                    out.println("<br>Perfil:");
-                                    Data d = new Data();
+            <p class="navbar-text">
+                <%    if (u != null) {
+                        out.println("Usuario Actual: " + u.getNombre());
+                        out.println("</p><p class='navbar-text'>Perfil:");
+                        Data d = new Data();
 
-                                    out.println(d.getPerfil(u.getPerfil()));
-                                }
-                            %>
+                        out.println(d.getPerfil(u.getPerfil()));
+                    }
+                %>
 
-                            <%
-                                if (u.getPerfil() == 2 || u.getPerfil() == 3) {
-                            %>
-                            <br><a href="crearUsuario.jsp">Crear Usuario</a>
-                            <br><a href="reporteHistorico.jsp">Reporte histórico</a>
-                            <%
-                                }
-                            %></a></li>
-                    <!-- Redirigir a reporte de uso -->
-                    <li><a href="#">Reporte de uso</a></li>
+                <%
+                    if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                %>
+                <%
+                    }
+                %></p>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
-                            Ver <b class="caret"></b>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="verFicha.jsp">Ver Ficha</a><br>
-                            <a  class="dropdown-item" href="verAtencion.jsp">Ver Atención</a><br>
-                            <div class="divider"></div>
-                            <a class="dropdown-item" href="#">Buscar paciente</a><br>
 
+
+            <ul class="nav navbar-nav navbar-left">
+                <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+                <!-- Redirigir a crear ficha -->
+
+                <!-- Redirigir a reporte de uso -->
+
+                <li><a href="inicio.jsp">Volver a inicio</a></li>
+
+            </ul>
+
+            <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+
+            <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+                <li>
+                    <form class="navbar-form pull-right" action="index.jsp">
+                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
+                </li>
+            </ul>
+            <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><form class="navbar-form pull-right" role="search" action="" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar">
                         </div>
-                    </li>
-                    <li><a href="atencionPodologica.jsp">Atencion Podologica</a></li>
-                    <li><a href="inicio.jsp">Volver a inicio</a></li>
-
-                </ul>
-
-                <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
-
-                <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
-                    <li>
-                        <form class="navbar-form pull-right" action="index.jsp">
-                            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
-                        </form>
-                    </li>
-                </ul>
-                <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><form class="navbar-form pull-right" role="search" action="" method="get">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Buscar">
-                            </div>
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        </form>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
 
         <div>
             <!--<%
@@ -158,7 +143,7 @@
                     out.println(d.getPerfil(u.getPerfil()));
                 }
             %>
-
+    
             <%
                 if (u.getPerfil() == 2 || u.getPerfil() == 3) {
             %>

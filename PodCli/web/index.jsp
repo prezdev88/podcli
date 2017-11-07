@@ -20,18 +20,18 @@
     </style>
     <body>
 
-        <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <!-- El logotipo y el icono que despliega el menú se agrupan
                  para mostrarlos mejor en los dispositivos móviles -->
             <div class="navbar-header">
                 <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                    <span><img width = 30px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                    <span><img width = 35px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
                 </a>
             </div>
             <p class="navbar-text pull-left">PodCli</p>
         </nav>
         <br><br><br>
-        <div class="container mt-0">
+        <div class="container">
             <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
                 <center>
                     <div class="container">

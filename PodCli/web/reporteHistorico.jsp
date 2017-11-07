@@ -73,39 +73,51 @@
             $.datepicker.setDefaults($.datepicker.regional['es']);
 
         </script>
+
+        <style>
+            .navbar-nav.navbar-center {
+                position: absolute;
+                left: 50%;
+                transform: translatex(-50%);
+            }
+
+            .navbar-brand{
+                padding: 10px 10px;
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <!-- El logotipo y el icono que despliega el menú se agrupan
                  para mostrarlos mejor en los dispositivos móviles -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="padding-bottom: 50px">
-                    <span><img width = 46px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
+                    <span><img width = 35px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
                 </a>
             </div>
             <p class="navbar-text pull-left">PodCli</p>
 
+            <p class="navbar-text">
+                <%    if (u != null) {
+                        out.println("Usuario Actual: " + u.getNombre());
+                        out.println("</p><p class='navbar-text'>Perfil: ");
+                        Data d = new Data();
+
+                        out.println(d.getPerfil(u.getPerfil()));
+                    }
+                %>
+
+                <%
+                    if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                %>
+                <%
+                    }
+                %></p>
+
             <ul class="nav navbar-nav navbar-left">
                 <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                 <!-- Redirigir a crear ficha -->
-                <li><a href="#">
-                        <%    if (u != null) {
-                                out.println("Usuario Actual: " + u.getNombre());
-                                out.println("<br>Perfil:");
-                                Data d = new Data();
-
-                                out.println(d.getPerfil(u.getPerfil()));
-                            }
-                        %>
-
-                        <%
-                            if (u.getPerfil() == 2 || u.getPerfil() == 3) {
-                        %>
-                        <%
-                            }
-                        %></a></li>
                 <!-- Redirigir a reporte de uso -->
-                <li><a href="#">Reporte de uso</a></li>
                 <li><a href="inicio.jsp">Volver a inicio</a></li>
 
             </ul>
@@ -130,10 +142,13 @@
             </ul>
         </nav>
 
-        <br><br><br><br><br><br>
-        <div class="container mt">
-            <div class="row justify-content-xl-center">
-                <div class="jumbotron">
+        <br>
+        <br>
+        <br>
+
+        <div class="container">
+            <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
+                <div class="container">
                     <center>
                         <h1>Reporte histórico</h1>
                         <form action="reporteHistorico.jsp" method="post" class="form-inline">
@@ -180,7 +195,7 @@
                             } // cierre del if%>
                     </table>
                 </div>
-            </div> 
+            </div>
         </div> 
     </body>
 </html>

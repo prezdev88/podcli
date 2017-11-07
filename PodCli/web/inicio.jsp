@@ -29,68 +29,75 @@
         }
     </style>
     <body>
-        <div class="row justify-content-xl-center">
-            <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#" style="padding-bottom: 50px">
-                        <span><img width = 50px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
-                    </a>
-                </div>
+        <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
+                    <span><img width = 35px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                </a>
+            </div>
 
-                <p class="navbar-text pull-left">PodCli</p>
+            <p class="navbar-text pull-left">PodCli</p>
 
-                <ul class="nav navbar-nav navbar-left">
-                    <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-                    <!-- Redirigir a crear ficha -->
-                    <li><a href="crearFicha.jsp">Crear ficha</a></li>
+            <ul class="nav navbar-nav navbar-left">
+                <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+                <!-- Redirigir a crear ficha -->
+                <li><a href="crearFicha.jsp">Crear Ficha</a></li>
 
-                    <!-- Se agregaron recientemente en el nav -->
+                <!-- Se agregaron recientemente en el nav -->
+                <li>
+                    <%                                    
+                        if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                    %>
+                    <a href="crearUsuario.jsp">Crear Usuario</a>
+                    <%
+                        }
+                    %></li>
 
-                    <li><a href="crearUsuario.jsp">Crear Usuario</a></li>
-                    <li><a href="reporteHistorico.jsp">Reporte histórico</a></li>
-                    <!-- Se agregaron recientemente en el nav -->
+                <li><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
+                <!-- Se agregaron recientemente en el nav -->
 
-                    <!-- Redirigir a reporte de uso -->
-                    <li><a href="#">Reporte de uso</a></li>                   
-                                
-                </ul>
-                <!-- <ul class="nav navbar-nav navbar-right">
-                    <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
-                </ul> -->
-                <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
-                    <li>
-                        <form class="navbar-form pull-right" action="index.jsp">
-                            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
-                        </form>
-                    </li>
-                </ul>
-                <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+                <!-- Redirigir a reporte de uso -->                
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><form class="navbar-form pull-right" role="search" action="" method="get">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Buscar">
-                            </div>
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        </form>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+            </ul>
+            <!-- <ul class="nav navbar-nav navbar-right">
+                <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
+            </ul> -->
+            <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+                <li>
+                    <form class="navbar-form pull-right" action="index.jsp">
+                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
+                </li>
+            </ul>
+            <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><form class="navbar-form pull-right" role="search" action="" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar">
+                        </div>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <br><br>
         <!-- Falta metodo para obtener el nombre y ocupacion de la persona que entró -->
         <br>
         <div class="container">
-            <div class="jumbotron">
-                <div class="container">
-                    <% if (u != null) {
-                            out.println("<br><br><br>");
-                            out.println("<h1 class='display-4' >" + u.getNombre() + "</h1>");
-                            out.println("<br>");
-                            Data d = new Data();
-                            out.println("<p class = 'lead'>" + d.getPerfil(u.getPerfil()) + "</p>");
-                        }
-                    %>
-                </div>
+            <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
+                <center>
+                    <div class="container">
+                        <% if (u != null) {
+                                out.println("<br><br><br>");
+                                out.println("<h1 class='display-4' >" + u.getNombre() + "</h1>");
+                                out.println("<br>");
+                                Data d = new Data();
+                                out.println("<p class = 'lead'>" + d.getPerfil(u.getPerfil()) + "</p>");
+                            }
+                        %>
+                    </div>
+                </center>
             </div>
         </div>
     </body>
