@@ -8,24 +8,79 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Crear Usuario</title>
     </head>
+    <style>
+        .navbar-header{
+            
+            padding-top: 7px; 
+            padding-left: 10px
+                
+        }
+    </style>
     <body>
 
-        <nav class="navbar navbar-expand-lg navbar-fixed-top navbar justify-content-end" style="background-color: #F9FCF7">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header" style="text">
-                    <a class="navbar-brand">
-                        <img width="50px" alt="Brand" src="http://www.prodx.cl/images/ust.png">
-                    </a>
-                    PodCli
-                </div>
-            </div><!-- /.container-fluid -->
+        <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+
+            <div class="navbar-header">
+                <a href="#" class="navbar-left">
+                    <span><img width=80px height=35px src="imagen/ist.jpg"></span>
+                </a>
+            </div>
+            <p class="navbar-text pull-left">PodCli</p>
+
+            <p class="navbar-text">
+                <%    if (u != null) {
+                        out.println("Usuario Actual: " + u.getNombre());
+                        out.println("</p><p class='navbar-text'>Perfil:");
+                        Data d = new Data();
+
+                        out.println(d.getPerfil(u.getPerfil()));
+                    }
+                %>
+
+                <%
+                    if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                %>
+                <%
+                    }
+                %></p>
+
+            <ul class="nav navbar-nav navbar-left">
+                <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+                <!-- Redirigir a crear ficha -->
+
+                <!-- Redirigir a reporte de uso -->
+
+                <li class="active"><a href="inicio.jsp">Volver a inicio</a></li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+                <li>
+                    <form class="navbar-form pull-right" action="cerrar.do">
+                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
+                </li>
+            </ul>
+            <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><form class="navbar-form pull-right" role="search" action="buscarPaciente.jsp" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar" name="txtBuscar" required="">
+                        </div>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </form>
+                </li>
+            </ul>
+            <!-- <ul class="nav navbar-nav navbar-right">
+                <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
+            </ul> -->
         </nav>
         <script>
             function punto(e) {
@@ -36,7 +91,10 @@
                 }
             }
         </script>
-        <div class="container mt-3">
+        <br><br>
+        <!-- Falta metodo para obtener el nombre y ocupacion de la persona que entró -->
+        <br>
+        <div class="container">
             <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
                 <center><h1>Crear Usuario</h1></center>
                 <div class="row justify-content-xl-center">
@@ -44,7 +102,7 @@
                         <form action="crearUsuario.do" method="post">
 
                             <div class="form-group"> 
-                                <label for="inputRut">Rut:</label>
+                                Rut:
                                 <input name="txtRut" type="text" class="form-control" maxlength="8" onkeypress="return punto(event)" id="inputRut" placeholder="Ej: 12345678" required="required">
                                 <%                                    Error e = (Error) request.getSession().getAttribute("error");
                                     if (e != null) {
@@ -55,12 +113,12 @@
                             </div>  
 
                             <div class="form-group">
-                                <label for="inputNombre">Nombre:</label>
+                                Nombre:
                                 <input name="txtNombre" type="text" class="form-control" id="inputNombre" placeholder="Ingrese:" required="required">
                             </div>
 
                             <div class="form-group">
-                                <label for="selectPerfil" class="control-label">Perfil</label>
+                                Perfil:
                                 <select class="form-control" id="selectPerfil" name="cboPerfil">
                                     <%
                                         for (Perfil p : new Data().getPerfiles()) {
@@ -71,10 +129,10 @@
                             </div>
 
                             <center>
-                                <button class="btn btn-outline-primary mx-auto mt-0" type="submit" value="Registrar Usuario" name="registrar">
+                                <button class="btn btn-primary" type="submit" value="Registrar Usuario" name="registrar">
                                     Registrar Usuario
                                 </button>
-                                <a href="inicio.jsp" class="btn btn-outline-primary mx-sm-3 mt-0 " role="button" aria-pressed="false" >Volver</a>
+                                <a href="inicio.jsp" class="btn btn-primary" role="button" aria-pressed="false" >Volver</a>
                                 <!-- index.jsp o crearFicha.jsp ??  -->
                             </center>
 

@@ -24,20 +24,40 @@
             left: 50%;
             transform: translatex(-50%);
         }
-
-        .navbar-brand{
-            padding: 10px 10px;
+        .navbar-header{
+            
+            padding-top: 7px; 
+            padding-left: 10px
+                
         }
+
     </style>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                    <span><img width = 35px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                <a href="#" class="navbar-left">
+                    <span><img width=80px height=35px src="imagen/ist.jpg"></span>
                 </a>
             </div>
 
             <p class="navbar-text pull-left">PodCli</p>
+            
+            <p class="navbar-text">
+                <%    if (u != null) {
+                        out.println("Usuario Actual: " + u.getNombre());
+                        out.println("</p><p class='navbar-text'>Perfil:");
+                        Data d = new Data();
+
+                        out.println(d.getPerfil(u.getPerfil()));
+                    }
+                %>
+
+                <%
+                    if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                %>
+                <%
+                    }
+                %></p>
 
             <ul class="nav navbar-nav navbar-left">
                 <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->

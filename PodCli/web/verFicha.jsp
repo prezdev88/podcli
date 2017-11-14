@@ -15,23 +15,53 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript"> history.forward();</script>  <!--No permite volver si no se ha iniciado sesion-->
 
         <title>Ver Ficha</title>
     </head>
+    <style>
+        .navbar-header{
+
+            padding-top: 7px; 
+            padding-left: 10px
+
+        }
+    </style>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
 
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                    <span><img width = 30px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                <a href="#" class="navbar-left">
+                    <span><img width=80px height=35px src="imagen/ist.jpg"></span>
                 </a>
             </div>
-
             <p class="navbar-text pull-left">PodCli</p>
 
-            
+            <p class="navbar-text">
+                <%    if (u != null) {
+                        out.println("Usuario Actual: " + u.getNombre());
+                        out.println("</p><p class='navbar-text'>Perfil:");
+                        Data d = new Data();
 
+                        out.println(d.getPerfil(u.getPerfil()));
+                    }
+                %>
+
+                <%
+                    if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                %>
+                <%
+                    }
+                %></p>
+
+            <ul class="nav navbar-nav navbar-left">
+                <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+                <!-- Redirigir a crear ficha -->
+
+                <!-- Redirigir a reporte de uso -->
+
+                <li class="active"><a href="inicio.jsp">Volver a inicio</a></li>
+
+            </ul>
 
             <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
                 <li>
@@ -56,8 +86,7 @@
             </ul> -->
         </nav>
 
-        <%
-            Data d = new Data();
+        <%            Data d = new Data();
 
             String rut = request.getParameter("rut");
             FichaSelect f = d.getFicha(rut);
@@ -94,7 +123,7 @@
                             Estado Civil: <input class="form-control" type="text" value="<%= f.getEstado_civil()%>" readonly> 
                             Actividad: <input class="form-control" type="text" name="txtActividad" value="<%= f.getActividad()%>" readonly>
                             Telefonos:  <input class="form-control" type="text" name="txtTelefonos" value="<%= f.getFono()%>" readonly>
-                            Fecha de Registro: <input class="form-control"  value="<%= Data.getFormattedDate(f.getFecha_ficha(), true) %>" readonly>
+                            Fecha de Registro: <input class="form-control"  value="<%= Data.getFormattedDate(f.getFecha_ficha(), true)%>" readonly>
                         </div>
                     </div>
                 </div>
@@ -170,7 +199,7 @@
 
             <!----------------------Examen Fisico General----------------------------------------------->
 
-            <center><a type="button" class="btn btn-primary btn-lg" href="inicio.jsp">Volver</a></center>
+            <center><a type="button" class="btn btn-primary" href="inicio.jsp">Volver</a></center>
 
         </div>
 

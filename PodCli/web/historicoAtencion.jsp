@@ -14,11 +14,14 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <title>Histórico atención podológica</title>
+        <title>Histórico Atención podológica</title>
     </head>
     <style>
-        .navbar-brand{
-            padding: 10px 10px;
+        .navbar-header{
+            
+            padding-top: 7px; 
+            padding-left: 10px
+                
         }
     </style>
     <body>
@@ -26,8 +29,8 @@
             <!-- El logotipo y el icono que despliega el menú se agrupan
                  para mostrarlos mejor en los dispositivos móviles -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                    <span><img width = 35px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                <a href="#" class="navbar-left">
+                    <span><img width=80px height=35px src="imagen/ist.jpg"></span>
                 </a>
             </div>
             <p class="navbar-text pull-left">PodCli</p>
@@ -47,7 +50,7 @@
                 <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                 <!-- Redirigir a crear ficha -->
                 <!-- Redirigir a reporte de uso -->
-                <li><a href="inicio.jsp">Volver a inicio</a></li>
+                <li class="active"><a href="inicio.jsp">Volver a inicio</a></li>
 
             </ul>
 

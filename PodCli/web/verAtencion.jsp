@@ -14,38 +14,67 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
+
 
         <title>Ver atención</title>
     </head>
+    <style>
+        .navbar-header{
+
+            padding-top: 7px; 
+            padding-left: 10px
+
+        }
+
+        .rojo{
+            color:red;
+        }
+
+        .verde{
+            color:green;
+        }
+    </style>
     <body>
-        <div class="row justify-content-xl-center">
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                        <span><img width = 50px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                    <a href="#" class="navbar-left">
+                        <span><img width=80px height=35px src="imagen/ist.jpg"></span>
                     </a>
                 </div>
 
                 <p class="navbar-text pull-left">PodCli</p>
 
-                <ul class="nav navbar-nav navbar-left">
-                    <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-                    <!-- Redirigir a crear ficha -->
-                    <li><a href="#"><% if (u != null) {
+                <p class="navbar-text">
+                    <%    if (u != null) {
                             out.println("Usuario Actual: " + u.getNombre());
-                            out.println("<br>Perfil:");
+                            out.println("</p><p class='navbar-text'>Perfil:");
                             Data d = new Data();
 
                             out.println(d.getPerfil(u.getPerfil()));
                         }
-                            %>
-                        </a></li>
+                    %>
+
+                    <%
+                        if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                    %>
+                    <%
+                        }
+                    %></p>
+
+
+
+                <ul class="nav navbar-nav navbar-left">
+                    <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+                    <!-- Redirigir a crear ficha -->
+
                     <!-- Redirigir a reporte de uso -->
-                    <li><a href="inicio.jsp">Volver a inicio</a></li>
+
+                    <li class="active"><a href="inicio.jsp">Volver a inicio</a></li>
+
                 </ul>
 
                 <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+
                 <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
                     <li>
                         <form class="navbar-form pull-right" action="cerrar.do">
@@ -54,17 +83,17 @@
                     </li>
                 </ul>
                 <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><form class="navbar-form pull-right" role="search" action="buscarPaciente.jsp" method="get">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Buscar" required="">
+                                <input type="text" class="form-control" placeholder="Buscar" name="txtBuscar" required="">
                             </div>
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                         </form>
                     </li>
                 </ul>
             </nav>
-        </div>
 
         <%            Data d = new Data();
 
@@ -86,115 +115,103 @@
                     <div class="panel-body">
 
                         <div class="form-group col-md-3">
-                            <label for="presionArterial">Presión Arterial:</label><br>
+                            Presión Arterial:<br>
                             <input class="form-control" type="number" step="any" value="<%= a.getPresion()%>" name="presion" readonly>
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="pulsoRadial">Pulso Radial:</label><br> 
+                            Pulso Radial:<br> 
                             <input class="form-control" type="number"  value="<%= a.getPulsoRadial()%>" name="pulso" readonly>
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="peso">Peso:</label><br> 
+                            Peso:<br> 
                             <input class="form-control" type="number" value="<%= a.getPeso()%>" step="any" name="peso" readonly><br><br>
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="pulsopedioDerecho">Pulso Pedio Derecho:</label><br> 
+                            Pulso Pedio Derecho:<br> 
                             <input class="form-control" type="number" value="<%= a.getPulsoPedio_d()%>" step="any" name="ppd" readonly>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="pulsopedioIzquierdo">Pulso Pedio Izquierdo:</label><br> 
+                            Pulso Pedio Izquierdo:<br> 
                             <input class="form-control" type="number" value="<%= a.getPulsoPedio_i()%>" name="ppi" readonly><br><br>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="podalDerecho">T° Podal Derecho:</label><br> 
+                            T° Podal Derecho:<br> 
                             <input class="form-control" type="number" value="<%= a.gettPoda1_d()%>" step="any" name="tpd" readonly><br><br>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="podalIzquierdo">T° Podal Izquierdo:</label><br>
+                            T° Podal Izquierdo:<br>
                             <input class="form-control" type="number" value="<%= a.gettPoda1_i()%>" step="any" name="tpi" readonly>
                         </div>
 
                         <br><br>
                         <div class="form-group col-md-6">
-                            <label>Sensibilidad Pie Derecho:</label>
-                            <input  type="text" value="<%=(a.isSens_d() ? "Si" : "No")%>" value="true" readonly >
+                            <text class="<%=(a.isSens_d() ? "verde" : "rojo")%>">Sensibilidad Pie Derecho
+
                         </div>
 
                         <br><br>
                         <div class="form-group col-md-6">
-                            <label>Sensibilidad Pie Izquierdo:</label> 
-                            <input value="<%=(a.isSens_i() ? "Si" : "No")%>" type="text" value="true"  readonly>
+                            <text class="<%=(a.isSens_i() ? "verde" : "rojo")%>">Sensibilidad Pie Izquierdo 
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Curación:</label> 
-                            <input type="text" value="<%=(a.isCuracion() ? "Si" : "No")%>" value="true" readonly>
+                            <text class="<%=(a.isCuracion() ? "verde" : "rojo")%>">Curación
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Resecado:</label> 
-                            <input type="text" value="<%=(a.isResecado() ? "Si" : "No")%>" value="true" readonly>
+                            <text class="<%=(a.isResecado() ? "verde" : "rojo")%>">Resecado
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Enucleación:</label> 
-                            <input type="text" value="<%=(a.isEnucleacion() ? "Si" : "No")%>" value="true" readonly>
+                            <text class="<%=(a.isEnucleacion() ? "verde" : "rojo")%>">Enucleación
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Devastado Ungueal:</label> 
-                            <input type="text" value="<%=(a.isDevastado() ? "Si" : "No")%>" value="true" readonly>
+                            <text class="<%=(a.isDevastado() ? "verde" : "rojo")%>">Devastado Ungueal
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Masoterapia o Masaje:</label> 
-                            <input type="text"  value="<%=(a.isMaso() ? "Si" : "No")%>" value="true" readonly>
+                            <text class="<%=(a.isMaso() ? "verde" : "rojo")%>">Masoterapia o Masaje
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Espiculoectomía:</label> 
-                            <input type="text" value="<%=(a.isEspiculoectomia() ? "Si" : "No")%>" value="true" readonly>
+                            <text class="<%=(a.isEspiculoectomia() ? "verde" : "rojo")%>">Espiculoectomía
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Analgesia:</label> 
-                            <input type="text" value="<%=(a.isAnalgesia() ? "Si" : "No")%>" value="true" readonly>
+                            <text class="<%=(a.isAnalgesia() ? "verde" : "rojo")%>">Analgesia
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Colocacion Acrilico:</label> 
-                            <input type="text" value="<%=(a.isColocacionAcrilico() ? "Si" : "No")%>" value="true" readonly>
+                            <text class="<%=(a.isColocacionAcrilico() ? "verde" : "rojo")%>">Colocacion Acrilico
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Colocacion Banda Molecular:</label> 
-                            <input type="text" value="<%=(a.isBandaMolecular() ? "Si" : "No")%>" value="true" readonly>
+                            <text class="<%=(a.isBandaMolecular() ? "verde" : "rojo")%>">Colocacion Banda Molecular
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Colocacion Puente:</label> 
-                            <input type="text" value="<%=(a.isColocacionPuente() ? "Si" : "No")%>" value="true" readonly>
+                            <text class="<%=(a.isColocacionPuente() ? "verde" : "rojo")%>">Colocacion Puente
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Colocacion Policarboxilato:</label>
-                            <input type="text" value="<%=(a.isPoli() ? "Si" : "No")%>" value="true" readonly="readonly">
+                            <text class="<%=(a.isPoli() ? "verde" : "rojo")%>">Colocacion Policarboxilato
                         </div>
 
                         <div class="form-group col-md-3" style="margin-right: 660px;">
-                            <label>Tratamiento Ortonixia:</label> 
+                            Tratamiento Ortonixia:
                             <input type="text" value="<%=a.getTratamientoOrtonixia()%>" readonly >
-                           
+
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label>Observaciones:</label><br>
+                            Observaciones:<br>
                             <textarea class="form-control" rows="2" name="obs" readonly><%= a.getObservaciones()%></textarea>
                         </div>
 
@@ -209,7 +226,9 @@
         <%%>
         <form action="historicoAtencion.jsp" method="post">
             <input type="hidden" name="idPaciente" value="<%=idPaciente%>">
-            <input type="submit" value="Volver">
+            <center>
+                <button type="submit" class="btn btn-primary" value="volver">Volver</button>
+            </center>
         </form>
     </body>
 </html>

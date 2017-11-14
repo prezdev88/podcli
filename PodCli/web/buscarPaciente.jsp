@@ -14,18 +14,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        
+
 
         <title>Buscar Paciente</title>
     </head>
+    <style>
+        .navbar-header{
+
+            padding-top: 7px; 
+            padding-left: 10px
+
+        }
+    </style>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                    <span><img width = 35px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                <a href="#" class="navbar-left">
+                    <span><img width=80px height=35px src="imagen/ist.jpg"></span>
                 </a>
             </div>
-
             <p class="navbar-text pull-left">PodCli</p>
 
             <p class="navbar-text">
@@ -53,7 +60,7 @@
 
                 <!-- Redirigir a reporte de uso -->
 
-                <li><a href="inicio.jsp">Volver a inicio</a></li>
+                <li class="active"><a href="inicio.jsp">Volver a inicio</a></li>
 
             </ul>
 
@@ -77,61 +84,63 @@
                     </form>
                 </li>
             </ul>
-        </nav><br><br><br><br>
+        </nav>
+        <br><br>
         <!--<form action="buscarPaciente.jsp" method="post">
             <input type="text"      name="txtBuscar"    placeholder="Buscar">
             <input type="submit"    name="buscar"       value="Buscar Paciente">
         </form>-->
-    <center>
+        <br>
         <div class="container">
-            <div class="jumbotron" style="background-color: #F7F6F5;">
-                <h1>Buscar Paciente</h1>
-                <table class="table table-striped">
-                    <%            String txtBuscar = request.getParameter("txtBuscar");
-                        if (txtBuscar != null) {
-                            out.println("<tr>");
-                            out.println("<th style='background-color:#6AA3E4; color:white;'>Rut</th>");
-                            out.println("<th style='background-color:#6AA3E4; color:white;'>Nombre</th>");
-                            out.println("<th style='background-color:#6AA3E4; color:white;'>Ficha</th>");
-                            out.println("<th style='background-color:#6AA3E4; color:white;'>Atenciòn</th>");
-                            out.println("<th style='background-color:#6AA3E4; color:white;'>Atencion Podológica</th>");
-                            out.println("</tr>");
-
-                            Data d = new Data();
-                            List<Paciente> pacientes = d.getPacientes(txtBuscar);
-
-                            for (Paciente p : pacientes) {
+            <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
+                <div class="container">
+                    <center><h1>Buscar Paciente</h1></center>
+                    <table class="table table-striped">
+                        <%            String txtBuscar = request.getParameter("txtBuscar");
+                            if (txtBuscar != null) {
                                 out.println("<tr>");
-                                out.println("<td class='active'>" + p.getRut() + "</td>");
-                                out.println("<td class='active'>" + p.getNombre() + "</td>");
-
-                                out.println("<td class='active'>");
-                                out.println("<form action='verFicha.jsp' method='post' class='form-inline'>");
-                                out.println("<input type='submit' value='Ver Ficha' class='btn btn-default'>");
-                                out.println("<input type='hidden' name='rut' value=" + p.getRut() + ">");
-                                out.println("</form>");
-                                out.println("</td>");
-
-                                out.println("<td class='active'>");
-                                out.println("<form action='atencionPodologica.jsp' method='post' class='form-inline'>");
-                                out.println("<input type='hidden' value='" + d.getIdFicha(String.valueOf(p.getId())) + "' name='idFicha'>");
-                                out.println("<input type='submit' value='Atencion Podologica' class='btn btn-default'>");
-                                out.println("</form>");
-                                out.println("</td>");
-
-                                out.println("<td class='active'>");
-                                out.println("<form action='historicoAtencion.jsp' method='post' class='form-inline'>");
-                                out.println("<input type='submit' value='Histórico atenciones podológicas' class='btn btn-default'>");
-                                out.println("<input type='hidden' value='" + p.getId() + "' name = 'idPaciente'>");
-                                out.println("</form>");
-                                out.println("</td>");
+                                out.println("<th style='background-color:#6AA3E4; color:white;'>Rut</th>");
+                                out.println("<th style='background-color:#6AA3E4; color:white;'>Nombre</th>");
+                                out.println("<th style='background-color:#6AA3E4; color:white;'>Ficha</th>");
+                                out.println("<th style='background-color:#6AA3E4; color:white;'>Atenciòn</th>");
+                                out.println("<th style='background-color:#6AA3E4; color:white;'>Atencion Podológica</th>");
                                 out.println("</tr>");
+
+                                Data d = new Data();
+                                List<Paciente> pacientes = d.getPacientes(txtBuscar);
+
+                                for (Paciente p : pacientes) {
+                                    out.println("<tr>");
+                                    out.println("<td class='active'>" + p.getRut() + "</td>");
+                                    out.println("<td class='active'>" + p.getNombre() + "</td>");
+
+                                    out.println("<td class='active'>");
+                                    out.println("<form action='verFicha.jsp' method='post' class='form-inline'>");
+                                    out.println("<input type='submit' value='Ver Ficha' class='btn btn-default'>");
+                                    out.println("<input type='hidden' name='rut' value=" + p.getRut() + ">");
+                                    out.println("</form>");
+                                    out.println("</td>");
+
+                                    out.println("<td class='active'>");
+                                    out.println("<form action='atencionPodologica.jsp' method='post' class='form-inline'>");
+                                    out.println("<input type='hidden' value='" + d.getIdFicha(String.valueOf(p.getId())) + "' name='idFicha'>");
+                                    out.println("<input type='submit' value='Atencion Podologica' class='btn btn-default'>");
+                                    out.println("</form>");
+                                    out.println("</td>");
+
+                                    out.println("<td class='active'>");
+                                    out.println("<form action='historicoAtencion.jsp' method='post' class='form-inline'>");
+                                    out.println("<input type='submit' value='Histórico atenciones podológicas' class='btn btn-default'>");
+                                    out.println("<input type='hidden' value='" + p.getId() + "' name = 'idPaciente'>");
+                                    out.println("</form>");
+                                    out.println("</td>");
+                                    out.println("</tr>");
+                                }
                             }
-                        }
-                    %>
-                </table>
+                        %>
+                    </table>
+                </div>
             </div>
         </div>
-    </center>
 </body>
 </html>

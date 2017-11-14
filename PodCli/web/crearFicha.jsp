@@ -27,7 +27,6 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <!-- Esto es del calendario JQUERY -->
-        <script type="text/javascript"> history.forward();</script>  <!--No permite volver si no se ha iniciado sesion-->
 
 
         <script>
@@ -74,11 +73,19 @@
         </script>
 
     </head>
+    <style>
+        .navbar-header{
+            
+            padding-top: 7px; 
+            padding-left: 10px
+                
+        }
+    </style>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                    <span><img width = 35px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                <a href="#" class="navbar-left">
+                    <span><img width=80px height=35px src="imagen/ist.jpg"></span>
                 </a>
             </div>
 
@@ -109,7 +116,7 @@
 
                 <!-- Redirigir a reporte de uso -->
 
-                <li><a href="inicio.jsp">Volver a inicio</a></li>
+                <li class="active"><a href="inicio.jsp">Volver a inicio</a></li>
 
             </ul>
 
@@ -186,45 +193,45 @@
 
                             <div class="form-group col-md-4">
                                 <br>
-                                <label for="Nombre">Nombre:</label><br>
+                                Nombre:<br>
                                 <input class="form-control" type="text" name="txtNombre" required="">
                             </div>
 
                             <div class="col-md-4">
                                 <br>
-                                <label for="rut">Rut:</label><br>
+                                Rut:<br>
                                 <input class="form-control" type="text" onkeypress="return punto(event)" name="txtRut" maxlength="10" required="">
                             </div>
 
                             <div class="col-md-4">
                                 <br>
-                                <label for="fechaNacimiento">Fecha de Nacimiento:</label><br>
+                                Fecha de Nacimiento:<br>
                                 <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto" readonly="" required="">
                                 <br>
                             </div>
 
                             <div class="col-md-4">
                                 <br>
-                                <label for="sexo">Sexo:</label>
+                                Sexo:
                                 <br>
                                 <div class="radio">                                
                                     <label>
-                                        <input type="radio" name="opSexo" value="m" checked="checked">Masculino
-                                        <input type="radio" name="opSexo" value="f">Femenino
+                                        <input type="radio" name="opSexo" value="m" checked="checked"> Masculino 
+                                        <input type="radio" name="opSexo" value="f"> Femenino
                                     </label>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <br>
-                                <label for="actividad">Actividad:</label><br>
+                                Actividad:<br>
                                 <input class="form-control" type="text" name="txtActividad">
                                 <br>
                             </div>
 
                             <div class="col-md-4">
                                 <br>
-                                <label for="estadocivil">Estado Civil:</label><br> 
+                                Estado Civil:<br> 
                                 <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil">
                                     <%
                                         for (EstadoCivil ec : new Data().getEstadosCiviles()) {
@@ -237,7 +244,7 @@
 
                             <div class="col-md-4">
                                 <br>
-                                <label for="Domicilio">Domicilio:</label><br>
+                                Domicilio:<br>
                                 <textarea class="form-control" name="txtDomicilio" required=""></textarea>
                             </div>
 
@@ -245,7 +252,7 @@
 
                             <div class="col-md-4">
                                 <br>
-                                <label for="telefonos">Telefonos:</label><br>
+                                Telefonos:<br>
                                 <input class="form-control" type="text" name="txtTelefonos" required="">
                             </div>
 
@@ -267,7 +274,7 @@
                         <div id="antecedentesMorbidos">
 
                             <div class="form-group col-md-3">
-                                <label for="hta">HTA:</label><br>
+                                HTA:<br>
                                 <select class="custom-select-sm form-control form-control-sm" name="cboHTA">
                                     <%
                                         for (Respuesta r : new Data().getRespuestas()) {
@@ -283,7 +290,7 @@
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label for="dm">D.M:</label><br>
+                                D.M:<br>
                                 <select class="custom-select-sm form-control form-control-sm" name="cboDM">
                                     <%
                                         for (Respuesta r : new Data().getRespuestas()) {
@@ -299,7 +306,7 @@
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label for="tipo">Tipo:</label><br>
+                                Tipo:<br>
                                 <select class="custom-select-sm form-control form-control-sm" name="cboTipo">
                                     <option class="form-control form-control-sm" value="0">N/A</option>
                                     <option class="form-control form-control-sm" value="1">1</option>
@@ -308,14 +315,14 @@
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label for="AñosdeEvolucion">Años de Evolucion:</label><br>
+                                Años de Evolucion:<br>
                                 <input class="form-control form-control-sm" type="number" name="txtAnioEvolucion">
                             </div>    
 
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="pacienteMixto">Paciente mixto:</label><br>
+                                Paciente mixto:<br>
                                 <select class="custom-select-sm form-control form-control-sm" name="cboPcteMixto">
                                     <option class="form-control form-control-sm" value="true">Si</option>
                                     <option class="form-control form-control-sm" value="false" selected>No</option>
@@ -324,7 +331,7 @@
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="control">Control:</label><br>
+                                Control:<br>
                                 <select class="custom-select-sm form-control form-control-sm" name="cboControl">
                                     <option class="form-control form-control-sm" value="true">Si</option>
                                     <option class="form-control form-control-sm" value="false" selected>No</option>
@@ -334,23 +341,23 @@
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="farmacoterapia">Farmacoterapia:</label><br>
+                                Farmacoterapia:<br>
                                 <textarea class="form-control" name="txtFarmacoterapia"></textarea>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="PatologíasFarmacoterapia">Otras Patologías y Farmacoterapia:</label> 
+                                Otras Patologías y Farmacoterapia: 
                                 <textarea class="form-control" name="txtOtras"></textarea><br>
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label for="AlteracionesOrtopédicas: ">Alteraciones Ortopédicas:</label> 
+                                Alteraciones Ortopédicas: 
                                 <textarea class="form-control" name="txtAlter"></textarea>
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label for="habitosNocivos">Habitos Nocivos:</label><br> 
+                                Habitos Nocivos:<br> 
                                 <textarea class="form-control" name="txtHabitosNocivos"></textarea>
                             </div>
 
@@ -371,18 +378,18 @@
                         <div id="examenFisicoGeneral">
 
                             <div class="form-group col-md-3">
-                                <label for="Tallametros: ">Talla en metros:</label><br>
+                                Talla en metros:<br>
                                 <input class="form-control" type="number" step="any" name="txtTalla" required=""><br>
                             </div>
 
                             <div class="form-group col-md-9">
-                                <label for="IMC">IMC:</label><br>
+                                IMC:<br>
                                 <input class="form-control" type="number" step="any" name="txtIMC" required="">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for=" Amputación"> Amputación:</label><br>
+                                Amputación:<br>
                                 <select class="custom-select-sm form-control form-control-sm" name="cboAmputacion">
                                     <option class="form-control form-control-sm" value="true">Si</option>
                                     <option class="form-control form-control-sm" value="false" selected>No</option>
@@ -391,19 +398,19 @@
 
                             <div class="form-group col-md-9">
                                 <br>
-                                <label for=ubicacion"">Ubicación:</label><br>
+                                Ubicación:<br>
                                 <input class="form-control" type="text" name="txtUbicacionAmputacion">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="nºCalzado">N° Calzado:</label><br> 
+                                N° Calzado:<br> 
                                 <input class="form-control" type="number" name="txtNumCalzado" required="">
                             </div>
 
                             <div class="form-group col-md-9">
                                 <br>
-                                <label for="varices">Varices Extremo Inferior:</label><br>
+                                Varices Extremo Inferior:<br>
                                 <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboVaricesExtremoInferior">
                                     <option class="form-control form-control-sm" value="true">Si</option>
                                     <option class="form-control form-control-sm" value="false" selected>No</option>
@@ -412,7 +419,7 @@
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="heridas">Heridas:</label><br>
+                                Heridas:<br>
                                 <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboHeridas">
                                     <option class="form-control form-control-sm" value="true">Si</option>
                                     <option class="form-control form-control-sm" value="false" selected>No</option>
@@ -421,19 +428,19 @@
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="ubicacion">Ubicación:</label><br>
+                                Ubicación:<br>
                                 <input class="form-control" type="text" name="txtUbicacionHeridas">
                             </div>                      
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="tipo">Tipo:</label><br>
+                                Tipo:<br>
                                 <input class="form-control" type="text" name="txtTipoHeridas">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="tratamiento">Tratamiento:</label><br>
+                                Tratamiento:<br>
                                 <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboTratamiento">
                                     <option class="form-control form-control-sm" value="true">Si</option>
                                     <option class="form-control form-control-sm" value="false" selected>No</option>
@@ -442,7 +449,7 @@
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="nevos">Nevos:</label><br> 
+                                Nevos:<br> 
                                 <select style="width: 68px" <%--class="col-md"--%> class="custom-select-sm form-control form-control-sm" name="cboNevos">
                                     <option class="form-control form-control-sm" value="true">Si</option>
                                     <option class="form-control form-control-sm" value="false" selected>No</option>
@@ -451,13 +458,13 @@
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="ubicacion">Ubicación:</label><br>
+                                Ubicación:<br>
                                 <input class="form-control" type="text" name="txtUbicacionNevos">
                             </div>
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="maculas">Máculas:</label><br>
+                                Máculas:<br>
                                 <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboMaculas">
                                     <option class="form-control form-control-sm" value="true">Si</option>
                                     <option class="form-control form-control-sm" value="false" selected>No</option>
@@ -466,7 +473,7 @@
 
                             <div class="form-group col-md-3">
                                 <br>
-                                <label for="tipo">Tipo:</label><br> 
+                                Tipo:<br> 
                                 <input class="form-control" type="text" name="txtTipoMaculas">
                             </div>
 
@@ -477,7 +484,7 @@
             <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
 
             <center>
-                <button type="submit" class="btn btn-primary btn-lg" value="RegistrarFicha">Registrar Ficha</button>
+                <button type="submit" class="btn btn-primary" value="RegistrarFicha">Registrar Ficha</button>
             </center>
             <br><br>
         </form>

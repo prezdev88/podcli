@@ -12,34 +12,51 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
+
         <title>Atención Podológica</title>
     </head>
+    <style>
+        .navbar-header{
+
+            padding-top: 7px; 
+            padding-left: 10px
+
+        }
+    </style>
     <body>
         <div class="row justify-content-xl-center">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                        <span><img width = 50px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                    <a href="#" class="navbar-left">
+                        <span><img width=80px height=35px src="imagen/ist.jpg"></span>
                     </a>
                 </div>
 
                 <p class="navbar-text pull-left">PodCli</p>
 
-                <ul class="nav navbar-nav navbar-left">
-                    <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-                    <!-- Redirigir a crear ficha -->
-                    <li><a href="#"><% if (u != null) {
+                <p class="navbar-text">
+                    <%    if (u != null) {
                             out.println("Usuario Actual: " + u.getNombre());
-                            out.println("<br>Perfil:");
+                            out.println("</p><p class='navbar-text'>Perfil:");
                             Data d = new Data();
 
                             out.println(d.getPerfil(u.getPerfil()));
                         }
-                            %>
-                        </a></li>
+                    %>
+
+                    <%
+                        if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                    %>
+                    <%
+                        }
+                    %></p>
+
+                <ul class="nav navbar-nav navbar-left">
+                    <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+                    <!-- Redirigir a crear ficha -->
+
                     <!-- Redirigir a reporte de uso -->
-                    <li><a href="inicio.jsp">Volver a inicio</a></li>
+                    <li class="active"><a href="inicio.jsp">Volver a inicio</a></li>
                 </ul>
 
                 <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
@@ -84,7 +101,7 @@
                         <%                Data d = new Data();
                             String idFicha = request.getParameter("idFicha");
                         %>
-                        <h3 class="panel-title">Atención Podologica de <b><%= d.getNombreBy(idFicha)%></b></h3>
+                        <h3 class="panel-title">Atención Podologica de <%= d.getNombreBy(idFicha)%></h3>
                         <%
                             if (u != null) {
                         %>
@@ -97,109 +114,109 @@
                     <div class="panel-body">
 
                         <div class="form-group col-md-3">
-                            <label for="presionArterial">Presión Arterial:</label><br>
+                            Presión Arterial:<br>
                             <input class="form-control" type="number" step="any" name="presion" required="">
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="pulsoRadial">Pulso Radial:</label><br> 
+                            Pulso Radial:<br> 
                             <input class="form-control" type="number" name="pulso" required="">
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="peso">Peso:</label><br> 
+                            Peso:<br> 
                             <input class="form-control" type="number" step="any" name="peso" required=""><br><br>
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="pulsopedioDerecho">Pulso Pedio Derecho:</label><br> 
+                            Pulso Pedio Derecho:<br> 
                             <input class="form-control" type="number" name="ppd" required="">
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="pulsopedioIzquierdo">Pulso Pedio Izquierdo:</label><br> 
+                            Pulso Pedio Izquierdo:<br> 
                             <input class="form-control" type="number" name="ppi" required=""><br><br>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="podalDerecho">T° Podal Derecho:</label><br> 
+                            T° Podal Derecho:<br> 
                             <input class="form-control" type="number" step="any" name="tpd" required=""><br><br>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="podalIzquierdo">T° Podal Izquierdo:</label><br>
+                            T° Podal Izquierdo:<br>
                             <input class="form-control" type="number" step="any" name="tpi" required="">
                         </div>
 
                         <br><br>
                         <div class="form-group col-md-6">
-                            <label>Sensibilidad Pie Derecho:</label>
+                            Sensibilidad Pie Derecho:
                             <input  type="checkbox" value="true" name="spd">
                         </div>
 
                         <br><br>
                         <div class="form-group col-md-6">
-                            <label>Sensibilidad Pie Izquierdo:</label> 
+                            Sensibilidad Pie Izquierdo:
                             <input type="checkbox" value="true" name="spi">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Curación:</label> 
+                            Curación:
                             <input type="checkbox" value="true" name="curacion">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Resecado:</label> 
+                            Resecado:
                             <input type="checkbox" value="true" name="resecado">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Enucleación:</label> 
+                            Enucleación: 
                             <input type="checkbox" value="true" name="enu">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Devastado Ungueal:</label> 
+                            Devastado Ungueal:
                             <input type="checkbox" value="true" name="devastado">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Masoterapia o Masaje:</label> 
+                            Masoterapia o Masaje:
                             <input type="checkbox" value="true" name="maso">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Espiculoectomía:</label> 
+                            Espiculoectomía:
                             <input type="checkbox" value="true" name="epi">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Analgesia:</label> 
+                            Analgesia:
                             <input type="checkbox" value="true" name="anal">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Colocacion Acrilico:</label> 
+                            Colocacion Acrilico:
                             <input type="checkbox" value="true" name="acri">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Colocacion Banda Molecular:</label> 
+                            Colocacion Banda Molecular:
                             <input type="checkbox" value="true" name="cbm">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Colocacion Puente:</label> 
+                            Colocacion Puente:
                             <input type="checkbox" value="true" name="cpuente">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label>Colocacion Policarboxilato:</label>
+                            Colocacion Policarboxilato:
                             <input type="checkbox" value="true" name="cpoli">
                         </div>
 
                         <div class="form-group col-md-3" style="margin-right: 660px;">
-                            <label>Tratamiento Ortonixia:</label> 
+                            Tratamiento Ortonixia:
                             <select name="to" class="custom-select-sm form-control form-control-sm">
                                 <%
                                     for (TratamientoOrtonixia to : new Data().getTratamientosOrtonoxia()) {
@@ -210,7 +227,7 @@
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label>Observaciones:</label><br>
+                            Observaciones:<br>
                             <textarea class="form-control" rows="4" name="obs"></textarea>
                         </div>
 
@@ -218,7 +235,7 @@
                         <br><br>
 
                         <center class="form-group col-md-12">
-                            <button type="submit" class="btn btn-primary btn-lg" value="RegistrarFicha">Registrar Atención</button>
+                            <button type="submit" class="btn btn-primary" value="RegistrarFicha">Registrar Atención</button>
                         </center>
 
                     </div>

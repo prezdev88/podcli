@@ -13,10 +13,14 @@
             left: 50%;
             transform: translatex(-50%);
         }
-
-        .navbar-brand{
-            padding: 10px 10px;
+        
+        .navbar-header{
+            
+            padding-top: 7px; 
+            padding-left: 10px
+                
         }
+        
     </style>
     <body>
 
@@ -24,8 +28,8 @@
             <!-- El logotipo y el icono que despliega el menú se agrupan
                  para mostrarlos mejor en los dispositivos móviles -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="padding-bottom: 10px">
-                    <span><img width = 35px alt="Brand" src="http://www.prodx.cl/images/ust.png"></span>
+                <a href="#" class="navbar-left">
+                    <span><img width=80px height=35px src="imagen/ist.jpg"></span>
                 </a>
             </div>
             <p class="navbar-text pull-left">PodCli</p>
