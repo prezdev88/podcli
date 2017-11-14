@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript"> history.forward();</script>  <!--No permite volver si no se ha iniciado sesion-->
+        
 
         <title>Ver atención</title>
     </head>
@@ -123,78 +123,77 @@
                         <br><br>
                         <div class="form-group col-md-6">
                             <label>Sensibilidad Pie Derecho:</label>
-                            <input  type="checkbox" value="<%=(a.isSens_d() ? "Si" : "No")%>" value="true" readonly >
+                            <input  type="text" value="<%=(a.isSens_d() ? "Si" : "No")%>" value="true" readonly >
                         </div>
 
                         <br><br>
                         <div class="form-group col-md-6">
                             <label>Sensibilidad Pie Izquierdo:</label> 
-                            <input value="<%=(a.isSens_i() ? "Si" : "No")%>" type="checkbox" value="true"  readonly>
+                            <input value="<%=(a.isSens_i() ? "Si" : "No")%>" type="text" value="true"  readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Curación:</label> 
-                            <input type="checkbox" value="<%=(a.isCuracion() ? "Si" : "No")%>" value="true" readonly>
+                            <input type="text" value="<%=(a.isCuracion() ? "Si" : "No")%>" value="true" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Resecado:</label> 
-                            <input type="checkbox" value="<%=(a.isResecado() ? "Si" : "No")%>" value="true" readonly>
+                            <input type="text" value="<%=(a.isResecado() ? "Si" : "No")%>" value="true" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Enucleación:</label> 
-                            <input type="checkbox" value="<%=(a.isEnucleacion() ? "Si" : "No")%>" value="true" readonly>
+                            <input type="text" value="<%=(a.isEnucleacion() ? "Si" : "No")%>" value="true" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Devastado Ungueal:</label> 
-                            <input type="checkbox" value="<%=(a.isDevastado() ? "Si" : "No")%>" value="true" readonly>
+                            <input type="text" value="<%=(a.isDevastado() ? "Si" : "No")%>" value="true" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Masoterapia o Masaje:</label> 
-                            <input type="checkbox"  value="<%=(a.isMaso() ? "Si" : "No")%>" value="true" readonly>
+                            <input type="text"  value="<%=(a.isMaso() ? "Si" : "No")%>" value="true" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Espiculoectomía:</label> 
-                            <input type="checkbox" value="<%=(a.isEspiculoectomia() ? "Si" : "No")%>" value="true" readonly>
+                            <input type="text" value="<%=(a.isEspiculoectomia() ? "Si" : "No")%>" value="true" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Analgesia:</label> 
-                            <input type="checkbox" value="<%=(a.isAnalgesia() ? "Si" : "No")%>" value="true" readonly>
+                            <input type="text" value="<%=(a.isAnalgesia() ? "Si" : "No")%>" value="true" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Colocacion Acrilico:</label> 
-                            <input type="checkbox" value="<%=(a.isColocacionAcrilico() ? "Si" : "No")%>" value="true" readonly>
+                            <input type="text" value="<%=(a.isColocacionAcrilico() ? "Si" : "No")%>" value="true" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Colocacion Banda Molecular:</label> 
-                            <input type="checkbox" value="<%=(a.isBandaMolecular() ? "Si" : "No")%>" value="true" readonly>
+                            <input type="text" value="<%=(a.isBandaMolecular() ? "Si" : "No")%>" value="true" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Colocacion Puente:</label> 
-                            <input type="checkbox" value="<%=(a.isColocacionPuente() ? "Si" : "No")%>" value="true" readonly>
+                            <input type="text" value="<%=(a.isColocacionPuente() ? "Si" : "No")%>" value="true" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label>Colocacion Policarboxilato:</label>
-                            <input type="checkbox" value="<%=(a.isPoli() ? "Si" : "No")%>" value="true" readonly="readonly">
+                            <input type="text" value="<%=(a.isPoli() ? "Si" : "No")%>" value="true" readonly="readonly">
                         </div>
 
                         <div class="form-group col-md-3" style="margin-right: 660px;">
                             <label>Tratamiento Ortonixia:</label> 
-                            <select class="custom-select-sm form-control form-control-sm" value="<%=a.getTratamientoOrtonixia()%>" readonly >
-                               
-                            </select>
+                            <input type="text" value="<%=a.getTratamientoOrtonixia()%>" readonly >
+                           
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-12">
                             <label>Observaciones:</label><br>
                             <textarea class="form-control" rows="2" name="obs" readonly><%= a.getObservaciones()%></textarea>
                         </div>

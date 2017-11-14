@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript"> history.forward(); </script>  <!--No permite volver si no se ha iniciado sesion-->
+        
         <title>Atención Podológica</title>
     </head>
     <body>
@@ -84,7 +84,7 @@
                         <%                Data d = new Data();
                             String idFicha = request.getParameter("idFicha");
                         %>
-                        <h3 class="panel-title">Atención Podologica de <%= d.getNombreBy(idFicha)%></h3>
+                        <h3 class="panel-title">Atención Podologica de <b><%= d.getNombreBy(idFicha)%></b></h3>
                         <%
                             if (u != null) {
                         %>
@@ -209,9 +209,9 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-12">
                             <label>Observaciones:</label><br>
-                            <textarea class="form-control" rows="2" name="obs"></textarea>
+                            <textarea class="form-control" rows="4" name="obs"></textarea>
                         </div>
 
 

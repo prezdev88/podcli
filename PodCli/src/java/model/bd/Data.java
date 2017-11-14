@@ -31,7 +31,7 @@ public class Data {
             "localhost",
             "podcli",//nombre BD
             "root",
-            ""//Password
+            "123456"//Password
         );
 
     }
@@ -194,7 +194,7 @@ public class Data {
                 "    INNER JOIN tratamientoOrtonixia ON atencionPodologica.tratamientoOrtonixia = tratamientoOrtonixia.id\n" +
                 "WHERE \n" +
                 "    atencionPodologica.ficha = "+idFicha+" "
-                + "  ORDER BY atencionPodologica.fecha ASC;";
+                + "  ORDER BY atencionPodologica.fecha DESC;";
 
         rs = con.ejecutarSelect(query);
         List<AtencionPodologicaSelect> atenciones = new ArrayList<>();

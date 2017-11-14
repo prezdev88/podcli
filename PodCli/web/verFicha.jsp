@@ -30,23 +30,7 @@
 
             <p class="navbar-text pull-left">PodCli</p>
 
-            <ul class="nav navbar-nav navbar-left">
-                <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-                <!-- Redirigir a crear ficha -->
-                <li><a href="#"><%                    if (u != null) {
-                        out.println("Usuario Actual: " + u.getNombre());
-                        out.println("<br>Perfil:");
-                        Data d = new Data();
-
-                        out.println(d.getPerfil(u.getPerfil()));
-                    }
-                        %>
-
-                    </a></li>
-                <!-- Redirigir a reporte de uso -->
-                <li><a href="inicio.jsp">Volver a inicio</a></li>
-
-            </ul>
+            
 
 
             <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
@@ -81,9 +65,13 @@
 
 
         <div class="container">
-            <h1><%=f.getNombrePaciente()%>
-                Fecha de Registro: <%= Data.getFormattedDate(f.getFecha_ficha(), true)%><br>
-            </h1>
+            <br><br><br>
+            <center>
+                <div class="col-md-12">
+                    <h2><%=f.getNombrePaciente()%></h2>
+                    <h4>Fecha de Registro: <%= Data.getFormattedDate(f.getFecha_ficha(), true)%></h4>
+                </div>
+            </center>
             <div class="col-md-12">
                 <button type="button" class="btn btn-success col-md-12" data-toggle="collapse" data-target="#antecedentes">
                     Antecedentes Personales
@@ -106,7 +94,7 @@
                             Estado Civil: <input class="form-control" type="text" value="<%= f.getEstado_civil()%>" readonly> 
                             Actividad: <input class="form-control" type="text" name="txtActividad" value="<%= f.getActividad()%>" readonly>
                             Telefonos:  <input class="form-control" type="text" name="txtTelefonos" value="<%= f.getFono()%>" readonly>
-                            Fecha de Registro: <input class="form-control"  value="<%= f.getFecha_ficha()%>" readonly>
+                            Fecha de Registro: <input class="form-control"  value="<%= Data.getFormattedDate(f.getFecha_ficha(), true) %>" readonly>
                         </div>
                     </div>
                 </div>

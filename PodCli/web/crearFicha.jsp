@@ -478,14 +478,8 @@
 
             <center>
                 <button type="submit" class="btn btn-primary btn-lg" value="RegistrarFicha">Registrar Ficha</button>
-
             </center>
-
             <br><br>
-
-
-
-
         </form>
     </body>
 </html>
