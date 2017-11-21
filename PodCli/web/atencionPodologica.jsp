@@ -71,26 +71,14 @@
                 <%@include file="modules/buscarNav.jsp" %>
             </nav>
         </div>
-
-        <div>
-            <!--<%
-                if (u != null) {
-                    out.println("Usuario Actual: " + u.getNombre());
-                    out.println("<br>Perfil:");
-                    Data d = new Data();
-
-                    out.println(d.getPerfil(u.getPerfil()));
-                }
-            %>
-            <!--<br><a href="buscarPaciente.jsp"> Buscar Pacientes </a>
-            <br><a href="cerrar.do">Cerrar sesión</a>-->
-        </div> 
+ 
 
         <div class="container" style="margin-top: 100px">
             <form action="registrarAtencion.do" method="post">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <%                Data d = new Data();
+                        <%                
+                            Data d = new Data();
                             String idFicha = request.getParameter("idFicha");
                         %>
                         <h3 class="panel-title">Atención Podologica de <%= d.getNombreBy(idFicha)%></h3>

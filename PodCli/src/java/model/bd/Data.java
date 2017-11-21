@@ -265,6 +265,32 @@ public class Data {
 
         return p;
     }
+    
+    public Paciente getPacienteByRut(String rut) throws SQLException {
+
+        query = "SELECT * FROM paciente WHERE rut = '" + rut+"'";
+
+        rs = con.ejecutarSelect(query);
+        Paciente p = null;
+
+        if (rs.next()) {
+            p = new Paciente();
+
+            p.setId(rs.getInt(1));
+            p.setRut(rs.getString(2));
+            p.setNombre(rs.getString(3));
+            p.setSexo(rs.getString(4));
+            p.setDomicilio(rs.getString(5));
+            p.setFechaNacimiento(rs.getTimestamp(6));
+            p.setEstadoCivil(rs.getInt(7));
+            p.setActividad(rs.getString(8));
+            p.setTelefonos(rs.getString(9));
+
+        }
+        con.close();
+
+        return p;
+    }
 
     public List<Paciente> getPacientes(String filtro) throws SQLException {
         List<Paciente> lista = new ArrayList<>();

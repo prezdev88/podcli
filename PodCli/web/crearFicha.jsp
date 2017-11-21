@@ -75,10 +75,10 @@
     </head>
     <style>
         .navbar-header{
-            
+
             padding-top: 7px; 
             padding-left: 10px
-                
+
         }
     </style>
     <body>
@@ -90,9 +90,9 @@
             </div>
 
             <p class="navbar-text pull-left">PodCli</p>
-            
+
             <%@include file="modules/actualUser.jsp" %>
-            
+
             <ul class="nav navbar-nav navbar-left">
                 <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                 <!-- Redirigir a crear ficha -->
@@ -139,31 +139,46 @@
                     return false;
                 }
             }
+
+            function buscarPaciente() {
+                var rut = $("#txtRut").val();
+                $.ajax({
+                    url: "buscarPaciente.do",
+                    data: {
+                        rut: rut
+                    },
+                    success: function (result) {
+                        $("#resultado").html(result);
+                    }
+                });
+            }
         </script>
 
-        
-        
-        
-        
-        <form action="crearFicha.do" method="post" style="margin-top: 100px" class="form-inline">
-            <div class="container">
-                <%
-                if(request.getParameter("m") != null){
-                    int m = Integer.parseInt(request.getParameter("m"));
-                    switch(m){
-                        case 1:
-                            out.println("<div class='alert alert-success'>Paciente creado!</div>");
-                            break;
-                        case 2:
-                            out.println("<div class='alert alert-danger'>ERROR: Seleccione fecha!</div>");
-                            break;
+
+
+
+        <div class="container">
+            
+            <form action="crearFicha.do" method="post" style="margin-top: 100px" class="form-inline">
+
+                <%                    if (request.getParameter("m") != null) {
+                        int m = Integer.parseInt(request.getParameter("m"));
+                        switch (m) {
+                            case 1:
+                                out.println("<div class='alert alert-success'>Paciente creado!</div>");
+                                break;
+                            case 2:
+                                out.println("<div class='alert alert-danger'>ERROR: Seleccione fecha!</div>");
+                                break;
+                        }
                     }
-                }
                 %>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <div class="panel-title"><h4>Antecedentes Personales</h4>
-                        </div>
+                        <span class="panel-title">
+                            Antecedentes Personales
+                        </span>
+                        <span id="resultado"></span>
                     </div>
                     <div class="panel-body">
                         <input type="hidden" name="txtUsuario" value="<%= u.getId()%>"> 
@@ -172,9 +187,8 @@
                         <div id="fichaClinica">
 
                             <div class="form-group col-md-4">
-                                <br>
                                 Rut:<span class="text-danger">*</span><br>
-                                <input class="form-control" type="text" onkeypress="return punto(event)" name="txtRut" maxlength="10" required="">
+                                <input class="form-control" type="text" onkeypress="return punto(event)" onkeyup="buscarPaciente()" name="txtRut" id="txtRut" maxlength="10" required="">
                             </div>
 
                             <div class="col-md-4">
@@ -239,12 +253,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- ----------------------------------FICHA CLÍNICA----------------------------------- -->
+                <!-- ----------------------------------FICHA CLÍNICA----------------------------------- -->
 
-            <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
-            <div class="container">
+                <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="panel-title"><h4>Antecedentes Morbidos</h4>
@@ -344,11 +356,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
+                <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
 
-            <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
-            <div class="container">
+                <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="panel-title"><h4>Examen Físico General</h4>
@@ -460,13 +470,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
+                <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
 
-            <center>
-                <button type="submit" class="btn btn-primary" value="RegistrarFicha">Registrar Ficha</button>
-            </center>
-            <br><br>
-        </form>
+                <center>
+                    <button type="submit" class="btn btn-primary" value="RegistrarFicha">Registrar Ficha</button>
+                </center>
+                <br><br>
+            </form>
+        </div>
     </body>
 </html>
