@@ -154,12 +154,9 @@
             }
         </script>
 
-
-
-
         <div class="container">
-            
-            <form action="crearFicha.do" method="post" style="margin-top: 100px" class="form-inline">
+
+            <form action="crearFicha.do" method="post" style="margin-top: 100px">
 
                 <%                    if (request.getParameter("m") != null) {
                         int m = Integer.parseInt(request.getParameter("m"));
@@ -185,71 +182,60 @@
 
                         <!-- ----------------------------------FICHA CLÍNICA----------------------------------- -->
                         <div id="fichaClinica">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="txtRut">Rut:</label><span class="text-danger">*</span>
+                                    <input class="form-control" type="text" onkeypress="return punto(event)" onkeyup="buscarPaciente()" name="txtRut" id="txtRut" maxlength="10" required="">
+                                </div>
 
-                            <div class="form-group col-md-4">
-                                Rut:<span class="text-danger">*</span><br>
-                                <input class="form-control" type="text" onkeypress="return punto(event)" onkeyup="buscarPaciente()" name="txtRut" id="txtRut" maxlength="10" required="">
-                            </div>
+                                <div class="form-group col-md-4">
+                                    <label for="txtNombre">Nombre:</label><span class="text-danger">*</span>
+                                    <input class="form-control" type="text" name="txtNombre" required="">
+                                </div>
 
-                            <div class="col-md-4">
-                                <br>
-                                Nombre:<span class="text-danger">*</span><br>
-                                <input class="form-control" type="text" name="txtNombre" required="">
-                            </div>
-
-                            <div class="col-md-4">
-                                <br>
-                                Fecha de Nacimiento:<span class="text-danger">*</span><br>
-                                <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto" readonly="" required="required">
-                                <br>
-                            </div>
-
-                            <div class="col-md-4">
-                                <br>
-                                Sexo:<span class="text-danger">*</span>
-                                <br>
-                                <div class="radio">                                
-                                    <label>
-                                        <input type="radio" name="opSexo" value="m" checked="checked"> Masculino 
-                                        <input type="radio" name="opSexo" value="f"> Femenino
-                                    </label>
+                                <div class="form-group col-md-4">
+                                    <label for="txtFechaNacimineto">Fecha de Nacimiento:</label><span class="text-danger">*</span>
+                                    <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto" readonly="" required="required">
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <br>
-                                Actividad:<br>
-                                <input class="form-control" type="text" name="txtActividad">
-                                <br>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="opSexo">Sexo:</label><span class="text-danger">*</span>
+                                    <select class="form-control" name="opSexo">
+                                        <option value="m">Masculino</option>
+                                        <option value="f">Femenino</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="txtActividad">Actividad:</label>
+                                    <input class="form-control" type="text" name="txtActividad">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="cboEstadoCivil">Estado Civil:</label><span class="text-danger">*</span>
+                                    <select class="form-control" name="cboEstadoCivil">
+                                        <%
+                                            for (EstadoCivil ec : new Data().getEstadosCiviles()) {
+                                                out.println("<option value='" + ec.getId() + "'>" + ec.getNombre() + "</option>");
+                                            }
+                                        %>
+                                    </select>  
+                                </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <br>
-                                Estado Civil:<span class="text-danger">*</span><br> 
-                                <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil">
-                                    <%
-                                        for (EstadoCivil ec : new Data().getEstadosCiviles()) {
-                                            out.println("<option value='" + ec.getId() + "'>" + ec.getNombre() + "</option>");
-                                        }
-                                    %>
-                                </select>  
-                                <br>
+                            <div class="row">
+                                <div class="form-group  col-md-6">
+                                    <label for="txtDomicilio">Domicilio:</label><span class="text-danger">*</span>
+                                    <textarea class="form-control" name="txtDomicilio" required=""></textarea>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="txtTelefonos">Telefonos:</label><span class="text-danger">*</span>
+                                    <textarea class="form-control" type="text" name="txtTelefonos" required=""></textarea>
+                                </div>
                             </div>
-
-                            <div class="col-md-4">
-                                <br>
-                                Domicilio:<span class="text-danger">*</span><br>
-                                <textarea class="form-control" name="txtDomicilio" required=""></textarea>
-                            </div>
-
-
-
-                            <div class="col-md-4">
-                                <br>
-                                Telefonos:<span class="text-danger">*</span><br>
-                                <input class="form-control" type="text" name="txtTelefonos" required="">
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -259,98 +245,105 @@
                 <!-- ---------------------------------- ANTECEDENTES MORBIDOS ----------------------------------- -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <div class="panel-title"><h4>Antecedentes Morbidos</h4>
+                        <div class="panel-title">
+                            Antecedentes Morbidos
                         </div>
                     </div>
                     <div class="panel-body">
                         <div id="antecedentesMorbidos">
 
-                            <div class="form-group col-md-3">
-                                HTA:<br>
-                                <select class="custom-select-sm form-control form-control-sm" name="cboHTA">
-                                    <%
-                                        for (Respuesta r : new Data().getRespuestas()) {
-                                            if (r.getId() == 2) {
-                                                out.println("<option value='" + r.getId() + "' selected>" + r.getNombre() + "</option>");
-                                            } else {
-                                                out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label for="cboHTA">HTA:</label>
+                                    <select class="form-control" name="cboHTA">
+                                        <%
+                                            for (Respuesta r : new Data().getRespuestas()) {
+                                                if (r.getId() == 2) {
+                                                    out.println("<option value='" + r.getId() + "' selected>" + r.getNombre() + "</option>");
+                                                } else {
+                                                    out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                                                }
+
                                             }
+                                        %>
+                                    </select>
+                                </div>
 
-                                        }
-                                    %>
-                                </select>
-                            </div>
+                                <div class="form-group col-md-3">
+                                    <label>D.M:</label>
+                                    <select class="form-control" name="cboDM">
+                                        <%
+                                            for (Respuesta r : new Data().getRespuestas()) {
+                                                if (r.getId() == 2) {
+                                                    out.println("<option value='" + r.getId() + "' selected>" + r.getNombre() + "</option>");
+                                                } else {
+                                                    out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
+                                                }
 
-                            <div class="form-group col-md-3">
-                                D.M:<br>
-                                <select class="custom-select-sm form-control form-control-sm" name="cboDM">
-                                    <%
-                                        for (Respuesta r : new Data().getRespuestas()) {
-                                            if (r.getId() == 2) {
-                                                out.println("<option value='" + r.getId() + "' selected>" + r.getNombre() + "</option>");
-                                            } else {
-                                                out.println("<option value='" + r.getId() + "'>" + r.getNombre() + "</option>");
                                             }
+                                        %>
+                                    </select>
+                                </div>
 
-                                        }
-                                    %>
-                                </select>
-                            </div>
+                                <div class="form-group col-md-3">
+                                    <label for="cboTipo">Tipo:</label>
+                                    <select class="form-control" name="cboTipo">
+                                        <option value="0">N/A</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </div>
 
-                            <div class="form-group col-md-3">
-                                Tipo:<br>
-                                <select class="custom-select-sm form-control form-control-sm" name="cboTipo">
-                                    <option class="form-control form-control-sm" value="0">N/A</option>
-                                    <option class="form-control form-control-sm" value="1">1</option>
-                                    <option class="form-control form-control-sm" value="2">2</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                Años de Evolucion:<br>
-                                <input class="form-control form-control-sm" type="number" name="txtAnioEvolucion">
-                            </div>    
-
-
-                            <div class="form-group col-md-3">
-                                <br>
-                                Paciente mixto:<br>
-                                <select class="custom-select-sm form-control form-control-sm" name="cboPcteMixto">
-                                    <option class="form-control form-control-sm" value="true">Si</option>
-                                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                                </select> 
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <br>
-                                Control:<br>
-                                <select class="custom-select-sm form-control form-control-sm" name="cboControl">
-                                    <option class="form-control form-control-sm" value="true">Si</option>
-                                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                                </select>
+                                <div class="form-group col-md-3">
+                                    <label for="txtAnioEvolucion">Años de Evolucion:</label>
+                                    <input class="form-control" type="number" name="txtAnioEvolucion">
+                                </div>  
                             </div>
 
 
-                            <div class="form-group col-md-3">
-                                <br>
-                                Farmacoterapia:<br>
-                                <textarea class="form-control" name="txtFarmacoterapia"></textarea>
+
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Paciente mixto:</label>
+                                    <select class="form-control" name="cboPcteMixto">
+                                        <option value="true">Si</option>
+                                        <option value="false" selected>No</option>
+                                    </select> 
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Control:</label>
+                                    <select class="form-control" name="cboControl">
+                                        <option value="true">Si</option>
+                                        <option value="false" selected>No</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-3">
-                                <br>
-                                Otras Patologías y Farmacoterapia: 
-                                <textarea class="form-control" name="txtOtras"></textarea><br>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Farmacoterapia:</label>
+                                    <textarea class="form-control" name="txtFarmacoterapia"></textarea>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Otras Patologías y Farmacoterapia:</label>
+                                    <textarea class="form-control" name="txtOtras"></textarea><br>
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-3">
-                                Alteraciones Ortopédicas: 
-                                <textarea class="form-control" name="txtAlter"></textarea>
-                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Alteraciones Ortopédicas:</label>
+                                    <textarea class="form-control" name="txtAlter"></textarea>
+                                </div>
 
-                            <div class="form-group col-md-3">
-                                Habitos Nocivos:<br> 
-                                <textarea class="form-control" name="txtHabitosNocivos"></textarea>
+                                <div class="form-group col-md-6">
+                                    <label>Habitos Nocivos:</label>
+                                    <textarea class="form-control" name="txtHabitosNocivos"></textarea>
+                                </div>
                             </div>
 
                         </div>
