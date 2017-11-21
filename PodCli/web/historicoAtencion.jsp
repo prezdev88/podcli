@@ -25,54 +25,51 @@
         }
     </style>
     <body>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
+        <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
             <div class="navbar-header">
                 <a href="#" class="navbar-left">
                     <span><img width=80px height=35px src="imagen/ist.jpg"></span>
                 </a>
             </div>
+
             <p class="navbar-text pull-left">PodCli</p>
-
-            <p class="navbar-text">
-                <%    if (u != null) {
-                        out.println("Usuario Actual: " + u.getNombre());
-                        out.println("</p><p class='navbar-text'>Perfil: ");
-                        Data d = new Data();
-
-                        out.println(d.getPerfil(u.getPerfil()));
-                    }
-                %>
-            </p>
+            
+            <%@include file="modules/actualUser.jsp" %>
 
             <ul class="nav navbar-nav navbar-left">
                 <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                 <!-- Redirigir a crear ficha -->
-                <!-- Redirigir a reporte de uso -->
-                <li class="active"><a href="inicio.jsp">Volver a inicio</a></li>
+                <li><a href="crearFicha.jsp">Crear Ficha</a></li>
+
+                <!-- Se agregaron recientemente en el nav -->
+                <li>
+                    <%                        if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                    %>
+                    <a href="crearUsuario.jsp">Crear Usuario</a>
+                    <%
+                        }
+                    %></li>
+
+                <li><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
+                <!-- Se agregaron recientemente en el nav -->
+
+                <!-- Redirigir a reporte de uso -->                
 
             </ul>
-
+            <!-- <ul class="nav navbar-nav navbar-right">
+                <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
+            </ul> -->
             <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
                 <li>
-                    <form class="navbar-form pull-right" action="index.jsp">
+                    <form class="navbar-form pull-right" action="cerrar.do">
                         <button type="submit" class="btn btn-danger">Cerrar sesión</button>
                     </form>
                 </li>
             </ul>
             <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><form class="navbar-form pull-right" role="search" action="buscarPaciente.jsp" method="get">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="txtBuscar" placeholder="Buscar" required="">
-                        </div>
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </form>
-                </li>
-            </ul>
-        </nav>
+            <%@include file="modules/buscarNav.jsp" %>
+        </nav>  
         <br><br><br><br>
         <%        Data d = new Data();
 
@@ -92,7 +89,7 @@
                         <br>
                     </center>
                     <h3 style="margin-left: 170px;">
-                        <form action="verFicha.jsp" class="form-inline">
+                        <form action="verFicha.jsp" class="form-inline" method="post">
                             <input type="hidden" name="rut" value="<%=rutPaciente%>">
                             Nombre del Paciente: [ <%=nomPac%> ]                         
                             <input type="submit" value="Ver ficha" class="btn btn-default" style="width: 200px;">

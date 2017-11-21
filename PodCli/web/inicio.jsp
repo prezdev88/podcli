@@ -1,4 +1,4 @@
-<%-- 
+    <%-- 
     Document   : inicio
     Created on : 03-11-2017, 23:56:45
     Author     : Veroko
@@ -42,22 +42,7 @@
 
             <p class="navbar-text pull-left">PodCli</p>
             
-            <p class="navbar-text">
-                <%    if (u != null) {
-                        out.println("Usuario Actual: " + u.getNombre());
-                        out.println("</p><p class='navbar-text'>Perfil:");
-                        Data d = new Data();
-
-                        out.println(d.getPerfil(u.getPerfil()));
-                    }
-                %>
-
-                <%
-                    if (u.getPerfil() == 2 || u.getPerfil() == 3) {
-                %>
-                <%
-                    }
-                %></p>
+            <%@include file="modules/actualUser.jsp" %>
 
             <ul class="nav navbar-nav navbar-left">
                 <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
@@ -91,15 +76,7 @@
             </ul>
             <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><form class="navbar-form pull-right" role="search" action="buscarPaciente.jsp" method="get">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Buscar" name="txtBuscar" required="">
-                        </div>
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </form>
-                </li>
-            </ul>
+            <%@include file="modules/buscarNav.jsp" %>
         </nav>
         <br><br>
         <!-- Falta metodo para obtener el nombre y ocupacion de la persona que entró -->

@@ -13,14 +13,14 @@
             left: 50%;
             transform: translatex(-50%);
         }
-        
+
         .navbar-header{
-            
+
             padding-top: 7px; 
             padding-left: 10px
-                
+
         }
-        
+
     </style>
     <body>
 
@@ -37,32 +37,28 @@
         <br><br><br>
         <div class="container">
             <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
-                <center>
-                    <div class="container">
-                        <h1>Atencion Podológica</h1>
-                        <br>
-                        <p>Bienvenid@ al sistema de atención podológica de Santo Tomás Rancagua.
-                            Para comenzar escriba su rut y luego presione Entrar</p>
+                <div class="container">
+                    <h1>Atencion Podológica</h1>
+                    <br>
+                    <p>Bienvenid@ al sistema de atención podológica de Santo Tomás Rancagua.
+                        Para comenzar escriba su rut y luego presione Entrar</p>
 
-                        <form action="iniciarSesion.do" method="post" class="form-inline">
-                            <div class="form-group">
-                                <input id="rut" type="text" name="rut" placeholder="EJ: 12345678-k" required="" class="form-control" style="width: 250px; text-align: center">                                                  
-                            </div>
-                            <center>
-                                <%
-                                    Error e = (Error) request.getSession().getAttribute("error");
-                                    if (e != null) {
-                                        out.println("<p class='text-danger input-sm'>" + e.getMessage() + "</p>");
-                                        request.getSession().removeAttribute("error");
-                                    }
-                                %>
-                            </center>
-                            <br>
-                            <input type="submit" value="Entrar" class="btn btn-primary" style="width: 150px;"><br>
-                        </form>
-                    </div>
-                </center>
+                    <form action="iniciarSesion.do" method="post" class="form-inline">
+                        <div class="form-group">
+                            <input id="rut" type="text" name="rut" placeholder="EJ: 12345678" required="" class="form-control" style="width: 250px; text-align: center">                                                  
+                        </div>
+                        <input type="submit" value="Entrar" class="btn btn-primary" style="width: 150px;"><br>
+                    </form>
+
+                </div>
             </div>
+            <%
+                Error e = (Error) request.getSession().getAttribute("error");
+                if (e != null) {
+                    out.println("<p class='alert alert-danger' role='alert'>" + e.getMessage() + "</p>");
+                    request.getSession().removeAttribute("error");
+                }
+            %>
         </div>
     </body>
 </html>

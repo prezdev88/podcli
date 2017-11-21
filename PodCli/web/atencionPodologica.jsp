@@ -25,7 +25,7 @@
     </style>
     <body>
         <div class="row justify-content-xl-center">
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
                 <div class="navbar-header">
                     <a href="#" class="navbar-left">
                         <span><img width=80px height=35px src="imagen/ist.jpg"></span>
@@ -34,32 +34,31 @@
 
                 <p class="navbar-text pull-left">PodCli</p>
 
-                <p class="navbar-text">
-                    <%    if (u != null) {
-                            out.println("Usuario Actual: " + u.getNombre());
-                            out.println("</p><p class='navbar-text'>Perfil:");
-                            Data d = new Data();
-
-                            out.println(d.getPerfil(u.getPerfil()));
-                        }
-                    %>
-
-                    <%
-                        if (u.getPerfil() == 2 || u.getPerfil() == 3) {
-                    %>
-                    <%
-                        }
-                    %></p>
+                <%@include file="modules/actualUser.jsp" %>
 
                 <ul class="nav navbar-nav navbar-left">
                     <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                     <!-- Redirigir a crear ficha -->
+                    <li><a href="crearFicha.jsp">Crear Ficha</a></li>
 
-                    <!-- Redirigir a reporte de uso -->
-                    <li class="active"><a href="inicio.jsp">Volver a inicio</a></li>
+                    <!-- Se agregaron recientemente en el nav -->
+                    <li>
+                        <%                        if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                        %>
+                        <a href="crearUsuario.jsp">Crear Usuario</a>
+                        <%
+                            }
+                        %></li>
+
+                    <li><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
+                    <!-- Se agregaron recientemente en el nav -->
+
+                    <!-- Redirigir a reporte de uso -->                
+
                 </ul>
-
-                <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+                <!-- <ul class="nav navbar-nav navbar-right">
+                    <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
+                </ul> -->
                 <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
                     <li>
                         <form class="navbar-form pull-right" action="cerrar.do">
@@ -68,15 +67,8 @@
                     </li>
                 </ul>
                 <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li><form class="navbar-form pull-right" role="search" action="buscarPaciente.jsp" method="get">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Buscar" required="">
-                            </div>
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        </form>
-                    </li>
-                </ul>
+
+                <%@include file="modules/buscarNav.jsp" %>
             </nav>
         </div>
 

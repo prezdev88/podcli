@@ -33,8 +33,52 @@
                     <span><img width=80px height=35px src="imagen/ist.jpg"></span>
                 </a>
             </div>
-            <p class="navbar-text pull-left">PodCli</p>
 
+            <p class="navbar-text pull-left">PodCli</p>
+            
+            <%@include file="modules/actualUser.jsp" %>
+
+            <ul class="nav navbar-nav navbar-left">
+                <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+                <!-- Redirigir a crear ficha -->
+                <li><a href="crearFicha.jsp">Crear Ficha</a></li>
+
+                <!-- Se agregaron recientemente en el nav -->
+                <li>
+                    <%                        if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                    %>
+                    <a href="crearUsuario.jsp">Crear Usuario</a>
+                    <%
+                        }
+                    %></li>
+
+                <li><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
+                <!-- Se agregaron recientemente en el nav -->
+
+                <!-- Redirigir a reporte de uso -->                
+
+            </ul>
+            <!-- <ul class="nav navbar-nav navbar-right">
+                <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
+            </ul> -->
+            <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+                <li>
+                    <form class="navbar-form pull-right" action="cerrar.do">
+                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
+                </li>
+            </ul>
+            <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
+
+            <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+            <div class="navbar-header">
+                <a href="#" class="navbar-left">
+                    <span><img width=80px height=35px src="imagen/ist.jpg"></span>
+                </a>
+            </div>
+
+            <p class="navbar-text pull-left">PodCli</p>
+            
             <p class="navbar-text">
                 <%    if (u != null) {
                         out.println("Usuario Actual: " + u.getNombre());
@@ -52,20 +96,29 @@
                     }
                 %></p>
 
-
-
             <ul class="nav navbar-nav navbar-left">
                 <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                 <!-- Redirigir a crear ficha -->
+                <li><a href="crearFicha.jsp">Crear Ficha</a></li>
 
-                <!-- Redirigir a reporte de uso -->
+                <!-- Se agregaron recientemente en el nav -->
+                <li>
+                    <%                        if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                    %>
+                    <a href="crearUsuario.jsp">Crear Usuario</a>
+                    <%
+                        }
+                    %></li>
 
-                <li class="active"><a href="inicio.jsp">Volver a inicio</a></li>
+                <li><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
+                <!-- Se agregaron recientemente en el nav -->
+
+                <!-- Redirigir a reporte de uso -->                
 
             </ul>
-
-            <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
-
+            <!-- <ul class="nav navbar-nav navbar-right">
+                <li><button type="button" class="btn btn-danger navbar-btn"><a href="">Cerrar sesión</a></button></li>
+            </ul> -->
             <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
                 <li>
                     <form class="navbar-form pull-right" action="cerrar.do">
@@ -75,15 +128,8 @@
             </ul>
             <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><form class="navbar-form pull-right" role="search" action="buscarPaciente.jsp" method="get">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="txtBuscar" placeholder="Buscar">
-                        </div>
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </form>
-                </li>
-            </ul>
+            <%@include file="modules/buscarNav.jsp" %>
+        </nav>
         </nav>
         <br><br>
         <!--<form action="buscarPaciente.jsp" method="post">
@@ -95,15 +141,15 @@
             <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
                 <div class="container">
                     <center><h1>Buscar Paciente</h1></center>
-                    <table class="table table-striped">
+                    <table class="table">
                         <%            String txtBuscar = request.getParameter("txtBuscar");
                             if (txtBuscar != null) {
                                 out.println("<tr>");
                                 out.println("<th style='background-color:#6AA3E4; color:white;'>Rut</th>");
                                 out.println("<th style='background-color:#6AA3E4; color:white;'>Nombre</th>");
                                 out.println("<th style='background-color:#6AA3E4; color:white;'>Ficha</th>");
-                                out.println("<th style='background-color:#6AA3E4; color:white;'>Atenciòn</th>");
-                                out.println("<th style='background-color:#6AA3E4; color:white;'>Atencion Podológica</th>");
+                                out.println("<th style='background-color:#6AA3E4; color:white;'>Atender</th>");
+                                out.println("<th style='background-color:#6AA3E4; color:white;'>Histórico</th>");
                                 out.println("</tr>");
 
                                 Data d = new Data();
@@ -116,7 +162,7 @@
 
                                     out.println("<td class='active'>");
                                     out.println("<form action='verFicha.jsp' method='post' class='form-inline'>");
-                                    out.println("<input type='submit' value='Ver Ficha' class='btn btn-default'>");
+                                    out.println("<input type='submit' value='Ver Ficha' class='btn btn-success'>");
                                     out.println("<input type='hidden' name='rut' value=" + p.getRut() + ">");
                                     out.println("</form>");
                                     out.println("</td>");
@@ -124,13 +170,13 @@
                                     out.println("<td class='active'>");
                                     out.println("<form action='atencionPodologica.jsp' method='post' class='form-inline'>");
                                     out.println("<input type='hidden' value='" + d.getIdFicha(String.valueOf(p.getId())) + "' name='idFicha'>");
-                                    out.println("<input type='submit' value='Atencion Podologica' class='btn btn-default'>");
+                                    out.println("<input type='submit' value='Atender' class='btn btn-info'>");
                                     out.println("</form>");
                                     out.println("</td>");
 
                                     out.println("<td class='active'>");
                                     out.println("<form action='historicoAtencion.jsp' method='post' class='form-inline'>");
-                                    out.println("<input type='submit' value='Histórico atenciones podológicas' class='btn btn-default'>");
+                                    out.println("<input type='submit' value='Histórico atenciones' class='btn btn-warning'>");
                                     out.println("<input type='hidden' value='" + p.getId() + "' name = 'idPaciente'>");
                                     out.println("</form>");
                                     out.println("</td>");
