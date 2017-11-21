@@ -48,7 +48,12 @@ public class CrearFichaServlet extends HttpServlet {
                 String fecha = request.getParameter("txtFechaNacimineto");
                 String[] vectFecha = fecha.split(" de ");
                 //d.getMes obtiene el número del mes
-                String fechaNacimiento = vectFecha[2] + "-" + d.getMes(vectFecha[1].toLowerCase()) + "-" + vectFecha[0];
+                String fechaNacimiento = "";
+                try {
+                    fechaNacimiento = vectFecha[2] + "-" + d.getMes(vectFecha[1].toLowerCase()) + "-" + vectFecha[0];
+                } catch (Exception e) {
+                    request.getRequestDispatcher("crearFicha.jsp?m=2").forward(request, response);
+                }
 
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = null;
@@ -123,7 +128,7 @@ public class CrearFichaServlet extends HttpServlet {
 
                 d.crearFicha(nuevoPaciente, nuevaFicha);
 
-                response.sendRedirect("crearFicha.jsp");
+                response.sendRedirect("crearFicha.jsp?m=1");
 
             } catch (SQLException ex) {
                 Logger.getLogger(CrearFichaServlet.class

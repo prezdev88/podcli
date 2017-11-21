@@ -128,29 +128,6 @@
             <%@include file="modules/buscarNav.jsp" %>
         </nav>
 
-        <div>
-            <!--<%
-                if (u != null) {
-                    out.println("Usuario Actual: " + u.getNombre());
-                    out.println("<br>Perfil:");
-                    Data d = new Data();
-
-                    out.println(d.getPerfil(u.getPerfil()));
-                }
-            %>
-    
-            <%
-                if (u.getPerfil() == 2 || u.getPerfil() == 3) {
-            %>
-            <br><a href="crearUsuario.jsp">Crear Usuario</a>
-            <br><a href="reporteHistorico.jsp">Reporte histórico</a>
-            <%
-                }
-            %>-->
-
-            <!--<br><a href="buscarPaciente.jsp"> Buscar Pacientes </a>
-            <br><a href="cerrar.do">Cerrar sesión</a>-->
-        </div>
 
         <script>
             function punto(e) {
@@ -164,8 +141,25 @@
             }
         </script>
 
+        
+        
+        
+        
         <form action="crearFicha.do" method="post" style="margin-top: 100px" class="form-inline">
             <div class="container">
+                <%
+                if(request.getParameter("m") != null){
+                    int m = Integer.parseInt(request.getParameter("m"));
+                    switch(m){
+                        case 1:
+                            out.println("<div class='alert alert-success'>Paciente creado!</div>");
+                            break;
+                        case 2:
+                            out.println("<div class='alert alert-danger'>ERROR: Seleccione fecha!</div>");
+                            break;
+                    }
+                }
+                %>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="panel-title"><h4>Antecedentes Personales</h4>
@@ -179,26 +173,26 @@
 
                             <div class="form-group col-md-4">
                                 <br>
-                                Nombre:<br>
-                                <input class="form-control" type="text" name="txtNombre" required="">
-                            </div>
-
-                            <div class="col-md-4">
-                                <br>
-                                Rut:<br>
+                                Rut:<span class="text-danger">*</span><br>
                                 <input class="form-control" type="text" onkeypress="return punto(event)" name="txtRut" maxlength="10" required="">
                             </div>
 
                             <div class="col-md-4">
                                 <br>
-                                Fecha de Nacimiento:<br>
-                                <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto" readonly="" required="">
+                                Nombre:<span class="text-danger">*</span><br>
+                                <input class="form-control" type="text" name="txtNombre" required="">
+                            </div>
+
+                            <div class="col-md-4">
+                                <br>
+                                Fecha de Nacimiento:<span class="text-danger">*</span><br>
+                                <input class="form-control" id="fechaNacimiento" name="txtFechaNacimineto" readonly="" required="required">
                                 <br>
                             </div>
 
                             <div class="col-md-4">
                                 <br>
-                                Sexo:
+                                Sexo:<span class="text-danger">*</span>
                                 <br>
                                 <div class="radio">                                
                                     <label>
@@ -217,7 +211,7 @@
 
                             <div class="col-md-4">
                                 <br>
-                                Estado Civil:<br> 
+                                Estado Civil:<span class="text-danger">*</span><br> 
                                 <select class="custom-select-sm form-control form-control-sm" name="cboEstadoCivil">
                                     <%
                                         for (EstadoCivil ec : new Data().getEstadosCiviles()) {
@@ -230,7 +224,7 @@
 
                             <div class="col-md-4">
                                 <br>
-                                Domicilio:<br>
+                                Domicilio:<span class="text-danger">*</span><br>
                                 <textarea class="form-control" name="txtDomicilio" required=""></textarea>
                             </div>
 
@@ -238,7 +232,7 @@
 
                             <div class="col-md-4">
                                 <br>
-                                Telefonos:<br>
+                                Telefonos:<span class="text-danger">*</span><br>
                                 <input class="form-control" type="text" name="txtTelefonos" required="">
                             </div>
 
@@ -364,12 +358,12 @@
                         <div id="examenFisicoGeneral">
 
                             <div class="form-group col-md-3">
-                                Talla en metros:<br>
+                                Talla en metros:<span class="text-danger">*</span><br>
                                 <input class="form-control" type="number" step="any" name="txtTalla" required=""><br>
                             </div>
 
                             <div class="form-group col-md-9">
-                                IMC:<br>
+                                IMC:<span class="text-danger">*</span><br>
                                 <input class="form-control" type="number" step="any" name="txtIMC" required="">
                             </div>
 
@@ -390,7 +384,7 @@
 
                             <div class="form-group col-md-3">
                                 <br>
-                                N° Calzado:<br> 
+                                N° Calzado:<span class="text-danger">*</span><br> 
                                 <input class="form-control" type="number" name="txtNumCalzado" required="">
                             </div>
 
