@@ -300,9 +300,6 @@
                                 </div>  
                             </div>
 
-
-
-
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Paciente mixto:</label>
@@ -321,7 +318,6 @@
                                 </div>
                             </div>
 
-
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Farmacoterapia:</label>
@@ -330,7 +326,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label>Otras Patologías y Farmacoterapia:</label>
-                                    <textarea class="form-control" name="txtOtras"></textarea><br>
+                                    <textarea class="form-control" name="txtOtras"></textarea>
                                 </div>
                             </div>
 
@@ -345,7 +341,6 @@
                                     <textarea class="form-control" name="txtHabitosNocivos"></textarea>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -354,110 +349,113 @@
                 <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <div class="panel-title"><h4>Examen Físico General</h4>
+                        <div class="panel-title">
+                            Examen Físico General
                         </div>
                     </div>
                     <div class="panel-body">
                         <div id="examenFisicoGeneral">
 
-                            <div class="form-group col-md-3">
-                                Talla en metros:<span class="text-danger">*</span><br>
-                                <input class="form-control" type="number" step="any" name="txtTalla" required=""><br>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label>Talla en metros:</label><span class="text-danger">*</span>
+                                    <input class="form-control" type="number" step="any" name="txtTalla" required="">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>IMC:</label><span class="text-danger">*</span><br>
+                                    <input class="form-control" type="number" step="any" name="txtIMC" required="">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>N° Calzado:</label><span class="text-danger">*</span>
+                                    <input class="form-control" type="number" name="txtNumCalzado" required="">
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-9">
-                                IMC:<span class="text-danger">*</span><br>
-                                <input class="form-control" type="number" step="any" name="txtIMC" required="">
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>Amputación:</label>
+                                    <select class="custom-select-sm form-control form-control-sm" name="cboAmputacion">
+                                        <option class="form-control" value="true">Si</option>
+                                        <option class="form-control" value="false" selected>No</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-9">
+                                    <label>Ubicación:</label>
+                                    <input class="form-control" type="text" name="txtUbicacionAmputacion">
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-3">
-                                <br>
-                                Amputación:<br>
-                                <select class="custom-select-sm form-control form-control-sm" name="cboAmputacion">
-                                    <option class="form-control form-control-sm" value="true">Si</option>
-                                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                                </select>
+
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label>Varices Extremo Inferior:</label>
+                                    <select class="form-control" name="cboVaricesExtremoInferior">
+                                        <option value="true">Si</option>
+                                        <option value="false" selected>No</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-9">
-                                <br>
-                                Ubicación:<br>
-                                <input class="form-control" type="text" name="txtUbicacionAmputacion">
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>Heridas:</label>
+                                    <select class="form-control" name="cboHeridas">
+                                        <option value="true">Si</option>
+                                        <option value="false" selected>No</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>Ubicación:</label>
+                                    <input class="form-control" type="text" name="txtUbicacionHeridas">
+                                </div>                      
+
+                                <div class="form-group col-md-3">
+                                    <label>Tipo:</label>
+                                    <input class="form-control" type="text" name="txtTipoHeridas">
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>Tratamiento:</label>
+                                    <select class="form-control" name="cboTratamiento">
+                                        <option value="true">Si</option>
+                                        <option value="false" selected>No</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-3">
-                                <br>
-                                N° Calzado:<span class="text-danger">*</span><br> 
-                                <input class="form-control" type="number" name="txtNumCalzado" required="">
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>Nevos:</label>
+                                    <select class="form-control" name="cboNevos">
+                                        <option value="true">Si</option>
+                                        <option value="false" selected>No</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-9">
+                                    <label>Ubicación:</label>
+                                    <input class="form-control" type="text" name="txtUbicacionNevos">
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-9">
-                                <br>
-                                Varices Extremo Inferior:<br>
-                                <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboVaricesExtremoInferior">
-                                    <option class="form-control form-control-sm" value="true">Si</option>
-                                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                                </select>
-                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>Máculas:</label>
+                                    <select class="form-control" name="cboMaculas">
+                                        <option form-control-sm" value="true">Si</option>
+                                        <option class="form-control" value="false" selected>No</option>
+                                    </select>
+                                </div>
 
-                            <div class="form-group col-md-3">
-                                <br>
-                                Heridas:<br>
-                                <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboHeridas">
-                                    <option class="form-control form-control-sm" value="true">Si</option>
-                                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <br>
-                                Ubicación:<br>
-                                <input class="form-control" type="text" name="txtUbicacionHeridas">
-                            </div>                      
-
-                            <div class="form-group col-md-3">
-                                <br>
-                                Tipo:<br>
-                                <input class="form-control" type="text" name="txtTipoHeridas">
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <br>
-                                Tratamiento:<br>
-                                <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboTratamiento">
-                                    <option class="form-control form-control-sm" value="true">Si</option>
-                                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <br>
-                                Nevos:<br> 
-                                <select style="width: 68px" <%--class="col-md"--%> class="custom-select-sm form-control form-control-sm" name="cboNevos">
-                                    <option class="form-control form-control-sm" value="true">Si</option>
-                                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <br>
-                                Ubicación:<br>
-                                <input class="form-control" type="text" name="txtUbicacionNevos">
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <br>
-                                Máculas:<br>
-                                <select style="width: 68px" class="custom-select-sm form-control form-control-sm" name="cboMaculas">
-                                    <option class="form-control form-control-sm" value="true">Si</option>
-                                    <option class="form-control form-control-sm" value="false" selected>No</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <br>
-                                Tipo:<br> 
-                                <input class="form-control" type="text" name="txtTipoMaculas">
+                                <div class="form-group col-md-9">
+                                    <label>Tipo:</label>
+                                    <input class="form-control" type="text" name="txtTipoMaculas">
+                                </div>
                             </div>
 
                         </div>
@@ -465,9 +463,11 @@
                 </div>
                 <!-- ---------------------------------- EXAMEN FÍSICO GENERAL ----------------------------------- -->
 
-                <center>
-                    <button type="submit" class="btn btn-primary" value="RegistrarFicha">Registrar Ficha</button>
-                </center>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success form-control" value="Registrar Ficha">
+                    </div>
+                </div>
                 <br><br>
             </form>
         </div>
