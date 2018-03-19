@@ -64,7 +64,7 @@ public class CrearFichaServlet extends HttpServlet {
                     Logger.getLogger(CrearFichaServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                nuevoPaciente.setFechaNacimiento(d.dateToTimeStamp(date));
+                nuevoPaciente.setFechaNacimiento(Data.dateToTimeStamp(date));
                 nuevoPaciente.setEstadoCivil(Integer.parseInt(request.getParameter("cboEstadoCivil")));
                 nuevoPaciente.setActividad(request.getParameter("txtActividad"));
                 nuevoPaciente.setTelefonos(request.getParameter("txtTelefonos"));

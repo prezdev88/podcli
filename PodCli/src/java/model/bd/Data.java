@@ -187,7 +187,8 @@ public class Data {
                 "    atencionPodologica.bandaMolecular                  AS 'Colocac. Banda Molec.', \n" +
                 "    tratamientoOrtonixia.nombre 			AS 'C. Bracket/Cambio Elast.', \n" +
                 "    atencionPodologica.poli 				AS 'C. Policarboxilato', \n" +
-                "    atencionPodologica.observaciones                   AS Observaciones \n" +
+                "    atencionPodologica.observaciones                   AS Observaciones,"
+                + "  u2.nombre \n" +
                 "FROM \n" +
                 "    atencionPodologica\n" +
                 "    INNER JOIN ficha                ON atencionPodologica.ficha = ficha.id\n" +
@@ -230,6 +231,7 @@ public class Data {
             a.setTratamientoOrtonixia(rs.getString(24));
             a.setPoli(rs.getBoolean(25));
             a.setObservaciones(rs.getString(26));
+            a.setAtendidoPor(rs.getString(27));
             atenciones.add(a);
         }
         con.close();

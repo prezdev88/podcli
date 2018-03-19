@@ -18,7 +18,16 @@ public class AtencionPodologicaSelect {
     private String tPoda1_i;//TEMPERATURA PODAL izquierdo
     private boolean curacion;
     private boolean resecado;
+    private String atendidoPor;
 
+    public String getAtendidoPor() {
+        return atendidoPor;
+    }
+
+    public void setAtendidoPor(String atendidoPor) {
+        this.atendidoPor = atendidoPor;
+    }
+    
     public Timestamp getFecha() {
         return fecha;
     }

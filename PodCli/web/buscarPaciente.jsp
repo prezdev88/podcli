@@ -82,18 +82,18 @@
         </form>-->
         <br>
         <div class="container">
-            <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
+            <div >
                 <div class="container">
-                    <center><h1>Buscar Paciente</h1></center>
-                    <table class="table">
+                    <h1>Buscar Paciente</h1>
+                    <table class="table table-striped">
                         <%            String txtBuscar = request.getParameter("txtBuscar");
                             if (txtBuscar != null) {
                                 out.println("<tr>");
-                                out.println("<th style='background-color:#6AA3E4; color:white;'>Rut</th>");
-                                out.println("<th style='background-color:#6AA3E4; color:white;'>Nombre</th>");
-                                out.println("<th style='background-color:#6AA3E4; color:white;'>Ficha</th>");
-                                out.println("<th style='background-color:#6AA3E4; color:white;'>Atender</th>");
-                                out.println("<th style='background-color:#6AA3E4; color:white;'>Histórico</th>");
+                                    out.println("<th>Rut</th>");
+                                    out.println("<th>Nombre</th>");
+                                    out.println("<th>Ficha</th>");
+                                    out.println("<th>Atender</th>");
+                                    out.println("<th>Histórico</th>");
                                 out.println("</tr>");
 
                                 Data d = new Data();
@@ -101,24 +101,24 @@
 
                                 for (Paciente p : pacientes) {
                                     out.println("<tr>");
-                                    out.println("<td class='active'>" + p.getRut() + "</td>");
-                                    out.println("<td class='active'>" + p.getNombre() + "</td>");
+                                    out.println("<td>" + p.getRut() + "</td>");
+                                    out.println("<td>" + p.getNombre() + "</td>");
 
-                                    out.println("<td class='active'>");
+                                    out.println("<td>");
                                     out.println("<form action='verFicha.jsp' method='post' class='form-inline'>");
                                     out.println("<input type='submit' value='Ver Ficha' class='btn btn-success'>");
                                     out.println("<input type='hidden' name='rut' value=" + p.getRut() + ">");
                                     out.println("</form>");
                                     out.println("</td>");
 
-                                    out.println("<td class='active'>");
+                                    out.println("<td>");
                                     out.println("<form action='atencionPodologica.jsp' method='post' class='form-inline'>");
                                     out.println("<input type='hidden' value='" + d.getIdFicha(String.valueOf(p.getId())) + "' name='idFicha'>");
                                     out.println("<input type='submit' value='Atender' class='btn btn-info'>");
                                     out.println("</form>");
                                     out.println("</td>");
 
-                                    out.println("<td class='active'>");
+                                    out.println("<td>");
                                     out.println("<form action='historicoAtencion.jsp' method='post' class='form-inline'>");
                                     out.println("<input type='submit' value='Histórico atenciones' class='btn btn-warning'>");
                                     out.println("<input type='hidden' value='" + p.getId() + "' name = 'idPaciente'>");

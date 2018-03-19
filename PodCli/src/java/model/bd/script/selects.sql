@@ -1,7 +1,7 @@
 USE podcli;
 
 select *from atencionPodologica a,ficha f,paciente p
-where a.ficha=f.id and f.paciente=p.id and (p.nombre like '%nico%' and p.rut like '%nico%')
+where a.ficha=f.id and f.paciente=p.id and (p.nombre like '%nico%' and p.rut like '%nico%');
 
 select nombre from perfil where id = 1;
 
@@ -41,5 +41,85 @@ FROM
     INNER JOIN tratamientoOrtonixia ON atencionPodologica.tratamientoOrtonixia = tratamientoOrtonixia.id
 WHERE 
     atencionPodologica.ficha = 1;
+
+select * from paciente;
+
+
+
+
+/*
+De atenciones:
+	Cantidad de hombres
+	Cantidad de mujeres
+	Grupo etario (0-30[, [30-50[, [50-70[, >70)
+	Por alumno, cuantos atendieron. y quienes.
+*/
+
+/*Cantidad de hombres*/
+SELECT COUNT(*) FROM paciente WHERE sexo = 'm';
+
+/*Cantidad de mujeres*/
+SELECT COUNT(*) FROM paciente WHERE sexo = 'f';
+
+/*Saber la edad!*/
+SELECT TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) AS edad
+from paciente;
+
+/*Cantidad de pacientes entre 0 y 29 años*/
+SELECT COUNT(*)
+FROM paciente
+WHERE TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) > 0 AND
+TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) <= 90;
+
+/*Grupo etario (0-30[, [30-50[, [50-70[, >70)*/
+SELECT '0-30', COUNT(*) FROM paciente
+WHERE TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) >= 0 AND
+TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) < 30
+UNION
+SELECT '30-50',COUNT(*) FROM paciente
+WHERE TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) >= 30 AND
+TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) < 50
+UNION
+SELECT '50-70',COUNT(*) FROM paciente
+WHERE TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) >= 50 AND
+TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) < 70
+UNION
+SELECT '>70',COUNT(*) FROM paciente
+WHERE TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) >= 70;
+
+/*Por alumno, cuantos atendieron.*/
+/*Listado de alumnos y a cuantos atendieron por fecha*/
+SELECT 
+	u.nombre, COUNT(0)
+FROM 
+	atencionPodologica ap
+INNER JOIN 
+	usuario u ON ap.usuario = u.id
+WHERE 
+	ap.usuario = u.id AND
+	fecha BETWEEN '2018-01-01' AND '2018-12-31'
+GROUP BY usuario
+ORDER BY COUNT(0) DESC;
+
+
+/*Por alumno determinado a quienes atendio.*/
+SELECT 
+	p.rut,
+    p.nombre,
+    u.nombre AS 'Atendido por',
+    ap.fecha AS 'Fecha atención'
+FROM
+	paciente p
+INNER JOIN ficha f ON p.id = f.paciente
+INNER JOIN atencionPodologica ap ON ap.ficha = f.id
+INNER JOIN usuario u ON u.id = ap.usuario
+WHERE 
+	ap.usuario = 18;
+
+
+SELECT * FROM atencionPodologica;
+
+
+
 
 select * from paciente;

@@ -85,40 +85,39 @@
             String nomPac = d.getNombreBy(String.valueOf(idFicha));
         %>
         <div class="container">
-            <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
+            <div >
                 <div class="container">
-                    <center>
-                        <h1>Atenciones podológicas</h1>
-                        <br>
-                    </center>
-                    <h3 style="margin-left: 170px;">
+                    <h1 class="col-md-12">Atenciones podológicos de <b><%=nomPac%></b></h1>
+                    <div class="col-md-12">
                         <form action="verFicha.jsp" class="form-inline" method="post">
-                            <input type="hidden" name="rut" value="<%=rutPaciente%>">
-                            Nombre del Paciente: [ <%=nomPac%> ]                         
-                            <input type="submit" value="Ver ficha" class="btn btn-default" style="width: 200px;">
+                            <input type="hidden" name="rut" value="<%=rutPaciente%>">                     
+                            <input type="submit" value="Ver ficha" class="btn btn-primary" style="width: 200px;">
                         </form>
-                    </h3>
+                    </div>
+                   
                     <center>
                         <table class="table table-striped">
                             <tr>
-                                <th style="background-color:#6AA3E4; color:white;">Id</th>
-                                <th style="background-color:#6AA3E4; color:white;">Fecha</th>
-                                <th style="background-color:#6AA3E4; color:white;">Observaciones</th>
-                                <th style="background-color:#6AA3E4; color:white;">Ver detalle</th>
+                                <th>Id</th>
+                                <th>Fecha</th>
+                                <th>Observaciones</th>
+                                <th>Atendido por</th>
+                                <th>Ver detalle</th>
                             </tr>
                             <%
                                 for (AtencionPodologicaSelect aps : atenciones) {
                                     out.println("<tr>");
-                                    out.println("<td class='active'>" + aps.getId() + "</td>");
-                                    out.println("<td class='active'>" + Data.getFormattedDate(aps.getFecha(), true) + "</td>");
-                                    out.println("<td class='active'>" + aps.getObservaciones() + "</td>");
-                                    out.println("<td class='active'>");
-                                    out.println("<form action='verAtencion.jsp' method='post' class='form-inline'>");
-                                    out.println("<input type='submit' value='Ver detalle' class='btn btn-default'>");
-                                    out.println("<input type='hidden' name='idAntPod' value=" + aps.getId() + ">");
-                                    out.println("<input type='hidden' name='idPaciente' value=" + idPaciente + ">");
-                                    out.println("</form>");
-                                    out.println("</td>");
+                                        out.println("<td>" + aps.getId() + "</td>");
+                                        out.println("<td>" + Data.getFormattedDate(aps.getFecha(), true) + "</td>");
+                                        out.println("<td>" + aps.getObservaciones() + "</td>");
+                                        out.println("<td>" + aps.getAtendidoPor() + "</td>");
+                                        out.println("<td>");
+                                            out.println("<form action='verAtencion.jsp' method='post' class='form-inline'>");
+                                                out.println("<input type='submit' value='Ver detalle' class='btn btn-success'>");
+                                                out.println("<input type='hidden' name='idAntPod' value=" + aps.getId() + ">");
+                                                out.println("<input type='hidden' name='idPaciente' value=" + idPaciente + ">");
+                                            out.println("</form>");
+                                        out.println("</td>");
                                     out.println("</tr>");
                                 }
                             %>
