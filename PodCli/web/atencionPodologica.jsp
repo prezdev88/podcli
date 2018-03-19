@@ -94,29 +94,41 @@
                         <input type="hidden" name="ficha" value="<%=idFicha%>">
                     </div>
                     <div class="panel-body">
+                        <div class="form-group col-md-6">
+                            Lugar de atención:
+                            <select name="lugarAtencion" class="custom-select-sm form-control form-control-sm">
+                                <option value="Gabinete">Gabinete</option>
+                                <option value="Terreno">Terreno</option>
+                            </select>
+                        </div>
+                            
+                        <div class="form-group col-md-6">
+                            Detalle del lugar del terreno:
+                            <textarea name="detalleLugar" class="form-control"></textarea>
+                        </div>
 
                         <div class="form-group col-md-3">
-                            Presión Arterial:<br>
+                            Presión Arterial:
                             <input class="form-control" type="text" step="any" name="presion" required="" placeholder="EJ: 120 / 80">
                         </div>
 
                         <div class="form-group col-md-3">
-                            Pulso Radial (PPM):<br> 
+                            Pulso Radial (PPM):
                             <input class="form-control" type="number" name="pulso" required="">
                         </div>
 
                         <div class="form-group col-md-3">
-                            Peso:<br> 
-                            <input class="form-control" type="number" step="any" name="peso" required=""><br><br>
+                            Peso:
+                            <input class="form-control" type="number" step="any" name="peso" required="">
                         </div>
 
                         <div class="form-group col-md-3">
-                            Pulso Pedio Derecho (PPM):<br> 
+                            Pulso Pedio Derecho (PPM):
                             <input class="form-control" type="number" name="ppd" required="">
                         </div>
 
                         <div class="form-group col-md-4">
-                            Pulso Pedio Izquierdo (PPM):<br> 
+                            Pulso Pedio Izquierdo (PPM):
                             <input class="form-control" type="number" name="ppi" required="">
                         </div>
 
@@ -140,74 +152,77 @@
                             <!-- <input class="form-control" type="number" step="any" name="tpi" required=""> -->
                         </div>
 
-                        <br><br>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input  type="checkbox" value="true" name="spd">
                             Sensibilidad Pie Derecho
                         </div>
 
-                        <br><br>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="spi">
                             Sensibilidad Pie Izquierdo
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="curacion">
                             Curación
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="resecado">
                             Resecado
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="enu">
                             Enucleación
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="devastado">
                             Devastado Ungueal
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="maso">
                             Masoterapia o Masaje
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="epi">
                             Espiculoectomía
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="anal">
                             Analgesia
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="acri">
                             Colocación Acrílico
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="cbm">
                             Colocación Banda Molecular
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="cpuente">
                             Colocación Puente
                         </div>
+                        
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <input type="checkbox" value="true" name="cpoli">
                             Colocación Policarboxilato
                         </div>
+                        
+                        <div class="form-group col-md-12">
+                            
+                        </div>
 
-                        <div class="form-group col-md-3" style="margin-right: 660px;">
+                        <div class="form-group col-md-6" >
                             Tratamiento Ortonixia:
                             <select name="to" class="custom-select-sm form-control form-control-sm">
                                 <%
@@ -217,14 +232,12 @@
                                 %>
                             </select>
                         </div>
-
-                        <div class="form-group col-md-12">
-                            Observaciones:<br>
+                            
+                        <div class="form-group col-md-6">
+                            Observaciones:
                             <textarea class="form-control" rows="4" name="obs"></textarea>
                         </div>
 
-
-                        <br><br>
 
                         <center class="form-group col-md-12">
                             <button type="submit" class="btn btn-primary" value="RegistrarFicha">Registrar Atención</button>

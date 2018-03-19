@@ -29,6 +29,7 @@ public class CrearAtencionPodologicaServlet extends HttpServlet {
             int ficha, usuario, testo; //<--fk de ficha y usuario
 
             String fecha, observaciones,presion, tpodal_d, tpodal_i;
+            String lugarAtencion, detalleLugar;
 
             float peso;
 
@@ -42,6 +43,8 @@ public class CrearAtencionPodologicaServlet extends HttpServlet {
             ficha                   = Integer.parseInt(     req.getParameter("ficha"));
 
 //        fecha = req.getParameter("");
+            lugarAtencion           =                       req.getParameter("lugarAtencion");
+            detalleLugar            =                       req.getParameter("detalleLugar");
             presion                 =                       req.getParameter("presion");
             pulsoRadial             = Integer.parseInt(     req.getParameter("pulso"));
             peso                    = Float.parseFloat(     req.getParameter("peso"));
@@ -97,6 +100,8 @@ public class CrearAtencionPodologicaServlet extends HttpServlet {
             a.setTratamientoOrtonixia(tratamientoOrtonixia);
             a.setPoli(poli);
             a.setObservaciones(observaciones);
+            a.setLugarAtencion(lugarAtencion);
+            a.setDetalleLugar(detalleLugar);
             
             d.crearAtencionPodologica(a);
 

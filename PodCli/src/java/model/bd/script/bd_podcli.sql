@@ -163,6 +163,8 @@ CREATE TABLE atencionPodologica(
     tratamientoOrtonixia        INT,
     poli 			BOOLEAN,        -- Policarbolxilato
     observaciones 		VARCHAR(5000),
+    lugarAtencion		VARCHAR(20), 	-- Gabinete / Terreno
+    detalleLugar		VARCHAR(500),	-- Si es terreno, escribe
 	
     PRIMARY KEY(id),
     FOREIGN KEY(ficha)                  REFERENCES ficha(id),

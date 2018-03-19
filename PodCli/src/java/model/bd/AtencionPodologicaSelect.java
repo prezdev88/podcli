@@ -238,4 +238,22 @@ public class AtencionPodologicaSelect {
     private String tratamientoOrtonixia;
     private boolean poli;
     private String observaciones;
+    private String lugarAtencion;
+    private String detalleLugar;
+
+    public String getLugarAtencion() {
+        return lugarAtencion;
+    }
+
+    public void setLugarAtencion(String lugarAtencion) {
+        this.lugarAtencion = lugarAtencion;
+    }
+
+    public String getDetalleLugar() {
+        return detalleLugar;
+    }
+
+    public void setDetalleLugar(String detalleLugar) {
+        this.detalleLugar = detalleLugar;
+    }
 }

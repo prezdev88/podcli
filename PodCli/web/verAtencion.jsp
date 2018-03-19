@@ -20,10 +20,8 @@
     </head>
     <style>
         .navbar-header{
-
             padding-top: 7px; 
             padding-left: 10px
-
         }
 
         .rojo{
@@ -102,101 +100,116 @@
                         <h4><%= Data.getFormattedDate(a.getFecha(), true)%></h4>
                     </div>
                     <div class="panel-body">
+                        
+                        <div class="form-group col-md-6">
+                            Lugar de atención:
+                            <input class="form-control" type="text" value="<%= a.getLugarAtencion() %>" name="lugarDeAtencion" readonly>
+                        </div>
+                            
+                        <div class="form-group col-md-6">
+                            Detalle del lugar del terreno:
+                            <textarea class="form-control" type="text" name="detalleLugar" readonly><%= a.getDetalleLugar()%></textarea>
+                        </div>
 
                         <div class="form-group col-md-3">
-                            Presión Arterial:<br>
+                            Presión Arterial:
                             <input class="form-control" type="text" step="any" value="<%= a.getPresion()%>" name="presion" readonly>
                         </div>
 
                         <div class="form-group col-md-3">
-                            Pulso Radial (PPM):<br> 
+                            Pulso Radial (PPM):
                             <input class="form-control" type="number"  value="<%= a.getPulsoRadial()%>" name="pulso" readonly>
                         </div>
 
                         <div class="form-group col-md-3">
-                            Peso:<br> 
-                            <input class="form-control" type="number" value="<%= a.getPeso()%>" step="any" name="peso" readonly><br><br>
+                            Peso:
+                            <input class="form-control" type="number" value="<%= a.getPeso()%>" step="any" name="peso" readonly>
                         </div>
 
                         <div class="form-group col-md-3">
-                            Pulso Pedio Derecho (PPM):<br> 
+                            Pulso Pedio Derecho (PPM):
                             <input class="form-control" type="number" value="<%= a.getPulsoPedio_d()%>" step="any" name="ppd" readonly>
                         </div>
 
                         <div class="form-group col-md-4">
-                            Pulso Pedio Izquierdo (PPM):<br> 
-                            <input class="form-control" type="number" value="<%= a.getPulsoPedio_i()%>" name="ppi" readonly><br><br>
+                            Pulso Pedio Izquierdo (PPM):
+                            <input class="form-control" type="number" value="<%= a.getPulsoPedio_i()%>" name="ppi" readonly>
                         </div>
 
                         <div class="form-group col-md-4">
-                            T° Podal Derecho:<br> 
-                            <input class="form-control" type="text" value="<%= a.gettPoda1_d()%>" step="any" name="tpd" readonly><br><br>
+                            T° Podal Derecho:
+                            <input class="form-control" type="text" value="<%= a.gettPoda1_d()%>" step="any" name="tpd" readonly>
                         </div>
 
                         <div class="form-group col-md-4">
-                            T° Podal Izquierdo:<br>
+                            T° Podal Izquierdo:
                             <input class="form-control" type="text" value="<%= a.gettPoda1_i()%>" step="any" name="tpi" readonly>
                         </div>
 
-                        <br><br>
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isSens_d() ? "verde" : "rojo")%>">Sensibilidad Pie Derecho
+                        <div>
+                            <!--
+                            <div class="panel-heading">
+                                <h3>Antecendentes</h3>
+                            </div> 
+                            -->
+                            
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isSens_d() ? "verde" : "rojo")%>">Sensibilidad Pie Derecho
+                            </div>
 
+                           
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isSens_i() ? "verde" : "rojo")%>">Sensibilidad Pie Izquierdo 
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isCuracion() ? "verde" : "rojo")%>">Curación
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isResecado() ? "verde" : "rojo")%>">Resecado
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isEnucleacion() ? "verde" : "rojo")%>">Enucleación
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isDevastado() ? "verde" : "rojo")%>">Devastado Ungueal
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isMaso() ? "verde" : "rojo")%>">Masoterapia o Masaje
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isEspiculoectomia() ? "verde" : "rojo")%>">Espiculoectomía
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isAnalgesia() ? "verde" : "rojo")%>">Analgesia
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isColocacionAcrilico() ? "verde" : "rojo")%>">Colocacion Acrilico
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isBandaMolecular() ? "verde" : "rojo")%>">Colocacion Banda Molecular
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isColocacionPuente() ? "verde" : "rojo")%>">Colocacion Puente
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <text class="<%=(a.isPoli() ? "verde" : "rojo")%>">Colocacion Policarboxilato
+                            </div>
                         </div>
 
-                        <br><br>
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isSens_i() ? "verde" : "rojo")%>">Sensibilidad Pie Izquierdo 
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isCuracion() ? "verde" : "rojo")%>">Curación
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isResecado() ? "verde" : "rojo")%>">Resecado
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isEnucleacion() ? "verde" : "rojo")%>">Enucleación
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isDevastado() ? "verde" : "rojo")%>">Devastado Ungueal
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isMaso() ? "verde" : "rojo")%>">Masoterapia o Masaje
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isEspiculoectomia() ? "verde" : "rojo")%>">Espiculoectomía
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isAnalgesia() ? "verde" : "rojo")%>">Analgesia
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isColocacionAcrilico() ? "verde" : "rojo")%>">Colocacion Acrilico
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isBandaMolecular() ? "verde" : "rojo")%>">Colocacion Banda Molecular
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isColocacionPuente() ? "verde" : "rojo")%>">Colocacion Puente
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <text class="<%=(a.isPoli() ? "verde" : "rojo")%>">Colocacion Policarboxilato
-                        </div>
-
-                        <div class="form-group col-md-12" style="margin-right: 660px;">
+                        <div class="form-group col-md-12">
                             Tratamiento Ortonixia:
                             <input class="form-control" type="text" value="<%=a.getTratamientoOrtonixia()%>" readonly >
-
                         </div>
 
                         <div class="form-group col-md-12">
