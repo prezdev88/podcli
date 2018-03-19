@@ -71,7 +71,8 @@
             <%@include file="modules/buscarNav.jsp" %>
         </nav>  
         <br><br><br><br>
-        <%        Data d = new Data();
+        <%      
+            Data d = new Data();
 
             String idPaciente = request.getParameter("idPaciente");
             int idFicha = d.getIdFichaById(idPaciente);

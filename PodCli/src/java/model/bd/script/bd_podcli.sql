@@ -117,8 +117,6 @@ CREATE TABLE ficha(
     FOREIGN KEY(usuario)    REFERENCES usuario(id)
 );
 
-select id from ficha where paciente = 1;
-
 CREATE TABLE tratamientoOrtonixia(
     id INT AUTO_INCREMENT,
     nombre VARCHAR(100),
@@ -142,16 +140,16 @@ CREATE TABLE atencionPodologica(
     ficha			INT,
     usuario                     INT,            -- Usuario que atendió al paciente
     
-    fecha			DATETIME,
-    presion 			FLOAT, 		-- Presión Arterial
+    fecha                       DATETIME,
+    presion 			VARCHAR(20),     -- Presión Arterial (EJ: 120/80)
     pulsoRadial 		INT,
     pulsoPedio_d 		INT, 		-- Derecho
     pulsoPedio_i 		INT, 		-- Izquierdo
     peso 			FLOAT,
     sens_d 			BOOLEAN, 	-- Sensibilidad pie derecho
     sens_i 			BOOLEAN, 	-- Sensibilidad pie izquierdo
-    tpodal_d 			FLOAT, 		-- TEMPERATURA PODAL derecho
-    tpodal_i 			FLOAT, 		-- TEMPERATURA PODAL izquierdo
+    tpodal_d 			VARCHAR(20), 		-- TEMPERATURA PODAL derecho (caliente, frio, normal.)
+    tpodal_i 			VARCHAR(20), 		-- TEMPERATURA PODAL izquierdo (caliente, frio, normal.)
     curacion 			BOOLEAN,
     coloqPuente 		BOOLEAN, 	-- Colocación puente
     resecado 			BOOLEAN,

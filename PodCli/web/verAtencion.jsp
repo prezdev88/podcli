@@ -81,7 +81,8 @@
             <%@include file="modules/buscarNav.jsp" %>
         </nav>
 
-        <%            Data d = new Data();
+        <%            
+            Data d = new Data();
 
             String idAtencionPod = request.getParameter("idAntPod");
             String idPaciente = request.getParameter("idPaciente");
@@ -102,11 +103,11 @@
 
                         <div class="form-group col-md-3">
                             Presión Arterial:<br>
-                            <input class="form-control" type="number" step="any" value="<%= a.getPresion()%>" name="presion" readonly>
+                            <input class="form-control" type="text" step="any" value="<%= a.getPresion()%>" name="presion" readonly>
                         </div>
 
                         <div class="form-group col-md-3">
-                            Pulso Radial:<br> 
+                            Pulso Radial (PPM):<br> 
                             <input class="form-control" type="number"  value="<%= a.getPulsoRadial()%>" name="pulso" readonly>
                         </div>
 
@@ -116,23 +117,23 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            Pulso Pedio Derecho:<br> 
+                            Pulso Pedio Derecho (PPM):<br> 
                             <input class="form-control" type="number" value="<%= a.getPulsoPedio_d()%>" step="any" name="ppd" readonly>
                         </div>
 
                         <div class="form-group col-md-4">
-                            Pulso Pedio Izquierdo:<br> 
+                            Pulso Pedio Izquierdo (PPM):<br> 
                             <input class="form-control" type="number" value="<%= a.getPulsoPedio_i()%>" name="ppi" readonly><br><br>
                         </div>
 
                         <div class="form-group col-md-4">
                             T° Podal Derecho:<br> 
-                            <input class="form-control" type="number" value="<%= a.gettPoda1_d()%>" step="any" name="tpd" readonly><br><br>
+                            <input class="form-control" type="text" value="<%= a.gettPoda1_d()%>" step="any" name="tpd" readonly><br><br>
                         </div>
 
                         <div class="form-group col-md-4">
                             T° Podal Izquierdo:<br>
-                            <input class="form-control" type="number" value="<%= a.gettPoda1_i()%>" step="any" name="tpi" readonly>
+                            <input class="form-control" type="text" value="<%= a.gettPoda1_i()%>" step="any" name="tpi" readonly>
                         </div>
 
                         <br><br>
@@ -190,19 +191,17 @@
                             <text class="<%=(a.isPoli() ? "verde" : "rojo")%>">Colocacion Policarboxilato
                         </div>
 
-                        <div class="form-group col-md-3" style="margin-right: 660px;">
+                        <div class="form-group col-md-12" style="margin-right: 660px;">
                             Tratamiento Ortonixia:
-                            <input type="text" value="<%=a.getTratamientoOrtonixia()%>" readonly >
+                            <input class="form-control" type="text" value="<%=a.getTratamientoOrtonixia()%>" readonly >
 
                         </div>
 
                         <div class="form-group col-md-12">
-                            Observaciones:<br>
+                            Observaciones:
                             <textarea class="form-control" rows="2" name="obs" readonly><%= a.getObservaciones()%></textarea>
                         </div>
 
-
-                        <br><br>
                     </div>
 
                 </div>

@@ -95,11 +95,11 @@
 
                         <div class="form-group col-md-3">
                             Presión Arterial:<br>
-                            <input class="form-control" type="number" step="any" name="presion" required="">
+                            <input class="form-control" type="text" step="any" name="presion" required="" placeholder="EJ: 120 / 80">
                         </div>
 
                         <div class="form-group col-md-3">
-                            Pulso Radial:<br> 
+                            Pulso Radial (PPM):<br> 
                             <input class="form-control" type="number" name="pulso" required="">
                         </div>
 
@@ -109,90 +109,100 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            Pulso Pedio Derecho:<br> 
+                            Pulso Pedio Derecho (PPM):<br> 
                             <input class="form-control" type="number" name="ppd" required="">
                         </div>
 
                         <div class="form-group col-md-4">
-                            Pulso Pedio Izquierdo:<br> 
-                            <input class="form-control" type="number" name="ppi" required=""><br><br>
+                            Pulso Pedio Izquierdo (PPM):<br> 
+                            <input class="form-control" type="number" name="ppi" required="">
                         </div>
 
                         <div class="form-group col-md-4">
-                            T° Podal Derecho:<br> 
-                            <input class="form-control" type="number" step="any" name="tpd" required=""><br><br>
+                            T° Podal Derecho:
+                            <select name="tpd" class="custom-select-sm form-control form-control-sm">
+                                <option value="Normal">Normal</option>
+                                <option value="Frío">Frío</option>
+                                <option value="Caliente">Caliente</option>
+                            </select>
+                            <!-- <input class="form-control" type="number" step="any" name="tpd" required=""> -->
                         </div>
 
                         <div class="form-group col-md-4">
-                            T° Podal Izquierdo:<br>
-                            <input class="form-control" type="number" step="any" name="tpi" required="">
+                            T° Podal Izquierdo:
+                            <select name="tpi" class="custom-select-sm form-control form-control-sm">
+                                <option value="Normal">Normal</option>
+                                <option value="Frío">Frío</option>
+                                <option value="Caliente">Caliente</option>
+                            </select>
+                            <!-- <input class="form-control" type="number" step="any" name="tpi" required=""> -->
                         </div>
 
                         <br><br>
                         <div class="form-group col-md-6">
-                            Sensibilidad Pie Derecho:
                             <input  type="checkbox" value="true" name="spd">
+                            Sensibilidad Pie Derecho
                         </div>
 
                         <br><br>
                         <div class="form-group col-md-6">
-                            Sensibilidad Pie Izquierdo:
                             <input type="checkbox" value="true" name="spi">
+                            Sensibilidad Pie Izquierdo
                         </div>
 
                         <div class="form-group col-md-6">
-                            Curación:
                             <input type="checkbox" value="true" name="curacion">
+                            Curación
                         </div>
 
                         <div class="form-group col-md-6">
-                            Resecado:
                             <input type="checkbox" value="true" name="resecado">
+                            Resecado
                         </div>
 
                         <div class="form-group col-md-6">
-                            Enucleación: 
                             <input type="checkbox" value="true" name="enu">
+                            Enucleación
                         </div>
 
                         <div class="form-group col-md-6">
-                            Devastado Ungueal:
                             <input type="checkbox" value="true" name="devastado">
+                            Devastado Ungueal
                         </div>
 
                         <div class="form-group col-md-6">
-                            Masoterapia o Masaje:
                             <input type="checkbox" value="true" name="maso">
+                            Masoterapia o Masaje
                         </div>
 
                         <div class="form-group col-md-6">
-                            Espiculoectomía:
                             <input type="checkbox" value="true" name="epi">
+                            Espiculoectomía
                         </div>
 
                         <div class="form-group col-md-6">
-                            Analgesia:
                             <input type="checkbox" value="true" name="anal">
+                            Analgesia
                         </div>
 
                         <div class="form-group col-md-6">
-                            Colocacion Acrilico:
                             <input type="checkbox" value="true" name="acri">
+                            Colocación Acrílico
                         </div>
 
                         <div class="form-group col-md-6">
-                            Colocacion Banda Molecular:
                             <input type="checkbox" value="true" name="cbm">
+                            Colocación Banda Molecular
                         </div>
 
                         <div class="form-group col-md-6">
-                            Colocacion Puente:
                             <input type="checkbox" value="true" name="cpuente">
+                            Colocación Puente
                         </div>
 
                         <div class="form-group col-md-6">
-                            Colocacion Policarboxilato:
                             <input type="checkbox" value="true" name="cpoli">
+                            Colocación Policarboxilato
                         </div>
 
                         <div class="form-group col-md-3" style="margin-right: 660px;">

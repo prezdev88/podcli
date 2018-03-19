@@ -28,9 +28,9 @@ public class CrearAtencionPodologicaServlet extends HttpServlet {
             Data d = new Data();
             int ficha, usuario, testo; //<--fk de ficha y usuario
 
-            String fecha, observaciones;
+            String fecha, observaciones,presion, tpodal_d, tpodal_i;
 
-            float presion, peso, tpodal_d, tpodal_i;
+            float peso;
 
             int pulsoRadial, pulsoPedio_d, pulsoPedio_i, tratamientoOrtonixia;
 
@@ -42,15 +42,15 @@ public class CrearAtencionPodologicaServlet extends HttpServlet {
             ficha                   = Integer.parseInt(     req.getParameter("ficha"));
 
 //        fecha = req.getParameter("");
-            presion                 = Float.parseFloat(     req.getParameter("presion"));
+            presion                 =                       req.getParameter("presion");
             pulsoRadial             = Integer.parseInt(     req.getParameter("pulso"));
             peso                    = Float.parseFloat(     req.getParameter("peso"));
             pulsoPedio_d            = Integer.parseInt(     req.getParameter("ppd"));
             pulsoPedio_i            = Integer.parseInt(     req.getParameter("ppi"));
             sens_d                  = Boolean.parseBoolean( req.getParameter("spd"));
             sens_i                  = Boolean.parseBoolean( req.getParameter("spi"));
-            tpodal_d                = Float.parseFloat(     req.getParameter("tpd"));
-            tpodal_i                = Float.parseFloat(     req.getParameter("tpi"));
+            tpodal_d                =                       req.getParameter("tpd");
+            tpodal_i                =                       req.getParameter("tpi");
             curacion                = Boolean.parseBoolean( req.getParameter("curacion"));
             //coloqPuente = Boolean.parseBoolean(req.getParameter(""));
             resecado                = Boolean.parseBoolean( req.getParameter("resecado"));

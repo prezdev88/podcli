@@ -8,15 +8,15 @@ public class AtencionPodologica {
     private int ficha;
     private int usuario;
     private Timestamp fecha;
-    private float presion;//Presión Arterial
+    private String presion;//Presión Arterial
     private int pulsoRadial;
     private int pulsoPedio_d;//Derecho
     private int pulsoPedio_i;//Izquierdo
     private float peso;
     private boolean sens_d;// Sensibilidad pie derecho
     private boolean sens_i;//Sensibilidad pie izquierdo
-    private float tPoda1_d;//TEMPERATURA PODAL derecho
-    private float tPoda1_i;//TEMPERATURA PODAL izquierdo
+    private String tPoda1_d;//TEMPERATURA PODAL derecho
+    private String tPoda1_i;//TEMPERATURA PODAL izquierdo
     private boolean curacion;
     private boolean resecado;
     private boolean enucleacion;
@@ -63,11 +63,11 @@ public class AtencionPodologica {
         this.fecha = fecha;
     }
 
-    public float getPresion() {
+    public String getPresion() {
         return presion;
     }
 
-    public void setPresion(float presion) {
+    public void setPresion(String presion) {
         this.presion = presion;
     }
 
@@ -119,19 +119,19 @@ public class AtencionPodologica {
         this.sens_i = sens_i;
     }
 
-    public float gettPoda1_d() {
+    public String gettPoda1_d() {
         return tPoda1_d;
     }
 
-    public void settPoda1_d(float tPoda1_d) {
+    public void settPoda1_d(String tPoda1_d) {
         this.tPoda1_d = tPoda1_d;
     }
 
-    public float gettPoda1_i() {
+    public String gettPoda1_i() {
         return tPoda1_i;
     }
 
-    public void settPoda1_i(float tPoda1_i) {
+    public void settPoda1_i(String tPoda1_i) {
         this.tPoda1_i = tPoda1_i;
     }
 
@@ -238,7 +238,4 @@ public class AtencionPodologica {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-    
-    
-    
 }

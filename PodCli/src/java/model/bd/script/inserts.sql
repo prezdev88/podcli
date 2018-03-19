@@ -18,5 +18,6 @@ INSERT INTO usuario VALUES
 (NULL, '8554023','Marisol San Martín Ferrada','1'),
 (NULL, '16250115','Yordana Torreblanca Muñoz','1'),
 (NULL, '19854090','Fernanda Torres Arenas','1'),
-(NULL, '11-1','Admin','1'),
-(NULL, '22-2','Patricio Perez Pinto','2');
+(NULL, '11-1','Alumno','1'),
+(NULL, '22-2','Docente','2'),
+(NULL, '33-3','Jefe de Carrera','3');
