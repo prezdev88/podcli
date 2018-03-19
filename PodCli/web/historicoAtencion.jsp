@@ -50,7 +50,9 @@
                         }
                     %></li>
 
-                <li><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
+                <%if(u.getPerfil() == 2 || u.getPerfil() == 3){%>
+                    <li><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
+                <%}%>
                 <!-- Se agregaron recientemente en el nav -->
 
                 <!-- Redirigir a reporte de uso -->                
