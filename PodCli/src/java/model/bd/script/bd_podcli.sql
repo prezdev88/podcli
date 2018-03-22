@@ -8,9 +8,11 @@ CREATE TABLE perfil(
     PRIMARY KEY(id)
 );
 
-INSERT INTO perfil VALUES(NULL, 'Alumno');
+INSERT INTO perfil VALUES(NULL, 'Alumna');
 INSERT INTO perfil VALUES(NULL, 'Docente');
 INSERT INTO perfil VALUES(NULL, 'Jefe Carrera');
+
+select * from perfil;
 
 CREATE TABLE usuario(
     id INT AUTO_INCREMENT,
@@ -172,6 +174,77 @@ CREATE TABLE atencionPodologica(
     FOREIGN KEY(usuario)                REFERENCES usuario(id)
 );
 
+CREATE VIEW rango AS
+	SELECT '[0-30[', COUNT(*) FROM paciente
+	WHERE TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) >= 0 AND
+	TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) < 30
+	UNION
+	SELECT '[30-50[',COUNT(*) FROM paciente
+	WHERE TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) >= 30 AND
+	TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) < 50
+	UNION
+	SELECT '[50-70[',COUNT(*) FROM paciente
+	WHERE TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) >= 50 AND
+	TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) < 70
+	UNION
+	SELECT '>70',COUNT(*) FROM paciente
+	WHERE TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) >= 70;
+
+
+
+/*PROCEDIMIENTOS*/
+
+/*Procedimiento para ver la cantidad de atenciones por rango de fecha
+de todos los usuarios*/
+DELIMITER $$
+CREATE PROCEDURE getAtenciones(fecIni VARCHAR(255), fecFin VARCHAR(255))
+BEGIN
+	SELECT 
+		u.id, u.rut, u.nombre, COUNT(0)
+	FROM 
+		atencionPodologica ap
+	INNER JOIN 
+		usuario u ON ap.usuario = u.id
+	WHERE 
+		ap.usuario = u.id AND
+		fecha BETWEEN fecIni AND fecFin
+	GROUP BY usuario
+	ORDER BY COUNT(0) DESC;
+END $$
+DELIMITER ;
+
+
+/*Procedimiento para ver a los pacientes que atendio un determinado usuario*/
+DELIMITER $$
+CREATE PROCEDURE getPacientesAtendidos(idUsuario INT)
+BEGIN
+	SELECT 
+		f.id AS 'ID Ficha',
+        ap.id AS 'ID Atención',
+		p.rut,
+		p.nombre,
+		u.nombre AS 'Atendido por',
+		ap.fecha AS 'Fecha atención',
+        p.id
+	FROM
+		paciente p
+	INNER JOIN ficha f ON p.id = f.paciente
+	INNER JOIN atencionPodologica ap ON ap.ficha = f.id
+	INNER JOIN usuario u ON u.id = ap.usuario
+	WHERE 
+		ap.usuario = idUsuario
+	ORDER BY ap.fecha DESC;
+END $$
+DELIMITER ;
+
+/*Ejecutar el procedimiento*/
+CALL getAtenciones('2018-01-01', '2018-12-31');
+CALL getPacientesAtendidos(18);
+/*Ejecutar el procedimiento*/
+
+/*PROCEDIMIENTOS*/
+
+
 SELECT * FROM perfil;
 SELECT * FROM usuario;
 SELECT * FROM estadoCivil;
@@ -182,3 +255,7 @@ SELECT * FROM tratamientoOrtonixia;
 SELECT * FROM atencionPodologica;
 
 DROP DATABASE podcli;
+
+
+DROP PROCEDURE getAtenciones;
+DROP PROCEDURE getPacientesAtendidos;

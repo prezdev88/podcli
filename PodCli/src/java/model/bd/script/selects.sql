@@ -90,7 +90,7 @@ WHERE TIMESTAMPDIFF(YEAR, fechaNacimiento, CURDATE()) >= 70;
 /*Por alumno, cuantos atendieron.*/
 /*Listado de alumnos y a cuantos atendieron por fecha*/
 SELECT 
-	u.nombre, COUNT(0)
+	u.rut, u.nombre, COUNT(0)
 FROM 
 	atencionPodologica ap
 INNER JOIN 

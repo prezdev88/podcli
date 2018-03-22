@@ -100,17 +100,16 @@
 
                 <!-- Se agregaron recientemente en el nav -->
                 <li>
-                    <%                        
-                        if (u.getPerfil() == 2 || u.getPerfil() == 3) {
+                    <%                        if (u.getPerfil() == 2 || u.getPerfil() == 3) {
                     %>
                     <a href="crearUsuario.jsp">Crear Usuario</a>
                     <%
                         }
                     %></li>
 
-                <%if(u.getPerfil() == 2 || u.getPerfil() == 3){%>
-                    <li><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
-                <%}%>
+                <%if (u.getPerfil() == 2 || u.getPerfil() == 3) {%>
+                <li><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
+                    <%}%>
                 <!-- Se agregaron recientemente en el nav -->
 
                 <!-- Redirigir a reporte de uso -->                
@@ -158,9 +157,9 @@
         </script>
 
         <div class="container">
-
-            <form action="crearFicha.do" method="post" style="margin-top: 100px">
-
+            <br><br><br>
+            <h1>Crear ficha</h1>
+            <form action="crearFicha.do" method="post">
                 <%                    if (request.getParameter("m") != null) {
                         int m = Integer.parseInt(request.getParameter("m"));
                         switch (m) {

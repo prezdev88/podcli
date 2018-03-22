@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.bd.CantidadAtencion"%>
 <%@page import="model.bd.Rango"%>
 <%@page import="java.util.Iterator"%>
@@ -29,7 +31,8 @@
         <!-- Esto es del calendario JQUERY -->
 
 
-        <%            Data d = new Data();
+        <%                
+            Data d = new Data();
             String fecIni = null, fecFin = null;
             List<CantidadAtencion> cantidadAtenciones = null;
         %>
@@ -42,105 +45,48 @@
             google.charts.setOnLoadCallback(drawChart);
 
             function drawChart() {
-
-                /*Gráfico de sexo*/
-                var hombres, mujeres;
-                hombres = document.getElementById("hombres").innerHTML;
-                mujeres = document.getElementById("mujeres").innerHTML;
-
-                /*alert(hombres);
-                 alert(mujeres);*/
-
-                var data = google.visualization.arrayToDataTable([
-                    ['Item', 'Cantidad'],
-                    ['Hombres', parseInt(hombres)],
-                    ['Mujeres', parseInt(mujeres)]
-                ]);
-
-                var options = {
-                    title: 'Gráfico de atenciones por sexo'
-                };
-
-                var chart = new google.visualization.PieChart(document.getElementById('sexoChart'));
-
-                chart.draw(data, options);
-                /*Gráfico de sexo*/
-
-
-
-                /*Gráfico de rangos etarios*/
-                var cant_0, cant_1, cant_2, cant_3;
-                cant_0 = document.getElementById("cant_0").innerHTML;
-                cant_1 = document.getElementById("cant_1").innerHTML;
-                cant_2 = document.getElementById("cant_2").innerHTML;
-                cant_3 = document.getElementById("cant_3").innerHTML;
-
-                /*alert(hombres);
-                 alert(mujeres);*/
-
-                data = google.visualization.arrayToDataTable([
-                    ['Rango de edad', 'Cantidad'],
-                    ['[0-30[', parseInt(cant_0)],
-                    ['[30-50[', parseInt(cant_1)],
-                    ['[50-70[', parseInt(cant_2)],
-                    ['>70', parseInt(cant_3)]
-                ]);
-
-                var options = {
-                    title: 'Gráfico de atenciones por grupo etario'
-                };
-
-                var chart = new google.visualization.PieChart(document.getElementById('rangosChart'));
-
-                chart.draw(data, options);
-                /*Gráfico de rangos etarios*/
-
-
-
-
-
-
-
                 /*Gráfico de uso*/
-            <%if (request.getParameter("semestreUso") != null) {%>
-            <%
-                        String semestre = request.getParameter("semestreUso");
-                        String anio = request.getParameter("anioUso");
+                <%if(request.getParameter("semestreUso") != null){%>
+                    <%
+                    String semestre = request.getParameter("semestreUso");
+                    String anio = request.getParameter("anioUso");
+                    
+                    if(semestre.equals("1")){
+                        fecIni = anio+"-01-01";
+                        fecFin = anio+"-07-31";
+                    }else{
+                        fecIni = anio+"-08-01";
+                        fecFin = anio+"-12-31";
+                    }   
 
-                        if (semestre.equals("1")) {
-                            fecIni = anio + "-01-01";
-                            fecFin = anio + "-07-31";
-                        } else {
-                            fecIni = anio + "-08-01";
-                            fecFin = anio + "-12-31";
-                        }
+                    %>
+                    data = google.visualization.arrayToDataTable([
+                        ['Nombre', 'Cantidad'],
+                        <%
 
-            %>
-                data = google.visualization.arrayToDataTable([
-                    ['Nombre', 'Cantidad'],
-            <%                            cantidadAtenciones = d.getCantidadDeAtenciones(fecIni, fecFin);
+                        cantidadAtenciones = d.getCantidadDeAtenciones(fecIni, fecFin);
 
-                            int index = 0;
-                            for (CantidadAtencion ca : cantidadAtenciones) {
-                                out.println("['" + ca.getNombre() + "', " + ca.getCantidad() + "]");
-                                index++;
-                                if (index != cantidadAtenciones.size()) {
-                                    out.print(",");
-                                }
+                        int index=0;
+                        for (CantidadAtencion ca : cantidadAtenciones) {
+                            out.println("['"+ca.getNombre()+"', "+ca.getCantidad()+"]");
+                            index++;
+                            if(index != cantidadAtenciones.size()){
+                                out.print(",");
                             }
-            %>
-                ]);
+                        }
+                        %>
+                    ]);
 
-                var options = {
-                    title: 'Gráfico de atenciones podológicas'
-                };
+                    var options = {
+                        title: 'Gráfico de atenciones podológicas'
+                    };
 
-                var chart = new google.visualization.PieChart(document.getElementById('atencionesChart'));
+                    var chart = new google.visualization.PieChart(document.getElementById('atencionesChart'));
 
-                chart.draw(data, options);
-            <%}%>
+                    chart.draw(data, options);
+                <%}%>
 
-
+                
                 /*Gráfico de uso*/
             }
         </script>
@@ -149,7 +95,7 @@
 
 
 
-
+        
 
         <script>
             $(function () {
@@ -266,59 +212,87 @@
 
         <br><br><br>
         <div class="container">
-
+            
             <h1>Reportes</h1>
-
-
-            <div class="col-md-6">
-                <h4>Pacientes por sexo</h4>
-                <table class="table table-striped">
-                    <tr>
-                        <th>Item</th>
-                        <th>Cantidad</th>
-                    </tr>
-                    <tr>
-                        <td>Hombres:</td>
-                        <td id="hombres"><%= d.getCantidad("m")%></td>
-                    </tr>
-                    <tr>
-                        <td>Mujeres:</td>
-                        <td id="mujeres"><%= d.getCantidad("f")%></td>
-                    </tr>
-                </table>
-            </div>
+            <h3>Historial de atenciones podológicas</h3>
 
             <div class="col-md-6">
-                <div  id="sexoChart" style="width: 500px; height: 250px;"></div>
-            </div>
-
-            <div class="col-md-6">
-                <h4>Pacientes por grupo etario</h4>
-                <table class="table table-striped">
-                    <tr>
-                        <th>Rango de edad</th>
-                        <th>Cantidad</th>
-                    </tr>
-                    <%
-                        int i = 0;
-                        for (Rango r : d.getGrupoEtario()) {
-                            out.println("<tr>");
-                            out.println("<td>" + r.getRango() + "</td>");
-                            out.println("<td id='cant_" + i + "'>" + r.getCantidad() + "</td>");
-                            out.println("</tr>");
-
-                            i++;
+                <form action="reporteAtencionAlumnos.jsp" method="post">
+                    <div class="col-md-4">
+                        
+                        <%
+                        int semesUsu = -1;
+                        if(request.getParameter("semestreUso") != null){
+                            semesUsu = Integer.parseInt(request.getParameter("semestreUso"));
                         }
-                    %>
-                </table>
+                        %>
+                        
+                        <select class="form-control" name="semestreUso">
+                            <option value="1" <%=(semesUsu != -1?(semesUsu == 1?"selected":""):"")%>>1er Semestre</option>
+                            <option value="2" <%=(semesUsu != -1?(semesUsu == 2?"selected":""):"")%>>2do Semestre</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <select name="anioUso" class="form-control">
+                            <%
+                            int anioUsu = -1;
+                            if(request.getParameter("semestreUso") != null){
+                                anioUsu = Integer.parseInt(request.getParameter("anioUso"));
+                            }
+                            for (int anio = 2018; anio < 2101; anio++) {
+                                out.println("<option value='"+anio+"' "+(anioUsu != -1?(anio == anioUsu?"selected":""):"")+">"+anio+"</option>");
+                            }
+                            %>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <input class="btn btn-primary" type="submit" value="Ver reporte">
+                    </div>
+                    
+                </form>
+                
+                        <style>
+                            #rango{
+                                text-align: center;
+                                padding-top: 20px;
+                                padding-bottom: 20px;
+                            }
+                        </style>
+                        
+                    <%if(request.getParameter("semestreUso") != null){%>
+                    
+                        <%
+                        SimpleDateFormat f = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy");
+                        SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd");
+                        
+                        out.println("<div id='rango' class='col-md-12'>");
+                        out.println("Del <b>"+f.format(f2.parse(fecIni))+"</b> al <b>"+f.format(f2.parse(fecFin))+"</b>");
+                        out.println("</div>");
+                        %>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Rut</th>
+                                <th>Nombre</th>
+                                <th>Atenciones</th>
+                            </tr>
+
+                            <%
+                            for (CantidadAtencion ca : cantidadAtenciones) {
+                                out.println("<tr>");
+                                    out.println("<td>"+ca.getRut()+"</td>");
+                                    out.println("<td><a href='reporteDetalleAlumno.jsp?id="+ca.getId()+"'>"+ca.getNombre()+"</a></td>");
+                                    out.println("<td>"+ca.getCantidad()+"</td>");
+                                out.println("</tr>");
+                            }
+                            %>
+                        </table>
+                    <%}%>
             </div>
             <div class="col-md-6">
-                <div id="rangosChart" style="width: 500px; height: 250px;"></div>
+                <div id="atencionesChart" style="width: 500px; height: 350px;"></div>
             </div>
-
-            <form action="reporteAtencionAlumnos.jsp">
-                <input value="Reporte de atenciones" type="submit" class="btn btn-success">
-            </form>
         </div>
     </body>
 </html>

@@ -91,7 +91,8 @@
             Paciente p = d.getPaciente(idPaciente);
         %>
 
-        <div class="container" style="margin-top: 100px">
+        <br><br><br>
+        <div class="container" >
             <form action="registrarAtencion.do" method="post">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -154,56 +155,56 @@
                             -->
                             
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isSens_d() ? "verde" : "rojo")%>">Sensibilidad Pie Derecho
+                                <text class="<%=(a.isSens_d() ? "verde" : "rojo")%>">Sensibilidad Pie Derecho (<%=(a.isSens_d() ? "Si" : "No")%>)
                             </div>
 
                            
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isSens_i() ? "verde" : "rojo")%>">Sensibilidad Pie Izquierdo 
+                                <text class="<%=(a.isSens_i() ? "verde" : "rojo")%>">Sensibilidad Pie Izquierdo  (<%=(a.isSens_i() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isCuracion() ? "verde" : "rojo")%>">Curación
+                                <text class="<%=(a.isCuracion() ? "verde" : "rojo")%>">Curación (<%=(a.isCuracion() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isResecado() ? "verde" : "rojo")%>">Resecado
+                                <text class="<%=(a.isResecado() ? "verde" : "rojo")%>">Resecado (<%=(a.isResecado() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isEnucleacion() ? "verde" : "rojo")%>">Enucleación
+                                <text class="<%=(a.isEnucleacion() ? "verde" : "rojo")%>">Enucleación (<%=(a.isEnucleacion() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isDevastado() ? "verde" : "rojo")%>">Devastado Ungueal
+                                <text class="<%=(a.isDevastado() ? "verde" : "rojo")%>">Devastado Ungueal (<%=(a.isDevastado() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isMaso() ? "verde" : "rojo")%>">Masoterapia o Masaje
+                                <text class="<%=(a.isMaso() ? "verde" : "rojo")%>">Masoterapia o Masaje (<%=(a.isMaso() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isEspiculoectomia() ? "verde" : "rojo")%>">Espiculoectomía
+                                <text class="<%=(a.isEspiculoectomia() ? "verde" : "rojo")%>">Espiculoectomía (<%=(a.isEspiculoectomia() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isAnalgesia() ? "verde" : "rojo")%>">Analgesia
+                                <text class="<%=(a.isAnalgesia() ? "verde" : "rojo")%>">Analgesia (<%=(a.isAnalgesia() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isColocacionAcrilico() ? "verde" : "rojo")%>">Colocacion Acrilico
+                                <text class="<%=(a.isColocacionAcrilico() ? "verde" : "rojo")%>">Colocacion Acrilico (<%=(a.isColocacionAcrilico() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isBandaMolecular() ? "verde" : "rojo")%>">Colocacion Banda Molecular
+                                <text class="<%=(a.isBandaMolecular() ? "verde" : "rojo")%>">Colocacion Banda Molecular (<%=(a.isBandaMolecular() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isColocacionPuente() ? "verde" : "rojo")%>">Colocacion Puente
+                                <text class="<%=(a.isColocacionPuente() ? "verde" : "rojo")%>">Colocacion Puente (<%=(a.isColocacionPuente() ? "Si" : "No")%>)
                             </div>
 
                             <div class="form-group col-md-4">
-                                <text class="<%=(a.isPoli() ? "verde" : "rojo")%>">Colocacion Policarboxilato
+                                <text class="<%=(a.isPoli() ? "verde" : "rojo")%>">Colocacion Policarboxilato (<%=(a.isPoli() ? "Si" : "No")%>)
                             </div>
                         </div>
 

@@ -86,7 +86,8 @@
                 <div class="container">
                     <h1>Buscar Paciente</h1>
                     <table class="table table-striped">
-                        <%            String txtBuscar = request.getParameter("txtBuscar");
+                        <%            
+                            String txtBuscar = request.getParameter("txtBuscar");
                             if (txtBuscar != null) {
                                 out.println("<tr>");
                                     out.println("<th>Rut</th>");

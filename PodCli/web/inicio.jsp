@@ -84,19 +84,15 @@
         <!-- Falta metodo para obtener el nombre y ocupacion de la persona que entró -->
         <br>
         <div class="container">
-            <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
-                <center>
+            <div>
                     <div class="container">
                         <% if (u != null) {
-                                out.println("<br><br><br>");
-                                out.println("<h1 class='display-4' >" + u.getNombre() + "</h1>");
-                                out.println("<br>");
+                                out.println("<h1>" + u.getNombre() + "</h1>");
                                 Data d = new Data();
-                                out.println("<p class = 'lead'>" + d.getPerfil(u.getPerfil()) + "</p>");
+                                out.println("<h5>Perfil: " + d.getPerfil(u.getPerfil()) + "</h5>");
                             }
                         %>
                     </div>
-                </center>
             </div>
         </div>
     </body>

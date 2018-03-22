@@ -20,13 +20,15 @@
             padding-left: 10px
 
         }
+        
+        .jumbotron {
+            background-color:transparent !important; 
+        }
 
     </style>
     <body>
 
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
             <div class="navbar-header">
                 <a href="#" class="navbar-left">
                     <span><img width=80px height=35px src="imagen/ist.jpg"></span>
@@ -36,7 +38,7 @@
         </nav>
         <br><br><br>
         <div class="container">
-            <div class="jumbotron" style="border-radius: 10px 10px 10px 10px">
+            <div class="jumbotron">
                 <div class="container">
                     <h1>Atencion Podológica</h1>
                     <br>

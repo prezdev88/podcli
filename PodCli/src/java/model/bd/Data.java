@@ -35,7 +35,70 @@ public class Data {
         );
 
     }
+    
+    public List<DetalleAtencion> getDetallesAtencion(String idUsuario) throws SQLException{
+        List<DetalleAtencion> lista = new ArrayList<>();
+        query = "CALL getPacientesAtendidos("+idUsuario+")";
+        
+        rs = con.ejecutarSelect(query);
+        
+        while(rs.next()){
+            lista.add(
+                new DetalleAtencion(
+                    rs.getInt(1), 
+                    rs.getInt(2), 
+                    rs.getString(3), 
+                    rs.getString(4), 
+                    rs.getString(5), 
+                    rs.getString(6), 
+                    rs.getInt(7)
+                )
+            );
+        }
+        
+        return lista;
+    }
+    
+    public List<CantidadAtencion> getCantidadDeAtenciones(String fecIni, String fecFin) throws SQLException{
+        List<CantidadAtencion> lista = new ArrayList<>();
+        
+        query = "CALL getAtenciones('"+fecIni+"', '"+fecFin+"');";
+        
+        rs = con.ejecutarSelect(query);
+        
+        while(rs.next()){
+            lista.add(new CantidadAtencion(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
+        }
+        
+        return lista;
+    }
 
+    public int getCantidad(String sexo) throws SQLException{
+        query = "SELECT COUNT(*) FROM paciente WHERE sexo = '"+sexo+"';";
+        int cant = 0;
+        
+        rs = con.ejecutarSelect(query);
+        if(rs.next()){
+            cant = rs.getInt(1);
+        }
+        
+        return cant;
+    }
+    
+    public List<Rango> getGrupoEtario() throws SQLException{
+        query = "SELECT * FROM rango";
+        
+        List<Rango> lista = new ArrayList<>();
+        
+        rs = con.ejecutarSelect(query);
+        
+        while(rs.next()){
+            lista.add(new Rango(rs.getString(1), rs.getInt(2)));
+        }
+        
+        return lista;
+    }
+    
     public String getNombreBy(String idFicha) throws SQLException {
         query = "SELECT"
                 + "    p.nombre "

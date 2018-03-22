@@ -1,11 +1,17 @@
+<%@page import="model.bd.DetalleAtencion"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="model.bd.CantidadAtencion"%>
+<%@page import="model.bd.Rango"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="model.bd.Usuario"%>
-<%@page import="model.bd.AtencionPodologicaSelect"%>
+<%@page import="model.bd.DatosReporteUso"%>
 <%@page import="java.util.List"%>
-<%@page import="model.bd.Ficha"%>
-<%@page import="model.bd.Paciente"%>
 <%@page import="model.bd.Data"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="validar.jsp"%>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,16 +20,36 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <title>Histórico Atención podológica</title>
+        <title>Reporte Histórico</title>
+        <!-- Esto es del calendario JQUERY -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+
+
+
+        <!-- Esto es del calendario JQUERY -->
+
+
+        <%                
+            Data d = new Data();
+        %>
+
+
+        <style>
+            .navbar-nav.navbar-center {
+                position: absolute;
+                left: 50%;
+                transform: translatex(-50%);
+            }
+
+            .navbar-header{
+                padding-top: 7px; 
+                padding-left: 10px
+            }
+        </style>
     </head>
-    <style>
-        .navbar-header{
-
-            padding-top: 7px; 
-            padding-left: 10px
-
-        }
-    </style>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
             <div class="navbar-header">
@@ -50,9 +76,7 @@
                         }
                     %></li>
 
-                <%if (u.getPerfil() == 2 || u.getPerfil() == 3) {%>
-                <li><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
-                    <%}%>
+                <li class="active"><a href="reporteHistorico.jsp">Reporte Histórico</a></li>
                 <!-- Se agregaron recientemente en el nav -->
 
                 <!-- Redirigir a reporte de uso -->                
@@ -71,54 +95,46 @@
             <!-- Falta redirigir a donde se muestran los resultados de la busqueda -->
 
             <%@include file="modules/buscarNav.jsp" %>
-        </nav>  
-        <%            Data d = new Data();
+        </nav>
 
-            String idPaciente = request.getParameter("idPaciente");
-            int idFicha = d.getIdFichaById(idPaciente);
-            List<AtencionPodologicaSelect> atenciones = d.getAtencionesPodologicas(idFicha);
-
-            String rutPaciente = d.getPaciente(idPaciente).getRut();
-
-            String nomPac = d.getNombreBy(String.valueOf(idFicha));
-        %>
-        
         <br><br><br>
         <div class="container">
-            <h1 class="col-md-12">Atenciones podológicas de <b><%=nomPac%></b></h1>
-            <div class="col-md-12">
-                <form action="verFicha.jsp" class="form-inline" method="post">
-                    <input type="hidden" name="rut" value="<%=rutPaciente%>">                     
-                    <input type="submit" value="Ver ficha" class="btn btn-primary" style="width: 200px;">
-                </form>
-            </div>
+            
+            <h1>Reportes</h1>
+            <h3>Historial de atenciones podológicas</h3>
 
+            <%
+            List<DetalleAtencion> detalles = d.getDetallesAtencion(request.getParameter("id"));
+            %>
+            
             <table class="table table-striped">
                 <tr>
-                    <th>Id</th>
-                    <th>Fecha</th>
-                    <th>Observaciones</th>
-                    <th>Atendido por</th>
-                    <th>Ver detalle</th>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>Fecha Atención</th>
+                    <th>Ver detalle atención</th>
                 </tr>
-                <%
-                    for (AtencionPodologicaSelect aps : atenciones) {
-                        out.println("<tr>");
-                        out.println("<td>" + aps.getId() + "</td>");
-                        out.println("<td>" + Data.getFormattedDate(aps.getFecha(), true) + "</td>");
-                        out.println("<td>" + aps.getObservaciones() + "</td>");
-                        out.println("<td>" + aps.getAtendidoPor() + "</td>");
-                        out.println("<td>");
-                        out.println("<form action='verAtencion.jsp' method='post' class='form-inline'>");
-                        out.println("<input type='submit' value='Ver detalle' class='btn btn-success'>");
-                        out.println("<input type='hidden' name='idAntPod' value=" + aps.getId() + ">");
-                        out.println("<input type='hidden' name='idPaciente' value=" + idPaciente + ">");
-                        out.println("</form>");
-                        out.println("</td>");
-                        out.println("</tr>");
-                    }
-                %>
+                
+                
+                <%for (DetalleAtencion da : detalles) {%>
+                    <tr>
+                        <td><%=da.getRutPaciente()%></td>
+                        <td>
+                            <a href="verFicha.jsp?rut=<%= da.getRutPaciente() %>"><%=da.getNombrePaciente()%></a>
+                            <a href="historicoAtencion.jsp?idPaciente=<%= da.getIdPaciente()%>">[Ver històrico de atenciones]</a>
+                        </td>
+                        <td><%=da.getFechaAtencion()%></td>
+                        <td>
+                            <form action="verAtencion.jsp" method="post">
+                                <input type="hidden" name="idAntPod" value="<%= da.getIdAtencion() %>">
+                                <input type="hidden" name="idPaciente" value="<%= da.getIdPaciente() %>">
+                                <input type="submit" value="Ver detalle" class="btn btn-success">
+                            </form>
+                        </td>
+                    </tr>
+                <%}%>
+                
             </table>
-        </div> 
+        </div>
     </body>
 </html>
