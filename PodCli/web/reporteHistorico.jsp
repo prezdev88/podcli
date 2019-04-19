@@ -68,7 +68,7 @@
 
 
 
-                /*Gráfico de rangos etarios*/
+                /*Gráfico de rangos etáreos*/
                 var cant_0, cant_1, cant_2, cant_3;
                 cant_0 = document.getElementById("cant_0").innerHTML;
                 cant_1 = document.getElementById("cant_1").innerHTML;
@@ -87,13 +87,13 @@
                 ]);
 
                 var options = {
-                    title: 'Gráfico de atenciones por grupo etario'
+                    title: 'Gráfico de atenciones por grupo etáreo'
                 };
 
                 var chart = new google.visualization.PieChart(document.getElementById('rangosChart'));
 
                 chart.draw(data, options);
-                /*Gráfico de rangos etarios*/
+                /*Gráfico de rangos etáreos*/
 
 
 
@@ -293,7 +293,7 @@
             </div>
 
             <div class="col-md-6">
-                <h4>Pacientes por grupo etario</h4>
+                <h4>Pacientes por grupo etáreo</h4>
                 <table class="table table-striped">
                     <tr>
                         <th>Rango de edad</th>
